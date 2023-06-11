@@ -4,10 +4,16 @@
  */
 package ObjNegocio;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  *
  * @author kim
  */
-public class Post {
+@Table(name = "Post")
+@Entity
+public class Post  implements Serializable {
     
 }
