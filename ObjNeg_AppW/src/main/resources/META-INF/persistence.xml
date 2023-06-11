@@ -3,6 +3,8 @@
   <persistence-unit name="com.mycompany_ObjNeg_AppW_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>ObjNegocio.Usuario</class>
+    <class>ObjNegocio.Admor</class>
+    <class>ObjNegocio.Normal</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/appW?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
