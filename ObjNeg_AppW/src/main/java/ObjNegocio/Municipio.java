@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author eruma
+ * @author kim, carmen, elmer, marcos
  */
 @Entity
 @Table(name = "Municipio")
