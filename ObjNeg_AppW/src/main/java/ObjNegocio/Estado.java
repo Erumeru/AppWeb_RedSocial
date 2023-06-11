@@ -59,6 +59,7 @@ public class Estado implements Serializable {
 
     @OneToMany(mappedBy="estado", cascade={CascadeType.PERSIST})
     private List<Municipio> municipios;
+    
     @Override
     public int hashCode() {
         int hash = 5;

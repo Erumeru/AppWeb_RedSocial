@@ -5,7 +5,9 @@
 package ObjNegocio;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -83,6 +87,10 @@ public class Municipio implements Serializable {
         return Objects.equals(this.id, other.id);
     }
 
+    
+    @OneToMany(mappedBy="municipio", cascade={CascadeType.PERSIST})
+    private List<Usuario> usuarios;
+    
     @ManyToOne()
     @JoinColumn(name="idEstado", nullable=false)
     private Estado estado;
