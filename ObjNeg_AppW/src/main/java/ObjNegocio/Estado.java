@@ -18,15 +18,14 @@ import javax.persistence.Table;
  * @author eruma
  */
 @Entity
-@Table(name = "Municipio")
-public class Municipio implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Table(name = "estados")
+public class Estado implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
+
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
@@ -34,10 +33,15 @@ public class Municipio implements Serializable {
         return id;
     }
 
-    public Municipio(Long id, String nombre) {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Estado(Long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -47,19 +51,14 @@ public class Municipio implements Serializable {
         this.nombre = nombre;
     }
 
-    public Municipio() {
-    }
-
-    
-    public void setId(Long id) {
-        this.id = id;
+    public Estado() {
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.nombre);
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
 
@@ -74,7 +73,7 @@ public class Municipio implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Municipio other = (Municipio) obj;
+        final Estado other = (Estado) obj;
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
@@ -83,8 +82,10 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "Municipio{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "Estado{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-
+  
+ 
     
+
 }
