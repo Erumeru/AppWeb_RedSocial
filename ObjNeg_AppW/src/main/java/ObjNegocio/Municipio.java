@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -81,6 +83,10 @@ public class Municipio implements Serializable {
         return Objects.equals(this.id, other.id);
     }
 
+    @ManyToOne()
+    @JoinColumn(name="idEstado", nullable=false)
+    private Estado estado;
+            
     @Override
     public String toString() {
         return "Municipio{" + "id=" + id + ", nombre=" + nombre + '}';

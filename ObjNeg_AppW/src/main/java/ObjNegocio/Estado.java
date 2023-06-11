@@ -5,12 +5,15 @@
 package ObjNegocio;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -54,6 +57,8 @@ public class Estado implements Serializable {
     public Estado() {
     }
 
+    @OneToMany(mappedBy="estado", cascade={CascadeType.PERSIST})
+    private List<Municipio> municipios;
     @Override
     public int hashCode() {
         int hash = 5;
