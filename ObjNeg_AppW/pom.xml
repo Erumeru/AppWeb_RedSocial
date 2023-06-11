@@ -25,6 +25,12 @@
                <version>2.2.1</version>
                <type>jar</type>
           </dependency>
+          <dependency>
+               <groupId>org.eclipse.persistence</groupId>
+               <artifactId>jakarta.persistence</artifactId>
+               <version>2.2.3</version>
+               <type>jar</type>
+          </dependency>
      </dependencies>
      
     <properties>
