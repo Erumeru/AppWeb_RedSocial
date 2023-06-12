@@ -4,7 +4,6 @@
  */
 package org.itson.appimplementacion;
 
-import ObjNegocio.Post;
 import ObjNegocio.Usuario;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -31,6 +30,21 @@ public class UsuarioDAO extends BaseDAO<Usuario>{
        MongoDatabase db= Conexion.getInstance();
         MongoCollection<Usuario> colleccionUsuario = db.getCollection("usuario", Usuario.class);
         return colleccionUsuario;
+    }
+
+    @Override
+    public Usuario buscar(Usuario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario eliminar(Usuario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario actualizar(Usuario entidad, Usuario entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -5,7 +5,6 @@
 package org.itson.appimplementacion;
 
 import ObjNegocio.Normal;
-import ObjNegocio.Post;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
@@ -31,6 +30,21 @@ public class NormalDAO extends BaseDAO<Normal>{
           MongoDatabase db= Conexion.getInstance();
         MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
         return colleccionNormal;
+    }
+
+    @Override
+    public Normal buscar(Normal entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Normal eliminar(Normal entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Normal actualizar(Normal entidad, Normal entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

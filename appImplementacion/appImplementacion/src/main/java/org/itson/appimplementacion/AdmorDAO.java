@@ -32,5 +32,20 @@ public class AdmorDAO extends BaseDAO<Admor>{
         return colleccionAdmor;
     }
 
+    @Override
+    public Admor buscar(Admor entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Admor eliminar(Admor entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Admor actualizar(Admor entidad, Admor entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

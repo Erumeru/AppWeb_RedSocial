@@ -32,5 +32,20 @@ public class ComentarioDAO extends BaseDAO<Comentario>{
         MongoCollection<Comentario> colleccionComentario = db.getCollection("comentario", Comentario.class);
         return colleccionComentario;
     }
+
+    @Override
+    public Comentario buscar(Comentario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Comentario eliminar(Comentario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Comentario actualizar(Comentario entidad, Comentario entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

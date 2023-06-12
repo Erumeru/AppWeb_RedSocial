@@ -4,7 +4,6 @@
  */
 package org.itson.appimplementacion;
 
-import ObjNegocio.Comun;
 import ObjNegocio.Estado;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -31,6 +30,21 @@ public class EstadoDAO extends BaseDAO<Estado>{
        MongoDatabase db= Conexion.getInstance();
         MongoCollection<Estado> colleccionEstado = db.getCollection("estado", Estado.class);
         return colleccionEstado;
+    }
+
+    @Override
+    public Estado buscar(Estado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Estado eliminar(Estado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Estado actualizar(Estado entidad, Estado entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

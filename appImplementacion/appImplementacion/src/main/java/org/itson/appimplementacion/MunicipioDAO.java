@@ -32,5 +32,20 @@ public class MunicipioDAO extends BaseDAO<Municipio>{
         MongoCollection<Municipio> colleccionMunicipio = db.getCollection("municipio", Municipio.class);
         return colleccionMunicipio;
     }
+
+    @Override
+    public Municipio buscar(Municipio entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Municipio eliminar(Municipio entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Municipio actualizar(Municipio entidad, Municipio entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

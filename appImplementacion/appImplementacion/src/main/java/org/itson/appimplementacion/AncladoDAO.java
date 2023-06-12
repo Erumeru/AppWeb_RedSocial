@@ -32,5 +32,20 @@ public class AncladoDAO extends BaseDAO<Anclado>{
         MongoCollection<Anclado> colleccionAnclado = db.getCollection("anclado", Anclado.class);
         return colleccionAnclado;
     }
+
+    @Override
+    public Anclado buscar(Anclado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Anclado eliminar(Anclado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Anclado actualizar(Anclado entidad, Anclado entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

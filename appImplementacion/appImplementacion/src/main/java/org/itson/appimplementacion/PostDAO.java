@@ -4,7 +4,6 @@
  */
 package org.itson.appimplementacion;
 
-import ObjNegocio.Municipio;
 import ObjNegocio.Post;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -31,6 +30,21 @@ public class PostDAO extends BaseDAO<Post>{
        MongoDatabase db= Conexion.getInstance();
         MongoCollection<Post> colleccionPost = db.getCollection("post", Post.class);
         return colleccionPost;
+    }
+
+    @Override
+    public Post buscar(Post entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Post eliminar(Post entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Post actualizar(Post entidad, Post entidad2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
