@@ -50,6 +50,13 @@ public class Normal extends Usuario implements Serializable {
     }
 
     /**
+     * Constructor por defecto.
+     */
+    public Normal() {
+    }
+    
+
+    /**
      * Regresa los comentarios.
      *
      * @return lista de comentarios.
