@@ -21,6 +21,7 @@ import javax.persistence.Table;
 @Entity
 public class Anclado extends Post implements Serializable {
 
+    
     /**
      * Representa el anclado que tiene un usuario administrador.
      */
@@ -67,6 +68,12 @@ public class Anclado extends Post implements Serializable {
      */
     public Anclado(Calendar fechaHoraCreacion, String titulo, String contenido) {
         super(fechaHoraCreacion, titulo, contenido);
+    }
+
+    /**
+     * Constructor vacio de la clase
+     */
+    public Anclado() {
     }
 
 }

@@ -61,6 +61,12 @@ public class Comun extends Post {
     }
 
     /**
+     * Constructor vacio de la clase.
+     */
+    public Comun() {
+    }
+    
+    /**
      * Obtiene los comentarios.
      *
      * @return lista de comentarios.

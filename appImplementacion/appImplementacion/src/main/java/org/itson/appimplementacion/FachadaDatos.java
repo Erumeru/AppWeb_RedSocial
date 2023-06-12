@@ -6,8 +6,8 @@ package org.itson.appimplementacion;
 
 /**
  *
- * @author hoshi
+ * @author kim, carmen, elmer, marcos
  */
-public class IDatos {
+public class FachadaDatos {
     
 }
