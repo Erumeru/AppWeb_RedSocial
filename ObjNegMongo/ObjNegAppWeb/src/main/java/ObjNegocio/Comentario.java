@@ -3,7 +3,6 @@ Clase Comentario.java creada el 10/06/2023.
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -14,47 +13,40 @@ import org.bson.types.ObjectId;
  *
  * @author kim, carmen, elmer, marcos
  */
-
-public class Comentario implements Serializable {
+public class Comentario {
 
     /**
      * Atributo que sirve para identificar a un comentario en específico.
      */
-   
     private ObjectId id;
 
     /**
      * Atributo que indica la fecha y la hora en las que el comentario fue
      * hecho.
      */
-
     private Calendar fechaHora;
 
     /**
      * Atributo que muestra el contenido del comentario.
      */
-   
     private String contenido;
 
     /**
      * Atributo que muestra la relación uno a muchos, siendo esta el 'muchos',
      * quedándose con la llave foránea de los comentarios comunes.
      */
-  
     private Comun comun;
 
     /**
      * Atributo que muestra la relación uno a muchos, siendo esta el 'muchos',
      * quedándose con la llave foránea.
      */
-
     private Comentario comentario;
 
     /**
      * Atributo que muestra la relación uno a muchos, siendo esta el 'uno'
      * teniendo una lista de comentarios.
      */
-
     private List<Comentario> comentarios;
 
     /**
@@ -67,7 +59,7 @@ public class Comentario implements Serializable {
      */
     public Comentario() {
     }
-    
+
     /**
      * Constructor que construye un comentario.
      *

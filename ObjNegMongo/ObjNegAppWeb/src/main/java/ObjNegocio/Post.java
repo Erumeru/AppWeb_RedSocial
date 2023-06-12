@@ -2,8 +2,6 @@
 Clase Post.java creada el 10/06/2023.
  */
 package ObjNegocio;
-
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -15,7 +13,7 @@ import org.bson.types.ObjectId;
  * @author kim, carmen, elmer, marcos
  */
 
-public class Post implements Serializable {
+public class Post {
 
     /**
      * Atributo que sirve para identificar a un post en específico.

@@ -3,22 +3,25 @@ Clase Anclado.java creada el 10/06/2023.
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import org.bson.types.ObjectId;
-
 
 /**
  * Clase que representa los comentarios anclados.
  *
  * @author kim, carmen, elmer, marcos
  */
-public class Anclado extends Post implements Serializable {
+public class Anclado extends Post {
 
     /**
      * Representa el anclado que tiene un usuario administrador.
      */
     private Admor admor;
+
+    /**
+     * Atributo que sirve para identificar a un post anclado en específico.
+     */
+    private ObjectId id;
 
     /**
      * Contructor para crear un comentario anclado.

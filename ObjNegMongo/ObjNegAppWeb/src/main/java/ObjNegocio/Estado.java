@@ -4,33 +4,29 @@
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
-
 /**
  *
- * @author eruma
+ * @author kim, carmen, elmer, marcos
  */
+public class Estado {
 
-public class Estado implements Serializable {
-    
     /**
      * Atributo que sirve para identificar a un estado en específico.
      */
-   
     private ObjectId id;
 
-     /**
+    /**
      * Atributo que indica el nombre del estado.
      */
-
     private String nombre;
 
     /**
      * Obtiene el id del estado.
+     *
      * @return el id del estado.
      */
     public ObjectId getId() {
@@ -39,6 +35,7 @@ public class Estado implements Serializable {
 
     /**
      * Establece el id del estado.
+     *
      * @param id del estado.
      */
     public void setId(ObjectId id) {
@@ -47,6 +44,7 @@ public class Estado implements Serializable {
 
     /**
      * Constructor que construye un estado.
+     *
      * @param id del estado.
      * @param nombre del estado.
      */
@@ -55,9 +53,9 @@ public class Estado implements Serializable {
         this.nombre = nombre;
     }
 
-
     /**
      * Obtiene el nombre del estado.
+     *
      * @return el nombre del estado.
      */
     public String getNombre() {
@@ -66,6 +64,7 @@ public class Estado implements Serializable {
 
     /**
      * Establece el nombre del estado.
+     *
      * @param nombre del estado.
      */
     public void setNombre(String nombre) {
@@ -82,11 +81,11 @@ public class Estado implements Serializable {
      * Atributo que muestra la relación uno a muchos, siendo esta el 'uno'
      * teniendo una lista de municipios.
      */
-
     private List<Municipio> municipios;
-    
+
     /**
      * Para obtener el hash del estado.
+     *
      * @return número hash del nombre y id.
      */
     @Override
@@ -99,6 +98,7 @@ public class Estado implements Serializable {
 
     /**
      * Compara si un estado es igual a otro.
+     *
      * @param obj objeto a comparar.
      * @return true si son iguales y false en caso contrario.
      */
@@ -120,9 +120,8 @@ public class Estado implements Serializable {
         return Objects.equals(this.id, other.id);
     }
 
-     /**
-     * Método usado para escribir y con ello conocer los atributos de un
-     * estado.
+    /**
+     * Método usado para escribir y con ello conocer los atributos de un estado.
      *
      * @return atributos del estado en orden.
      */
@@ -130,8 +129,5 @@ public class Estado implements Serializable {
     public String toString() {
         return "Estado{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-  
- 
-    
 
 }

@@ -4,31 +4,26 @@
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
-
 
 /**
  * Clase que representa a los Usuarios.
  *
  * @author kim, carmen, elmer, marcos
  */
-
-public class Usuario implements Serializable {
+public class Usuario {
 
     /**
      * Atributo que sirve para identificar a un Usuario en específico.
      */
-    
     private ObjectId id;
 
     /**
      * Atributo que indica el nombre completo del Usuario.
      */
-
     private String nombreCompleto;
 
     /**
@@ -49,34 +44,28 @@ public class Usuario implements Serializable {
     /**
      * Atributo que indica el avatar del Usuario.
      */
-
     private String avatar;
 
     /**
      * Atributo que indica el ciudad del Usuario.
      */
-  
     private String ciudad;
 
     /**
      * Atributo que indica la fecha en el que usuario nacio.
      */
- 
     private Calendar fechaNacimiento;
 
     /**
      * Atributo que indica el genero del usuario.
      */
-   
     private String genero;
 
     /**
      * Representa la lista de usuarios comunes.
      */
-   
     private List<Comun> comun;
 
- 
     private Municipio municipio;
 
     /**

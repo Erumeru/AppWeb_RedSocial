@@ -4,25 +4,21 @@
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
-
 
 /**
  *
  * @author kim, carmen, elmer, marcos
  */
-
-public class Municipio implements Serializable {
+public class Municipio {
 
     /**
      * Atributo que sirve para identificar a un municipio en específico.
      */
-   
     private ObjectId id;
-    
+
     /**
      * Atributo que indica el nombre del municipio.
      */
@@ -30,6 +26,7 @@ public class Municipio implements Serializable {
 
     /**
      * Obtiene el id del municipio.
+     *
      * @return el id del usuario.
      */
     public ObjectId getId() {
@@ -38,6 +35,7 @@ public class Municipio implements Serializable {
 
     /**
      * Constructor que construye un municipio.
+     *
      * @param id del municipio.
      * @param nombre del municipio.
      */
@@ -48,6 +46,7 @@ public class Municipio implements Serializable {
 
     /**
      * Obtiene el nombre del municipio.
+     *
      * @return regresa el nombre del municipio.
      */
     public String getNombre() {
@@ -56,6 +55,7 @@ public class Municipio implements Serializable {
 
     /**
      * Establece el nombre del municipio.
+     *
      * @param nombre del municipio.
      */
     public void setNombre(String nombre) {
@@ -70,6 +70,7 @@ public class Municipio implements Serializable {
 
     /**
      * Establece el id del municipio
+     *
      * @param id del municipio.
      */
     public void setId(ObjectId id) {
@@ -78,6 +79,7 @@ public class Municipio implements Serializable {
 
     /**
      * Para obtener el hash del municipio.
+     *
      * @return número hash del nombre y id.
      */
     @Override
@@ -90,6 +92,7 @@ public class Municipio implements Serializable {
 
     /**
      * Compara si un municipio es igual a otro.
+     *
      * @param obj objeto a comparar.
      * @return true si son iguales y false en caso contrario.
      */
@@ -115,17 +118,15 @@ public class Municipio implements Serializable {
      * Atributo que muestra la relación uno a muchos, siendo esta el 'uno'
      * teniendo una lista de usuarios.
      */
-
     private List<Usuario> usuarios;
-    
+
     /**
      * Atributo que muestra la relación uno a muchos, siendo esta el 'muchos',
      * quedándose con la llave foránea de los Estados.
      */
- 
     private Estado estado;
-    
-     /**
+
+    /**
      * Método usado para escribir y con ello conocer los atributos de un
      * municipio.
      *
@@ -136,5 +137,4 @@ public class Municipio implements Serializable {
         return "Municipio{" + "id=" + id + ", nombre=" + nombre + '}';
     }
 
-    
 }

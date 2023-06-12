@@ -4,22 +4,25 @@
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  * Clase que representa los Usuarios Normales.
  *
  * @author kim, carmen, elmer, marcos
  */
+public class Normal extends Usuario {
 
-public class Normal extends Usuario implements Serializable {
+    /**
+     * Atributo que sirve para identificar a un Usuario normal en específico.
+     */
+    private ObjectId id;
 
     /**
      * Representa la lista de comentario que tiene un usuario normal.
      */
-    
     private List<Comentario> comentario;
 
     /**
@@ -45,7 +48,6 @@ public class Normal extends Usuario implements Serializable {
      */
     public Normal() {
     }
-    
 
     /**
      * Regresa los comentarios.

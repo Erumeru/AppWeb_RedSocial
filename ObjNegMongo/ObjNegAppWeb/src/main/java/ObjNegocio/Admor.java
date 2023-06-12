@@ -4,19 +4,21 @@
  */
 package ObjNegocio;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.types.ObjectId;
-
 
 /**
  * Clase que representa los Usuarios Administrador.
  *
  * @author kim, carmen, elmer, marcos
  */
-
-public class Admor extends Usuario implements Serializable {
+public class Admor extends Usuario {
+    
+     /**
+     * Atributo que sirve para identificar a un Usuario que es administrador en específico.
+     */
+    private ObjectId id;
 
     /**
      * Representa la lista de anclados que tiene un usuario administrador.

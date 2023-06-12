@@ -6,27 +6,29 @@ package ObjNegocio;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-
+import org.bson.types.ObjectId;
 
 /**
  * Clase que representa a los comentarios comunes.
  *
  * @author kim, carmen, elmer, marcos
  */
-
 public class Comun extends Post {
+
+    /**
+     * Atributo que sirve para identificar a un post común en específico.
+     */
+    private ObjectId id;
 
     /**
      * Atributo que muestra la relación uno a muchos, siendo esta el 'uno',
      * teniendo una lista de comentarios.
      */
-
     private List<Comentario> comentarios;
 
     /**
      * Representa el usuario que es comun.
      */
-   
     private Usuario usuario;
 
     /**
