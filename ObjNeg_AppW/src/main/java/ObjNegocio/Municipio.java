@@ -27,40 +27,72 @@ import javax.persistence.Table;
 @Table(name = "Municipio")
 public class Municipio implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * Atributo que sirve para identificar a un municipio en específico.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     
+    /**
+     * Atributo que indica el nombre del municipio.
+     */
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
+    /**
+     * Obtiene el id del municipio.
+     * @return el id del usuario.
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Constructor que construye un municipio.
+     * @param id del municipio.
+     * @param nombre del municipio.
+     */
     public Municipio(Long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
+    /**
+     * Obtiene el nombre del municipio.
+     * @return regresa el nombre del municipio.
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Establece el nombre del municipio.
+     * @param nombre del municipio.
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Constructor vacío de la clase
+     */
     public Municipio() {
     }
 
-    
+    /**
+     * Establece el id del municipio
+     * @param id del municipio.
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Para obtener el hash del municipio.
+     * @return número hash del nombre y id.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -69,6 +101,11 @@ public class Municipio implements Serializable {
         return hash;
     }
 
+    /**
+     * Compara si un municipio es igual a otro.
+     * @param obj objeto a comparar.
+     * @return true si son iguales y false en caso contrario.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -87,14 +124,27 @@ public class Municipio implements Serializable {
         return Objects.equals(this.id, other.id);
     }
 
-    
+    /**
+     * Atributo que muestra la relación uno a muchos, siendo esta el 'uno'
+     * teniendo una lista de usuarios.
+     */
     @OneToMany(mappedBy="municipio", cascade={CascadeType.PERSIST})
     private List<Usuario> usuarios;
     
+    /**
+     * Atributo que muestra la relación uno a muchos, siendo esta el 'muchos',
+     * quedándose con la llave foránea de los Estados.
+     */
     @ManyToOne()
     @JoinColumn(name="idEstado", nullable=false)
     private Estado estado;
-            
+    
+     /**
+     * Método usado para escribir y con ello conocer los atributos de un
+     * municipio.
+     *
+     * @return atributos del municipio en orden.
+     */
     @Override
     public String toString() {
         return "Municipio{" + "id=" + id + ", nombre=" + nombre + '}';
