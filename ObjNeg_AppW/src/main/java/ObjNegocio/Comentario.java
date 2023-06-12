@@ -74,6 +74,13 @@ public class Comentario implements Serializable {
     private List<Comentario> comentarios;
 
     /**
+     * Representa el coemntario que tiene un usuario normal.
+     */
+    @ManyToOne()
+    @JoinColumn(name = "id_normal", nullable = false)
+    private Normal normal;
+
+    /**
      * Constructor que construye un comentario.
      *
      * @param fechaHora de la creación del comentario.
@@ -193,6 +200,24 @@ public class Comentario implements Serializable {
     }
 
     /**
+     * Obtiene el usuario normal.
+     *
+     * @return usuario normal.
+     */
+    public Normal getNormal() {
+        return normal;
+    }
+
+    /**
+     * Establece el usuario normal.
+     *
+     * @param normal usuario a establecer.
+     */
+    public void setNormal(Normal normal) {
+        this.normal = normal;
+    }
+
+    /**
      * Para obtener el hash del comentario.
      *
      * @return número hash del comentario.
@@ -236,7 +261,6 @@ public class Comentario implements Serializable {
      */
     @Override
     public String toString() {
-        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", comun=" + comun + ", comentario=" + comentario + ", comentarios=" + comentarios + '}';
+        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", comun=" + comun + ", comentario=" + comentario + ", comentarios=" + comentarios + ", normal=" + normal + '}';
     }
-
 }

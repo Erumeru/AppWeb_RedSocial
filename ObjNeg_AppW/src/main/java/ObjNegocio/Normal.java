@@ -12,10 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase que representa los Usuarios Admor.
+ * Clase que representa los Usuarios Normales.
  *
  * @author kim, carmen, elmer, marcos
  */
@@ -23,6 +24,12 @@ import javax.persistence.Table;
 @DiscriminatorValue("normal")
 @Entity
 public class Normal extends Usuario implements Serializable {
+
+    /**
+     * Representa la lista de comentario que tiene un usuario normal.
+     */
+    @OneToMany(mappedBy = "normal")
+    private List<Comentario> comentario;
 
     /**
      * Constructor para crear un Usuario.
@@ -40,6 +47,34 @@ public class Normal extends Usuario implements Serializable {
      */
     public Normal(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String ciudad, Calendar fechaNacimiento, String genero, List<Comun> comun, Municipio municipio) {
         super(nombreCompleto, correo, contrasenia, telefono, avatar, ciudad, fechaNacimiento, genero, comun, municipio);
+    }
+
+    /**
+     * Regresa los comentarios.
+     *
+     * @return lista de comentarios.
+     */
+    public List<Comentario> getComentario() {
+        return comentario;
+    }
+
+    /**
+     * Establece los comentarios.
+     *
+     * @param comentario a establecer.
+     */
+    public void setComentario(List<Comentario> comentario) {
+        this.comentario = comentario;
+    }
+
+    /**
+     * Método usado para escribir y con ello conocer los atributos de un normal.
+     *
+     * @return atributos de un usuario normal en orden.
+     */
+    @Override
+    public String toString() {
+        return "Normal{" + "comentario=" + comentario + '}';
     }
 
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +29,13 @@ public class Comun extends Post {
      */
     @OneToMany(mappedBy = "comun")
     private List<Comentario> comentarios;
+
+    /**
+     * Representa el usuario que es comun.
+     */
+    @ManyToOne()
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     /**
      * Contructor para crear un comentario común.
@@ -106,13 +115,31 @@ public class Comun extends Post {
     }
 
     /**
+     * Regresa el usuario.
+     *
+     * @return usuario.
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * Establece el usuario.
+     *
+     * @param usuario a establecer.
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
      * Método usado para escribir y con ello conocer los comentarios.
      *
      * @return comentarios en orden.
      */
     @Override
     public String toString() {
-        return "Comun{" + "comentarios=" + comentarios + '}';
+        return "Comun{" + "comentarios=" + comentarios + ", usuario=" + usuario + '}';
     }
 
 }

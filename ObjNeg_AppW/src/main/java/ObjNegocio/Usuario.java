@@ -88,7 +88,10 @@ public class Usuario implements Serializable {
     @Column(name = "genero", nullable = false, length = 100)
     private String genero;
 
-    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST})
+    /**
+     * Representa la lista de usuarios comunes.
+     */
+    @OneToMany(mappedBy = "usuario")
     private List<Comun> comun;
 
     @ManyToOne()

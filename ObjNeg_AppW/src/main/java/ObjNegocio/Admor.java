@@ -12,10 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase que representa los Usuarios Admor.
+ * Clase que representa los Usuarios Administrador.
  *
  * @author kim, carmen, elmer, marcos
  */
@@ -23,6 +24,12 @@ import javax.persistence.Table;
 @DiscriminatorValue("admor")
 @Entity
 public class Admor extends Usuario implements Serializable {
+
+    /**
+     * Representa la lista de anclados que tiene un usuario administrador.
+     */
+    @OneToMany(mappedBy = "admor")
+    private List<Anclado> anclado;
 
     /**
      * Constructor para crear un Usuario.
@@ -40,6 +47,34 @@ public class Admor extends Usuario implements Serializable {
      */
     public Admor(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String ciudad, Calendar fechaNacimiento, String genero, List<Comun> comun, Municipio municipio) {
         super(nombreCompleto, correo, contrasenia, telefono, avatar, ciudad, fechaNacimiento, genero, comun, municipio);
+    }
+
+    /**
+     * Regresa el post anclado.
+     *
+     * @return post anclado.
+     */
+    public List<Anclado> getAnclado() {
+        return anclado;
+    }
+
+    /**
+     * Establece el post a anclar.
+     *
+     * @param anclado a establecer.
+     */
+    public void setAnclado(List<Anclado> anclado) {
+        this.anclado = anclado;
+    }
+
+    /**
+     * Método usado para escribir y con ello conocer los atributos de un admor.
+     *
+     * @return atributos de admor en orden.
+     */
+    @Override
+    public String toString() {
+        return "Admor{" + "anclado=" + anclado + '}';
     }
 
 }
