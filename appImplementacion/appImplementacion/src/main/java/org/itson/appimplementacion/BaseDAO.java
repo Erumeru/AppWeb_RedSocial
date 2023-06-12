@@ -6,6 +6,7 @@ package org.itson.appimplementacion;
 
 import com.mongodb.client.MongoCollection;
 import java.util.ArrayList;
+import org.itson.excepciones.DAOException;
 
 /**
  *
@@ -19,7 +20,7 @@ public abstract class BaseDAO<T> {
      *
      * @param entidad La entidad a guardar.
      */
-    public abstract void guardar(T entidad);
+    public abstract T guardar(T entidad) throws DAOException;
 
     /**
      * Busca todas las entidades en la base de datos MongoDB.
