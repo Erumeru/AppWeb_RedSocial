@@ -6,29 +6,51 @@ package org.itson.appimplementacion;
 
 import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
+import org.itson.excepciones.DAOException;
 
 /**
  *
  * @author kim, carmen, elmer, marcos
  */
-public class ComunDAO extends BaseDAO<Comun>{
+public class ComunDAO extends BaseDAO<Comun> {
 
+    private MongoCollection<Comun> collection;
+    private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
+
+    public ComunDAO() {
+        collection=getCollection();
+    }
+
+    
+    
     @Override
-    public void guardar(Comun entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Comun guardar(Comun entidad) throws DAOException {
+        try {
+            collection.insertOne(entidad);
+            return entidad;
+        } catch (MongoException e) {
+            Logger.getLogger(ComunDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DAOException("Error al insertar el itinerario");
+        }
     }
 
     @Override
     public ArrayList<Comun> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Comun> comunes = new ArrayList<>();
+        comunes = collection.find().into(comunes);
+        return comunes;
     }
 
     @Override
     public MongoCollection<Comun> getCollection() {
-        MongoDatabase db= Conexion.getInstance();
+        MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
         return colleccionComun;
     }
@@ -40,12 +62,13 @@ public class ComunDAO extends BaseDAO<Comun>{
 
     @Override
     public Comun eliminar(Comun entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        collection.deleteOne(new Document("id", entidad.getId()));
+        return entidad;
     }
 
     @Override
     public Comun actualizar(Comun entidad, Comun entidad2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

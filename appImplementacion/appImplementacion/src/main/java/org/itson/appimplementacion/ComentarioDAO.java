@@ -6,29 +6,49 @@ package org.itson.appimplementacion;
 
 import ObjNegocio.Anclado;
 import ObjNegocio.Comentario;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
+import org.itson.excepciones.DAOException;
 
 /**
  *
  * @author kim, carmen, elmer, marcos
  */
-public class ComentarioDAO extends BaseDAO<Comentario>{
+public class ComentarioDAO extends BaseDAO<Comentario> {
+
+    private MongoCollection<Comentario> collection;
+    private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
+
+    public ComentarioDAO() {
+        collection = getCollection();
+    }
 
     @Override
-    public void guardar(Comentario entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Comentario guardar(Comentario entidad) throws DAOException {
+        try {
+            collection.insertOne(entidad);
+            return entidad;
+        } catch (MongoException e) {
+            Logger.getLogger(ComentarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DAOException("Error al insertar el itinerario");
+        }
     }
 
     @Override
     public ArrayList<Comentario> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Comentario> comentarios = new ArrayList<>();
+        comentarios = collection.find().into(comentarios);
+        return comentarios;
     }
 
     @Override
     public MongoCollection<Comentario> getCollection() {
-        MongoDatabase db= Conexion.getInstance();
+        MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comentario> colleccionComentario = db.getCollection("comentario", Comentario.class);
         return colleccionComentario;
     }
@@ -40,12 +60,13 @@ public class ComentarioDAO extends BaseDAO<Comentario>{
 
     @Override
     public Comentario eliminar(Comentario entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        collection.deleteOne(new Document("id", entidad.getId()));
+        return entidad;
     }
 
     @Override
     public Comentario actualizar(Comentario entidad, Comentario entidad2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

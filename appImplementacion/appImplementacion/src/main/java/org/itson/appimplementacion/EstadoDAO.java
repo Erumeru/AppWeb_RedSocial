@@ -4,30 +4,51 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Comun;
 import ObjNegocio.Estado;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
+import org.itson.excepciones.DAOException;
 
 /**
  *
  * @author kim, carmen, elmer, marcos
  */
-public class EstadoDAO extends BaseDAO<Estado>{
+public class EstadoDAO extends BaseDAO<Estado> {
+
+    private MongoCollection<Estado> collection;
+    private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
+
+    public EstadoDAO() {
+        collection = getCollection();
+    }
 
     @Override
-    public void guardar(Estado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Estado guardar(Estado entidad) throws DAOException {
+        try {
+            collection.insertOne(entidad);
+            return entidad;
+        } catch (MongoException e) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DAOException("Error al insertar el itinerario");
+        }
     }
 
     @Override
     public ArrayList<Estado> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Estado> estados = new ArrayList<>();
+        estados = collection.find().into(estados);
+        return estados;
     }
 
     @Override
     public MongoCollection<Estado> getCollection() {
-       MongoDatabase db= Conexion.getInstance();
+        MongoDatabase db = Conexion.getInstance();
         MongoCollection<Estado> colleccionEstado = db.getCollection("estado", Estado.class);
         return colleccionEstado;
     }
@@ -39,12 +60,13 @@ public class EstadoDAO extends BaseDAO<Estado>{
 
     @Override
     public Estado eliminar(Estado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        collection.deleteOne(new Document("id", entidad.getId()));
+        return entidad;
     }
 
     @Override
     public Estado actualizar(Estado entidad, Estado entidad2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

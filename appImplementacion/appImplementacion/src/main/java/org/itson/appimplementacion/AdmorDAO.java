@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.Document;
 import org.itson.excepciones.DAOException;
 
 /**
@@ -63,7 +64,8 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     @Override
     public Admor eliminar(Admor entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        collection.deleteOne(new Document("id",entidad.getId())); 
+        return entidad;
     }
 
     @Override
