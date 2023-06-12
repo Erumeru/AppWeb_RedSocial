@@ -4,30 +4,40 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Normal;
 import ObjNegocio.Post;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
+import org.itson.excepciones.DAOException;
 
 /**
  *
  * @author kim, carmen, elmer, marcos
  */
-public class PostDAO extends BaseDAO<Post>{
+public class PostDAO extends BaseDAO<Post> {
 
-    @Override
-    public void guardar(Post entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private MongoCollection<Post> collection;
+    private static final Logger LOG = Logger.getLogger(PostDAO.class.getName());
+
+    public PostDAO() {
+        collection = getCollection();
     }
 
     @Override
     public ArrayList<Post> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Post> posts = new ArrayList<>();
+        posts = collection.find().into(posts);
+        return posts;
     }
 
     @Override
     public MongoCollection<Post> getCollection() {
-       MongoDatabase db= Conexion.getInstance();
+        MongoDatabase db = Conexion.getInstance();
         MongoCollection<Post> colleccionPost = db.getCollection("post", Post.class);
         return colleccionPost;
     }
@@ -39,12 +49,24 @@ public class PostDAO extends BaseDAO<Post>{
 
     @Override
     public Post eliminar(Post entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        collection.deleteOne(new Document("id", entidad.getId()));
+        return entidad;
     }
 
     @Override
     public Post actualizar(Post entidad, Post entidad2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public Post guardar(Post entidad) throws DAOException {
+        try {
+            collection.insertOne(entidad);
+            return entidad;
+        } catch (MongoException e) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DAOException("Error al insertar un post");
+        }
+    }
+
 }

@@ -35,7 +35,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(ComentarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el itinerario");
+            throw new DAOException("Error al insertar el comentario");
         }
     }
 

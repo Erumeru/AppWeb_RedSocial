@@ -35,7 +35,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(AncladoDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el itinerario");
+            throw new DAOException("Error al insertar el post anclado");
         }
     }
 

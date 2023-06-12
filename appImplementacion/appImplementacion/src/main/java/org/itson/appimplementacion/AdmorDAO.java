@@ -39,7 +39,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(AdmorDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el itinerario");
+            throw new DAOException("Error al insertar el usuario administrador");
         }
     }
 

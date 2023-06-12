@@ -35,7 +35,7 @@ public class EstadoDAO extends BaseDAO<Estado> {
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el itinerario");
+            throw new DAOException("Error al insertar el estado");
         }
     }
 

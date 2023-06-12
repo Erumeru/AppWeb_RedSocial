@@ -25,11 +25,9 @@ public class ComunDAO extends BaseDAO<Comun> {
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
     public ComunDAO() {
-        collection=getCollection();
+        collection = getCollection();
     }
 
-    
-    
     @Override
     public Comun guardar(Comun entidad) throws DAOException {
         try {
@@ -37,7 +35,7 @@ public class ComunDAO extends BaseDAO<Comun> {
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(ComunDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el itinerario");
+            throw new DAOException("Error al insertar el usuario comun");
         }
     }
 

@@ -5,29 +5,38 @@
 package org.itson.appimplementacion;
 
 import ObjNegocio.Normal;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
+import org.itson.excepciones.DAOException;
 
 /**
  *
  * @author kim, carmen, elmer, marcos
  */
-public class NormalDAO extends BaseDAO<Normal>{
+public class NormalDAO extends BaseDAO<Normal> {
 
-    @Override
-    public void guardar(Normal entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private MongoCollection<Normal> collection;
+    private static final Logger LOG = Logger.getLogger(NormalDAO.class.getName());
+
+    public NormalDAO() {
+        collection = getCollection();
     }
 
     @Override
     public ArrayList<Normal> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Normal> normales = new ArrayList<>();
+        normales = collection.find().into(normales);
+        return normales;
     }
 
     @Override
     public MongoCollection<Normal> getCollection() {
-          MongoDatabase db= Conexion.getInstance();
+        MongoDatabase db = Conexion.getInstance();
         MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
         return colleccionNormal;
     }
@@ -39,12 +48,24 @@ public class NormalDAO extends BaseDAO<Normal>{
 
     @Override
     public Normal eliminar(Normal entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        collection.deleteOne(new Document("id", entidad.getId()));
+        return entidad;
     }
 
     @Override
     public Normal actualizar(Normal entidad, Normal entidad2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public Normal guardar(Normal entidad) throws DAOException {
+        try {
+            collection.insertOne(entidad);
+            return entidad;
+        } catch (MongoException e) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DAOException("Error al insertar un usuario normal");
+        }
+    }
+
 }
