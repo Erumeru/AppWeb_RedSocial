@@ -66,6 +66,12 @@ public class Post implements Serializable {
     private Calendar fechaHoraEdicion;
 
     /**
+     * Constructor por defecto.
+     */
+    public Post() {
+    }
+    
+    /**
      * Constructor para hacer un post dentro de la red social.
      *
      * @param fechaHoraCreacion fecha de creación de post.

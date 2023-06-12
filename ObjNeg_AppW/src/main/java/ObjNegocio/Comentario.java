@@ -81,6 +81,12 @@ public class Comentario implements Serializable {
     private Normal normal;
 
     /**
+     * Constructor por defecto.
+     */
+    public Comentario() {
+    }
+    
+    /**
      * Constructor que construye un comentario.
      *
      * @param fechaHora de la creación del comentario.

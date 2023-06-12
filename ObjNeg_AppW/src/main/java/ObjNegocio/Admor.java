@@ -50,6 +50,12 @@ public class Admor extends Usuario implements Serializable {
     }
 
     /**
+     * Constructor por defecto.
+     */
+    public Admor() {
+    }
+
+    /**
      * Regresa el post anclado.
      *
      * @return post anclado.

@@ -99,6 +99,12 @@ public class Usuario implements Serializable {
     private Municipio municipio;
 
     /**
+     * Constructor por defecto.
+     */
+    public Usuario() {
+    }
+
+    /**
      * Constructor de la clase Usuario.
      *
      * @param nombreCompleto El nombre completo del usuario.
