@@ -20,13 +20,28 @@ import org.itson.excepciones.DAOException;
  */
 public class EstadoDAO extends BaseDAO<Estado> {
 
+    /**
+     * Atributo log
+     */
     private MongoCollection<Estado> collection;
+    /**
+     * Atributo colección
+     */
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
+    /**
+     * Constructor de la clase que 
+     * inicializa el atributo MongoCollection.
+     */
     public EstadoDAO() {
         collection = getCollection();
     }
 
+     /**
+     * Guarda una entidad de tipo Estado en la base de datos MongoDB.
+     * @param entidad a insertar en la base.
+     * @return regresa la entidad
+     */
     @Override
     public Estado guardar(Estado entidad) throws DAOException {
         try {
@@ -38,6 +53,10 @@ public class EstadoDAO extends BaseDAO<Estado> {
         }
     }
 
+    /**
+     * Busca todas las entidades en la base de datos MongoDB.
+     * @return Una lista de todas las entidades encontradas.
+     */
     @Override
     public ArrayList<Estado> buscarTodos() {
         ArrayList<Estado> estados = new ArrayList<>();
@@ -45,6 +64,10 @@ public class EstadoDAO extends BaseDAO<Estado> {
         return estados;
     }
 
+     /**
+     * Coleccion de la entidad
+     * @return collection
+     */
     @Override
     public MongoCollection<Estado> getCollection() {
         MongoDatabase db = Conexion.getInstance();
@@ -52,6 +75,12 @@ public class EstadoDAO extends BaseDAO<Estado> {
         return colleccionEstado;
     }
 
+    /**
+     * Busca una entidad de tipo Estado dentro de la colección 
+     * en la base de datos.
+     * @param entidad de tipo Estado.
+     * @return 
+     */
     @Override
     public Estado buscar(Estado entidad) {
         MongoDatabase db = Conexion.getInstance();
@@ -60,16 +89,30 @@ public class EstadoDAO extends BaseDAO<Estado> {
         return colleccionEstado.find(filtro).first();
     }
 
+    /**
+     * Elimina una entidad de tipo Estado en la base de datos MongoDB.
+     * @param entidad de tipo Estado
+     * @return 
+     */
     @Override
     public Estado eliminar(Estado entidad) {
         collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 
+    /**
+     * Actualiza una entidad de tipo Estado en la base de datos MongoDB.
+     * @param entidad de tipo Estado a reemplazar.
+     * @param entidad2 de tipo Estado nueva.
+     * @return 
+     */
     @Override
     public Estado actualizar(Estado entidad, Estado entidad2) {
-        Document filtro = new Document("estado", entidad.getClass());
-        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        Document filtro = new Document("_id", entidad.getId());
+        Document cambios = new Document("$set", new Document());
+
+        cambios.append("nombre", entidad2.getNombre());
+
         collection.updateOne(filtro, cambios);
         return entidad2;
     }

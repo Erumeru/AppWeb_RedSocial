@@ -21,13 +21,28 @@ import org.itson.excepciones.DAOException;
  */
 public class ComentarioDAO extends BaseDAO<Comentario> {
 
+    /**
+     * Atributo colección
+     */
     private MongoCollection<Comentario> collection;
+    /**
+     * Atributo log
+     */
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
+    /**
+     * Constructor de la clase que 
+     * inicializa el atributo MongoCollection.
+     */
     public ComentarioDAO() {
         collection = getCollection();
     }
 
+    /**
+     * Guarda una entidad de tipo Comentario en la base de datos MongoDB.
+     * @param entidad a insertar en la base.
+     * @return regresa la entidad
+     */
     @Override
     public Comentario guardar(Comentario entidad) throws DAOException {
         try {
@@ -39,6 +54,10 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
         }
     }
 
+    /**
+     * Busca todas las entidades en la base de datos MongoDB.
+     * @return Una lista de todas las entidades encontradas.
+     */
     @Override
     public ArrayList<Comentario> buscarTodos() {
         ArrayList<Comentario> comentarios = new ArrayList<>();
@@ -46,6 +65,10 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
         return comentarios;
     }
 
+    /**
+     * Coleccion de la entidad
+     * @return collection
+     */
     @Override
     public MongoCollection<Comentario> getCollection() {
         MongoDatabase db = Conexion.getInstance();
@@ -53,6 +76,12 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
         return colleccionComentario;
     }
 
+    /**
+     * Busca una entidad de tipo Comentario dentro de la colección 
+     * en la base de datos.
+     * @param entidad de tipo Comentario.
+     * @return 
+     */
     @Override
     public Comentario buscar(Comentario entidad) {
         MongoDatabase db = Conexion.getInstance();
@@ -61,16 +90,33 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
         return colleccionComentario.find(filtro).first();
     }
 
+    /**
+     * Elimina una entidad de tipo Comentario en la base de datos MongoDB.
+     * @param entidad de tipo Comentario
+     * @return 
+     */
     @Override
     public Comentario eliminar(Comentario entidad) {
         collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 
+    /**
+     * Actualiza una entidad de tipo Comentario en la base de datos MongoDB.
+     * @param entidad de tipo Comentario a reemplazar.
+     * @param entidad2 de tipo Comentario nueva.
+     * @return 
+     */
     @Override
     public Comentario actualizar(Comentario entidad, Comentario entidad2) {
-        Document filtro = new Document("comentario", entidad.getClass());
-        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        Document filtro = new Document("_id", entidad.getId());
+        Document cambios = new Document("$set", new Document());
+
+        cambios.append("fechahora-creacion", entidad2.getFechaHora());
+        cambios.append("contenido", entidad2.getContenido());
+        cambios.append("comentario", entidad2.getComentario());
+        cambios.append("comentarios", entidad2.getComentarios());
+
         collection.updateOne(filtro, cambios);
         return entidad2;
     }

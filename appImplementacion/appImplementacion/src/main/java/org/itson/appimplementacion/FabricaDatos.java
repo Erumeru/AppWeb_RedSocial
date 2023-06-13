@@ -11,6 +11,11 @@ import org.itson.interfaces.IFachadaDatos;
  * @author kim, carmen, elmer, marcos
  */
 public class FabricaDatos {
+    /**
+     * Método que regresa una instancia de fachada datos, para llamar
+     * afuera.
+     * @return 
+     */
      public static IFachadaDatos dameInstancia(){
         return new FachadaDatos();
     }

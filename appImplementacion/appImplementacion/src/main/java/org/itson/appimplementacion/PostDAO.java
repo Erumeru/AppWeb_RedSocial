@@ -21,13 +21,27 @@ import org.itson.excepciones.DAOException;
  */
 public class PostDAO extends BaseDAO<Post> {
 
+    /**
+     * Atributo colección
+     */
     private MongoCollection<Post> collection;
+    /**
+     * Atributo log
+     */
     private static final Logger LOG = Logger.getLogger(PostDAO.class.getName());
 
+    /**
+     * Constructor de la clase que 
+     * inicializa el atributo MongoCollection.
+     */
     public PostDAO() {
         collection = getCollection();
     }
 
+    /**
+     * Busca todas las entidades en la base de datos MongoDB.
+     * @return Una lista de todas las entidades encontradas.
+     */
     @Override
     public ArrayList<Post> buscarTodos() {
         ArrayList<Post> posts = new ArrayList<>();
@@ -35,6 +49,10 @@ public class PostDAO extends BaseDAO<Post> {
         return posts;
     }
 
+    /**
+     * Coleccion de la entidad
+     * @return collection
+     */
     @Override
     public MongoCollection<Post> getCollection() {
         MongoDatabase db = Conexion.getInstance();
@@ -42,6 +60,12 @@ public class PostDAO extends BaseDAO<Post> {
         return colleccionPost;
     }
 
+    /**
+     * Busca una entidad de tipo Post dentro de la colección 
+     * en la base de datos.
+     * @param entidad de tipo Post.
+     * @return 
+     */
     @Override
     public Post buscar(Post entidad) {
         MongoDatabase db = Conexion.getInstance();
@@ -50,20 +74,42 @@ public class PostDAO extends BaseDAO<Post> {
         return colleccionPost.find(filtro).first();
     }
 
+    /**
+     * Elimina una entidad de tipo Post en la base de datos MongoDB.
+     * @param entidad de tipo Post
+     * @return 
+     */
     @Override
     public Post eliminar(Post entidad) {
         collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 
+    /**
+     * Actualiza una entidad de tipo Post en la base de datos MongoDB.
+     * @param entidad de tipo Post a reemplazar.
+     * @param entidad2 de tipo Post nueva.
+     * @return 
+     */
     @Override
     public Post actualizar(Post entidad, Post entidad2) {
-        Document filtro = new Document("post", entidad.getClass());
-        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+     Document filtro = new Document("_id", entidad.getId());
+        Document cambios = new Document("$set", new Document());
+
+        cambios.append("fechahora-creacion", entidad2.getFechaHoraCreacion());
+        cambios.append("titulo", entidad2.getTitulo());
+        cambios.append("contenido", entidad2.getContenido());
+        cambios.append("fechahora-edicion", entidad2.getFechaHoraEdicion());
+
         collection.updateOne(filtro, cambios);
         return entidad2;
     }
 
+    /**
+     * Guarda una entidad de tipo Post en la base de datos MongoDB.
+     * @param entidad a insertar en la base.
+     * @return regresa la entidad
+     */
     @Override
     public Post guardar(Post entidad) throws DAOException {
         try {

@@ -21,13 +21,27 @@ import org.itson.excepciones.DAOException;
  */
 public class MunicipioDAO extends BaseDAO<Municipio> {
 
+    /**
+     * Atributo colección
+     */
     private MongoCollection<Municipio> collection;
+    /**
+     * Atributo log
+     */
     private static final Logger LOG = Logger.getLogger(MunicipioDAO.class.getName());
 
+    /**
+     * Constructor de la clase que 
+     * inicializa el atributo MongoCollection.
+     */
     public MunicipioDAO() {
         collection = getCollection();
     }
 
+    /**
+     * Busca todas las entidades en la base de datos MongoDB.
+     * @return Una lista de todas las entidades encontradas.
+     */
     @Override
     public ArrayList<Municipio> buscarTodos() {
         ArrayList<Municipio> municipios = new ArrayList<>();
@@ -35,6 +49,10 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
         return municipios;
     }
 
+    /**
+     * Coleccion de la entidad
+     * @return collection
+     */
     @Override
     public MongoCollection<Municipio> getCollection() {
         MongoDatabase db = Conexion.getInstance();
@@ -42,6 +60,12 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
         return colleccionMunicipio;
     }
 
+    /**
+     * Busca una entidad de tipo Municipio dentro de la colección 
+     * en la base de datos.
+     * @param entidad de tipo Municipio.
+     * @return 
+     */
     @Override
     public Municipio buscar(Municipio entidad) {
         MongoDatabase db = Conexion.getInstance();
@@ -50,20 +74,39 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
         return colleccionMunicipio.find(filtro).first();
     }
 
+    /**
+     * Elimina una entidad de tipo Municipio en la base de datos MongoDB.
+     * @param entidad de tipo Municipio
+     * @return 
+     */
     @Override
     public Municipio eliminar(Municipio entidad) {
         collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 
+    /**
+     * Actualiza una entidad de tipo Municipio en la base de datos MongoDB.
+     * @param entidad de tipo Municipio a reemplazar.
+     * @param entidad2 de tipo Municipio nueva.
+     * @return 
+     */
     @Override
     public Municipio actualizar(Municipio entidad, Municipio entidad2) {
-        Document filtro = new Document("municipio", entidad.getClass());
-        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        Document filtro = new Document("_id", entidad.getId());
+        Document cambios = new Document("$set", new Document());
+
+        cambios.append("nombre", entidad2.getNombre());
+
         collection.updateOne(filtro, cambios);
         return entidad2;
     }
 
+    /**
+     * Guarda una entidad de tipo Municipio en la base de datos MongoDB.
+     * @param entidad a insertar en la base.
+     * @return regresa la entidad
+     */
     @Override
     public Municipio guardar(Municipio entidad) throws DAOException {
         try {

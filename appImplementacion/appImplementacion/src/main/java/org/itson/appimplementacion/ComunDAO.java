@@ -21,13 +21,28 @@ import org.itson.excepciones.DAOException;
  */
 public class ComunDAO extends BaseDAO<Comun> {
 
+    /**
+     * Atributo colección
+     */
     private MongoCollection<Comun> collection;
+    /**
+     * Atributo log
+     */
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
+    /**
+     * Constructor de la clase que 
+     * inicializa el atributo MongoCollection.
+     */
     public ComunDAO() {
         collection = getCollection();
     }
 
+    /**
+     * Guarda una entidad de tipo Comun en la base de datos MongoDB.
+     * @param entidad a insertar en la base.
+     * @return regresa la entidad
+     */
     @Override
     public Comun guardar(Comun entidad) throws DAOException {
         try {
@@ -39,6 +54,10 @@ public class ComunDAO extends BaseDAO<Comun> {
         }
     }
 
+    /**
+     * Busca todas las entidades en la base de datos MongoDB.
+     * @return Una lista de todas las entidades encontradas.
+     */
     @Override
     public ArrayList<Comun> buscarTodos() {
         ArrayList<Comun> comunes = new ArrayList<>();
@@ -46,6 +65,10 @@ public class ComunDAO extends BaseDAO<Comun> {
         return comunes;
     }
 
+    /**
+     * Coleccion de la entidad
+     * @return collection
+     */
     @Override
     public MongoCollection<Comun> getCollection() {
         MongoDatabase db = Conexion.getInstance();
@@ -53,6 +76,12 @@ public class ComunDAO extends BaseDAO<Comun> {
         return colleccionComun;
     }
 
+    /**
+     * Busca una entidad de tipo Comun dentro de la colección 
+     * en la base de datos.
+     * @param entidad de tipo Comun.
+     * @return 
+     */
     @Override
     public Comun buscar(Comun entidad) {
         MongoDatabase db = Conexion.getInstance();
@@ -60,17 +89,34 @@ public class ComunDAO extends BaseDAO<Comun> {
         Document filtro = new Document("id", entidad.getId());
         return colleccionComun.find(filtro).first();
     }
-
+   
+    /**
+     * Elimina una entidad de tipo Comun en la base de datos MongoDB.
+     * @param entidad de tipo Comun
+     * @return
+     */
     @Override
     public Comun eliminar(Comun entidad) {
         collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 
+    /**
+     * Actualiza una entidad de tipo Comun en la base de datos MongoDB.
+     * @param entidad de tipo Comun a reemplazar.
+     * @param entidad2 de tipo Comun nueva.
+     * @return 
+     */
     @Override
     public Comun actualizar(Comun entidad, Comun entidad2) {
-        Document filtro = new Document("comun", entidad.getClass());
-        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        Document filtro = new Document("_id", entidad.getId());
+        Document cambios = new Document("$set", new Document());
+
+        cambios.append("fechahora-creacion", entidad2.getFechaHoraCreacion());
+        cambios.append("titulo", entidad2.getTitulo());
+        cambios.append("contenido", entidad2.getContenido());
+        cambios.append("fechahora-edicion", entidad2.getFechaHoraEdicion());
+
         collection.updateOne(filtro, cambios);
         return entidad2;
     }

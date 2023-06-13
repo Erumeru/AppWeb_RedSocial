@@ -20,13 +20,27 @@ import org.itson.excepciones.DAOException;
  */
 public class UsuarioDAO extends BaseDAO<Usuario> {
 
+   /**
+    * Atributo collection
+    */
     private MongoCollection<Usuario> collection;
+    /**
+     * Atributo log
+     */
     private static final Logger LOG = Logger.getLogger(UsuarioDAO.class.getName());
 
+    /**
+     * Constructor de la clase que 
+     * inicializa el atributo MongoCollection.
+     */
     public UsuarioDAO() {
         collection = getCollection();
     }
 
+    /**
+     * Busca todas las entidades en la base de datos MongoDB.
+     * @return Una lista de todas las entidades encontradas.
+     */
     @Override
     public ArrayList<Usuario> buscarTodos() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -34,6 +48,10 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
         return usuarios;
     }
 
+    /**
+     * Coleccion de la entidad
+     * @return collection
+     */
     @Override
     public MongoCollection<Usuario> getCollection() {
         MongoDatabase db = Conexion.getInstance();
@@ -41,6 +59,12 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
         return colleccionUsuario;
     }
 
+    /**
+     * Busca una entidad de tipo Usuario dentro de la colección 
+     * en la base de datos.
+     * @param entidad de tipo Usuario.
+     * @return 
+     */
     @Override
     public Usuario buscar(Usuario entidad) {
         MongoDatabase db = Conexion.getInstance();
@@ -49,20 +73,47 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
         return colleccionUsuario.find(filtro).first();
     }
 
+    /**
+     * Elimina una entidad de tipo Usuario en la base de datos MongoDB.
+     * @param entidad de tipo Usuario
+     * @return 
+     */
     @Override
     public Usuario eliminar(Usuario entidad) {
         collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 
+    /**
+     * Actualiza una entidad de tipo Usuario en la base de datos MongoDB.
+     * @param entidad de tipo Usuario a reemplazar.
+     * @param entidad2 de tipo Usuario nueva.
+     * @return 
+     */
     @Override
     public Usuario actualizar(Usuario entidad, Usuario entidad2) {
-        Document filtro = new Document("usuario", entidad.getClass());
-        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        Document filtro = new Document("_id", entidad.getId());
+        Document cambios = new Document("$set", new Document());
+
+        cambios.append("nombre-completo", entidad2.getNombreCompleto());
+        cambios.append("correo", entidad2.getCorreo());
+        cambios.append("contrasenia", entidad2.getContrasenia());
+        cambios.append("avatar", entidad2.getAvatar());
+        cambios.append("ciudad", entidad2.getCiudad());
+        cambios.append("fecha-nacimiento", entidad2.getFechaNacimiento());
+        cambios.append("genero", entidad2.getGenero());
+        cambios.append("comun", entidad2.getComun());
+        cambios.append("municipio", entidad2.getMunicipio());
+
         collection.updateOne(filtro, cambios);
         return entidad2;
     }
 
+    /**
+     * Guarda una entidad de tipo Usuario en la base de datos MongoDB.
+     * @param entidad a insertar en la base.
+     * @return regresa la entidad
+     */
     @Override
     public Usuario guardar(Usuario entidad) throws DAOException {
         try {
