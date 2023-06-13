@@ -62,16 +62,15 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     @Override
     public Admor buscar(Admor entidad) {
-         MongoDatabase db = Conexion.getInstance();
-         MongoCollection<Admor> colleccionAdmor = db.getCollection("admor", Admor.class);
-         Document filtro = new Document("id", entidad.getId());
-         
-         return collection.find(filtro).first();
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Admor> colleccionAdmor = db.getCollection("admor", Admor.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionAdmor.find(filtro).first();
     }
 
     @Override
     public Admor eliminar(Admor entidad) {
-        collection.deleteOne(new Document("id",entidad.getId())); 
+        collection.deleteOne(new Document("id", entidad.getId()));
         return entidad;
     }
 

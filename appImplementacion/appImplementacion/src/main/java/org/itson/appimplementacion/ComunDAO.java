@@ -55,7 +55,10 @@ public class ComunDAO extends BaseDAO<Comun> {
 
     @Override
     public Comun buscar(Comun entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionComun.find(filtro).first();
     }
 
     @Override

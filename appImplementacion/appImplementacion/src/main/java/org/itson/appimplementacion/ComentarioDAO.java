@@ -55,7 +55,10 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     @Override
     public Comentario buscar(Comentario entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Comentario> colleccionComentario = db.getCollection("comentario", Comentario.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionComentario.find(filtro).first();
     }
 
     @Override

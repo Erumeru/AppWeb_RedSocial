@@ -43,7 +43,10 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
 
     @Override
     public Usuario buscar(Usuario entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Usuario> colleccionUsuario = db.getCollection("usuario", Usuario.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionUsuario.find(filtro).first();
     }
 
     @Override
@@ -54,7 +57,7 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
 
     @Override
     public Usuario actualizar(Usuario entidad, Usuario entidad2) {
-       Document filtro = new Document("usuario", entidad.getClass());
+        Document filtro = new Document("usuario", entidad.getClass());
         Document cambios = new Document("$set", new Document("id", entidad2.getId()));
         collection.updateOne(filtro, cambios);
         return entidad2;

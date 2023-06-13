@@ -55,7 +55,10 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     @Override
     public Anclado buscar(Anclado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Anclado> colleccionAnclado = db.getCollection("anclado", Anclado.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionAnclado.find(filtro).first();
     }
 
     @Override
@@ -66,7 +69,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     @Override
     public Anclado actualizar(Anclado entidad, Anclado entidad2) {
-       Document filtro = new Document("anclado", entidad.getClass());
+        Document filtro = new Document("anclado", entidad.getClass());
         Document cambios = new Document("$set", new Document("id", entidad2.getId()));
         collection.updateOne(filtro, cambios);
         return entidad2;

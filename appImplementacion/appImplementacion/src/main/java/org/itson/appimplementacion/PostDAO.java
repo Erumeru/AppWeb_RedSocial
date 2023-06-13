@@ -44,7 +44,10 @@ public class PostDAO extends BaseDAO<Post> {
 
     @Override
     public Post buscar(Post entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Post> colleccionPost = db.getCollection("post", Post.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionPost.find(filtro).first();
     }
 
     @Override
@@ -55,7 +58,7 @@ public class PostDAO extends BaseDAO<Post> {
 
     @Override
     public Post actualizar(Post entidad, Post entidad2) {
-       Document filtro = new Document("post", entidad.getClass());
+        Document filtro = new Document("post", entidad.getClass());
         Document cambios = new Document("$set", new Document("id", entidad2.getId()));
         collection.updateOne(filtro, cambios);
         return entidad2;

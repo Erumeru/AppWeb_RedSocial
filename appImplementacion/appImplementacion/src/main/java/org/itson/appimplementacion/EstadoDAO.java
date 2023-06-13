@@ -54,7 +54,10 @@ public class EstadoDAO extends BaseDAO<Estado> {
 
     @Override
     public Estado buscar(Estado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Estado> colleccionEstado = db.getCollection("estado", Estado.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionEstado.find(filtro).first();
     }
 
     @Override

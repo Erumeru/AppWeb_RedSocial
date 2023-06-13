@@ -43,7 +43,10 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     @Override
     public Normal buscar(Normal entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
+        Document filtro = new Document("id", entidad.getId());
+        return colleccionNormal.find(filtro).first();
     }
 
     @Override
