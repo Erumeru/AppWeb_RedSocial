@@ -54,7 +54,10 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     @Override
     public Normal actualizar(Normal entidad, Normal entidad2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Document filtro = new Document("normal", entidad.getClass());
+        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        collection.updateOne(filtro, cambios);
+        return entidad2;
     }
 
     @Override

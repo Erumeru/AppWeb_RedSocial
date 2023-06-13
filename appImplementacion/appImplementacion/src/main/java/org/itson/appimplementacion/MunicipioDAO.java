@@ -55,7 +55,10 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
 
     @Override
     public Municipio actualizar(Municipio entidad, Municipio entidad2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Document filtro = new Document("municipio", entidad.getClass());
+        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        collection.updateOne(filtro, cambios);
+        return entidad2;
     }
 
     @Override

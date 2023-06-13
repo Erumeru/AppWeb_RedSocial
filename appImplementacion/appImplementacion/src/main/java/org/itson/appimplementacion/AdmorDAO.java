@@ -7,13 +7,16 @@ package org.itson.appimplementacion;
 import ObjNegocio.Admor;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.itson.excepciones.DAOException;
 
 /**
@@ -59,7 +62,11 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     @Override
     public Admor buscar(Admor entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         MongoDatabase db = Conexion.getInstance();
+         MongoCollection<Admor> colleccionAdmor = db.getCollection("admor", Admor.class);
+         Document filtro = new Document("id", entidad.getId());
+         
+         return collection.find(filtro).first();
     }
 
     @Override
@@ -70,7 +77,10 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     @Override
     public Admor actualizar(Admor entidad, Admor entidad2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Document filtro = new Document("admor", entidad.getClass());
+        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        collection.updateOne(filtro, cambios);
+        return entidad2;
     }
 
 }

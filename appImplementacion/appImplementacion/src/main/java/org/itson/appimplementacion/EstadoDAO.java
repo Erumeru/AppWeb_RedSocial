@@ -4,7 +4,6 @@
  */
 package org.itson.appimplementacion;
 
-import ObjNegocio.Comun;
 import ObjNegocio.Estado;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
@@ -66,7 +65,10 @@ public class EstadoDAO extends BaseDAO<Estado> {
 
     @Override
     public Estado actualizar(Estado entidad, Estado entidad2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Document filtro = new Document("estado", entidad.getClass());
+        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        collection.updateOne(filtro, cambios);
+        return entidad2;
     }
 
 }

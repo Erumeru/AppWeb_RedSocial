@@ -66,7 +66,10 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     @Override
     public Anclado actualizar(Anclado entidad, Anclado entidad2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Document filtro = new Document("anclado", entidad.getClass());
+        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        collection.updateOne(filtro, cambios);
+        return entidad2;
     }
 
 }

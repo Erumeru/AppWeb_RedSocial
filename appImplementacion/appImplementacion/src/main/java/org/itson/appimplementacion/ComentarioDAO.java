@@ -66,7 +66,10 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     @Override
     public Comentario actualizar(Comentario entidad, Comentario entidad2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Document filtro = new Document("comentario", entidad.getClass());
+        Document cambios = new Document("$set", new Document("id", entidad2.getId()));
+        collection.updateOne(filtro, cambios);
+        return entidad2;
     }
 
 }
