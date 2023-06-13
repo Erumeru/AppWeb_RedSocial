@@ -43,12 +43,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarAdmor(Admor admor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AdmorDAO admorDAO = new AdmorDAO();
+        admorDAO.actualizar(admor, admor);
     }
 
     @Override
     public void buscarAdmor(Admor admor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AdmorDAO admorDAO = new AdmorDAO();
+        admorDAO.buscar(admor);
     }
 
     @Override
@@ -75,12 +77,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarAnclado(Anclado anclado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AncladoDAO ancladoDAO = new AncladoDAO();
+        ancladoDAO.actualizar(anclado, anclado);
     }
 
     @Override
     public void buscarAnclado(Anclado anclado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       AncladoDAO ancladoDAO = new AncladoDAO();
+       ancladoDAO.buscar(anclado);
     }
 
     @Override
@@ -107,12 +111,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarComentario(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ComentarioDAO comentDAO = new ComentarioDAO();
+        comentDAO.actualizar(comentario, comentario);
     }
 
     @Override
     public void buscarComentario(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ComentarioDAO comentDAO = new ComentarioDAO();
+        comentDAO.buscar(comentario);
     }
 
     @Override
@@ -139,12 +145,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarComun(Comun comun) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ComunDAO comunDAO = new ComunDAO();
+        comunDAO.actualizar(comun, comun);
     }
 
     @Override
     public void buscarComun(Comun comun) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ComunDAO comunDAO = new ComunDAO();
+        comunDAO.buscar(comun);
     }
 
     @Override
@@ -171,12 +179,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarEstado(Estado estado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EstadoDAO estadoDAO = new EstadoDAO();
+        estadoDAO.actualizar(estado, estado);
     }
 
     @Override
     public void buscarEstado(Estado estado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EstadoDAO estadoDAO = new EstadoDAO();
+        estadoDAO.buscar(estado);
     }
 
     @Override
@@ -203,12 +213,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarMunicipio(Municipio municipio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MunicipioDAO muniDAO = new MunicipioDAO();
+        muniDAO.actualizar(municipio, municipio);
     }
 
     @Override
     public void buscarMunicipio(Municipio municipio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MunicipioDAO muniDAO = new MunicipioDAO();
+        muniDAO.buscar(municipio);
     }
 
     @Override
@@ -235,12 +247,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarNormal(Normal normal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         NormalDAO normalDAO = new NormalDAO();
+         normalDAO.actualizar(normal, normal);
     }
 
     @Override
     public void buscarNormal(Normal normal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         NormalDAO normalDAO = new NormalDAO();
+         normalDAO.buscar(normal);
     }
 
     @Override
@@ -267,12 +281,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarPost(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       PostDAO postDAO = new PostDAO();
+       postDAO.actualizar(post, post);
     }
 
     @Override
     public void buscarPost(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PostDAO postDAO = new PostDAO();
+        postDAO.buscar(post);
     }
 
     @Override
@@ -299,12 +315,14 @@ public class FachadaDatos implements IFachadaDatos{
 
     @Override
     public void actualizarUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UsuarioDAO usuDAO = new UsuarioDAO();
+        usuDAO.actualizar(usuario, usuario);
     }
 
     @Override
     public void buscarUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UsuarioDAO usuDAO = new UsuarioDAO();
+        usuDAO.buscar(usuario);
     }
 
     @Override
