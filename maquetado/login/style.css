@@ -1,0 +1,76 @@
+body {
+  background: linear-gradient(180deg, #df84ff, #a088ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recuadro {
+  background: linear-gradient(180deg, #edc0ff, #ccbfff);
+  border-radius: 20px 20px;
+  width: 75%;
+  height: 70%;
+  display: grid;
+  justify-content: center;
+  border: 1px solid green;
+  grid-template-columns: 37% 62%;
+  grid-template-rows: 25% 50% 25%;
+}
+img {
+  border-radius: 20px 20px;
+  margin: 2%;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  grid-row: 1/4;
+  align-self: center;
+}
+p {
+  position: relative;
+  margin: 1%;
+  width: 100%;
+  height: 5%;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  font-size: 30px;
+  color: #3e3e3e;
+  border: 1px solid green;
+}
+
+form {
+  position: relative;
+  border: 1px solid green;
+  height: 70%;
+  width: 60%;
+  justify-self: center;
+}
+
+.corrNum {
+  margin: 2%;
+  padding: 2%;
+  width: 90%;
+  height: 30%;
+  border: 1px solid violet;
+}
+
+.pass {
+  margin: 2%;
+  padding: 2%;
+
+  width: 90%;
+  height: 30%;
+  border: 1px solid violet;
+}
+.inputBtn {
+  position: relative;
+  margin:2%;
+}
