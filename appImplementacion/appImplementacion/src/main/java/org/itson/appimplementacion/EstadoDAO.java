@@ -79,7 +79,7 @@ public class EstadoDAO extends BaseDAO<Estado> {
      * Busca una entidad de tipo Estado dentro de la colección 
      * en la base de datos.
      * @param entidad de tipo Estado.
-     * @return 
+     * @return la entidad
      */
     @Override
     public Estado buscar(Estado entidad) {
@@ -92,7 +92,7 @@ public class EstadoDAO extends BaseDAO<Estado> {
     /**
      * Elimina una entidad de tipo Estado en la base de datos MongoDB.
      * @param entidad de tipo Estado
-     * @return 
+     * @return la entidad eliminada
      */
     @Override
     public Estado eliminar(Estado entidad) {
@@ -104,7 +104,7 @@ public class EstadoDAO extends BaseDAO<Estado> {
      * Actualiza una entidad de tipo Estado en la base de datos MongoDB.
      * @param entidad de tipo Estado a reemplazar.
      * @param entidad2 de tipo Estado nueva.
-     * @return 
+     * @return la entidad actualizada
      */
     @Override
     public Estado actualizar(Estado entidad, Estado entidad2) {
