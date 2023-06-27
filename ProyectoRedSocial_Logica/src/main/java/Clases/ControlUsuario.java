@@ -22,61 +22,73 @@ public class ControlUsuario {
         return datos.listaUsuario();
     }
 
-    public void buscarUsuario(Usuario usuario) {
+    public Usuario buscarUsuario(Usuario usuario) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.buscarUsuario(usuario);
     }
 
-    public void actualizarUsuario(Usuario usuario) {
+    public Usuario actualizarUsuario(Usuario usuario) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.actualizarUsuario(usuario);
     }
 
-    public void eliminarUsuario(Usuario usuario) {
+    public Usuario eliminarUsuario(Usuario usuario) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.eliminarUsuario(usuario);
     }
 
-    public void guardarUsuario(Usuario usuario) {
+    public Usuario guardarUsuario(Usuario usuario) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.guardarUsuario(usuario);
     }
 
     public List<Admor> listaAdmor() {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
-        return null;
+        return datos.listaAdmor();
     }
 
-    public void buscarAdmor(Admor admor) {
+    public Admor buscarAdmor(Admor admor) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.buscarAdmor(admor);
     }
 
-    public void actualizarAdmor(Admor admor) {
+    public Admor actualizarAdmor(Admor admor) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.actualizarAdmor(admor);
     }
 
-    public void eliminarAdmor(Admor admor) {
+    public Admor eliminarAdmor(Admor admor) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.eliminarAdmor(admor);
     }
 
-    public void guardarAdmor(Admor admor) {
+    public Admor guardarAdmor(Admor admor) {
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.guardarAdmor(admor);
     }
 
     public List<Normal> listaNormal(){
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
-        return null;
+        return datos.listaNormal();
     }
 
-    public void buscarNormal(Normal normal){
+    public Normal buscarNormal(Normal normal){
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.buscarNormal(normal);
     }
 
-    public void actualizarNormal(Normal normal){
+    public Normal actualizarNormal(Normal normal){
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.actualizarNormal(normal);
     }
 
-    public void eliminarNormal(Normal normal){
+    public Normal eliminarNormal(Normal normal){
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.eliminarNormal(normal);
     }
 
-    public void guardarNormal(Normal normal){
+    public Normal guardarNormal(Normal normal){
         datos = (IFachadaDatos) FabricaLogica.crearInstancia();
+        return datos.guardarNormal(normal);
     }
 }

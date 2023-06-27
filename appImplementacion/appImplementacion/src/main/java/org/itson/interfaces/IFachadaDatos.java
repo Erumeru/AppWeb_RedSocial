@@ -26,25 +26,25 @@ public interface IFachadaDatos {
      * Método guardar Admor.
      * @param admor 
      */
-    public void guardarAdmor(Admor admor);
+    public Admor guardarAdmor(Admor admor);
     
     /**
      * Método eliminar Admor.
      * @param admor 
      */
-    public void eliminarAdmor(Admor admor);
+    public Admor eliminarAdmor(Admor admor);
     
     /**
      * Método actualizar Admor.
      * @param admor 
      */
-    public void actualizarAdmor(Admor admor);
+    public Admor actualizarAdmor(Admor admor);
     
     /**
      * Método buscar Admor.
      * @param admor 
      */
-    public void buscarAdmor(Admor admor);
+    public Admor buscarAdmor(Admor admor);
     
     /**Método lista Admor.
      * 
@@ -56,25 +56,25 @@ public interface IFachadaDatos {
      * Método guardar Anclado.
      * @param anclado 
      */
-    public void guardarAnclado(Anclado anclado);
+    public Anclado guardarAnclado(Anclado anclado);
     
     /**
      * Método eliminar Anclado.
      * @param anclado 
      */
-    public void eliminarAnclado(Anclado anclado);
+    public Anclado eliminarAnclado(Anclado anclado);
     
     /**
      * Método actualizar Anclado.
      * @param anclado 
      */
-    public void actualizarAnclado(Anclado anclado);
+    public Anclado actualizarAnclado(Anclado anclado);
     
     /**
      * Método buscar Anclado.
      * @param anclado 
      */
-    public void buscarAnclado(Anclado anclado);
+    public Anclado buscarAnclado(Anclado anclado);
     
     /**
      * Método lista Anclado.
@@ -86,25 +86,25 @@ public interface IFachadaDatos {
      * Método guardar Comentario.
      * @param comentario 
      */
-    public void guardarComentario(Comentario comentario);
+    public Comentario guardarComentario(Comentario comentario);
     
     /**
      * Método eliminar Comentario.
      * @param comentario 
      */
-    public void eliminarComentario(Comentario comentario);
+    public Comentario eliminarComentario(Comentario comentario);
     
     /**
      * Método actualizar Comentario.
      * @param comentario 
      */
-    public void actualizarComentario(Comentario comentario);
+    public Comentario actualizarComentario(Comentario comentario);
     
     /**
      * Método buscar Comentario.
      * @param comentario 
      */
-    public void buscarComentario(Comentario comentario);
+    public Comentario buscarComentario(Comentario comentario);
     
     /**
      * Método lista Comentario.
@@ -116,25 +116,25 @@ public interface IFachadaDatos {
      * Método guardar Comun.
      * @param comun 
      */
-    public void guardarComun(Comun comun);
+    public Comun guardarComun(Comun comun);
     
     /**
      * Método eliminar Comun.
      * @param comun 
      */
-    public void eliminarComun(Comun comun);
+    public Comun eliminarComun(Comun comun);
     
     /**
      * Método actualizar Comun.
      * @param comun 
      */
-    public void actualizarComun(Comun comun);
+    public Comun actualizarComun(Comun comun);
     
     /**
      * Método buscar Comun.
      * @param comun 
      */
-    public void buscarComun(Comun comun);
+    public Comun buscarComun(Comun comun);
     
     /**
      * Método lista Comun.
@@ -146,25 +146,25 @@ public interface IFachadaDatos {
      * Método guardar Estado.
      * @param estado 
      */
-    public void guardarEstado(Estado estado);
+    public Estado guardarEstado(Estado estado);
     
     /**
      * Método eliminar Estado.
      * @param estado 
      */
-    public void eliminarEstado(Estado estado);
+    public Estado eliminarEstado(Estado estado);
     
     /**
      * Método actualizar Estado.
      * @param estado 
      */
-    public void actualizarEstado(Estado estado);
+    public Estado actualizarEstado(Estado estado);
     
     /**
      * Método buscar Estado.
      * @param estado 
      */
-    public void buscarEstado(Estado estado);
+    public Estado buscarEstado(Estado estado);
     
     /**
      * Método lista Estado.
@@ -176,25 +176,28 @@ public interface IFachadaDatos {
      * Método guardar Municipio.
      * @param municipio 
      */
-    public void guardarMunicipio(Municipio municipio);
+    public Municipio guardarMunicipio(Municipio municipio);
     
     /**
      * Método eliminar Municipio.
      * @param municipio 
+     * @return  
      */
-    public void eliminarMunicipio(Municipio municipio);
+    public Municipio eliminarMunicipio(Municipio municipio);
     
     /**
      * Método actualizar Municipio.
      * @param municipio 
+     * @return  
      */
-    public void actualizarMunicipio(Municipio municipio);
+    public Municipio actualizarMunicipio(Municipio municipio);
     
     /**
      * Método buscar Municipio.
      * @param municipio 
+     * @return  
      */
-    public void buscarMunicipio(Municipio municipio);
+    public Municipio buscarMunicipio(Municipio municipio);
     
     /**
      * Método lista Municipio.
@@ -205,26 +208,30 @@ public interface IFachadaDatos {
     /**
      * Método guardar Normal.
      * @param normal 
+     * @return  
      */
-    public void guardarNormal(Normal normal);
+    public Normal guardarNormal(Normal normal);
     
     /**
      * Método eliminar Normal.
      * @param normal 
+     * @return  
      */
-    public void eliminarNormal(Normal normal);
+    public Normal eliminarNormal(Normal normal);
     
     /**
      * Método actualizar Normal.
      * @param normal 
+     * @return  
      */
-    public void actualizarNormal(Normal normal);
+    public Normal actualizarNormal(Normal normal);
     
     /**
      * Método buscar Normal.
      * @param normal 
+     * @return  
      */
-    public void buscarNormal(Normal normal);
+    public Normal buscarNormal(Normal normal);
     
     /**
      * Método lista Normal.
@@ -235,26 +242,30 @@ public interface IFachadaDatos {
     /**
      * Método guardar Post.
      * @param post 
+     * @return  
      */
-    public void guardarPost(Post post);
+    public Post guardarPost(Post post);
     
     /**
      * Método eliminar Post.
      * @param post 
+     * @return  
      */
-    public void eliminarPost(Post post);
+    public Post eliminarPost(Post post);
     
     /**
      * Método actualizar Post.
      * @param post 
+     * @return  
      */
-    public void actualizarPost(Post post);
+    public Post actualizarPost(Post post);
     
     /**
      * Método buscar Post.
      * @param post 
+     * @return  
      */
-    public void buscarPost(Post post);
+    public Post buscarPost(Post post);
     
     /**
      * Método lista Post.
@@ -265,26 +276,30 @@ public interface IFachadaDatos {
     /**
      * Método guardar Usuario.
      * @param usuario 
+     * @return  
      */
-    public void guardarUsuario(Usuario usuario);
+    public Usuario guardarUsuario(Usuario usuario);
     
     /**
      * Método eliminar Usuario.
      * @param usuario 
+     * @return  
      */
-    public void eliminarUsuario(Usuario usuario);
+    public Usuario eliminarUsuario(Usuario usuario);
     
     /**
      * Método actualizar Usuario.
      * @param usuario 
+     * @return  
      */
-    public void actualizarUsuario(Usuario usuario);
+    public Usuario actualizarUsuario(Usuario usuario);
     
     /**
      * Método buscar Usuario.
      * @param usuario 
+     * @return  
      */
-    public void buscarUsuario(Usuario usuario);
+    public Usuario buscarUsuario(Usuario usuario);
     
     /**
      * Método lista Usuario.

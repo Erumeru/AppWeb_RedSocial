@@ -31,13 +31,14 @@ public class FachadaDatos implements IFachadaDatos{
      * @param admor a insertar en la base de datos.
      */
     @Override
-    public void guardarAdmor(Admor admor) {
+    public Admor guardarAdmor(Admor admor) {
        AdmorDAO admorDAO = new AdmorDAO();
         try {
-            admorDAO.guardar(admor);
+            return admorDAO.guardar(admor);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
@@ -46,31 +47,33 @@ public class FachadaDatos implements IFachadaDatos{
      * @param admor a eliminar en la base de datos.
      */
     @Override
-    public void eliminarAdmor(Admor admor) {
+    public Admor eliminarAdmor(Admor admor) {
         AdmorDAO admorDAO = new AdmorDAO();
-        admorDAO.eliminar(admor);
+        return admorDAO.eliminar(admor);
     }
 
     /**
      * Método actualizar que llama al actualizar guardar de la clase 
      * AdmorDAO para actualizar una entidad Admor.
      * @param admor a actualizar en la base de datos.
+     * @return admor
      */
     @Override
-    public void actualizarAdmor(Admor admor) {
+    public Admor actualizarAdmor(Admor admor) {
         AdmorDAO admorDAO = new AdmorDAO();
-        admorDAO.actualizar(admor, admor);
+        return admorDAO.actualizar(admor, admor);
     }
 
     /**
      * Método buscar que llama al método buscar de la clase 
      * AdmorDAO para buscar una entidad Admor.
      * @param admor a buscar en la base de datos.
+     * @return 
      */
     @Override
-    public void buscarAdmor(Admor admor) {
+    public Admor buscarAdmor(Admor admor) {
         AdmorDAO admorDAO = new AdmorDAO();
-        admorDAO.buscar(admor);
+        return admorDAO.buscar(admor);
     }
 
     /**
@@ -88,48 +91,53 @@ public class FachadaDatos implements IFachadaDatos{
      * Método guardar que llama al método guardar de la clase 
      * AncladoDAO para guardar una entidad Anclado.
      * @param anclado a insertar en la base de datos.
+     * @return 
      */
     @Override
-    public void guardarAnclado(Anclado anclado) {
+    public Anclado guardarAnclado(Anclado anclado) {
        AncladoDAO ancladoDAO = new AncladoDAO();
         try {
-            ancladoDAO.guardar(anclado);
+            return ancladoDAO.guardar(anclado);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
      * Método eliminar que llama al método eliminar de la clase 
      * AncladoDAO para eliminar una entidad Anclado.
      * @param anclado a eliminar en la base de datos.
+     * @return 
      */
     @Override
-    public void eliminarAnclado(Anclado anclado) {
+    public Anclado eliminarAnclado(Anclado anclado) {
         AncladoDAO ancladoDAO = new AncladoDAO();
-        ancladoDAO.eliminar(anclado);
+        return ancladoDAO.eliminar(anclado);
     }
 
     /**
      * Método actualizar que llama al método actualizar de la clase 
      * AncladoDAO para actualizar una entidad Anclado.
      * @param anclado a actualizar en la base de datos.
+     * @return 
      */
     @Override
-    public void actualizarAnclado(Anclado anclado) {
+    public Anclado actualizarAnclado(Anclado anclado) {
         AncladoDAO ancladoDAO = new AncladoDAO();
-        ancladoDAO.actualizar(anclado, anclado);
+        return ancladoDAO.actualizar(anclado, anclado);
     }
 
     /**
      * Método buscar que llama al método buscar de la clase 
      * AncladoDAO para buscar una entidad Anclado.
      * @param anclado a buscar en la base de datos.
+     * @return 
      */
     @Override
-    public void buscarAnclado(Anclado anclado) {
+    public Anclado buscarAnclado(Anclado anclado) {
        AncladoDAO ancladoDAO = new AncladoDAO();
-       ancladoDAO.buscar(anclado);
+       return ancladoDAO.buscar(anclado);
     }
 
     /**
@@ -147,48 +155,53 @@ public class FachadaDatos implements IFachadaDatos{
      * Método guardar que llama al método guardar de la clase 
      * ComentarioDAO para guardar una entidad Comentario.
      * @param comentario a insertar en la base de datos.
+     * @return 
      */
     @Override
-    public void guardarComentario(Comentario comentario) {
+    public Comentario guardarComentario(Comentario comentario) {
         ComentarioDAO comentDAO = new ComentarioDAO();
         try {
-            comentDAO.guardar(comentario);
+            return comentDAO.guardar(comentario);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
      * Método eliminar que llama al método eliminar de la clase 
      * ComentarioDAO para eliminar una entidad Comentario.
      * @param comentario a eliminar en la base de datos.
+     * @return 
      */
     @Override
-    public void eliminarComentario(Comentario comentario) {
+    public Comentario eliminarComentario(Comentario comentario) {
         ComentarioDAO comentDAO = new ComentarioDAO();
-        comentDAO.eliminar(comentario);
+        return comentDAO.eliminar(comentario);
     }
 
     /**
      * Método actualizar que llama al método actualizar de la clase 
      * ComentarioDAO para actualizar una entidad Comentario.
      * @param comentario a actualizar en la base de datos.
+     * @return 
      */
     @Override
-    public void actualizarComentario(Comentario comentario) {
+    public Comentario actualizarComentario(Comentario comentario) {
         ComentarioDAO comentDAO = new ComentarioDAO();
-        comentDAO.actualizar(comentario, comentario);
+        return comentDAO.actualizar(comentario, comentario);
     }
 
     /**
      * Método buscar que llama al método buscar de la clase 
      * ComentarioDAO para buscar una entidad Comentario.
      * @param comentario a buscar en la base de datos.
+     * @return 
      */
     @Override
-    public void buscarComentario(Comentario comentario) {
+    public Comentario buscarComentario(Comentario comentario) {
         ComentarioDAO comentDAO = new ComentarioDAO();
-        comentDAO.buscar(comentario);
+        return comentDAO.buscar(comentario);
     }
 
     /**
@@ -206,48 +219,53 @@ public class FachadaDatos implements IFachadaDatos{
      * Método guardar que llama al método guardar de la clase 
      * ComunDAO para guardar una entidad Comun.
      * @param comun a insertar en la base de datos.
+     * @return 
      */
     @Override
-    public void guardarComun(Comun comun) {
+    public Comun guardarComun(Comun comun) {
         ComunDAO comunDAO = new ComunDAO();
         try {
-            comunDAO.guardar(comun);
+            return comunDAO.guardar(comun);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
      * Método eliminar que llama al método eliminar de la clase 
      * ComunDAO para eliminar una entidad Comun.
      * @param comun a eliminar en la base de datos.
+     * @return 
      */
     @Override
-    public void eliminarComun(Comun comun) {
+    public Comun eliminarComun(Comun comun) {
         ComunDAO comunDAO = new ComunDAO();
-        comunDAO.eliminar(comun);
+        return comunDAO.eliminar(comun);
     }
 
     /**
      * Método actualizar que llama al método actualizar de la clase 
      * ComunDAO para actualizar una entidad Comun.
      * @param comun a actualizar en la base de datos.
+     * @return 
      */
     @Override
-    public void actualizarComun(Comun comun) {
+    public Comun actualizarComun(Comun comun) {
         ComunDAO comunDAO = new ComunDAO();
-        comunDAO.actualizar(comun, comun);
+        return comunDAO.actualizar(comun, comun);
     }
 
     /**
      * Método buscar que llama al método buscar de la clase 
      * ComunDAO para buscar una entidad Comun.
      * @param comun a buscar en la base de datos.
+     * @return 
      */
     @Override
-    public void buscarComun(Comun comun) {
+    public Comun buscarComun(Comun comun) {
         ComunDAO comunDAO = new ComunDAO();
-        comunDAO.buscar(comun);
+        return comunDAO.buscar(comun);
     }
 
     /**
@@ -265,48 +283,53 @@ public class FachadaDatos implements IFachadaDatos{
      * Método guardar que llama al método guardar de la clase 
      * EstadoDAO para guardar una entidad Estado.
      * @param estado a insertar en la base de datos.
+     * @return 
      */
     @Override
-    public void guardarEstado(Estado estado) {
+    public Estado guardarEstado(Estado estado) {
         EstadoDAO estadoDAO = new EstadoDAO();
         try {
-            estadoDAO.guardar(estado);
+            return estadoDAO.guardar(estado);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
      * Método eliminar que llama al método eliminar de la clase 
      * EstadoDAO para eliminar una entidad Estado.
      * @param estado a eliminar en la base de datos.
+     * @return 
      */
     @Override
-    public void eliminarEstado(Estado estado) {
+    public Estado eliminarEstado(Estado estado) {
         EstadoDAO estadoDAO = new EstadoDAO();
-        estadoDAO.eliminar(estado);
+        return estadoDAO.eliminar(estado);
     }
 
     /**
      * Método actualizar que llama al método actualizar de la clase 
      * EstadoDAO para actualizar una entidad Estado.
      * @param estado a actualizar en la base de datos.
+     * @return 
      */
     @Override
-    public void actualizarEstado(Estado estado) {
+    public Estado actualizarEstado(Estado estado) {
         EstadoDAO estadoDAO = new EstadoDAO();
-        estadoDAO.actualizar(estado, estado);
+        return estadoDAO.actualizar(estado, estado);
     }
 
     /**
      * Método buscar que llama al método buscar de la clase 
      * EstadoDAO para buscar una entidad Estado.
      * @param estado a buscar en la base de datos.
+     * @return 
      */
     @Override
-    public void buscarEstado(Estado estado) {
+    public Estado buscarEstado(Estado estado) {
         EstadoDAO estadoDAO = new EstadoDAO();
-        estadoDAO.buscar(estado);
+        return estadoDAO.buscar(estado);
     }
 
     /**
@@ -324,15 +347,17 @@ public class FachadaDatos implements IFachadaDatos{
      * Método guardar que llama al método guardar de la clase 
      * MunicipioDAO para guardar una entidad Municipio.
      * @param municipio a insertar en la base de datos.
+     * @return 
      */
     @Override
-    public void guardarMunicipio(Municipio municipio) {
+    public Municipio guardarMunicipio(Municipio municipio) {
         MunicipioDAO muniDAO = new MunicipioDAO();
         try {
-            muniDAO.guardar(municipio);
+            return muniDAO.guardar(municipio);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
@@ -341,9 +366,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param municipio a eliminar en la base de datos.
      */
     @Override
-    public void eliminarMunicipio(Municipio municipio) {
+    public Municipio eliminarMunicipio(Municipio municipio) {
         MunicipioDAO muniDAO = new MunicipioDAO();
-        muniDAO.eliminar(municipio);
+        return muniDAO.eliminar(municipio);
     }
 
     /**
@@ -352,9 +377,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param municipio a actualizar en la base de datos.
      */
     @Override
-    public void actualizarMunicipio(Municipio municipio) {
+    public Municipio actualizarMunicipio(Municipio municipio) {
         MunicipioDAO muniDAO = new MunicipioDAO();
-        muniDAO.actualizar(municipio, municipio);
+        return muniDAO.actualizar(municipio, municipio);
     }
 
     /**
@@ -363,9 +388,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param municipio a buscar en la base de datos.
      */
     @Override
-    public void buscarMunicipio(Municipio municipio) {
+    public Municipio buscarMunicipio(Municipio municipio) {
         MunicipioDAO muniDAO = new MunicipioDAO();
-        muniDAO.buscar(municipio);
+        return muniDAO.buscar(municipio);
     }
 
     /**
@@ -385,13 +410,14 @@ public class FachadaDatos implements IFachadaDatos{
      * @param normal a insertar en la base de datos.
      */
     @Override
-    public void guardarNormal(Normal normal) {
+    public Normal guardarNormal(Normal normal) {
        NormalDAO normalDAO = new NormalDAO();
         try {
-            normalDAO.guardar(normal);
+            return normalDAO.guardar(normal);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
@@ -400,9 +426,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param normal a eliminar en la base de datos.
      */
     @Override
-    public void eliminarNormal(Normal normal) {
+    public Normal eliminarNormal(Normal normal) {
         NormalDAO normalDAO = new NormalDAO();
-        normalDAO.eliminar(normal);
+        return normalDAO.eliminar(normal);
     }
 
     /**
@@ -411,9 +437,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param normal a actualizar en la base de datos.
      */
     @Override
-    public void actualizarNormal(Normal normal) {
+    public Normal actualizarNormal(Normal normal) {
          NormalDAO normalDAO = new NormalDAO();
-         normalDAO.actualizar(normal, normal);
+         return normalDAO.actualizar(normal, normal);
     }
 
     /**
@@ -422,9 +448,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param normal a buscar en la base de datos.
      */
     @Override
-    public void buscarNormal(Normal normal) {
+    public Normal buscarNormal(Normal normal) {
          NormalDAO normalDAO = new NormalDAO();
-         normalDAO.buscar(normal);
+         return normalDAO.buscar(normal);
     }
 
     /**
@@ -444,13 +470,14 @@ public class FachadaDatos implements IFachadaDatos{
      * @param post a insertar en la base de datos.
      */
     @Override
-    public void guardarPost(Post post) {
+    public Post guardarPost(Post post) {
         PostDAO postDAO = new PostDAO();
         try {
-            postDAO.guardar(post);
+            return postDAO.guardar(post);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
@@ -459,9 +486,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param post a eliminar en la base de datos.
      */
     @Override
-    public void eliminarPost(Post post) {
+    public Post eliminarPost(Post post) {
         PostDAO postDAO = new PostDAO();
-        postDAO.eliminar(post);
+        return postDAO.eliminar(post);
     }
 
     /**
@@ -470,9 +497,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param post a actualizar en la base de datos.
      */
     @Override
-    public void actualizarPost(Post post) {
+    public Post actualizarPost(Post post) {
        PostDAO postDAO = new PostDAO();
-       postDAO.actualizar(post, post);
+       return postDAO.actualizar(post, post);
     }
 
     /**
@@ -481,9 +508,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param post a buscar en la base de datos.
      */
     @Override
-    public void buscarPost(Post post) {
+    public Post buscarPost(Post post) {
         PostDAO postDAO = new PostDAO();
-        postDAO.buscar(post);
+        return postDAO.buscar(post);
     }
 
     /**
@@ -503,13 +530,14 @@ public class FachadaDatos implements IFachadaDatos{
      * @param usuario a insertar en la base de datos.
      */
     @Override
-    public void guardarUsuario(Usuario usuario) {
+    public Usuario guardarUsuario(Usuario usuario) {
        UsuarioDAO usuDAO = new UsuarioDAO();
         try {
-            usuDAO.guardar(usuario);
+            return usuDAO.guardar(usuario);
         } catch (DAOException ex) {
             Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
@@ -518,9 +546,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param usuario a eliminar en la base de datos.
      */
     @Override
-    public void eliminarUsuario(Usuario usuario) {
+    public Usuario eliminarUsuario(Usuario usuario) {
         UsuarioDAO usuDAO = new UsuarioDAO();
-        usuDAO.eliminar(usuario);
+        return usuDAO.eliminar(usuario);
     }
 
     /**
@@ -529,9 +557,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param usuario a actualizar en la base de datos.
      */
     @Override
-    public void actualizarUsuario(Usuario usuario) {
+    public Usuario actualizarUsuario(Usuario usuario) {
         UsuarioDAO usuDAO = new UsuarioDAO();
-        usuDAO.actualizar(usuario, usuario);
+        return usuDAO.actualizar(usuario, usuario);
     }
 
     /**
@@ -540,9 +568,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param usuario a buscar en la base de datos.
      */
     @Override
-    public void buscarUsuario(Usuario usuario) {
+    public Usuario buscarUsuario(Usuario usuario) {
         UsuarioDAO usuDAO = new UsuarioDAO();
-        usuDAO.buscar(usuario);
+        return usuDAO.buscar(usuario);
     }
 
     /**
