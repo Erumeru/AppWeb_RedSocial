@@ -38,7 +38,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Usuario actualizarUsuario(Usuario usuario) {
+    public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -63,7 +63,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Post actualizarPost(Post post) {
+    public Post actualizarPost(Post postBase, Post postNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -88,7 +88,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Normal actualizarNormal(Normal normal) {
+    public Normal actualizarNormal(Normal normalBase, Normal normalNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -113,7 +113,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Municipio actualizarMunicipio(Municipio municipio) {
+    public Municipio actualizarMunicipio(Municipio municipioBase, Municipio municipioNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -138,7 +138,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Estado actualizarEstado(Estado estado) {
+    public Estado actualizarEstado(Estado estadoBase, Estado estadoNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -163,7 +163,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Comun actualizarComun(Comun comun) {
+    public Comun actualizarComun(Comun comunBase, Comun comunNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -188,7 +188,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Comentario actualizarComentario(Comentario comentario) {
+    public Comentario actualizarComentario(Comentario comentarioBase, Comentario comentarioNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -213,7 +213,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Anclado actualizarAnclado(Anclado anclado) {
+    public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -238,7 +238,7 @@ public class FachadaLogica implements ILogica{
     }
 
     @Override
-    public Admor actualizarAdmor(Admor admor) {
+    public Admor actualizarAdmor(Admor admorBase, Admor admorNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

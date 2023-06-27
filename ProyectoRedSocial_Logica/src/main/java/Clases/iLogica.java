@@ -17,7 +17,7 @@ public interface ILogica {
 
     public Usuario buscarUsuario(Usuario usuario);
 
-    public Usuario actualizarUsuario(Usuario usuario);
+    public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo);
 
     public Usuario eliminarUsuario(Usuario usuario);
 
@@ -27,7 +27,7 @@ public interface ILogica {
 
     public Post buscarPost(Post post);
 
-    public Post actualizarPost(Post post);
+    public Post actualizarPost(Post postBase, Post postNuevo);
 
     public Post eliminarPost(Post post);
 
@@ -37,7 +37,7 @@ public interface ILogica {
 
     public Normal buscarNormal(Normal normal);
 
-    public Normal actualizarNormal(Normal normal);
+    public Normal actualizarNormal(Normal normalBase, Normal normalNuevo);
 
     public Normal eliminarNormal(Normal normal);
 
@@ -47,7 +47,7 @@ public interface ILogica {
 
     public Municipio buscarMunicipio(Municipio municipio);
 
-    public Municipio actualizarMunicipio(Municipio municipio);
+    public Municipio actualizarMunicipio(Municipio municipioBase, Municipio municipioNuevo);
 
     public Municipio eliminarMunicipio(Municipio municipio);
 
@@ -57,7 +57,7 @@ public interface ILogica {
 
     public Estado buscarEstado(Estado estado);
 
-    public Estado actualizarEstado(Estado estado);
+    public Estado actualizarEstado(Estado estadoBase, Estado estadoNuevo);
 
     public Estado eliminarEstado(Estado estado);
 
@@ -67,7 +67,7 @@ public interface ILogica {
 
     public Comun buscarComun(Comun comun);
 
-    public Comun actualizarComun(Comun comun);
+    public Comun actualizarComun(Comun comunBase, Comun comunNuevo);
 
     public Comun eliminarComun(Comun comun);
 
@@ -77,7 +77,7 @@ public interface ILogica {
 
     public Comentario buscarComentario(Comentario comentario);
 
-    public Comentario actualizarComentario(Comentario comentario);
+    public Comentario actualizarComentario(Comentario comentarioBase, Comentario comentarioNuevo);
 
     public Comentario eliminarComentario(Comentario comentario);
 
@@ -87,7 +87,7 @@ public interface ILogica {
 
     public Anclado buscarAnclado(Anclado anclado);
 
-    public Anclado actualizarAnclado(Anclado anclado);
+    public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo);
 
     public Anclado eliminarAnclado(Anclado anclado);
 
@@ -97,7 +97,7 @@ public interface ILogica {
 
     public Admor buscarAdmor(Admor admor);
 
-    public Admor actualizarAdmor(Admor admor);
+    public Admor actualizarAdmor(Admor admorBase, Admor admorNuevo);
 
     public Admor eliminarAdmor(Admor admor);
 

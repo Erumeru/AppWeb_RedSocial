@@ -55,7 +55,8 @@ public class FachadaDatos implements IFachadaDatos{
     /**
      * Método actualizar que llama al actualizar guardar de la clase 
      * AdmorDAO para actualizar una entidad Admor.
-     * @param admor a actualizar en la base de datos.
+     * @param admorBase a actualizar en la base de datos.
+     * @param admorNuevo
      * @return admor
      */
     @Override
@@ -119,7 +120,8 @@ public class FachadaDatos implements IFachadaDatos{
     /**
      * Método actualizar que llama al método actualizar de la clase 
      * AncladoDAO para actualizar una entidad Anclado.
-     * @param anclado a actualizar en la base de datos.
+     * @param ancladoBase
+     * @param ancladoNuevo a actualizar en la base de datos.
      * @return 
      */
     @Override
