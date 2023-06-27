@@ -28,9 +28,9 @@ public class ControlUsuario {
         return datos.buscarUsuario(usuario);
     }
 
-    public Usuario actualizarUsuario(Usuario usuario) {
+    public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarUsuario(usuario);
+        return datos.actualizarUsuario(usuarioBase, usuarioNuevo);
     }
 
     public Usuario eliminarUsuario(Usuario usuario) {
@@ -53,9 +53,9 @@ public class ControlUsuario {
         return datos.buscarAdmor(admor);
     }
 
-    public Admor actualizarAdmor(Admor admor) {
+    public Admor actualizarAdmor(Admor admorBase, Admor admorNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarAdmor(admor);
+        return datos.actualizarAdmor(admorBase, admorNuevo);
     }
 
     public Admor eliminarAdmor(Admor admor) {
@@ -78,9 +78,9 @@ public class ControlUsuario {
         return datos.buscarNormal(normal);
     }
 
-    public Normal actualizarNormal(Normal normal) {
+    public Normal actualizarNormal(Normal normalBase, Normal normalNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarNormal(normal);
+        return datos.actualizarNormal(normalBase, normalNuevo);
     }
 
     public Normal eliminarNormal(Normal normal) {
@@ -105,9 +105,9 @@ public class ControlUsuario {
 
     }
 
-    public Municipio actualizarMunicipio(Municipio municipio) {
+    public Municipio actualizarMunicipio(Municipio municipioBase, Municipio municipioNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarMunicipio(municipio);
+        return datos.actualizarMunicipio(municipioBase, municipioNuevo);
 
     }
 
@@ -135,9 +135,9 @@ public class ControlUsuario {
 
     }
 
-    public Estado actualizarEstado(Estado estado) {
+    public Estado actualizarEstado(Estado estadoBase, Estado estadoNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarEstado(estado);
+        return datos.actualizarEstado(estadoBase, estadoNuevo);
 
     }
 

@@ -59,9 +59,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @return admor
      */
     @Override
-    public Admor actualizarAdmor(Admor admor) {
+    public Admor actualizarAdmor(Admor admorBase, Admor admorNuevo) {
         AdmorDAO admorDAO = new AdmorDAO();
-        return admorDAO.actualizar(admor, admor);
+        return admorDAO.actualizar(admorBase, admorNuevo);
     }
 
     /**
@@ -123,9 +123,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @return 
      */
     @Override
-    public Anclado actualizarAnclado(Anclado anclado) {
+    public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo) {
         AncladoDAO ancladoDAO = new AncladoDAO();
-        return ancladoDAO.actualizar(anclado, anclado);
+        return ancladoDAO.actualizar(ancladoBase, ancladoNuevo);
     }
 
     /**
@@ -187,9 +187,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @return 
      */
     @Override
-    public Comentario actualizarComentario(Comentario comentario) {
+    public Comentario actualizarComentario(Comentario comentarioBase, Comentario comentarioNuevo) {
         ComentarioDAO comentDAO = new ComentarioDAO();
-        return comentDAO.actualizar(comentario, comentario);
+        return comentDAO.actualizar(comentarioBase, comentarioNuevo);
     }
 
     /**
@@ -251,9 +251,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @return 
      */
     @Override
-    public Comun actualizarComun(Comun comun) {
+    public Comun actualizarComun(Comun comunBase, Comun comunNuevo) {
         ComunDAO comunDAO = new ComunDAO();
-        return comunDAO.actualizar(comun, comun);
+        return comunDAO.actualizar(comunBase, comunNuevo);
     }
 
     /**
@@ -315,9 +315,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @return 
      */
     @Override
-    public Estado actualizarEstado(Estado estado) {
+    public Estado actualizarEstado(Estado estadoBase, Estado estadoNuevo) {
         EstadoDAO estadoDAO = new EstadoDAO();
-        return estadoDAO.actualizar(estado, estado);
+        return estadoDAO.actualizar(estadoBase, estadoNuevo);
     }
 
     /**
@@ -377,9 +377,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param municipio a actualizar en la base de datos.
      */
     @Override
-    public Municipio actualizarMunicipio(Municipio municipio) {
+    public Municipio actualizarMunicipio(Municipio municipioBase, Municipio municipioNuevo) {
         MunicipioDAO muniDAO = new MunicipioDAO();
-        return muniDAO.actualizar(municipio, municipio);
+        return muniDAO.actualizar(municipioBase, municipioNuevo);
     }
 
     /**
@@ -437,9 +437,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param normal a actualizar en la base de datos.
      */
     @Override
-    public Normal actualizarNormal(Normal normal) {
+    public Normal actualizarNormal(Normal normalBase, Normal normalNuevo) {
          NormalDAO normalDAO = new NormalDAO();
-         return normalDAO.actualizar(normal, normal);
+         return normalDAO.actualizar(normalBase, normalNuevo);
     }
 
     /**
@@ -497,9 +497,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param post a actualizar en la base de datos.
      */
     @Override
-    public Post actualizarPost(Post post) {
+    public Post actualizarPost(Post postBase, Post postNuevo) {
        PostDAO postDAO = new PostDAO();
-       return postDAO.actualizar(post, post);
+       return postDAO.actualizar(postBase, postNuevo);
     }
 
     /**
@@ -557,9 +557,9 @@ public class FachadaDatos implements IFachadaDatos{
      * @param usuario a actualizar en la base de datos.
      */
     @Override
-    public Usuario actualizarUsuario(Usuario usuario) {
+    public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo) {
         UsuarioDAO usuDAO = new UsuarioDAO();
-        return usuDAO.actualizar(usuario, usuario);
+        return usuDAO.actualizar(usuarioBase, usuarioNuevo);
     }
 
     /**

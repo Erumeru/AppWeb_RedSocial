@@ -38,9 +38,9 @@ public class ControlComentario {
      * @param comentario comentario que se desea actualizar.
      * @return regresa el comentario actualizado.
      */
-    public Comentario actualizarComentario(Comentario comentario) {
+    public Comentario actualizarComentario(Comentario comentarioBase, Comentario comentarioNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarComentario(comentario);
+        return datos.actualizarComentario(comentarioBase, comentarioNuevo);
     }
 
     /**

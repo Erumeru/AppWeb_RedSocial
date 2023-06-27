@@ -30,9 +30,9 @@ public class ControlPost {
         return datos.buscarPost(post);
     }
 
-    public Post actualizarPost(Post post) {
+    public Post actualizarPost(Post postBase, Post postNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarPost(post);
+        return datos.actualizarPost(postBase, postNuevo);
     }
 
     public Post eliminarPost(Post post) {
@@ -55,9 +55,9 @@ public class ControlPost {
         return datos.buscarAnclado(anclado);
     }
 
-    public Anclado actualizarAnclado(Anclado anclado) {
+    public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarAnclado(anclado);
+        return datos.actualizarAnclado(ancladoBase, ancladoNuevo);
     }
 
     public Anclado eliminarAnclado(Anclado anclado) {
@@ -80,9 +80,9 @@ public class ControlPost {
         return datos.buscarComun(comun);
     }
 
-    public Comun actualizarComun(Comun comun) {
+    public Comun actualizarComun(Comun comunBase, Comun comunNuevo) {
         datos = FabricaDatos.dameInstancia();
-        return datos.actualizarComun(comun);
+        return datos.actualizarComun(comunBase, comunNuevo);
     }
 
     public Comun eliminarComun(Comun comun) {

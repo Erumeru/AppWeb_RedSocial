@@ -36,9 +36,10 @@ public interface IFachadaDatos {
     
     /**
      * Método actualizar Admor.
+     * @param admorBase
      * @param admor 
      */
-    public Admor actualizarAdmor(Admor admor);
+    public Admor actualizarAdmor(Admor admorBase, Admor admorNuevo);
     
     /**
      * Método buscar Admor.
@@ -67,8 +68,9 @@ public interface IFachadaDatos {
     /**
      * Método actualizar Anclado.
      * @param anclado 
+     * @param ancladoNuevo 
      */
-    public Anclado actualizarAnclado(Anclado anclado);
+    public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo);
     
     /**
      * Método buscar Anclado.
@@ -98,7 +100,7 @@ public interface IFachadaDatos {
      * Método actualizar Comentario.
      * @param comentario 
      */
-    public Comentario actualizarComentario(Comentario comentario);
+    public Comentario actualizarComentario(Comentario comentarioBasae, Comentario comentarioNuevo);
     
     /**
      * Método buscar Comentario.
@@ -128,7 +130,7 @@ public interface IFachadaDatos {
      * Método actualizar Comun.
      * @param comun 
      */
-    public Comun actualizarComun(Comun comun);
+    public Comun actualizarComun(Comun comunBae, Comun comunNuevo);
     
     /**
      * Método buscar Comun.
@@ -158,7 +160,7 @@ public interface IFachadaDatos {
      * Método actualizar Estado.
      * @param estado 
      */
-    public Estado actualizarEstado(Estado estado);
+    public Estado actualizarEstado(Estado estadoBase, Estado estadoNuevo);
     
     /**
      * Método buscar Estado.
@@ -190,7 +192,7 @@ public interface IFachadaDatos {
      * @param municipio 
      * @return  
      */
-    public Municipio actualizarMunicipio(Municipio municipio);
+    public Municipio actualizarMunicipio(Municipio municipioBase, Municipio municipioNuevo);
     
     /**
      * Método buscar Municipio.
@@ -224,7 +226,7 @@ public interface IFachadaDatos {
      * @param normal 
      * @return  
      */
-    public Normal actualizarNormal(Normal normal);
+    public Normal actualizarNormal(Normal normalBase, Normal normalNuevo);
     
     /**
      * Método buscar Normal.
@@ -258,7 +260,7 @@ public interface IFachadaDatos {
      * @param post 
      * @return  
      */
-    public Post actualizarPost(Post post);
+    public Post actualizarPost(Post postBase, Post postNuevo);
     
     /**
      * Método buscar Post.
@@ -292,7 +294,7 @@ public interface IFachadaDatos {
      * @param usuario 
      * @return  
      */
-    public Usuario actualizarUsuario(Usuario usuario);
+    public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo);
     
     /**
      * Método buscar Usuario.
