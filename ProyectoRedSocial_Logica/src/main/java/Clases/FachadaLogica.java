@@ -13,6 +13,7 @@ import ObjNegocio.Municipio;
 import ObjNegocio.Normal;
 import ObjNegocio.Post;
 import ObjNegocio.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +22,14 @@ import java.util.List;
  */
 public class FachadaLogica implements ILogica{
 
+    ControlUsuario ctrlUsuario;
+    
     @Override
     public List<Usuario> listaUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    ctrlUsuario=new ControlUsuario();
+    List<Usuario> datosARecuperar=new ArrayList<>();
+    datosARecuperar.addAll(ctrlUsuario.listaUsuario());
+    return datosARecuperar;
     }
 
     @Override
