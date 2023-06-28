@@ -64,4 +64,10 @@ public class ControlComentario {
         datos = FabricaDatos.dameInstancia();
         return datos.guardarComentario(comentario);
     }
+
+    public List<Comentario> listaComentario() {
+        datos = FabricaDatos.dameInstancia();
+        return datos.listaComentario();
+    }
+
 }
