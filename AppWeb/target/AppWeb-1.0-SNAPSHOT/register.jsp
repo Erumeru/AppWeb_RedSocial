@@ -42,7 +42,7 @@
                     <input type="submit" value="Registrarme">
                 </form>
                 <p>¿Ya tienes cuenta?</p>
-                <a href="">Iniciar Sesión</a>
+                <a href="login.jsp">Iniciar Sesión</a>
             </div>
         </div>
         <div class="image">

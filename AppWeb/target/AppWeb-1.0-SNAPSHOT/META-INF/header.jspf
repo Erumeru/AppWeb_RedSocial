@@ -1,0 +1,6 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<h1>mi app web :D</h1>
+<form action="register.jsp" method="POST">
+    <button type="submit">Registrate y q cancion de 1d eres</button>
+</form>
