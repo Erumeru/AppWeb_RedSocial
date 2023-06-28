@@ -9,6 +9,9 @@ import ObjNegocio.Post;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,16 +96,12 @@ public class PostDAO extends BaseDAO<Post> {
      */
     @Override
     public Post actualizar(Post entidad, Post entidad2) {
-     Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("fechahora-creacion", entidad2.getFechaHoraCreacion());
-        cambios.append("titulo", entidad2.getTitulo());
-        cambios.append("contenido", entidad2.getContenido());
-        cambios.append("fechahora-edicion", entidad2.getFechaHoraEdicion());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+       collection.updateOne(eq("_id", entidad.getId()),
+                combine(set("fecha-hora-creacion", entidad2.getFechaHoraCreacion()),
+                        set("titulo", entidad2.getTitulo()),
+                        set("contenido", entidad2.getContenido()),
+                        set("fechaHoraEdicion", entidad2.getFechaHoraEdicion())));
+        return buscar(entidad2);
     }
 
     /**

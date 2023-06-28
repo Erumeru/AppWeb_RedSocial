@@ -9,6 +9,8 @@ import ObjNegocio.Municipio;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,13 +95,9 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
      */
     @Override
     public Municipio actualizar(Municipio entidad, Municipio entidad2) {
-        Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("nombre", entidad2.getNombre());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+        collection.updateOne(eq("_id", entidad.getId()),
+                set("nombre", entidad2.getNombre()));
+        return buscar(entidad2);
     }
 
     /**

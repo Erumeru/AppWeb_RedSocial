@@ -140,7 +140,8 @@ public class AdmorDAO extends BaseDAO<Admor> {
                         set("fecha-nacimiento", entidad2.getFechaNacimiento()),
                         set("genero", entidad2.getGenero()),
                         set("comun", entidad2.getComun()),
-                        set("municipio", entidad2.getMunicipio())));
+                        set("municipio", entidad2.getMunicipio()),
+                        set("telefono", entidad2.getTelefono())));
         return buscar(entidad2);
     }
 

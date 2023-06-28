@@ -8,6 +8,9 @@ import ObjNegocio.Normal;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,21 +95,18 @@ public class NormalDAO extends BaseDAO<Normal> {
      */
     @Override
     public Normal actualizar(Normal entidad, Normal entidad2) {
-      Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("nombre-completo", entidad2.getNombreCompleto());
-        cambios.append("correo", entidad2.getCorreo());
-        cambios.append("contrasenia", entidad2.getContrasenia());
-        cambios.append("avatar", entidad2.getAvatar());
-        cambios.append("ciudad", entidad2.getCiudad());
-        cambios.append("fecha-nacimiento", entidad2.getFechaNacimiento());
-        cambios.append("genero", entidad2.getGenero());
-        cambios.append("comun", entidad2.getComun());
-        cambios.append("municipio", entidad2.getMunicipio());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+      collection.updateOne(eq("_id", entidad.getId()),
+                combine(set("nombre-completo", entidad2.getNombreCompleto()),
+                        set("correo", entidad2.getCorreo()),
+                        set("contrasenia", entidad2.getContrasenia()),
+                        set("avatar", entidad2.getAvatar()),
+                        set("ciudad", entidad2.getCiudad()),
+                        set("fecha-nacimiento", entidad2.getFechaNacimiento()),
+                        set("genero", entidad2.getGenero()),
+                        set("comun", entidad2.getComun()),
+                        set("municipio", entidad2.getMunicipio()),
+                        set("municipio", entidad2.getMunicipio())));
+        return buscar(entidad2);
     }
 
     /**
