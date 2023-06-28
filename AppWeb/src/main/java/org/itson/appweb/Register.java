@@ -91,13 +91,13 @@ public class Register extends HttpServlet {
 //        String telefono = request.getParameter("telefono");
 
         if (email == null
-                //                || correo.isBlank()
+                || email.isBlank()
                 || nombre == null
-                //                || nombre.isBlank()
+                || nombre.isBlank()
                 || contra == null
-                //                || contra.isBlank()
+                || contra.isBlank()
                 || contraConfirmacion == null
-                //                || contraConfirmacion.isBlank()                 
+                || contraConfirmacion.isBlank()
                 || fechaNacimiento == null) {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
