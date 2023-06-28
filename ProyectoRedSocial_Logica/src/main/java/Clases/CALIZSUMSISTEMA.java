@@ -5,16 +5,9 @@
 
 package Clases;
 
-import Clases.FabricaLogica;
-import Clases.ILogica;
-import ObjNegocio.Comentario;
-import ObjNegocio.Estado;
 import ObjNegocio.Usuario;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.TimeZone;
+
 
 
 /**
@@ -31,7 +24,7 @@ public class CALIZSUMSISTEMA {
          user.setCiudad("obregones");
          user.setContrasenia("pip");
          user.setCorreo("kaka@gmail");
-        
+        user.setFechaNacimiento(new Date());
         Usuario no = registerNegocio.guardarUsuario(user);
          System.out.println(no.toString());
     }

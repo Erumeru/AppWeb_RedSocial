@@ -4,6 +4,7 @@ Clase Comun.java creada el 10/06/2023.
 package ObjNegocio;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -39,7 +40,7 @@ public class Comun extends Post {
      * @param contenido contenido que es el cuerpo del comentario.
      * @param fechaHoraEdicion fecha y hora en la que el comentario se edito.
      */
-    public Comun(Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Comun(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
     }
 
@@ -50,7 +51,7 @@ public class Comun extends Post {
      * @param titulo título del cometario.
      * @param contenido contenido que es el cuerpo del comentario.
      */
-    public Comun(Calendar fechaHoraCreacion, String titulo, String contenido) {
+    public Comun(Date fechaHoraCreacion, String titulo, String contenido) {
         super(fechaHoraCreacion, titulo, contenido);
     }
 

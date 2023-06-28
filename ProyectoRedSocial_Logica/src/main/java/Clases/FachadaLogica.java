@@ -241,7 +241,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun buscarComun(Comun comun) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(),  "titulo", "contenido");
         cn = ctrlPost.buscarComun(comun);
         return cn;
     }
@@ -249,7 +249,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun actualizarComun(Comun comunBase, Comun comunNuevo) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(),  "titulo", "contenido");
         cn = ctrlPost.actualizarComun(comunBase, comunNuevo);
         return cn;
     }
@@ -257,7 +257,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun eliminarComun(Comun comun) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(),  "titulo", "contenido");
         cn = ctrlPost.eliminarComun(comun);
         return cn;
     }
@@ -265,7 +265,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun guardarComun(Comun comun) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(),  "titulo", "contenido");
         cn = ctrlPost.guardarComun(comun);
         return cn;
     }
@@ -321,7 +321,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Anclado buscarAnclado(Anclado anclado) {
         ctrlPost = new ControlPost();
-        Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
+        Anclado an = new Anclado(new Date(), "titulo", "contenido");
         an = ctrlPost.buscarAnclado(anclado);
         return an;
     }
@@ -329,7 +329,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo) {
         ctrlPost = new ControlPost();
-        Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
+        Anclado an = new Anclado(new Date(), "titulo", "contenido");
         an = ctrlPost.actualizarAnclado(ancladoBase, ancladoNuevo);
         return an;
     }
@@ -337,7 +337,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Anclado eliminarAnclado(Anclado anclado) {
         ctrlPost = new ControlPost();
-        Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
+        Anclado an = new Anclado(new Date(), "titulo", "contenido");
         an = ctrlPost.eliminarAnclado(anclado);
         return an;
     }
@@ -345,7 +345,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Anclado guardarAnclado(Anclado anclado) {
         ctrlPost = new ControlPost();
-        Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
+        Anclado an = new Anclado(new Date(), "titulo", "contenido");
         an = ctrlPost.guardarAnclado(anclado);
         return an;
     }

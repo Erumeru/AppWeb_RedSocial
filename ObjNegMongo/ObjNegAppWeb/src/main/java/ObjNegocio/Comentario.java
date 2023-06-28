@@ -4,6 +4,7 @@ Clase Comentario.java creada el 10/06/2023.
 package ObjNegocio;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -24,7 +25,7 @@ public class Comentario {
      * Atributo que indica la fecha y la hora en las que el comentario fue
      * hecho.
      */
-    private Calendar fechaHora;
+    private Date fechaHora;
 
     /**
      * Atributo que muestra el contenido del comentario.
@@ -66,7 +67,7 @@ public class Comentario {
      * @param fechaHora de la creación del comentario.
      * @param contenido del contenido del comentario.
      */
-    public Comentario(Calendar fechaHora, String contenido) {
+    public Comentario(Date fechaHora, String contenido) {
         this.fechaHora = fechaHora;
         this.contenido = contenido;
     }
@@ -112,7 +113,7 @@ public class Comentario {
      *
      * @return regresa la fecha y hora.
      */
-    public Calendar getFechaHora() {
+    public Date getFechaHora() {
         return fechaHora;
     }
 
@@ -121,7 +122,7 @@ public class Comentario {
      *
      * @param fechaHora la fecha a establecer.
      */
-    public void setFechaHora(Calendar fechaHora) {
+    public void setFechaHora(Date fechaHora) {
         this.fechaHora = fechaHora;
     }
 

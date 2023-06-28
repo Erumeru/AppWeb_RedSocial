@@ -4,6 +4,7 @@ Clase Anclado.java creada el 10/06/2023.
 package ObjNegocio;
 
 import java.util.Calendar;
+import java.util.Date;
 import org.bson.types.ObjectId;
 
 /**
@@ -31,7 +32,7 @@ public class Anclado extends Post {
      * @param contenido contenido que es el cuerpo del comentario.
      * @param fechaHoraEdicion fecha y hora en la que el comentario se edito.
      */
-    public Anclado(Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Anclado(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
     }
 
@@ -60,7 +61,7 @@ public class Anclado extends Post {
      * @param titulo título del cometario.
      * @param contenido contenido que es el cuerpo del comentario.
      */
-    public Anclado(Calendar fechaHoraCreacion, String titulo, String contenido) {
+    public Anclado(Date fechaHoraCreacion, String titulo, String contenido) {
         super(fechaHoraCreacion, titulo, contenido);
     }
 

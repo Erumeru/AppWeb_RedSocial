@@ -3,6 +3,7 @@ Clase Post.java creada el 10/06/2023.
  */
 package ObjNegocio;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -26,7 +27,7 @@ public class Post {
      * también su fecha.
      */
  
-    private Calendar fechaHoraCreacion;
+    private Date fechaHoraCreacion;
 
     /**
      * Atributo que indica el título que tiene el post
@@ -44,7 +45,7 @@ public class Post {
      * Atributo que indica la fecha y hora de edición de un post.
      */
   
-    private Calendar fechaHoraEdicion;
+    private Date fechaHoraEdicion;
 
     /**
      * Constructor por defecto.
@@ -60,7 +61,7 @@ public class Post {
      * @param contenido cuerpo del post.
      * @param fechaHoraEdicion fecha en la que se edito el post.
      */
-    public Post(Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Post(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
@@ -74,7 +75,7 @@ public class Post {
      * @param titulo título del post.
      * @param contenido cuerpo del post.
      */
-    public Post(Calendar fechaHoraCreacion, String titulo, String contenido) {
+    public Post(Date fechaHoraCreacion, String titulo, String contenido) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
@@ -103,7 +104,7 @@ public class Post {
      *
      * @return regresa el post.
      */
-    public Calendar getFechaHoraCreacion() {
+    public Date getFechaHoraCreacion() {
         return fechaHoraCreacion;
     }
 
@@ -112,7 +113,7 @@ public class Post {
      *
      * @param fechaHoraCreacion a establecer en el post.
      */
-    public void setFechaHoraCreacion(Calendar fechaHoraCreacion) {
+    public void setFechaHoraCreacion(Date fechaHoraCreacion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
     }
 
@@ -157,7 +158,7 @@ public class Post {
      *
      * @return fecha y hora en que se edito.
      */
-    public Calendar getFechaHoraEdicion() {
+    public Date getFechaHoraEdicion() {
         return fechaHoraEdicion;
     }
 
@@ -166,7 +167,7 @@ public class Post {
      *
      * @param fechaHoraEdicionla fecha y hora a establecer.
      */
-    public void setFechaHoraEdicion(Calendar fechaHoraEdicion) {
+    public void setFechaHoraEdicion(Date fechaHoraEdicion) {
         this.fechaHoraEdicion = fechaHoraEdicion;
     }
 

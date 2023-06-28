@@ -107,7 +107,6 @@ public class Register extends HttpServlet {
         //Objeto usuario
         ILogica registerNegocio = new FabricaLogica().crearInstancia();
         Usuario usuario = new Usuario();
-
         usuario.setCorreo(email);
         usuario.setNombreCompleto(nombre);
         usuario.setContrasenia(contra);
