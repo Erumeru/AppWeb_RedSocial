@@ -9,6 +9,9 @@ import ObjNegocio.Comentario;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +34,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
     /**
-     * Constructor de la clase que 
-     * inicializa el atributo MongoCollection.
+     * Constructor de la clase que inicializa el atributo MongoCollection.
      */
     public ComentarioDAO() {
         collection = getCollection();
@@ -40,6 +42,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     /**
      * Guarda una entidad de tipo Comentario en la base de datos MongoDB.
+     *
      * @param entidad a insertar en la base.
      * @return regresa la entidad
      */
@@ -56,6 +59,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     /**
      * Busca todas las entidades en la base de datos MongoDB.
+     *
      * @return Una lista de todas las entidades encontradas.
      */
     @Override
@@ -67,6 +71,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     /**
      * Coleccion de la entidad
+     *
      * @return collection
      */
     @Override
@@ -77,10 +82,11 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
     }
 
     /**
-     * Busca una entidad de tipo Comentario dentro de la colección 
-     * en la base de datos.
+     * Busca una entidad de tipo Comentario dentro de la colección en la base de
+     * datos.
+     *
      * @param entidad de tipo Comentario.
-     * @return 
+     * @return
      */
     @Override
     public Comentario buscar(Comentario entidad) {
@@ -92,8 +98,9 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     /**
      * Elimina una entidad de tipo Comentario en la base de datos MongoDB.
+     *
      * @param entidad de tipo Comentario
-     * @return 
+     * @return
      */
     @Override
     public Comentario eliminar(Comentario entidad) {
@@ -103,22 +110,19 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
 
     /**
      * Actualiza una entidad de tipo Comentario en la base de datos MongoDB.
+     *
      * @param entidad de tipo Comentario a reemplazar.
      * @param entidad2 de tipo Comentario nueva.
-     * @return 
+     * @return
      */
     @Override
     public Comentario actualizar(Comentario entidad, Comentario entidad2) {
-        Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("fechahora-creacion", entidad2.getFechaHora());
-        cambios.append("contenido", entidad2.getContenido());
-        cambios.append("comentario", entidad2.getComentario());
-        cambios.append("comentarios", entidad2.getComentarios());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+        collection.updateOne(eq("_id", entidad.getId()),
+                combine(set("fechahora-creacion", entidad2.getFechaHora()),
+                        set("contenido", entidad2.getContenido()),
+                        set("comentario", entidad2.getComentario()),
+                        set("comentarios", entidad2.getComentarios())));
+        return buscar(entidad2);
     }
 
 }
