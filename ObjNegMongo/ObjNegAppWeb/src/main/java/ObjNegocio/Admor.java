@@ -5,6 +5,7 @@
 package ObjNegocio;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -39,7 +40,7 @@ public class Admor extends Usuario {
      * @param comun La lista de objetos de tipo Comun asociados al usuario.
      * @param municipio El objeto de tipo Municipio asociado al Usuario.
      */
-    public Admor(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String ciudad, Calendar fechaNacimiento, String genero, List<Comun> comun, Municipio municipio) {
+    public Admor(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String ciudad, Date fechaNacimiento, String genero, List<Comun> comun, Municipio municipio) {
         super(nombreCompleto, correo, contrasenia, telefono, avatar, ciudad, fechaNacimiento, genero, comun, municipio);
     }
 

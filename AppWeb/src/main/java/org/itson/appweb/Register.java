@@ -44,7 +44,7 @@ public class Register extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");            
+            out.println("<title>Servlet Register</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
@@ -80,17 +80,17 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
 
     }
-    
+
     private void proccessCreate(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException{
+            throws ServletException, IOException {
         String email = request.getParameter("mail-phone");
         String nombre = request.getParameter("user-name");
         String contra = request.getParameter("password");
         String contraConfirmacion = request.getParameter("password-confirmation");
         String fechaNacimiento = request.getParameter("birthdate");
 //        String telefono = request.getParameter("telefono");
-        
-         if (email == null
+
+        if (email == null
                 //                || correo.isBlank()
                 || nombre == null
                 //                || nombre.isBlank()
@@ -98,51 +98,34 @@ public class Register extends HttpServlet {
                 //                || contra.isBlank()
                 || contraConfirmacion == null
                 //                || contraConfirmacion.isBlank()                 
-                || fechaNacimiento == null
-                ) 
-         {
+                || fechaNacimiento == null) {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
             return;
 
         }
-         //Objeto usuario
-         ILogica registerNegocio =new FabricaLogica().crearInstancia();
-         Usuario usuario = new Usuario();
-        
-            usuario.setCorreo(email);
-            usuario.setNombreCompleto(nombre);
-            usuario.setContrasenia(contra);
-//            usuario.setTelefono(telefono);
-           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //Objeto usuario
+        ILogica registerNegocio = new FabricaLogica().crearInstancia();
+        Usuario usuario = new Usuario();
+
+        usuario.setCorreo(email);
+        usuario.setNombreCompleto(nombre);
+        usuario.setContrasenia(contra);
+        usuario.setTelefono("7777777");
+        usuario.setCiudad("obregones");
 
         try {
-            // Parsear el String a un objeto Date
-            Date date = dateFormat.parse(fechaNacimiento);
-
-            // Crear una instancia de GregorianCalendar
-            GregorianCalendar calendar = new GregorianCalendar();
-
-            // Establecer la fecha del calendario utilizando el objeto Date
-            calendar.setTime(date);
-            usuario.setFechaNacimiento(calendar);
-        }catch(ParseException ex){
-            System.out.println("No se pudo convertir a fecha tilin");
-        }
-         
-        try{
             Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
-            System.out.println(usuario);
             request.setAttribute("usuario", usuarioCreado);
             getServletContext().getRequestDispatcher("/login.jsp")
                     .forward(request, response);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage());
             getServletContext().getRequestDispatcher("/errorExterno.jsp")
                     .forward(request, response);
             return;
         }
-         
+
     }
 
     /**

@@ -5,6 +5,7 @@
 package ObjNegocio;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -54,7 +55,7 @@ public class Usuario {
     /**
      * Atributo que indica la fecha en el que usuario nacio.
      */
-    private Calendar fechaNacimiento;
+    private Date fechaNacimiento;
 
     /**
      * Atributo que indica el genero del usuario.
@@ -88,7 +89,7 @@ public class Usuario {
      * @param comun La lista de objetos de tipo Comun asociados al usuario.
      * @param municipio El objeto de tipo Municipio asociado al Usuario.
      */
-    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String ciudad, Calendar fechaNacimiento, String genero, List<Comun> comun, Municipio municipio) {
+    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String ciudad, Date fechaNacimiento, String genero, List<Comun> comun, Municipio municipio) {
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.contrasenia = contrasenia;
@@ -232,7 +233,7 @@ public class Usuario {
      *
      * @return La fecha de nacimiento del usuario.
      */
-    public Calendar getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -241,7 +242,7 @@ public class Usuario {
      *
      * @param fechaNacimiento La fecha de nacimiento del usuario.
      */
-    public void setFechaNacimiento(Calendar fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

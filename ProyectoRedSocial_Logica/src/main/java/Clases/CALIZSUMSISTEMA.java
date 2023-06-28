@@ -11,6 +11,7 @@ import ObjNegocio.Comentario;
 import ObjNegocio.Estado;
 import ObjNegocio.Usuario;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -25,13 +26,13 @@ public class CALIZSUMSISTEMA {
     public static void main(String[] args) {
 
          ILogica registerNegocio =new FabricaLogica().crearInstancia();
-         Estado estado = new Estado();  
-         estado.setNombre("jorge"); 
-         
-            Estado estado2 = new Estado();  
-         estado2.setNombre("yorx4"); 
-         
-        Estado no = registerNegocio.actualizarEstado(registerNegocio.buscarEstado(estado), estado2);
+         Usuario user = new Usuario();  
+         user.setNombreCompleto("yorx");
+         user.setCiudad("obregones");
+         user.setContrasenia("pip");
+         user.setCorreo("kaka@gmail");
+        
+        Usuario no = registerNegocio.guardarUsuario(user);
          System.out.println(no.toString());
     }
 }
