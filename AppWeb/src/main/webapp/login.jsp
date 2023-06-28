@@ -24,11 +24,11 @@
           src="https://www.elsotano.com/imagenes_grandes/7500588/750058800625.JPG"
         />
         <p class="hola">¡Hola de nuevo!</p>
-        <form method="POST">
+        <form method="POST" action="./Login">
           
-          <input id="corrNum" type="text" class="corrNum" placeholder="Ingrese Correo o Teléfono" />
+          <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
           
-          <input id="pass" type="password" class="pass" placeholder="Ingrese su contraseña"/>
+          <input id="pass" type="password" class="pass" nam="pass" placeholder="Ingrese su contraseña"/>
           <input class="inputBtn" type="submit" value="Iniciar Sesión" />
         </form>
         <div class="division"></div>
