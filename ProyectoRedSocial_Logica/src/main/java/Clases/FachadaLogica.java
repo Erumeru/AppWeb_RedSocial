@@ -40,6 +40,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Usuario buscarUsuario(Usuario usuario) {
+        ctrlUsuario = new ControlUsuario();
         Usuario us = new Usuario();
         us = ctrlUsuario.buscarUsuario(usuario);
         return us;
@@ -47,6 +48,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo) {
+        ctrlUsuario = new ControlUsuario();
         Usuario us = new Usuario();
         us = ctrlUsuario.actualizarUsuario(usuarioBase, usuarioNuevo);
         return us;
@@ -54,6 +56,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Usuario eliminarUsuario(Usuario usuario) {
+        ctrlUsuario = new ControlUsuario();
         Usuario us = new Usuario();
         us = ctrlUsuario.eliminarUsuario(usuario);
         return us;
@@ -61,6 +64,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Usuario guardarUsuario(Usuario usuario) {
+        ctrlUsuario = new ControlUsuario();
         Usuario us = new Usuario();
         us = ctrlUsuario.guardarUsuario(usuario);
         return us;
@@ -76,6 +80,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Post buscarPost(Post post) {
+        ctrlPost = new ControlPost();
         Post pt = new Post();
         pt = ctrlPost.buscarPost(post);
         return pt;
@@ -83,6 +88,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Post actualizarPost(Post postBase, Post postNuevo) {
+        ctrlPost = new ControlPost();
         Post pt = new Post();
         pt = ctrlPost.actualizarPost(postBase, postNuevo);
         return pt;
@@ -90,6 +96,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Post eliminarPost(Post post) {
+        ctrlPost = new ControlPost();
         Post pt = new Post();
         pt = ctrlPost.eliminarPost(post);
         return pt;
@@ -97,6 +104,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Post guardarPost(Post post) {
+        ctrlPost = new ControlPost();
         Post pt = new Post();
         pt = ctrlPost.guardarPost(post);
         return pt;
@@ -112,6 +120,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Normal buscarNormal(Normal normal) {
+        ctrlUsuario = new ControlUsuario();
         Normal nl = new Normal();
         nl = ctrlUsuario.buscarNormal(normal);
         return nl;
@@ -119,6 +128,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Normal actualizarNormal(Normal normalBase, Normal normalNuevo) {
+        ctrlUsuario = new ControlUsuario();
         Normal nl = new Normal();
         nl = ctrlUsuario.actualizarNormal(normalBase, normalNuevo);
         return nl;
@@ -126,6 +136,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Normal eliminarNormal(Normal normal) {
+        ctrlUsuario = new ControlUsuario();
         Normal nl = new Normal();
         nl = ctrlUsuario.eliminarNormal(normal);
         return nl;
@@ -133,6 +144,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Normal guardarNormal(Normal normal) {
+        ctrlUsuario = new ControlUsuario();
         Normal nl = new Normal();
         nl = ctrlUsuario.guardarNormal(normal);
         return nl;
@@ -148,6 +160,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Municipio buscarMunicipio(Municipio municipio) {
+        ctrlUsuario = new ControlUsuario();
         Municipio mp = new Municipio();
         mp = ctrlUsuario.buscarMunicipio(municipio);
         return mp;
@@ -155,6 +168,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Municipio actualizarMunicipio(Municipio municipioBase, Municipio municipioNuevo) {
+        ctrlUsuario = new ControlUsuario();
         Municipio mp = new Municipio();
         mp = ctrlUsuario.actualizarMunicipio(municipioBase, municipioNuevo);
         return mp;
@@ -162,6 +176,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Municipio eliminarMunicipio(Municipio municipio) {
+        ctrlUsuario = new ControlUsuario();
         Municipio mp = new Municipio();
         mp = ctrlUsuario.eliminarMunicipio(municipio);
         return mp;
@@ -169,6 +184,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Municipio guardarMunicipio(Municipio municipio) {
+        ctrlUsuario = new ControlUsuario();
         Municipio mp = new Municipio();
         mp = ctrlUsuario.guardarMunicipio(municipio);
         return mp;
@@ -184,6 +200,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Estado buscarEstado(Estado estado) {
+        ctrlUsuario = new ControlUsuario();
         Estado et = new Estado();
         et = ctrlUsuario.buscarEstado(estado);
         return et;
@@ -191,6 +208,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Estado actualizarEstado(Estado estadoBase, Estado estadoNuevo) {
+        ctrlUsuario = new ControlUsuario();
         Estado et = new Estado();
         et = ctrlUsuario.actualizarEstado(estadoBase, estadoNuevo);
         return et;
@@ -198,6 +216,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Estado eliminarEstado(Estado estado) {
+        ctrlUsuario = new ControlUsuario();
         Estado et = new Estado();
         et = ctrlUsuario.eliminarEstado(estado);
         return et;
@@ -205,6 +224,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Estado guardarEstado(Estado estado) {
+        ctrlUsuario = new ControlUsuario();
         Estado et = new Estado();
         et = ctrlUsuario.guardarEstado(estado);
         return et;
@@ -220,6 +240,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comun buscarComun(Comun comun) {
+        ctrlPost = new ControlPost();
         Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
         cn = ctrlPost.buscarComun(comun);
         return cn;
@@ -227,6 +248,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comun actualizarComun(Comun comunBase, Comun comunNuevo) {
+        ctrlPost = new ControlPost();
         Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
         cn = ctrlPost.actualizarComun(comunBase, comunNuevo);
         return cn;
@@ -234,6 +256,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comun eliminarComun(Comun comun) {
+        ctrlPost = new ControlPost();
         Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
         cn = ctrlPost.eliminarComun(comun);
         return cn;
@@ -241,6 +264,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comun guardarComun(Comun comun) {
+        ctrlPost = new ControlPost();
         Comun cn = new Comun(new GregorianCalendar(),  "titulo", "contenido");
         cn = ctrlPost.guardarComun(comun);
         return cn;
@@ -256,6 +280,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comentario buscarComentario(Comentario comentario) {
+        ctrlComentario = new ControlComentario();
         Comentario com = new Comentario();
         com = ctrlComentario.buscarComentario(comentario);
         return com;
@@ -263,6 +288,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comentario actualizarComentario(Comentario comentarioBase, Comentario comentarioNuevo) {
+        ctrlComentario = new ControlComentario();
         Comentario com = new Comentario();
         com = ctrlComentario.actualizarComentario(comentarioBase, comentarioNuevo);
         return com;
@@ -270,6 +296,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comentario eliminarComentario(Comentario comentario) {
+        ctrlComentario = new ControlComentario();
         Comentario com = new Comentario();
         com = ctrlComentario.eliminarComentario(comentario);
         return com;
@@ -277,6 +304,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Comentario guardarComentario(Comentario comentario) {
+        ctrlComentario = new ControlComentario();
         Comentario com = new Comentario();
         com = ctrlComentario.guardarComentario(comentario);
         return com;
@@ -292,6 +320,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Anclado buscarAnclado(Anclado anclado) {
+        ctrlPost = new ControlPost();
         Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
         an = ctrlPost.buscarAnclado(anclado);
         return an;
@@ -299,6 +328,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Anclado actualizarAnclado(Anclado ancladoBase, Anclado ancladoNuevo) {
+        ctrlPost = new ControlPost();
         Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
         an = ctrlPost.actualizarAnclado(ancladoBase, ancladoNuevo);
         return an;
@@ -306,6 +336,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Anclado eliminarAnclado(Anclado anclado) {
+        ctrlPost = new ControlPost();
         Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
         an = ctrlPost.eliminarAnclado(anclado);
         return an;
@@ -313,6 +344,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Anclado guardarAnclado(Anclado anclado) {
+        ctrlPost = new ControlPost();
         Anclado an = new Anclado(new GregorianCalendar(), "titulo", "contenido");
         an = ctrlPost.guardarAnclado(anclado);
         return an;
@@ -328,6 +360,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Admor buscarAdmor(Admor admor) {
+        ctrlUsuario = new ControlUsuario();
         Admor ad = new Admor();
         ad = ctrlUsuario.buscarAdmor(admor);
         return ad;
@@ -335,6 +368,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Admor actualizarAdmor(Admor admorBase, Admor admorNuevo) {
+        ctrlUsuario = new ControlUsuario();
         Admor ad = new Admor();
         ad = ctrlUsuario.actualizarAdmor(admorBase, admorNuevo);
         return ad;
@@ -342,6 +376,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Admor eliminarAdmor(Admor admor) {
+        ctrlUsuario = new ControlUsuario();
         Admor ad = new Admor();
         ad = ctrlUsuario.eliminarAdmor(admor);
         return ad;
@@ -349,6 +384,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public Admor guardarAdmor(Admor admor) {
+        ctrlUsuario = new ControlUsuario();
         Admor ad = new Admor();
         ad = ctrlUsuario.guardarAdmor(admor);
         return ad;
