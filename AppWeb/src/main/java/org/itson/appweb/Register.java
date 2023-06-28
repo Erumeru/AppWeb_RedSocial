@@ -65,7 +65,6 @@ public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.proccessCreate(request, response);
     }
 
     /**
@@ -79,7 +78,6 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.proccessCreate(request, response);
 
     }
     
@@ -142,6 +140,7 @@ public class Register extends HttpServlet {
             request.setAttribute("error", ex.getMessage());
             getServletContext().getRequestDispatcher("/errorExterno.jsp")
                     .forward(request, response);
+            return;
         }
          
     }
