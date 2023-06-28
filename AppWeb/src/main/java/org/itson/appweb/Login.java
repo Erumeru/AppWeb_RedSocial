@@ -72,7 +72,6 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             this.proccessCreate(request, response);
-
     }
 
     /**
@@ -91,11 +90,13 @@ private void proccessCreate(HttpServletRequest request, HttpServletResponse resp
             throws ServletException, IOException {
         String correo = request.getParameter("corrNum");
         String pass = request.getParameter("pass");
+        
          if(correo.equalsIgnoreCase("kimcorreo")){
             request.setAttribute("correo", "kimcorreo");
             getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
             return;
         }
+         
         //validacion de datos
         if (correo == null
                 || correo.isBlank()

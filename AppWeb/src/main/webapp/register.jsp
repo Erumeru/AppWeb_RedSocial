@@ -23,7 +23,7 @@
         <div class="form-information">
             <div class="container-form">
                 <h1>¡Empieza hoy!</h1>
-                <form action="register" method="POST">
+                <form action="./Register" method="POST">
                     <label for="mail-phone">
                         <input id="mail-phone" type="text" placeholder="Correo o teléfono" />
                     </label>

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hoshi
  */
-@WebServlet(name = "Register", urlPatterns = {"/register"})
+@WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
 
     /**
@@ -94,17 +94,13 @@ public class Register extends HttpServlet {
         
          if (email == null
                 //                || correo.isBlank()
-                || email.trim().length() > 20
                 || nombre == null
                 //                || nombre.isBlank()
-                || nombre.trim().length() > 50
                 || contra == null
                 //                || contra.isBlank()
                 || contra.trim().length() > 100
                 || contraConfirmacion == null
-                //                || contraConfirmacion.isBlank()
-                || contraConfirmacion.trim().length() > 100
-                 
+                //                || contraConfirmacion.isBlank()                 
                 || fechaNacimiento == null
                 ) 
          {
