@@ -98,7 +98,6 @@ public class Register extends HttpServlet {
                 //                || nombre.isBlank()
                 || contra == null
                 //                || contra.isBlank()
-                || contra.trim().length() > 100
                 || contraConfirmacion == null
                 //                || contraConfirmacion.isBlank()                 
                 || fechaNacimiento == null
@@ -110,7 +109,7 @@ public class Register extends HttpServlet {
 
         }
          //Objeto usuario
-         ILogica registerNegocio = (ILogica) new FabricaLogica();
+         ILogica registerNegocio =new FabricaLogica().crearInstancia();
          Usuario usuario = new Usuario();
         
             usuario.setCorreo(email);
@@ -135,6 +134,7 @@ public class Register extends HttpServlet {
          
         try{
             Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
+            System.out.println(usuario);
             request.setAttribute("usuario", usuarioCreado);
             getServletContext().getRequestDispatcher("/login.jsp")
                     .forward(request, response);

@@ -25,19 +25,19 @@
                 <h1>¡Empieza hoy!</h1>
                 <form action="./Register" method="POST">
                     <label for="mail-phone">
-                        <input id="mail-phone" type="text" placeholder="Correo o teléfono" />
+                        <input id="mail-phone" type="text" name="mail-phone" placeholder="Correo o teléfono" />
                     </label>
                     <label for="user-name">
-                        <input id="user-name" type="text" placeholder="Nombre de usuario" />
+                        <input id="user-name" type="text" name="user-name" placeholder="Nombre de usuario" />
                     </label>
                     <label for="password">
-                        <input id="password" type="password" placeholder="Contraseña" />
+                        <input id="password" type="password" name="password" placeholder="Contraseña" />
                     </label>
                     <label for="password-confirmation">
-                        <input id="password-confirmation" type="password" placeholder="Confirma contraseña" />
+                        <input id="password-confirmation" type="password" name="password-confirmation" placeholder="Confirma contraseña" />
                     </label>
                     <label for="birthdate"> Fecha de nacimiento
-                        <input id="birthdate" name="birthdate" type="date">
+                        <input id="birthdate" name="birthdate" name="birthdate" type="date">
                     </label>
                     <input type="submit" value="Registrarme">
                 </form>

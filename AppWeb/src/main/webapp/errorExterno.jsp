@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Ups algo salió mal!</h1>
+        <h2>${error}</h2>
     </body>
 </html>
