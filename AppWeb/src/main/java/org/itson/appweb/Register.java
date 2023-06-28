@@ -76,7 +76,7 @@ public class Register extends HttpServlet {
     
     private void processCreate(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
-        
+        String nombre = request.getParameter("user-name");
     }
 
     /**

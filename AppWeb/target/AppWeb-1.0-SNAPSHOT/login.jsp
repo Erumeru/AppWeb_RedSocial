@@ -34,7 +34,7 @@
         <div class="division"></div>
         <p class="alt">O</p>
         <p class="cuenta">¿No tienes cuenta aún?</p>
-        <a class="registro">Registrate</a>
+        <a href="register.jsp" class="registro">Registrate</a>
       </div>
     </div>
   </body>
