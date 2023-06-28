@@ -32,7 +32,7 @@ public class Conexion {
             fromProviders(PojoCodecProvider.builder().automatic(true).build()));
             MongoClientSettings setting = MongoClientSettings.builder().codecRegistry(co).build();
             MongoClient conexion = MongoClients.create(setting);
-            instancia = conexion.getDatabase("Residuos");
+            instancia = conexion.getDatabase("Wubbzy");
         }
         return instancia;
     }
