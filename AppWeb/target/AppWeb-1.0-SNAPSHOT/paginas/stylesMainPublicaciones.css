@@ -1,0 +1,120 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27-jun-2023, 16:55:06
+    Author     : hoshi
+*/
+body {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo {
+    padding-left: 20px;
+    border-radius: 50%;
+    height: 65.5px;
+    width: 68.8px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.profile-text {
+    font-weight: bold;
+    padding: 3px;
+    margin-left: 10px;
+}
+
+.profile-last-conn {
+    font-weight: bold;
+    color: #888888;
+    margin-left: 10px;
+}
+
+.content-container {
+    justify-content: center;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.icons-container {
+    display: flex;
+    align-items: center;
+}
+
+.comments-container {
+    display: flexbox;
+}
+
+.icon {
+    padding-inline: 8px;
+    height: 22px;
+    width: 25px;
+}
+
+.menu-icon {
+    background-image: url(assets/Menu.png);
+    background-size: cover;
+    background-position: center;
+    padding: 3px;
+    position: absolute;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    border: none;
+}
+
+.menu-icon:hover {
+    filter: brightness(0.8);
+}
+
+.space-comments {
+    font-weight: normal;
+    padding: 3px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+summary {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    list-style: none;
+    color: #888888;
+}
+
+summary:hover {
+    text-decoration: underline;
+}
+
+input[type="text"] {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    border: none;
+    border-bottom: 1px solid #888888;;
+    outline: none;
+    margin-left: 10px;
+    padding: 3px;
+}
+
+.send-comment {
+    width: 18px;
+    height: 10px;
+    background-image: url("assets/send.png");
+    background-size: cover;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
+
+.send-comment:hover {
+    filter: brightness(0.8);
+}
