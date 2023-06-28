@@ -10,6 +10,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +37,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
      */
     private final String COLECCION = "admor";
     /**
-     * Atributo de la colección 
+     * Atributo de la colección
      */
     private MongoCollection<Admor> collection;
     /**
@@ -43,8 +46,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
     /**
-     * Constructor de la clase que 
-     * inicializa el atributo MongoCollection.
+     * Constructor de la clase que inicializa el atributo MongoCollection.
      */
     public AdmorDAO() {
         conn = Conexion.getInstance();
@@ -53,9 +55,10 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     /**
      * Guarda una entidad de tipo Admor en la base de datos MongoDB.
+     *
      * @param entidad a insertar en la base.
      * @return regresa la entidad
-     * @throws DAOException 
+     * @throws DAOException
      */
     @Override
     public Admor guardar(Admor entidad) throws DAOException {
@@ -70,6 +73,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     /**
      * Busca todas las entidades en la base de datos MongoDB.
+     *
      * @return Una lista de todas las entidades encontradas.
      */
     @Override
@@ -81,6 +85,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     /**
      * Coleccion de la entidad.
+     *
      * @return collection
      */
     @Override
@@ -91,10 +96,11 @@ public class AdmorDAO extends BaseDAO<Admor> {
     }
 
     /**
-     * Busca una entidad de tipo Admor dentro de la colección 
-     * en la base de datos.
+     * Busca una entidad de tipo Admor dentro de la colección en la base de
+     * datos.
+     *
      * @param entidad de tipo Admor.
-     * @return 
+     * @return
      */
     @Override
     public Admor buscar(Admor entidad) {
@@ -106,8 +112,9 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     /**
      * Elimina una entidad de tipo Admor en la base de datos MongoDB.
+     *
      * @param entidad de tipo Admor
-     * @return 
+     * @return
      */
     @Override
     public Admor eliminar(Admor entidad) {
@@ -117,27 +124,24 @@ public class AdmorDAO extends BaseDAO<Admor> {
 
     /**
      * Actualiza una entidad de tipo Admor en la base de datos MongoDB.
+     *
      * @param entidad de tipo Admor a reemplazar.
      * @param entidad2 de tipo Admor nueva.
-     * @return 
+     * @return
      */
     @Override
     public Admor actualizar(Admor entidad, Admor entidad2) {
-        Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("nombre-completo", entidad2.getNombreCompleto());
-        cambios.append("correo", entidad2.getCorreo());
-        cambios.append("contrasenia", entidad2.getContrasenia());
-        cambios.append("avatar", entidad2.getAvatar());
-        cambios.append("ciudad", entidad2.getCiudad());
-        cambios.append("fecha-nacimiento", entidad2.getFechaNacimiento());
-        cambios.append("genero", entidad2.getGenero());
-        cambios.append("comun", entidad2.getComun());
-        cambios.append("municipio", entidad2.getMunicipio());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+        collection.updateOne(eq("_id", entidad.getId()),
+                combine(set("nombre-completo", entidad2.getNombreCompleto()),
+                        set("correo", entidad2.getCorreo()),
+                        set("contrasenia", entidad2.getContrasenia()),
+                        set("avatar", entidad2.getAvatar()),
+                        set("ciudad", entidad2.getCiudad()),
+                        set("fecha-nacimiento", entidad2.getFechaNacimiento()),
+                        set("genero", entidad2.getGenero()),
+                        set("comun", entidad2.getComun()),
+                        set("municipio", entidad2.getMunicipio())));
+        return buscar(entidad2);
     }
 
 }

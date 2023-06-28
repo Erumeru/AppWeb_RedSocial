@@ -9,6 +9,9 @@ import ObjNegocio.Anclado;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +34,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
     /**
-     * Constructor de la clase que 
-     * inicializa el atributo MongoCollection.
+     * Constructor de la clase que inicializa el atributo MongoCollection.
      */
     public AncladoDAO() {
         collection = getCollection();
@@ -40,6 +42,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     /**
      * Guarda una entidad de tipo Anclado en la base de datos MongoDB.
+     *
      * @param entidad a insertar en la base.
      * @return regresa la entidad
      */
@@ -56,6 +59,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     /**
      * Busca todas las entidades en la base de datos MongoDB.
+     *
      * @return Una lista de todas las entidades encontradas.
      */
     @Override
@@ -67,6 +71,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     /**
      * Coleccion de la entidad
+     *
      * @return collection
      */
     @Override
@@ -77,10 +82,11 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     }
 
     /**
-     * Busca una entidad de tipo Anclado dentro de la colección 
-     * en la base de datos.
+     * Busca una entidad de tipo Anclado dentro de la colección en la base de
+     * datos.
+     *
      * @param entidad de tipo Anclado.
-     * @return 
+     * @return
      */
     @Override
     public Anclado buscar(Anclado entidad) {
@@ -92,8 +98,9 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     /**
      * Elimina una entidad de tipo Anclado en la base de datos MongoDB.
+     *
      * @param entidad de tipo Anclado
-     * @return 
+     * @return
      */
     @Override
     public Anclado eliminar(Anclado entidad) {
@@ -103,22 +110,19 @@ public class AncladoDAO extends BaseDAO<Anclado> {
 
     /**
      * Actualiza una entidad de tipo Anclado en la base de datos MongoDB.
+     *
      * @param entidad de tipo Anclado a reemplazar.
      * @param entidad2 de tipo Anclado nueva.
-     * @return 
+     * @return
      */
     @Override
     public Anclado actualizar(Anclado entidad, Anclado entidad2) {
-        Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("fechahora-creacion", entidad2.getFechaHoraCreacion());
-        cambios.append("titulo", entidad2.getTitulo());
-        cambios.append("contenido", entidad2.getContenido());
-        cambios.append("fechahora-edicion", entidad2.getFechaHoraEdicion());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+        collection.updateOne(eq("_id", entidad.getId()),
+                combine(set("fechahora-creacion", entidad2.getFechaHoraCreacion()),
+                        set("titulo", entidad2.getTitulo()),
+                        set("contenido", entidad2.getContenido()),
+                        set("fechahora-edicion", entidad2.getFechaHoraEdicion())));
+        return buscar(entidad2);
     }
 
 }

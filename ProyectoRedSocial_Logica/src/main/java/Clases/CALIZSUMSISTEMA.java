@@ -25,10 +25,13 @@ public class CALIZSUMSISTEMA {
     public static void main(String[] args) {
 
          ILogica registerNegocio =new FabricaLogica().crearInstancia();
-         Estado usuario = new Estado();  
-         usuario.setNombre("jorge");
+         Estado estado = new Estado();  
+         estado.setNombre("jorge"); 
          
-         registerNegocio.guardarEstado(usuario);
+            Estado estado2 = new Estado();  
+         estado2.setNombre("yorx4"); 
          
+        Estado no = registerNegocio.actualizarEstado(registerNegocio.buscarEstado(estado), estado2);
+         System.out.println(no.toString());
     }
 }

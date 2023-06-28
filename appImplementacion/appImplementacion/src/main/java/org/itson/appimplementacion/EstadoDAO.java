@@ -8,6 +8,8 @@ import ObjNegocio.Estado;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,15 +32,15 @@ public class EstadoDAO extends BaseDAO<Estado> {
     private static final Logger LOG = Logger.getLogger(AdmorDAO.class.getName());
 
     /**
-     * Constructor de la clase que 
-     * inicializa el atributo MongoCollection.
+     * Constructor de la clase que inicializa el atributo MongoCollection.
      */
     public EstadoDAO() {
         collection = getCollection();
     }
 
-     /**
+    /**
      * Guarda una entidad de tipo Estado en la base de datos MongoDB.
+     *
      * @param entidad a insertar en la base.
      * @return regresa la entidad
      */
@@ -55,6 +57,7 @@ public class EstadoDAO extends BaseDAO<Estado> {
 
     /**
      * Busca todas las entidades en la base de datos MongoDB.
+     *
      * @return Una lista de todas las entidades encontradas.
      */
     @Override
@@ -64,8 +67,9 @@ public class EstadoDAO extends BaseDAO<Estado> {
         return estados;
     }
 
-     /**
+    /**
      * Coleccion de la entidad
+     *
      * @return collection
      */
     @Override
@@ -76,8 +80,9 @@ public class EstadoDAO extends BaseDAO<Estado> {
     }
 
     /**
-     * Busca una entidad de tipo Estado dentro de la colección 
-     * en la base de datos.
+     * Busca una entidad de tipo Estado dentro de la colección en la base de
+     * datos.
+     *
      * @param entidad de tipo Estado.
      * @return la entidad
      */
@@ -91,6 +96,7 @@ public class EstadoDAO extends BaseDAO<Estado> {
 
     /**
      * Elimina una entidad de tipo Estado en la base de datos MongoDB.
+     *
      * @param entidad de tipo Estado
      * @return la entidad eliminada
      */
@@ -102,19 +108,16 @@ public class EstadoDAO extends BaseDAO<Estado> {
 
     /**
      * Actualiza una entidad de tipo Estado en la base de datos MongoDB.
+     *
      * @param entidad de tipo Estado a reemplazar.
      * @param entidad2 de tipo Estado nueva.
      * @return la entidad actualizada
      */
     @Override
     public Estado actualizar(Estado entidad, Estado entidad2) {
-        Document filtro = new Document("_id", entidad.getId());
-        Document cambios = new Document("$set", new Document());
-
-        cambios.append("nombre", entidad2.getNombre());
-
-        collection.updateOne(filtro, cambios);
-        return entidad2;
+        collection.updateOne(eq("_id", entidad.getId()),
+                set("nombre", entidad2.getNombre()));
+        return buscar(entidad2);
     }
 
 }
