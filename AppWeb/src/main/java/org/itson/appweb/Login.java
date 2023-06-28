@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,7 +36,7 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -61,7 +62,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
     }
 
     /**
@@ -75,7 +76,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.proccessCreate(request, response);
+       String action = request.getParameter("action");
+        if(action !=null && action.equalsIgnoreCase("login")){
+            processLogin(request, response);
+            return;
+        }
     }
 
     /**
@@ -88,15 +93,16 @@ public class Login extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void proccessCreate(HttpServletRequest request, HttpServletResponse response)
+    private void processLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String correo = request.getParameter("corrNum");
         String pass = request.getParameter("pass");
         ILogica registerNegocio = FabricaLogica.crearInstancia();
-        List<Usuario> lit=registerNegocio.listaUsuario();
-        for (Usuario user: lit ) {
+        List<Usuario> lit = registerNegocio.listaUsuario();
+        for (Usuario user : lit) {
             if (user.getCorreo().equalsIgnoreCase(correo) && user.getContrasenia().equalsIgnoreCase(pass)) {
-                request.setAttribute("correo", "kimcorreo");
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("usuario", user);
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
