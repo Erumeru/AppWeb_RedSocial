@@ -4,8 +4,16 @@
  */
 package org.itson.appweb;
 
+import Clases.FabricaLogica;
+import Clases.ILogica;
+import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,22 +36,22 @@ public class Register extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet Register</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-//    }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Register</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -57,8 +65,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        
+        this.proccessCreate(request, response);
     }
 
     /**
@@ -72,11 +79,75 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        this.proccessCreate(request, response);
+
     }
     
-    private void processCreate(HttpServletRequest request, HttpServletResponse response)
+    private void proccessCreate(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
+        String email = request.getParameter("mail-phone");
         String nombre = request.getParameter("user-name");
+        String contra = request.getParameter("password");
+        String contraConfirmacion = request.getParameter("password-confirmation");
+        String fechaNacimiento = request.getParameter("birthdate");
+//        String telefono = request.getParameter("telefono");
+        
+         if (email == null
+                //                || correo.isBlank()
+                || email.trim().length() > 20
+                || nombre == null
+                //                || nombre.isBlank()
+                || nombre.trim().length() > 50
+                || contra == null
+                //                || contra.isBlank()
+                || contra.trim().length() > 100
+                || contraConfirmacion == null
+                //                || contraConfirmacion.isBlank()
+                || contraConfirmacion.trim().length() > 100
+                 
+                || fechaNacimiento == null
+                ) 
+         {
+            // regresamos a las paginas
+            getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+
+        }
+         //Objeto usuario
+         ILogica registerNegocio = (ILogica) new FabricaLogica();
+         Usuario usuario = new Usuario();
+        
+            usuario.setCorreo(email);
+            usuario.setNombreCompleto(nombre);
+            usuario.setContrasenia(contra);
+//            usuario.setTelefono(telefono);
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            // Parsear el String a un objeto Date
+            Date date = dateFormat.parse(fechaNacimiento);
+
+            // Crear una instancia de GregorianCalendar
+            GregorianCalendar calendar = new GregorianCalendar();
+
+            // Establecer la fecha del calendario utilizando el objeto Date
+            calendar.setTime(date);
+            usuario.setFechaNacimiento(calendar);
+        }catch(ParseException ex){
+            System.out.println("No se pudo convertir a fecha tilin");
+        }
+         
+        try{
+            Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
+            request.setAttribute("usuario", usuarioCreado);
+            getServletContext().getRequestDispatcher("/login.jsp")
+                    .forward(request, response);
+        }catch(Exception ex){
+            request.setAttribute("error", ex.getMessage());
+            getServletContext().getRequestDispatcher("/errorExterno.jsp")
+                    .forward(request, response);
+        }
+         
     }
 
     /**
