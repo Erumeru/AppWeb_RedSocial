@@ -28,7 +28,7 @@
           
           <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
           
-          <input id="pass" type="password" class="pass" nam="pass" placeholder="Ingrese su contraseña"/>
+          <input id="pass" type="password" class="pass" name="pass" placeholder="Ingrese su contraseña"/>
           <input class="inputBtn" type="submit" value="Iniciar Sesión" />
         </form>
         <div class="division"></div>

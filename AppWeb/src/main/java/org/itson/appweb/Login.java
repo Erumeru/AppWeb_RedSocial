@@ -4,8 +4,12 @@
  */
 package org.itson.appweb;
 
+import Clases.FabricaLogica;
+import Clases.ILogica;
+import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,7 +75,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            this.proccessCreate(request, response);
+        this.proccessCreate(request, response);
     }
 
     /**
@@ -84,19 +88,20 @@ public class Login extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-
-
-private void proccessCreate(HttpServletRequest request, HttpServletResponse response)
+    private void proccessCreate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String correo = request.getParameter("corrNum");
         String pass = request.getParameter("pass");
-        
-         if(correo.equalsIgnoreCase("kimcorreo")){
-            request.setAttribute("correo", "kimcorreo");
-            getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
-            return;
+        ILogica registerNegocio = FabricaLogica.crearInstancia();
+        List<Usuario> lit=registerNegocio.listaUsuario();
+        for (Usuario user: lit ) {
+            if (user.getCorreo().equalsIgnoreCase(correo) && user.getContrasenia().equalsIgnoreCase(pass)) {
+                request.setAttribute("correo", "kimcorreo");
+                getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
+                return;
+            }
         }
-         
+
         //validacion de datos
         if (correo == null
                 || correo.isBlank()
@@ -105,10 +110,7 @@ private void proccessCreate(HttpServletRequest request, HttpServletResponse resp
                 || pass.isBlank()) {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
-            return;
         }
-        
-       
-        
-}
+
+    }
 }
