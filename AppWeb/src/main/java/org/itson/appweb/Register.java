@@ -4,8 +4,7 @@
  */
 package org.itson.appweb;
 
-import Clases.FabricaLogica;
-import Clases.ILogica;
+import Clases.*;
 import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,7 +77,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        proccessCreate(request, response);
     }
 
     private void proccessCreate(HttpServletRequest request, HttpServletResponse response)
@@ -105,7 +104,7 @@ public class Register extends HttpServlet {
 
         }
         //Objeto usuario
-        ILogica registerNegocio = new FabricaLogica().crearInstancia();
+        ILogica registerNegocio = FabricaLogica.crearInstancia();
         Usuario usuario = new Usuario();
         usuario.setCorreo(email);
         usuario.setNombreCompleto(nombre);
