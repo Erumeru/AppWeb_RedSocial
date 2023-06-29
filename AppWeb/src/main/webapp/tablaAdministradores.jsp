@@ -4,6 +4,7 @@
     Author     : hoshi
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,20 +13,19 @@
         <title>Administradores</title>
     </head>
      <body>
-        <h1>Emails registradosss :D</h1>
+        <h1>Publicaciones :D</h1>
         <table>
             <tr>
                 <th>Fecha Publicación</th>
                 <th>Nombre de usuario</th>
                 <th>Titulo</th>
             </tr>
-            <c:forEach items="${sessionScope.usuario}" var="item">
+        
             <tr>
-                <td>${item.fechaHoraCreacion}</td>
-                <td>${item.nombreCompleto}</td>
-                <td>${item.titulo}</td>
+                <td>Wed Jun 28 22:32:10 MST 2023</td>
+                <td>${sessionScope.usuario.nombreCompleto}</td>
+                <td>atil</td>
             </tr>
-            </c:forEach>
         </table>
     </body>
 </html>
