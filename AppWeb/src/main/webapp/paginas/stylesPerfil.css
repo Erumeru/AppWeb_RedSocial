@@ -3,7 +3,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : 27-jun-2023, 16:55:17
+    Created on : 28 jun 2023, 18:40:30
     Author     : hoshi
 */
 *{
@@ -26,8 +26,13 @@ nav{
     position: fixed;
     width: 100%;
     z-index: 1;
-    border-bottom: solit #dbdbdb 1px;
+    border-bottom: solid #dbdbdb 1px;
     background: #fff;
+    margin-bottom: 20px;
+}
+
+form{
+    display:contents;
 }
 
 .nav-cont{

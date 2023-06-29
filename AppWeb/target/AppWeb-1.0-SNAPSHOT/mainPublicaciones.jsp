@@ -26,9 +26,9 @@
         </div>
         <p></p>
         <div class="icons-container">
-            <img class="icon" src="assets/icon-like.png" alt="icon-like">
-            <img class="icon" src="assets/icon-message-comment.png" alt="icon-message-comment">
-            <img class="icon" src="assets/icon-share.png" alt="icon-share">
+            <img class="icon" src="paginas/imagenes/icon-like.png" alt="icon-like">
+            <img class="icon" src="paginas/imagenes/icon-message-comment.png" alt="icon-message-comment">
+            <img class="icon" src="paginas/imagenes/icon-share.png" alt="icon-share">
         </div>
         <div class="comments-container">
             <p class="profile-text">Tilina <span class="space-comments">Ójala los mosquitos chuparan sangre, en vez de
