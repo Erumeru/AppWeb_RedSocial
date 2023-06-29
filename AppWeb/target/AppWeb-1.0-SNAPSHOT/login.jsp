@@ -24,7 +24,7 @@
           src="https://www.elsotano.com/imagenes_grandes/7500588/750058800625.JPG"
         />
         <p class="hola">¡Hola de nuevo!</p>
-        <form method="POST" action="./Login">
+        <form action="./Login?action=login" method="post">
           
           <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
           
