@@ -120,7 +120,11 @@ public class Login extends HttpServlet {
                 sesion.setAttribute("usuario", user);
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
+            }else{
+                 getServletContext().getRequestDispatcher("/errorInterno.jsp").forward(request, response);
+                return;
             }
+                
         }
 
     }
@@ -131,4 +135,5 @@ public class Login extends HttpServlet {
         sesion.invalidate();
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
+    
 }

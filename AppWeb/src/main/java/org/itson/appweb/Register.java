@@ -91,7 +91,9 @@ public class Register extends HttpServlet {
         String contra = request.getParameter("password");
         String contraConfirmacion = request.getParameter("password-confirmation");
         String fechaNacimiento = request.getParameter("birthdate");
-//        String telefono = request.getParameter("telefono");
+//        String telefono = request.getParameter("telephone");
+//        String avatar = request.getParameter("avatar");
+//        String 
 
         if (email == null
                 || email.isBlank()

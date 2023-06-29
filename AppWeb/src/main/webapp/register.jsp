@@ -39,6 +39,18 @@
                     <label for="birthdate"> Fecha de nacimiento
                         <input id="birthdate" name="birthdate" name="birthdate" type="date">
                     </label>
+                    <select id="" name="ciudad" placeholder="Ciudades">
+                        <option value="ciudad1">Obregón</option>
+                        <option value="ciudad2">Navojoa</option>
+                        <option value="ciudad3">Huatabampo</option>
+                    </select>
+                    <label for="telephone"> 
+                        <input id="telephone" name="telephone" name="telephone" type="text" placeholder="Teléfono">
+                    </label>
+                    <label for="avatar"> 
+                        Avatar
+                        <input id="avatar" name="avatar" name="avatar" type="file" placeholder="Avatar">
+                    </label>
                     <input type="submit" value="Registrarme">
                 </form>
                 <p>¿Ya tienes cuenta?</p>
