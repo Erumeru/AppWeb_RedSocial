@@ -39,6 +39,7 @@
                 <div class="cabecera1">
                     <h1>${sessionScope.usuario.nombreCompleto}</h1>
                     <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
+                    <a href="tablaAdministradores.jsp"><img width="24" height="24" src="paginas/imagenes/3643771_configuration_configure_gear_set_setting_icon.svg"></a>
                 </div>
                 <div class="cabecera2">
                     <p><b>8</b> publicaciones</p>
