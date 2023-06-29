@@ -45,11 +45,11 @@
                         <option value="ciudad3">Huatabampo</option>
                     </select>
                     <label for="telephone"> 
-                        <input id="telephone" name="telephone" name="telephone" type="text" placeholder="Teléfono">
+                        <input id="telephone" name="telephone"type="text" placeholder="Teléfono">
                     </label>
                     <label for="avatar"> 
                         Avatar
-                        <input id="avatar" name="avatar" name="avatar" type="file" placeholder="Avatar">
+                        <input id="avatar" name="avatar" type="file" placeholder="Avatar">
                     </label>
                     <input type="submit" value="Registrarme">
                 </form>
