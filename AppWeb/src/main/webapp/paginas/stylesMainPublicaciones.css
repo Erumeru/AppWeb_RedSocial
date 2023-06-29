@@ -11,6 +11,10 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+.Post-Container {
+    padding-bottom: 20px;
+}
+
 .profile-container {
     display: flex;
     align-items: center;
@@ -62,7 +66,7 @@ body {
 }
 
 .menu-icon {
-    background-image: url(assets/Menu.png);
+    background-image: url(imagenes/Menu.png);
     background-size: cover;
     background-position: center;
     padding: 3px;
@@ -108,7 +112,7 @@ input[type="text"] {
 .send-comment {
     width: 18px;
     height: 10px;
-    background-image: url("assets/send.png");
+    background-image: url("imagenes/send.png");
     background-size: cover;
     background-position: center;
     border: none;
