@@ -20,13 +20,15 @@
         <div class="nav-cont">
             <img width="103" height="35" src="iconos/logo.png" alt="Logo">
             <div class="cont-input">
-                <a href="#"><span><img width="10px" src="iconos/8666693_search_icon.svg" alt="Proyecto"></span></a>
+                <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
                 <input type="text" placeholder=" Buscar" />
             </div>
             <div class="iconos">
-                <a href="mainPublicaciones.jsp"><img src="iconos/8666691_home_icon.svg"></a>
+                <a href="mainPublicaciones.jsp"><img src="paginas/imagenes/8666691_home_icon.svg"></a>
                 <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
-                <a href="#"><img width="24" height="24" src="iconos/1564505_close_delete_exit_remove_icon.svg"></a>
+                <form  action='./Login?action=logout' method="post" >
+                    <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
+                </form>
             </div>
         </div>
     </nav>
@@ -35,16 +37,15 @@
             <img class="img-perfil" src="imagenes/Logo-Perfil.jpg">
             <div class="contenedor-cabecera">
                 <div class="cabecera1">
-                    <h1>${sessionScope.usuario.correo}</h1>
+                    <h1>${sessionScope.usuario.nombreCompleto}</h1>
                     <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
-                    <a href="#"><img width="24" height="24" src="iconos/3643771_configuration_configure_gear_set_setting_icon.svg"></a>
                 </div>
                 <div class="cabecera2">
                     <p><b>8</b> publicaciones</p>
                     <p><b>10</b> amigos</p>
                 </div>
                 <div class="cabecera3">
-                    <h2>${sessionScope.usuario.nombreCompleto}</h2>
+                    <h2>${sessionScope.usuario.correo}</h2>
                     <p class="p-presentation">Me encanta ser feliz</p>
                 </div>
             </div>
