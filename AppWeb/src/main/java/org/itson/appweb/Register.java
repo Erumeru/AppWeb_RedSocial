@@ -96,7 +96,8 @@ public class Register extends HttpServlet {
         String contra = request.getParameter("password");
         String contraConfirmacion = request.getParameter("password-confirmation");
         String fechaNacimiento = request.getParameter("birthdate");
-//        String telefono = request.getParameter("telephone");
+        String telefono = request.getParameter("telephone");
+        String ciudad=request.getParameter("ciudad");
 //        String avatar = request.getParameter("avatar");
 //        String 
 
@@ -120,13 +121,13 @@ public class Register extends HttpServlet {
         usuario.setCorreo(email);
         usuario.setNombreCompleto(nombre);
         usuario.setContrasenia(contra);
-        usuario.setTelefono("7777777");
-        usuario.setCiudad("obregones");
+        usuario.setTelefono(telefono);
+        usuario.setCiudad(ciudad);
 
         try {
             Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
-            request.setAttribute("usuario", usuarioCreado);
-            getServletContext().getRequestDispatcher("/login.jsp")
+            request.setAttribute("id", usuarioCreado.getId());
+            getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
         } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage());
@@ -136,33 +137,7 @@ public class Register extends HttpServlet {
         }
 
     }
-    
-    private String processUpload(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
-        if (isMultiPart) {
-            ServletFileUpload upload = new ServletFileUpload();
-            try {
-                FileItemIterator itr = upload.getItemIterator(request);
-                while (itr.hasNext()) {
-                    FileItemStream item = itr.next();
-                    if (item.isFormField()) {
-                        String fieldName = item.getFieldName();
-                        InputStream is = item.openStream();
-                        byte[] b = new byte[is.available()];
-                        is.read(b);
-                        String value = new String(b);
-                        response.getWriter().println(fieldName + ":" + value + "<br/>");
-                    } else {
-                        String path = getServletContext().getRealPath("/");
-                        return path;
-                    }
-                }
-            } catch (FileUploadException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return null;
-    }
+
 
     /**
      * Returns a short description of the servlet.

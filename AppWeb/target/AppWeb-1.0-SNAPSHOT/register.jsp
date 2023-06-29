@@ -23,7 +23,7 @@
         <div class="form-information">
             <div class="container-form">
                 <h1>¡Empieza hoy!</h1>
-                <form action="./Register?action=register" method="post" enctype="multipart/form-data">
+                <form action="./Register?action=register" method="post">
                     <label for="mail-phone">
                         <input id="mail-phone" type="text" name="mail-phone" placeholder="Correo o teléfono" />
                     </label>
@@ -45,12 +45,9 @@
                         <option value="ciudad3">Huatabampo</option>
                     </select>
                     <label for="telephone"> 
-                        <input id="telephone" name="telephone" name="telephone" type="text" placeholder="Teléfono">
+                        <input id="telephone" name="telephone"type="text" placeholder="Teléfono">
                     </label>
-                    <label for="avatar"> 
-                        Avatar
-                        <input id="avatar" name="avatar" name="avatar" type="file" placeholder="Avatar">
-                    </label>
+ 
                     <input type="submit" value="Registrarme">
                 </form>
                 <p>¿Ya tienes cuenta?</p>

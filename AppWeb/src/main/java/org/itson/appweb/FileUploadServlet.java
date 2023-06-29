@@ -1,6 +1,8 @@
 package org.itson.appweb;
 
-
+import Clases.FabricaLogica;
+import Clases.ILogica;
+import ObjNegocio.Usuario;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.bson.types.ObjectId;
 import org.itson.appweb.FileUpload;
 
 /**
@@ -42,7 +45,7 @@ public class FileUploadServlet extends HttpServlet {
         this.processUpload(request, response);
     }
 
-    private void processUpload(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void processUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
@@ -64,11 +67,15 @@ public class FileUploadServlet extends HttpServlet {
                         } else {
                             response.getWriter().println("file uploaded falied");
                         }
+
                     }
                 }
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             }
+                        getServletContext().getRequestDispatcher("/login.jsp")
+                    .forward(request, response);
+
         }
     }
 }
