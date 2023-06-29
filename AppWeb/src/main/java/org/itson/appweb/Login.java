@@ -81,6 +81,10 @@ public class Login extends HttpServlet {
             processLogin(request, response);
             return;
         }
+        if(action !=null && action.equalsIgnoreCase("logout")){
+             processLogout(request, response);
+            return;
+        }
     }
 
     /**
@@ -118,5 +122,12 @@ public class Login extends HttpServlet {
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
         }
 
+    }
+    
+    protected void processLogout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        sesion.invalidate();
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
