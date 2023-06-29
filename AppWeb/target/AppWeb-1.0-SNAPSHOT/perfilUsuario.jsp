@@ -24,7 +24,9 @@
                 <input type="text" placeholder=" Buscar" />
             </div>
             <div class="iconos">
-                <a href="mainPublicaciones.jsp"><img src="paginas/imagenes/8666691_home_icon.svg"></a>
+                <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                    <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
+                </form>
                 <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
                 <form  action='./Login?action=logout' method="post">
                     <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
