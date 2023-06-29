@@ -7,6 +7,7 @@ package org.itson.appweb;
 import Clases.*;
 import ObjNegocio.Usuario;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,15 +15,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author hoshi
  */
+@MultipartConfig
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
 
@@ -79,6 +86,7 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action != null && action.equalsIgnoreCase("register")) {
+            request.setAttribute("avatar", processUpload(request, response));
             proccessCreate(request, response);
             return;
         }
@@ -107,7 +115,6 @@ public class Register extends HttpServlet {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
             return;
-
         }
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
@@ -117,7 +124,7 @@ public class Register extends HttpServlet {
         usuario.setContrasenia(contra);
         usuario.setTelefono("7777777");
         usuario.setCiudad("obregones");
-
+        usuario.setAvatar(request.getParameter("avatar"));
         try {
             Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
             request.setAttribute("usuario", usuarioCreado);
@@ -129,9 +136,35 @@ public class Register extends HttpServlet {
                     .forward(request, response);
             return;
         }
-
     }
 
+    private String processUpload(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+        if (isMultiPart) {
+            ServletFileUpload upload = new ServletFileUpload();
+            try {
+                FileItemIterator itr = upload.getItemIterator(request);
+                while (itr.hasNext()) {
+                    FileItemStream item = itr.next();
+                    if (item.isFormField()) {
+                        String fieldName = item.getFieldName();
+                        InputStream is = item.openStream();
+                        byte[] b = new byte[is.available()];
+                        is.read(b);
+                        String value = new String(b);
+                        response.getWriter().println(fieldName + ":" + value + "<br/>");
+                    } else {
+                        String path = getServletContext().getRealPath("/");
+                        return path;
+                    }
+                }
+            } catch (FileUploadException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+    
     /**
      * Returns a short description of the servlet.
      *
