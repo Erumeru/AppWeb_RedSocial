@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     /**
@@ -99,23 +99,24 @@ public class Login extends HttpServlet {
         String pass = request.getParameter("pass");
         ILogica registerNegocio = FabricaLogica.crearInstancia();
         List<Usuario> lit = registerNegocio.listaUsuario();
+
+        //validacion de datos
+        if (correo == null
+                || correo.isBlank()
+                || pass == null
+                || pass.isBlank()) {
+            // regresamos a las paginas
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        }
+
         for (Usuario user : lit) {
-            if (user.getCorreo().equalsIgnoreCase(correo) && user.getContrasenia().equalsIgnoreCase(pass)) {
+            if (user.getCorreo() != null && user.getContrasenia() != null
+                    && user.getCorreo().equalsIgnoreCase(correo) && user.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", user);
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
-        }
-
-        //validacion de datos
-        if (correo == null
-                || correo.isBlank()
-                || correo.trim().length() > 50
-                || pass == null
-                || pass.isBlank()) {
-            // regresamos a las paginas
-            getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
         }
 
     }
