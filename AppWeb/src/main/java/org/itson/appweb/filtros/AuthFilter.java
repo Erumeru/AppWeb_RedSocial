@@ -30,7 +30,7 @@ public class AuthFilter implements Filter {
 
     }
 
-    private final static String[] pathsPublicos = {"login.jsp", "auth"};
+    private final static String[] pathsPublicos = {"login.jsp", "auth","register.jsp","paginas/","Register","Login"};
 
     private boolean isPathPrivado(String path) {
         for (String pathPublico : AuthFilter.pathsPublicos) {
