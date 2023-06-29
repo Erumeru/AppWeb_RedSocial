@@ -47,10 +47,7 @@
                     <label for="telephone"> 
                         <input id="telephone" name="telephone"type="text" placeholder="Teléfono">
                     </label>
-                    <label for="avatar"> 
-                        Avatar
-                        <input id="avatar" name="avatar" type="file" placeholder="Avatar">
-                    </label>
+ 
                     <input type="submit" value="Registrarme">
                 </form>
                 <p>¿Ya tienes cuenta?</p>

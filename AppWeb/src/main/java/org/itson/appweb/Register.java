@@ -96,7 +96,8 @@ public class Register extends HttpServlet {
         String contra = request.getParameter("password");
         String contraConfirmacion = request.getParameter("password-confirmation");
         String fechaNacimiento = request.getParameter("birthdate");
-//        String telefono = request.getParameter("telephone");
+        String telefono = request.getParameter("telephone");
+        String ciudad=request.getParameter("ciudad");
 //        String avatar = request.getParameter("avatar");
 //        String 
 
@@ -120,13 +121,13 @@ public class Register extends HttpServlet {
         usuario.setCorreo(email);
         usuario.setNombreCompleto(nombre);
         usuario.setContrasenia(contra);
-        usuario.setTelefono("7777777");
-        usuario.setCiudad("obregones");
+        usuario.setTelefono(telefono);
+        usuario.setCiudad(ciudad);
 
         try {
             Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
-            request.setAttribute("usuario", usuarioCreado);
-            getServletContext().getRequestDispatcher("/login.jsp")
+            request.setAttribute("id", usuarioCreado.getId());
+            getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
         } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage());
