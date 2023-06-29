@@ -1,5 +1,3 @@
-package org.itson.appweb;
-
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
