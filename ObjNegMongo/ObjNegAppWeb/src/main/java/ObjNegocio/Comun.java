@@ -43,6 +43,20 @@ public class Comun extends Post {
     public Comun(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
     }
+    
+    /**
+     * Contructor para crear un comentario común.
+     *
+     * @param usuario
+     * @param fechaHoraCreacion fecha y hora de creación del comentario.
+     * @param titulo título del cometario.
+     * @param contenido contenido que es el cuerpo del comentario.
+     * @param fechaHoraEdicion fecha y hora en la que el comentario se edito.
+
+    public Comun(Usuario usuario, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
+        super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
+        this.usuario = usuario;
+    }*/
 
     /**
      * Contructor para crear un comentario común.
