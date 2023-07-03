@@ -124,22 +124,18 @@ public class Login extends HttpServlet {
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
-            for (Normal nrm : normal) {
-                if (nrm.getCorreo() != null && nrm.getContrasenia() != null
-                        && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
-                    HttpSession sesion = request.getSession();
-                    sesion.setAttribute("usuario", nrm);
-                    getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
-                    return;
-                }
-            }
-
         }
-    }
-    
-    
+        for (Normal nrm : normal) {
+            if (nrm.getCorreo() != null && nrm.getContrasenia() != null
+                    && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("usuario", nrm);
+                getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
+                return;
+            }
+        }
 
-    
+    }
 
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
