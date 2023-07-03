@@ -5,6 +5,7 @@
 package org.itson.appweb;
 
 import Clases.*;
+import ObjNegocio.Normal;
 import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.InputStream;
@@ -118,14 +119,15 @@ public class Register extends HttpServlet {
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
         Usuario usuario = new Usuario();
-        usuario.setCorreo(email);
-        usuario.setNombreCompleto(nombre);
-        usuario.setContrasenia(contra);
-        usuario.setTelefono(telefono);
-        usuario.setCiudad(ciudad);
+        Normal normalUser= new Normal();
+        normalUser.setCorreo(email);
+        normalUser.setNombreCompleto(nombre);
+        normalUser.setContrasenia(contra);
+        normalUser.setTelefono(telefono);
+        normalUser.setCiudad(ciudad);
 
         try {
-            Usuario usuarioCreado = registerNegocio.guardarUsuario(usuario);
+            Usuario usuarioCreado = registerNegocio.guardarNormal(normalUser);
             request.setAttribute("id", usuarioCreado.getId());
             getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
