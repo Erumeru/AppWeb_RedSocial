@@ -6,6 +6,8 @@ package org.itson.appweb;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import ObjNegocio.Admor;
+import ObjNegocio.Normal;
 import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,7 +38,7 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -81,8 +83,8 @@ public class Login extends HttpServlet {
             processLogin(request, response);
             return;
         }
-        if(action !=null && action.equalsIgnoreCase("logout")){
-             processLogout(request, response);
+        if (action != null && action.equalsIgnoreCase("logout")) {
+            processLogout(request, response);
             return;
         }
     }
@@ -102,7 +104,8 @@ public class Login extends HttpServlet {
         String correo = request.getParameter("corrNum");
         String pass = request.getParameter("pass");
         ILogica registerNegocio = FabricaLogica.crearInstancia();
-        List<Usuario> lit = registerNegocio.listaUsuario();
+        List<Admor> admin = registerNegocio.listaAdmor();
+        List<Normal> normal = registerNegocio.listaNormal();
 
         //validacion de datos
         if (correo == null
@@ -113,24 +116,36 @@ public class Login extends HttpServlet {
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
 
-        for (Usuario user : lit) {
-            if (user.getCorreo() != null && user.getContrasenia() != null
-                    && user.getCorreo().equalsIgnoreCase(correo) && user.getContrasenia().equalsIgnoreCase(pass)) {
+        for (Admor adm : admin) {
+            if (adm.getCorreo() != null && adm.getContrasenia() != null
+                    && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
-                sesion.setAttribute("usuario", user);
+                sesion.setAttribute("usuario", adm);
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
-                
-        }
+            for (Normal nrm : normal) {
+                if (nrm.getCorreo() != null && nrm.getContrasenia() != null
+                        && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
+                    HttpSession sesion = request.getSession();
+                    sesion.setAttribute("usuario", nrm);
+                    getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
+                    return;
+                }
+            }
 
+        }
     }
     
+    
+
+    
+
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         sesion.invalidate();
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
-    
+
 }
