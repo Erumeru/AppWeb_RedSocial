@@ -2,6 +2,7 @@ package org.itson.appweb;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import ObjNegocio.Admor;
 import ObjNegocio.Usuario;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -62,6 +63,18 @@ public class FileUploadServlet extends HttpServlet {
                         response.getWriter().println(fieldName + ":" + value + "<br/>");
                     } else {
                         String path = getServletContext().getRealPath("/");
+                        String id = request.getParameter("id");
+                        ObjectId objId = new ObjectId(id);
+                        ILogica registerNegocio = FabricaLogica.crearInstancia();
+                        
+                        Admor adm=new Admor();
+                        adm.setId(objId);
+                        
+                        adm=registerNegocio.buscarAdmor(adm);
+                        
+                        Admor admAvatar= adm;
+                        admAvatar.setAvatar(path);
+                        registerNegocio.actualizarAdmor(adm, admAvatar);
                         if (FileUpload.processFile(path, item)) {
                             response.getWriter().println("file uploaded successfully");
                         } else {
@@ -73,7 +86,7 @@ public class FileUploadServlet extends HttpServlet {
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             }
-                        getServletContext().getRequestDispatcher("/login.jsp")
+            getServletContext().getRequestDispatcher("/login.jsp")
                     .forward(request, response);
 
         }

@@ -5,8 +5,10 @@
 
 package Clases;
 
+import ObjNegocio.Admor;
 import ObjNegocio.Usuario;
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 
 
@@ -25,7 +27,14 @@ public class CALIZSUMSISTEMA {
          user.setContrasenia("pip");
          user.setCorreo("kaka@gmail");
         user.setFechaNacimiento(new Date());
-        Usuario no = registerNegocio.guardarUsuario(user);
-         System.out.println(no.toString());
+        Admor adm=new Admor();
+        adm.setId(new ObjectId("64a36c5f3dee74217c3b4782"));
+        adm=registerNegocio.buscarAdmor(adm);
+        System.out.println(adm.getId().toString());
+        Admor admact= adm;
+        admact.setAvatar("p[ene");
+         //   Usuario no = registerNegocio.guardarUsuario(user);
+         Admor act=registerNegocio.actualizarAdmor(adm, admact);
+         System.out.println(act.getAvatar());
     }
 }

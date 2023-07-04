@@ -130,7 +130,7 @@ public class Register extends HttpServlet {
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
-                request.setAttribute("id", usuarioCreado.getId());
+                request.setAttribute("id", usuarioCreado.getId().toString());
                 getServletContext().getRequestDispatcher("/prueba.jsp")
                         .forward(request, response);
             } catch (Exception ex) {
@@ -139,6 +139,7 @@ public class Register extends HttpServlet {
                         .forward(request, response);
                 return;
             }
+            return;
         }
         try {
             Normal normalUser = new Normal();
@@ -148,7 +149,7 @@ public class Register extends HttpServlet {
             normalUser.setTelefono(telefono);
             normalUser.setCiudad(ciudad);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
-            request.setAttribute("id", usuarioCreado.getId());
+            request.setAttribute("id", usuarioCreado.getId().toString());
             getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
         } catch (Exception ex) {
