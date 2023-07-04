@@ -50,12 +50,15 @@ public class FileUploadServlet extends HttpServlet {
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
+
             try {
                 FileItemIterator itr = upload.getItemIterator(request);
+                // String fieldName=itr.next().getFieldName();
                 while (itr.hasNext()) {
                     FileItemStream item = itr.next();
+                    String fieldName = item.getName();
+
                     if (item.isFormField()) {
-                        String fieldName = item.getFieldName();
                         InputStream is = item.openStream();
                         byte[] b = new byte[is.available()];
                         is.read(b);
@@ -63,24 +66,23 @@ public class FileUploadServlet extends HttpServlet {
                         response.getWriter().println(fieldName + ":" + value + "<br/>");
                     } else {
                         String path = getServletContext().getRealPath("/");
-                        String id =(String)request.getSession().getAttribute("id");
+                        String id = (String) request.getSession().getAttribute("id");
                         ObjectId objId = new ObjectId(id);
                         ILogica registerNegocio = FabricaLogica.crearInstancia();
-                        
-                        Admor adm=new Admor();
+
+                        Admor adm = new Admor();
                         adm.setId(objId);
-                        
-                        adm=registerNegocio.buscarAdmor(adm);
-                        
-                        Admor admAvatar= adm;
-                        admAvatar.setAvatar(path);
+
+                        adm = registerNegocio.buscarAdmor(adm);
+
+                        Admor admAvatar = adm;
+                        admAvatar.setAvatar(path +"images\\"+ fieldName);
                         registerNegocio.actualizarAdmor(adm, admAvatar);
                         if (FileUpload.processFile(path, item)) {
                             response.getWriter().println("file uploaded successfully");
                         } else {
                             response.getWriter().println("file uploaded falied");
                         }
-
                     }
                 }
             } catch (FileUploadException ex) {
