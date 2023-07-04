@@ -15,10 +15,10 @@
     </head>
 
     <body>
-        <script src="perfil.js"></script>
-        <nav>
+        <script src="prueba.js"></script>
+        <nav class="nav-arriba">
             <div class="nav-cont">
-                <img width="103" height="35" src="iconos/logo.png" alt="Logo">
+                <img width="103" height="35" src="paginas/imagenes/logo.png" alt="Logo">
                 <div class="cont-input">
                     <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
                     <input type="text" placeholder=" Buscar" />
@@ -27,7 +27,7 @@
                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
-                    <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
+                    <a href="perfilUsuario.jsp"><h3>${sessionScope.usuario.avatar}</h3></a>
                     <form  action='./Login?action=logout' method="post">
                         <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
                     </form>
@@ -77,16 +77,26 @@
                 </a>
             </div>
             <div class="mainCont_grid">
-                <div><img src="imagenes/imagen1.jpg" /></div>
-                <div><img src="imagenes/imagen2.jpg" /></div>
-                <div><img src="imagenes/imagen3.jpg" /></div>
-                <div><img src="imagenes/imagen4.jpg" /></div>
-                <div><img src="imagenes/imagen5.jpg" /></div>
-                <div><img src="imagenes/imagen6.jpg" /></div>
-                <div><img src="imagenes/imagen7.jpg" /></div>
-                <div><img src="imagenes/imagen8.jpg" /></div>
             </div>
         </main>
+        <nav class="nav-abajo">
+            <div class="nav-cont">
+                <button id="createPostButton">Crear post</button>
+
+                <div id="overlay">
+                    <div id="modal">
+                        <span class="close">&times;</span>
+                        <input type="text" placeholder="Escribe aquí">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <div id="preview" class="styleimage"></div>
+                        <input type="submit" value="Siguiente">
+                    </div>
+                </div>
+
+
+            </div>
+        </nav>
+                        
         <footer>
 
         </footer>

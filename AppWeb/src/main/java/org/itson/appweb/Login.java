@@ -132,7 +132,7 @@ public class Login extends HttpServlet {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", nrm);
                 sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
-                getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
                 return;
             }
         }

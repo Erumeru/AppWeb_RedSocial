@@ -6,6 +6,7 @@ package org.itson.appweb;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import ObjNegocio.Admor;
 import ObjNegocio.Comun;
 import ObjNegocio.Post;
 import ObjNegocio.Usuario;
@@ -93,22 +94,21 @@ public class Administrador extends HttpServlet {
 //
 //        // Consulta la lista de posts
 //      
-        HttpSession sesion = request.getSession(false);
-        if (sesion != null && sesion.getAttribute("usuario") != null) {
-            Usuario usuario = new Usuario();
-            Usuario usuarioLista = viewPosts.buscarUsuario(usuario);
 
-            // Construye el contenido HTML para la etiqueta <p>
-            if (usuarioLista == null) {
-                request.setAttribute("mensaje", "No hay posts disponibles");
-            }
-            // Establece el contenido HTML en el atributo de la solicitud (request)
-            request.setAttribute("usuario", usuarioLista);
-            getServletContext().getRequestDispatcher("/tablaAdministradores.jsp").forward(request, response);
+         HttpSession sesion = request.getSession(false);
+         if (sesion != null && sesion.getAttribute("usuario") != null) {
+             Admor admor = new Admor();
+             Admor admorLista = viewPosts.buscarAdmor(admor);
 
-        } else {
-            getServletContext().getRequestDispatcher("/errorInterno.jsp").forward(request, response);
-        }
+             // Construye el contenido HTML para la etiqueta <p>
+             if (admorLista == null) {
+                 request.setAttribute("mensaje", "No hay posts disponibles");
+             }
+             // Establece el contenido HTML en el atributo de la solicitud (request)
+             request.setAttribute("admor", admorLista);
+             getServletContext().getRequestDispatcher("/tablaAdministradores.jsp").forward(request, response);
+
+    }
     }
 
     /**
