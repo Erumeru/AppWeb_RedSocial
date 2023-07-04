@@ -5,6 +5,7 @@
 package org.itson.appweb;
 
 import Clases.*;
+import ObjNegocio.Admor;
 import ObjNegocio.Normal;
 import ObjNegocio.Usuario;
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -98,10 +99,11 @@ public class Register extends HttpServlet {
         String contraConfirmacion = request.getParameter("password-confirmation");
         String fechaNacimiento = request.getParameter("birthdate");
         String telefono = request.getParameter("telephone");
-        String ciudad=request.getParameter("ciudad");
+        String ciudad = request.getParameter("ciudad");
+        String tipo = request.getParameter("tipo");
+
 //        String avatar = request.getParameter("avatar");
 //        String 
-
         if (email == null
                 || email.isBlank()
                 || nombre == null
@@ -118,16 +120,34 @@ public class Register extends HttpServlet {
         }
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
-        Usuario usuario = new Usuario();
-        Normal normalUser= new Normal();
-        normalUser.setCorreo(email);
-        normalUser.setNombreCompleto(nombre);
-        normalUser.setContrasenia(contra);
-        normalUser.setTelefono(telefono);
-        normalUser.setCiudad(ciudad);
 
+        if (tipo.equalsIgnoreCase("true")) {
+            try {
+                Admor admin = new Admor();
+                admin.setCorreo(email);
+                admin.setNombreCompleto(nombre);
+                admin.setContrasenia(contra);
+                admin.setTelefono(telefono);
+                admin.setCiudad(ciudad);
+                Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
+                request.setAttribute("id", usuarioCreado.getId());
+                getServletContext().getRequestDispatcher("/prueba.jsp")
+                        .forward(request, response);
+            } catch (Exception ex) {
+                request.setAttribute("error", ex.getMessage());
+                getServletContext().getRequestDispatcher("/errorExterno.jsp")
+                        .forward(request, response);
+                return;
+            }
+        }
         try {
-            Usuario usuarioCreado = registerNegocio.guardarNormal(normalUser);
+            Normal normalUser = new Normal();
+            normalUser.setCorreo(email);
+            normalUser.setNombreCompleto(nombre);
+            normalUser.setContrasenia(contra);
+            normalUser.setTelefono(telefono);
+            normalUser.setCiudad(ciudad);
+            Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
             request.setAttribute("id", usuarioCreado.getId());
             getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
@@ -139,7 +159,6 @@ public class Register extends HttpServlet {
         }
 
     }
-
 
     /**
      * Returns a short description of the servlet.
