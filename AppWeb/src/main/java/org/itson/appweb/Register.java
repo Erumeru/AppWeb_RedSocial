@@ -103,6 +103,7 @@ public class Register extends HttpServlet {
         String telefono = request.getParameter("telephone");
         String ciudad = request.getParameter("ciudad");
         String tipo = request.getParameter("tipo");
+        //String sexo = request.getParameter("tipo");
 
 //        String avatar = request.getParameter("avatar");
 //        String 

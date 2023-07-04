@@ -42,20 +42,19 @@
                         <label for="telephone"> 
                             <input id="telephone" name="telephone"type="text" placeholder="Teléfono">
                         </label>
-                        <label for="ciudad"> Ciudad: 
+                        <label for="ciudad" id="ciudad"> Ciudad: 
                             <select id="ciudad" name="ciudad" placeholder="Ciudades">
                                 <option value="Obregon">Obregón</option>
                                 <option value="Navojoa">Navojoa</option>
                                 <option value="Huatabampo">Huatabampo</option>
-                            </select>
+                            </select> 
+                               Usuario Admin:
+                            <input id="tipo" name="tipo" type="checkbox" value="true">
                         </label>
                         <label for="sexo">Sexo:
                             <input id="tipo" name="tipo" type="radio" value="F"> F
                             <input id="tipo" name="tipo" type="radio" value="M"> M
                             <input id="tipo" name="tipo" type="radio" value="U"> Prefiero no decirlo
-                        </label>
-                        <label for="tipo"> Usuario Admin:
-                            <input id="tipo" name="tipo" type="checkbox" value="true">
                         </label>
                         <input type="submit" value="Registrarme">
                     </form>
