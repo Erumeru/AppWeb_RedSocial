@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.System.Logger.Level;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -49,6 +51,8 @@ public class FileUploadServlet extends HttpServlet {
 
     private void processUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+        String rutaFinal="";
+        String id="";
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
 
@@ -67,7 +71,7 @@ public class FileUploadServlet extends HttpServlet {
                         response.getWriter().println(fieldName + ":" + value + "<br/>");
                     } else {
                         String path = getServletContext().getRealPath("/");
-                        String id = (String) request.getSession().getAttribute("id");
+                        id = (String) request.getSession().getAttribute("id");
                         String tipo = (String) request.getSession().getAttribute("tipo");
                         ObjectId objId = new ObjectId(id);
                         ILogica registerNegocio = FabricaLogica.crearInstancia();
@@ -76,23 +80,33 @@ public class FileUploadServlet extends HttpServlet {
                             Admor adm = new Admor();
                             adm.setId(objId);
                             adm = registerNegocio.buscarAdmor(adm);
+                            
+                            Path rutaOriginal = Paths.get(path);
+                            Path rutaPadre=rutaOriginal.getParent().getParent();
+                            rutaFinal=rutaPadre.toString()+"\\src\\main\\webapp\\uploads";
+                            
+                            
                             Admor admAvatar = adm;
-                            admAvatar.setAvatar(path + "images\\" + fieldName);
+                            admAvatar.setAvatar(rutaFinal+"\\"+id+".png");
                             registerNegocio.actualizarAdmor(adm, admAvatar);
                         }
                         if (tipo.equalsIgnoreCase("normal")) {
                             Normal normal = new Normal();
                             normal.setId(objId);
-
                             normal = registerNegocio.buscarNormal(normal);
-
+                            
+                            Path rutaOriginal = Paths.get(path);
+                            Path rutaPadre=rutaOriginal.getParent().getParent();
+                            rutaFinal=rutaPadre.toString()+"\\src\\main\\webapp\\uploads";
+                            
+                            
                             Normal nrmAvatar = normal;
-                            nrmAvatar.setAvatar(path + "images\\" + fieldName);
+                            nrmAvatar.setAvatar(rutaFinal+"\\"+id+".png");
                             registerNegocio.actualizarNormal(normal, nrmAvatar);
 
                         }
 
-                        if (FileUpload.processFile(path, item)) {
+                        if (FileUpload.processFile(rutaFinal, item,id)) {
                             response.getWriter().println("file uploaded successfully");
                         } else {
                             response.getWriter().println("file uploaded falied");

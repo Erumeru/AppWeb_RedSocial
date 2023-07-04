@@ -14,11 +14,11 @@ import org.apache.commons.fileupload.FileItemStream;
  * @author kim
  */
 public class FileUpload {
-    public static boolean processFile(String path, FileItemStream item ){
+    public static boolean processFile(String path, FileItemStream item, String id ){
         try{
-            File f = new File(path+File.separator+"images");
+            File f = new File(path+File.separator);
             if(!f.exists()) f.mkdir();
-            File  savedFile = new File(f.getAbsolutePath()+ File.separator+item.getName());
+            File  savedFile = new File(f.getAbsolutePath()+ File.separator+id+".png");
             FileOutputStream fos = new FileOutputStream(savedFile);
             InputStream is = item.openStream();
             int x=0;

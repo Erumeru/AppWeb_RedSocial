@@ -36,7 +36,8 @@
     </nav>
     <header>
         <div class="perfil-container">
-            <img class="img-perfil" src="imagenes/Logo-Perfil.jpg">
+            <%-- CHECAR EL PERFIL NO ESTA BIEMN LA IMAGEN --%>
+            <img class="img-perfil" src=${sessionScope.usuario.avatar}>
             <div class="contenedor-cabecera">
                 <div class="cabecera1">
                     <h1>${sessionScope.usuario.nombreCompleto}</h1>

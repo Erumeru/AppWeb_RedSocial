@@ -130,6 +130,7 @@ public class Login extends HttpServlet {
                     && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", nrm);
+                
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
