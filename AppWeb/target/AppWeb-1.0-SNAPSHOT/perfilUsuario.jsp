@@ -37,7 +37,7 @@
     <header>
         <div class="perfil-container">
             <%-- CHECAR EL PERFIL NO ESTA BIEMN LA IMAGEN --%>
-            <img class="img-perfil" src=${sessionScope.usuario.avatar}>
+            <img class="img-perfil" src=${sessionScope.id}>
             <div class="contenedor-cabecera">
                 <div class="cabecera1">
                     <h1>${sessionScope.usuario.nombreCompleto}</h1>

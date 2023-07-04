@@ -121,6 +121,7 @@ public class Login extends HttpServlet {
                     && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", adm);
+                sesion.setAttribute("id", "uploads/"+adm.getId()+".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
@@ -130,7 +131,7 @@ public class Login extends HttpServlet {
                     && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", nrm);
-                
+                sesion.setAttribute("id", "uploads/"+nrm.getId()+".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
