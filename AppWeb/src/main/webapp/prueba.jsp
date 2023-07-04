@@ -32,9 +32,9 @@
                         name="form1"
                         >
                         <p>Selecciona su Avatar de perfil!<p>
-                        <input type="file" name="file" accept=".png"/>
-                        <br>
-                        <input type="submit" value="go!" />
+                            <input type="file" name="file" accept=".png"/>
+                            <br>
+                            <input type="submit" value="go!" />
                     </form>
                     <p>¿No quieres una imagen?</p>
                     <a href="login.jsp">Iniciar Sesión</a>

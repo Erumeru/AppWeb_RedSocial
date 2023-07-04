@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -121,7 +121,7 @@ public class Login extends HttpServlet {
                     && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", adm);
-                sesion.setAttribute("id", "uploads/"+adm.getId()+".png");
+                sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
@@ -131,7 +131,7 @@ public class Login extends HttpServlet {
                     && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", nrm);
-                sesion.setAttribute("id", "uploads/"+nrm.getId()+".png");
+                sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }

@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administradores</title>
     </head>
-     <body>
+    <body>
         <h1>Publicaciones :D</h1>
         <table>
             <tr>
@@ -20,7 +20,7 @@
                 <th>Nombre de usuario</th>
                 <th>Titulo</th>
             </tr>
-        
+
             <tr>
                 <td>Wed Jun 28 22:32:10 MST 2023</td>
                 <td>${sessionScope.usuario.nombreCompleto}</td>

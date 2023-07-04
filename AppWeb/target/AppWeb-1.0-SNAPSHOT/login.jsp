@@ -16,26 +16,26 @@
         <title>Login</title>
     </head>
     <body>
-    <div class="container">
-      <div class="recuadro">
-       
-        <img
-          class="imgPrincipal"
-          src="https://www.elsotano.com/imagenes_grandes/7500588/750058800625.JPG"
-        />
-        <p class="hola">¡Hola de nuevo!</p>
-        <form action="./Login?action=login" method="post">
-          
-          <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
-          
-          <input id="pass" type="password" class="pass" name="pass" placeholder="Ingrese su contraseña"/>
-          <input class="inputBtn" type="submit" value="Iniciar Sesión" />
-        </form>
-        <div class="division"></div>
-        <p class="alt">O</p>
-        <p class="cuenta">¿No tienes cuenta aún?</p>
-        <a href="register.jsp" class="registro">Registrate</a>
-      </div>
-    </div>
-  </body>
+        <div class="container">
+            <div class="recuadro">
+
+                <img
+                    class="imgPrincipal"
+                    src="https://www.elsotano.com/imagenes_grandes/7500588/750058800625.JPG"
+                    />
+                <p class="hola">¡Hola de nuevo!</p>
+                <form action="./Login?action=login" method="post">
+
+                    <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
+
+                    <input id="pass" type="password" class="pass" name="pass" placeholder="Ingrese su contraseña"/>
+                    <input class="inputBtn" type="submit" value="Iniciar Sesión" />
+                </form>
+                <div class="division"></div>
+                <p class="alt">O</p>
+                <p class="cuenta">¿No tienes cuenta aún?</p>
+                <a href="register.jsp" class="registro">Registrate</a>
+            </div>
+        </div>
+    </body>
 </html>

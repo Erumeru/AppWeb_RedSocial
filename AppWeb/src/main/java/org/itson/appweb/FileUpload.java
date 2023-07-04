@@ -14,22 +14,25 @@ import org.apache.commons.fileupload.FileItemStream;
  * @author kim
  */
 public class FileUpload {
-    public static boolean processFile(String path, FileItemStream item, String id ){
-        try{
-            File f = new File(path+File.separator);
-            if(!f.exists()) f.mkdir();
-            File  savedFile = new File(f.getAbsolutePath()+ File.separator+id+".png");
+
+    public static boolean processFile(String path, FileItemStream item, String id) {
+        try {
+            File f = new File(path + File.separator);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            File savedFile = new File(f.getAbsolutePath() + File.separator + id + ".png");
             FileOutputStream fos = new FileOutputStream(savedFile);
             InputStream is = item.openStream();
-            int x=0;
-            byte [] b = new byte[1024];
-            while((x=is.read(b))!=-1){
+            int x = 0;
+            byte[] b = new byte[1024];
+            while ((x = is.read(b)) != -1) {
                 fos.write(b, 0, x);
             }
             fos.flush();
             fos.close();
             return true;
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;

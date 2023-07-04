@@ -39,20 +39,24 @@
                         <label for="birthdate"> Fecha de nacimiento
                             <input id="birthdate" name="birthdate" name="birthdate" type="date">
                         </label>
-                        <label for="ciudad"> Ciudad:
+                        <label for="telephone"> 
+                            <input id="telephone" name="telephone"type="text" placeholder="Teléfono">
+                        </label>
+                        <label for="ciudad"> Ciudad: 
                             <select id="ciudad" name="ciudad" placeholder="Ciudades">
-                                <option value="ciudad1">Obregón</option>
-                                <option value="ciudad2">Navojoa</option>
-                                <option value="ciudad3">Huatabampo</option>
+                                <option value="Obregon">Obregón</option>
+                                <option value="Navojoa">Navojoa</option>
+                                <option value="Huatabampo">Huatabampo</option>
                             </select>
+                        </label>
+                        <label for="sexo">Sexo:
+                            <input id="tipo" name="tipo" type="radio" value="F"> F
+                            <input id="tipo" name="tipo" type="radio" value="M"> M
+                            <input id="tipo" name="tipo" type="radio" value="U"> Prefiero no decirlo
                         </label>
                         <label for="tipo"> Usuario Admin:
                             <input id="tipo" name="tipo" type="checkbox" value="true">
                         </label>
-                        <label for="telephone"> 
-                            <input id="telephone" name="telephone"type="text" placeholder="Teléfono">
-                        </label>
-
                         <input type="submit" value="Registrarme">
                     </form>
                     <p>¿Ya tienes cuenta?</p>

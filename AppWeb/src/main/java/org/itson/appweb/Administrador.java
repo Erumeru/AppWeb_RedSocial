@@ -44,7 +44,7 @@ public class Administrador extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Administrador</title>");            
+            out.println("<title>Servlet Administrador</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Administrador at " + request.getContextPath() + "</h1>");
@@ -85,32 +85,31 @@ public class Administrador extends HttpServlet {
             return;
         }
     }
-    
-     private void proccessViewPosts(HttpServletRequest request, HttpServletResponse response)
+
+    private void proccessViewPosts(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtén la instancia de ILogica para consultar los posts
         ILogica viewPosts = FabricaLogica.crearInstancia();
 //
 //        // Consulta la lista de posts
 //      
-         HttpSession sesion = request.getSession(false);
-         if (sesion != null && sesion.getAttribute("usuario") != null) {
-             Usuario usuario = new Usuario();
-             Usuario usuarioLista = viewPosts.buscarUsuario(usuario);
+        HttpSession sesion = request.getSession(false);
+        if (sesion != null && sesion.getAttribute("usuario") != null) {
+            Usuario usuario = new Usuario();
+            Usuario usuarioLista = viewPosts.buscarUsuario(usuario);
 
-             // Construye el contenido HTML para la etiqueta <p>
-             if (usuarioLista == null) {
-                 request.setAttribute("mensaje", "No hay posts disponibles");
-             }
-             // Establece el contenido HTML en el atributo de la solicitud (request)
-             request.setAttribute("usuario", usuarioLista);
-             getServletContext().getRequestDispatcher("/tablaAdministradores.jsp").forward(request, response);
+            // Construye el contenido HTML para la etiqueta <p>
+            if (usuarioLista == null) {
+                request.setAttribute("mensaje", "No hay posts disponibles");
+            }
+            // Establece el contenido HTML en el atributo de la solicitud (request)
+            request.setAttribute("usuario", usuarioLista);
+            getServletContext().getRequestDispatcher("/tablaAdministradores.jsp").forward(request, response);
 
-         } else {
-               getServletContext().getRequestDispatcher("/errorInterno.jsp").forward(request, response);
-          }
-     }
-
+        } else {
+            getServletContext().getRequestDispatcher("/errorInterno.jsp").forward(request, response);
+        }
+    }
 
     /**
      * Returns a short description of the servlet.

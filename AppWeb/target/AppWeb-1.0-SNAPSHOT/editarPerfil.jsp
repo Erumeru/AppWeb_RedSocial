@@ -14,43 +14,43 @@
         <title>Editar Perfil</title>
     </head>
     <header>
-    <h1>Configuración</h1>
-</header>
+        <h1>Configuración</h1>
+    </header>
 
-<body>
-    <main>
-        <div class="secciones-container">
-            <div class="seccion-administrar">
-                <p class="text-div1">Administra tu <br>
-                    experiencias conectadas y <br>
-                    la configuración.
-                </p>
-            </div>
-            <div class="seccion-editar">
-                <h2 class="text-div2">Editar perfil</h2>
-            </div>
-            <div class="seccion-editarPerfil">
-                <h2 class="h1-div3">Editar perfil</h2>
-                <img class="profile-photo" src="assets/CatAndBug.jpg">
-                <a href="">Editar mi foto de perfil</a>
-                <div class="form-information">
-                    <div class="container-form">
-                        <form method="POST">
-                            <label>Sitio web:
-                                <input type="text">
-                            </label>
-                            <label>Presentación
-                                <textarea></textarea>
-                            </label>
-                            <label>Sexo:
-                                <input type="text">
-                            </label>
-                            <input type="submit" value="Editar mi información">
-                        </form>
+    <body>
+        <main>
+            <div class="secciones-container">
+                <div class="seccion-administrar">
+                    <p class="text-div1">Administra tu <br>
+                        experiencias conectadas y <br>
+                        la configuración.
+                    </p>
+                </div>
+                <div class="seccion-editar">
+                    <h2 class="text-div2">Editar perfil</h2>
+                </div>
+                <div class="seccion-editarPerfil">
+                    <h2 class="h1-div3">Editar perfil</h2>
+                    <img class="profile-photo" src="assets/CatAndBug.jpg">
+                    <a href="">Editar mi foto de perfil</a>
+                    <div class="form-information">
+                        <div class="container-form">
+                            <form method="POST">
+                                <label>Sitio web:
+                                    <input type="text">
+                                </label>
+                                <label>Presentación
+                                    <textarea></textarea>
+                                </label>
+                                <label>Sexo:
+                                    <input type="text">
+                                </label>
+                                <input type="submit" value="Editar mi información">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-</body>
+        </main>
+    </body>
 </html>

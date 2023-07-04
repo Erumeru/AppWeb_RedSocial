@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +47,7 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -112,7 +114,8 @@ public class Register extends HttpServlet {
                 || contra.isBlank()
                 || contraConfirmacion == null
                 || contraConfirmacion.isBlank()
-                || fechaNacimiento == null) {
+                || fechaNacimiento == null
+                || fechaNacimiento.isBlank()) {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
             return;
@@ -121,18 +124,28 @@ public class Register extends HttpServlet {
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
 
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat pasar = new SimpleDateFormat(pattern);
+        Date date = null;
+        try {
+            date = pasar.parse(fechaNacimiento);
+        } catch (ParseException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         if (tipo != null && tipo.equalsIgnoreCase("true")) {
             try {
+
                 Admor admin = new Admor();
                 admin.setCorreo(email);
                 admin.setNombreCompleto(nombre);
                 admin.setContrasenia(contra);
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
+                admin.setFechaNacimiento(date);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
                 request.getSession().setAttribute("id", usuarioCreado.getId().toString());
                 request.getSession().setAttribute("tipo", "admin");
-
                 getServletContext().getRequestDispatcher("/prueba.jsp")
                         .forward(request, response);
             } catch (Exception ex) {
@@ -150,6 +163,7 @@ public class Register extends HttpServlet {
             normalUser.setContrasenia(contra);
             normalUser.setTelefono(telefono);
             normalUser.setCiudad(ciudad);
+            normalUser.setFechaNacimiento(date);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
             request.getSession().setAttribute("id", usuarioCreado.getId().toString());
             request.getSession().setAttribute("tipo", "normal");

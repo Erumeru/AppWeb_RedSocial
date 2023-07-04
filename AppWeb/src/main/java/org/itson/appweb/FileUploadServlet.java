@@ -51,8 +51,8 @@ public class FileUploadServlet extends HttpServlet {
 
     private void processUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
-        String rutaFinal="";
-        String id="";
+        String rutaFinal = "";
+        String id = "";
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
 
@@ -80,33 +80,31 @@ public class FileUploadServlet extends HttpServlet {
                             Admor adm = new Admor();
                             adm.setId(objId);
                             adm = registerNegocio.buscarAdmor(adm);
-                            
+
                             Path rutaOriginal = Paths.get(path);
-                            Path rutaPadre=rutaOriginal.getParent().getParent();
-                            rutaFinal=rutaPadre.toString()+"\\src\\main\\webapp\\uploads";
-                            
-                            
+                            Path rutaPadre = rutaOriginal.getParent().getParent();
+                            rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\uploads";
+
                             Admor admAvatar = adm;
-                            admAvatar.setAvatar(rutaFinal+"\\"+id+".png");
+                            admAvatar.setAvatar(rutaFinal + "\\" + id + ".png");
                             registerNegocio.actualizarAdmor(adm, admAvatar);
                         }
                         if (tipo.equalsIgnoreCase("normal")) {
                             Normal normal = new Normal();
                             normal.setId(objId);
                             normal = registerNegocio.buscarNormal(normal);
-                            
+
                             Path rutaOriginal = Paths.get(path);
-                            Path rutaPadre=rutaOriginal.getParent().getParent();
-                            rutaFinal=rutaPadre.toString()+"\\src\\main\\webapp\\uploads";
-                            
-                            
+                            Path rutaPadre = rutaOriginal.getParent().getParent();
+                            rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\uploads";
+
                             Normal nrmAvatar = normal;
-                            nrmAvatar.setAvatar(rutaFinal+"\\"+id+".png");
+                            nrmAvatar.setAvatar(rutaFinal + "\\" + id + ".png");
                             registerNegocio.actualizarNormal(normal, nrmAvatar);
 
                         }
 
-                        if (FileUpload.processFile(rutaFinal, item,id)) {
+                        if (FileUpload.processFile(rutaFinal, item, id)) {
                             response.getWriter().println("file uploaded successfully");
                         } else {
                             response.getWriter().println("file uploaded falied");
