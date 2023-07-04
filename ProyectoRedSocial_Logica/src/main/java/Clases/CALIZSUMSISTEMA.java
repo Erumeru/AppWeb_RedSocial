@@ -30,11 +30,15 @@ public class CALIZSUMSISTEMA {
         Admor adm=new Admor();
         adm.setId(new ObjectId("64a36c5f3dee74217c3b4782"));
         adm=registerNegocio.buscarAdmor(adm);
-        System.out.println(adm.getId().toString());
+      //  System.out.println(adm.getId().toString());
         Admor admact= adm;
         admact.setAvatar("p[ene");
+        Admor adddd=new Admor();
+        adddd.setNombreCompleto("sisiis");
+       adddd= registerNegocio.guardarAdmor(adddd);
+        System.out.println(adddd.getId());
          //   Usuario no = registerNegocio.guardarUsuario(user);
          Admor act=registerNegocio.actualizarAdmor(adm, admact);
-         System.out.println(act.getAvatar());
+       //  System.out.println(act.getAvatar());
     }
 }

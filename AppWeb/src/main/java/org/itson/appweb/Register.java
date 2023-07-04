@@ -130,7 +130,7 @@ public class Register extends HttpServlet {
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
-                request.setAttribute("id", usuarioCreado.getId().toString());
+                request.getSession().setAttribute("id", usuarioCreado.getId().toString());
                 getServletContext().getRequestDispatcher("/prueba.jsp")
                         .forward(request, response);
             } catch (Exception ex) {

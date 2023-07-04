@@ -63,7 +63,7 @@ public class FileUploadServlet extends HttpServlet {
                         response.getWriter().println(fieldName + ":" + value + "<br/>");
                     } else {
                         String path = getServletContext().getRealPath("/");
-                        String id = request.getParameter("id");
+                        String id =(String)request.getSession().getAttribute("id");
                         ObjectId objId = new ObjectId(id);
                         ILogica registerNegocio = FabricaLogica.crearInstancia();
                         

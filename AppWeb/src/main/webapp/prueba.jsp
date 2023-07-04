@@ -31,7 +31,7 @@
                         enctype="multipart/form-data"
                         name="form1"
                         >
-                        <p>Selecciona su Avatar de perfil! <p>
+                        <p>Selecciona su Avatar de perfil!<p>
                         <input type="file" name="file" />
                         <br>
                         <input type="submit" value="go!" />
