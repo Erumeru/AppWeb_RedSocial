@@ -3,6 +3,7 @@ package org.itson.appweb;
 import Clases.FabricaLogica;
 import Clases.ILogica;
 import ObjNegocio.Admor;
+import ObjNegocio.Normal;
 import ObjNegocio.Usuario;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -67,17 +68,30 @@ public class FileUploadServlet extends HttpServlet {
                     } else {
                         String path = getServletContext().getRealPath("/");
                         String id = (String) request.getSession().getAttribute("id");
+                        String tipo = (String) request.getSession().getAttribute("tipo");
                         ObjectId objId = new ObjectId(id);
                         ILogica registerNegocio = FabricaLogica.crearInstancia();
 
-                        Admor adm = new Admor();
-                        adm.setId(objId);
+                        if (tipo.equalsIgnoreCase("admin")) {
+                            Admor adm = new Admor();
+                            adm.setId(objId);
+                            adm = registerNegocio.buscarAdmor(adm);
+                            Admor admAvatar = adm;
+                            admAvatar.setAvatar(path + "images\\" + fieldName);
+                            registerNegocio.actualizarAdmor(adm, admAvatar);
+                        }
+                        if (tipo.equalsIgnoreCase("normal")) {
+                            Normal normal = new Normal();
+                            normal.setId(objId);
 
-                        adm = registerNegocio.buscarAdmor(adm);
+                            normal = registerNegocio.buscarNormal(normal);
 
-                        Admor admAvatar = adm;
-                        admAvatar.setAvatar(path +"images\\"+ fieldName);
-                        registerNegocio.actualizarAdmor(adm, admAvatar);
+                            Normal nrmAvatar = normal;
+                            nrmAvatar.setAvatar(path + "images\\" + fieldName);
+                            registerNegocio.actualizarNormal(normal, nrmAvatar);
+
+                        }
+
                         if (FileUpload.processFile(path, item)) {
                             response.getWriter().println("file uploaded successfully");
                         } else {

@@ -121,7 +121,7 @@ public class Register extends HttpServlet {
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
 
-        if (tipo.equalsIgnoreCase("true")) {
+        if (tipo != null && tipo.equalsIgnoreCase("true")) {
             try {
                 Admor admin = new Admor();
                 admin.setCorreo(email);
@@ -131,6 +131,8 @@ public class Register extends HttpServlet {
                 admin.setCiudad(ciudad);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
                 request.getSession().setAttribute("id", usuarioCreado.getId().toString());
+                request.getSession().setAttribute("tipo", "admin");
+
                 getServletContext().getRequestDispatcher("/prueba.jsp")
                         .forward(request, response);
             } catch (Exception ex) {
@@ -149,7 +151,9 @@ public class Register extends HttpServlet {
             normalUser.setTelefono(telefono);
             normalUser.setCiudad(ciudad);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
-            request.setAttribute("id", usuarioCreado.getId().toString());
+            request.getSession().setAttribute("id", usuarioCreado.getId().toString());
+            request.getSession().setAttribute("tipo", "normal");
+
             getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
         } catch (Exception ex) {
