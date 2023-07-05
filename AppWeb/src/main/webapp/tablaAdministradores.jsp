@@ -10,22 +10,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="paginas/stylesTablaAdmin.css">
         <title>Administradores</title>
     </head>
     <body>
         <h1>Publicaciones :D</h1>
         <table>
             <tr>
-                <th>Fecha Publicación</th>
                 <th>Nombre de usuario</th>
+                <th>Fecha Publicación</th>
                 <th>Titulo</th>
             </tr>
-
             <tr>
-                <td>Wed Jun 28 22:32:10 MST 2023</td>
                 <td>${sessionScope.usuario.nombreCompleto}</td>
-                <td>atil</td>
-            </tr>
-        </table>
+                <c:forEach items="${sessionScope.admor.anclado}" var="item">
+
+                    <td>${item.fechaHoraCreacion}</td>
+                    <td>${item.titulo}</td>
+                 </c:forEach>
+                </tr>
+            </table>
     </body>
 </html>
