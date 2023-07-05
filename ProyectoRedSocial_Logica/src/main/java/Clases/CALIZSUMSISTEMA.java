@@ -5,6 +5,7 @@
 package Clases;
 
 import ObjNegocio.Admor;
+import ObjNegocio.Anclado;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import ObjNegocio.Post;
@@ -44,9 +45,12 @@ public class CALIZSUMSISTEMA {
 //         Admor act=registerNegocio.actualizarAdmor(adm, admact);
 //       //  System.out.println(act.getAvatar());
         Comun post = new Comun(new Date(), "primer post", "Z:\\ProfilePics\\a chambear.png");
+        
         // Post po = registerNegocio.guardarPost(post);
 
         Comun post2 = new Comun(new Date(), "post 2", "Z:\\ProfilePics\\awd.png");
+
+        Anclado post3 = new Anclado(new Date(), "post 2", "Z:\\ProfilePics\\awd.png");
 
         //  po = registerNegocio.guardarPost(post2);
         Normal user = new Normal();
@@ -55,6 +59,14 @@ public class CALIZSUMSISTEMA {
         user.setContrasenia("post");
         user.setCorreo("post");
         user.setFechaNacimiento(new Date());
+
+        Admor admor = new Admor();
+        user.setNombreCompleto("admor");
+        user.setCiudad("admor");
+        user.setContrasenia("admor");
+        user.setCorreo("admors");
+        user.setFechaNacimiento(new Date());
+        
 //        Admor adm=new Admor();
 //        adm.setId(new ObjectId("64a36c5f3dee74217c3b4782"));
 //        adm=registerNegocio.buscarAdmor(adm);
@@ -72,11 +84,14 @@ public class CALIZSUMSISTEMA {
 //        Comun comun = new Comun(new Date(), "prueba 1","tilin");
 //        Comun comun2 = new Comun(new Date(), "prueba 2","tilina");
 //        Comun comun3 = new Comun(new Date(), "prueba 3","tuneado");
+
         post.setUsuario(user);
         post2.setUsuario(user);
+        post3.setAdmor(admor);
 
         registerNegocio.guardarComun(post);
         registerNegocio.guardarComun(post2);
+        registerNegocio.guardarAnclado(post3);
 
 //        Comun co = registerNegocio.guardarComun(comun);
 //        Usuario no = registerNegocio.guardarUsuario(user);

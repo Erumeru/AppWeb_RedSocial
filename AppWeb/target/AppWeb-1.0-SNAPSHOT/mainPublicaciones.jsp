@@ -16,7 +16,33 @@
     </head>
     <body>
         <main>
-            <c:forEach items="${sessionScope.posts}" var="item">
+            <div class="anclados">
+                <legend>Publicaciones Ancladas
+                    <c:forEach items="${sessionScope.anclados}" var="item">
+                        <div class="Post-Container">
+                            <div class="profile-container">
+                                <img class="profile-photo" src="imagenes/CatAndBug.jpg" alt="profilePic">
+                                <span class="profile-text">Tilina</span>
+                                <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
+                                <input class="menu-icon" type="button">
+                            </div>
+                            <div class="content-container">
+                                <img class="fotoContenido" src=${item.contenido} alt="post"> 
+                            </div>
+                            <p></p>
+                            <div class="icons-container">
+                                <img class="icon" src="paginas/imagenes/icon-like.png" alt="icon-share">
+                                <img class="icon" src="paginas/imagenes/icon-message-comment.png" alt="icon-message-comment">
+                                <img class="icon" src="paginas/imagenes/icon-share.png" alt="icon-share">
+                            </div>
+                            <br>
+                        </div>
+                    </c:forEach>
+                </legend>
+            </div>
+
+
+            <c:forEach items="${sessionScope.comunes}" var="item">
                 <div class="Post-Container">
                     <div class="profile-container">
                         <img class="profile-photo" src="imagenes/CatAndBug.jpg" alt="profilePic">
