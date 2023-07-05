@@ -27,7 +27,7 @@
                      <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
-                    <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
+                    <a href="perfilUsuario.jsp"><img class="small-logo" src=${sessionScope.id} alt="foto-perfil"></a>
                     <form  action='./Login?action=logout' method="post">
                         <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
                     </form>
@@ -36,7 +36,7 @@
         </nav>
         <header>
             <div class="perfil-container">
-                <img class="img-perfil" src=${sessionScope.id}>
+                <img  alt="fotoPerfil" class="img-perfil" src=${sessionScope.id}>
                  <div class="contenedor-cabecera">
                     <div class="cabecera1">
                         <h1>${sessionScope.usuario.nombreCompleto}</h1>

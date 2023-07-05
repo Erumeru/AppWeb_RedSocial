@@ -90,6 +90,18 @@ header{
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    object-fit: cover;
+    position:relative;
+    left:2%;
+}
+
+.small-logo{
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    object-fit: cover;
+        position: relative;
+    left: 90%;
 }
 
 .perfil-container img{
