@@ -125,4 +125,9 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
         return buscar(entidad2);
     }
 
+    @Override
+    public Comentario buscarRepetido(Comentario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -120,4 +120,9 @@ public class EstadoDAO extends BaseDAO<Estado> {
         return buscar(entidad2);
     }
 
+    @Override
+    public Estado buscarRepetido(Estado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

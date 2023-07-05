@@ -120,4 +120,9 @@ public class PostDAO extends BaseDAO<Post> {
         }
     }
 
+    @Override
+    public Post buscarRepetido(Post entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

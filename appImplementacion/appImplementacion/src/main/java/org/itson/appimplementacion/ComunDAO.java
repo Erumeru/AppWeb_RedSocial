@@ -124,4 +124,9 @@ public class ComunDAO extends BaseDAO<Comun> {
                         set("fechahora-edicion", entidad2.getFechaHoraEdicion())));
         return buscar(entidad2);
     }
+
+    @Override
+    public Comun buscarRepetido(Comun entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

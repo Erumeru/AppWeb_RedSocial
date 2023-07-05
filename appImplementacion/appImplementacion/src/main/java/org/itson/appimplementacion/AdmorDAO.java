@@ -62,12 +62,12 @@ public class AdmorDAO extends BaseDAO<Admor> {
      */
     @Override
     public Admor guardar(Admor entidad) throws DAOException {
-        Admor elemento = buscar(entidad);
-        if (elemento == null) {
+        Admor elemento = buscarRepetido(entidad);
+        if (elemento != null) {
+            throw new DAOException("Error al guardar.");
+        } else {
             collection.insertOne(entidad);
             return entidad;
-        } else {
-            throw new DAOException("Error al guardar.");
         }
 
     }
@@ -144,6 +144,14 @@ public class AdmorDAO extends BaseDAO<Admor> {
                         set("municipio", entidad2.getMunicipio()),
                         set("telefono", entidad2.getTelefono())));
         return buscar(entidad2);
+    }
+
+    @Override
+    public Admor buscarRepetido(Admor entidad) {
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Admor> colleccionAdmor = db.getCollection(COLECCION, Admor.class);
+        Document filtro = new Document("correo", entidad.getCorreo()).append("contrasenia", entidad.getContrasenia()).append("telefono", entidad.getTelefono());
+        return colleccionAdmor.find(filtro).first();
     }
 
 }

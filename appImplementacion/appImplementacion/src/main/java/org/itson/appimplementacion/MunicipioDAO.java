@@ -116,4 +116,9 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
         }
     }
 
+    @Override
+    public Municipio buscarRepetido(Municipio entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

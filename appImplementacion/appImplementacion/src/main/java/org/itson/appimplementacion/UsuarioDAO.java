@@ -125,4 +125,9 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
         }
     }
 
+    @Override
+    public Usuario buscarRepetido(Usuario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

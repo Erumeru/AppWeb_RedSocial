@@ -125,4 +125,9 @@ public class NormalDAO extends BaseDAO<Normal> {
         }
     }
 
+    @Override
+    public Normal buscarRepetido(Normal entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

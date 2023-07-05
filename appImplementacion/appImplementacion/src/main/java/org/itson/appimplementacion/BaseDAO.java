@@ -61,5 +61,7 @@ public abstract class BaseDAO<T> {
      * @return entidad reemplazada.
      */
     public abstract T actualizar(T entidad, T entidad2);
+    
+    public abstract T buscarRepetido(T entidad);
 
 }

@@ -125,4 +125,9 @@ public class AncladoDAO extends BaseDAO<Anclado> {
         return buscar(entidad2);
     }
 
+    @Override
+    public Anclado buscarRepetido(Anclado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

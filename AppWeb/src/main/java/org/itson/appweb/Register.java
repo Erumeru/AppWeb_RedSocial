@@ -138,7 +138,6 @@ public class Register extends HttpServlet {
 
         if (tipo != null && tipo.equalsIgnoreCase("true")) {
             try {
-
                 Admor admin = new Admor();
                 admin.setCorreo(email);
                 admin.setNombreCompleto(nombre);
