@@ -48,13 +48,15 @@
                                 <option value="Navojoa">Navojoa</option>
                                 <option value="Huatabampo">Huatabampo</option>
                             </select> 
-                               Usuario Admin:
+                            Usuario Admin:
                             <input id="tipo" name="tipo" type="checkbox" value="true">
                         </label>
-                        <label for="sexo">Sexo:
-                            <input id="tipo" name="tipo" type="radio" value="F"> F
-                            <input id="tipo" name="tipo" type="radio" value="M"> M
-                            <input id="tipo" name="tipo" type="radio" value="U"> Prefiero no decirlo
+                        <label for="sexo" id="sexo"> Sexo: 
+                            <select id="sexo" name="sexo">
+                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Sin especificar">Prefiero no decirlo</option>
+                            </select> 
                         </label>
                         <input type="submit" value="Registrarme">
                     </form>

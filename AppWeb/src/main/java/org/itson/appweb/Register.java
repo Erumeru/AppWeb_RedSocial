@@ -103,7 +103,7 @@ public class Register extends HttpServlet {
         String telefono = request.getParameter("telephone");
         String ciudad = request.getParameter("ciudad");
         String tipo = request.getParameter("tipo");
-        //String sexo = request.getParameter("tipo");
+        String sexo = request.getParameter("sexo");
 
 //        String avatar = request.getParameter("avatar");
 //        String 
@@ -116,7 +116,9 @@ public class Register extends HttpServlet {
                 || contraConfirmacion == null
                 || contraConfirmacion.isBlank()
                 || fechaNacimiento == null
-                || fechaNacimiento.isBlank()) {
+                || fechaNacimiento.isBlank()
+                || sexo.isBlank()
+                || sexo==null) {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
             return;
@@ -144,6 +146,7 @@ public class Register extends HttpServlet {
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
                 admin.setFechaNacimiento(date);
+                admin.setGenero(sexo);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
                 request.getSession().setAttribute("id", usuarioCreado.getId().toString());
                 request.getSession().setAttribute("tipo", "admin");
@@ -165,6 +168,7 @@ public class Register extends HttpServlet {
             normalUser.setTelefono(telefono);
             normalUser.setCiudad(ciudad);
             normalUser.setFechaNacimiento(date);
+            normalUser.setGenero(sexo);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
             request.getSession().setAttribute("id", usuarioCreado.getId().toString());
             request.getSession().setAttribute("tipo", "normal");
