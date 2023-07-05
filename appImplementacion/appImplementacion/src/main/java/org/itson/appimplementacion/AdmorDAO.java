@@ -145,6 +145,11 @@ public class AdmorDAO extends BaseDAO<Admor> {
         return buscar(entidad2);
     }
 
+      /**
+     * Busca si la entidad ya esta en la base
+     * @param entidad a buscar
+     * @return la entidad en caso de estar 
+     */
     @Override
     public Admor buscarRepetido(Admor entidad) {
         MongoDatabase db = Conexion.getInstance();

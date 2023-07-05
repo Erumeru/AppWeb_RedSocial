@@ -136,6 +136,11 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     }
 
+    /**
+     * Busca si la entidad ya esta en la base
+     * @param entidad a buscar
+     * @return la entidad en caso de estar 
+     */
     @Override
     public Normal buscarRepetido(Normal entidad) {
         MongoDatabase db = Conexion.getInstance();
