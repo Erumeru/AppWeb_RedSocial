@@ -122,7 +122,11 @@ public class Register extends HttpServlet {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
             return;
-
+        }
+        if (!contraConfirmacion.equals(contra)) {
+            String mensaje = "Contra no cincide";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();

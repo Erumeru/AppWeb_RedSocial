@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,16 +17,22 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="paginas/stylesRegistro.css">
         <title>Register</title>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body>
+         <c:if test="${not empty mensaje}">
+            <script>
+            swal("¡Alerta!", "${requestScope.mensaje}", "warning");
+            </script>
+        </c:if>
         <div class="container">
             <div class="form-information">
                 <div class="container-form">
                     <h1>¡Empieza hoy!</h1>
                     <form action="./Register?action=register" method="post">
                         <label for="mail-phone">
-                            <input id="mail-phone" type="text" name="mail-phone" placeholder="Correo o teléfono" />
+                            <input id="mail-phone" type="email" name="mail-phone" placeholder="Correo" />
                         </label>
                         <label for="user-name">
                             <input id="user-name" type="text" name="user-name" placeholder="Nombre de usuario" />
