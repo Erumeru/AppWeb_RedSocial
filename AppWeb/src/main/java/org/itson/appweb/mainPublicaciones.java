@@ -7,6 +7,7 @@ package org.itson.appweb;
 import Clases.FabricaLogica;
 import Clases.ILogica;
 import ObjNegocio.Anclado;
+import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Post;
 import java.io.IOException;

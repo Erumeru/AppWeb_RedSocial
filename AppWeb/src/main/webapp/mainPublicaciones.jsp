@@ -17,7 +17,7 @@
     <body>
         <main>
             <div class="anclados">
-                <h2 class="title-anclados">Publicaciones Ancladas</h2
+                <h2 class="title-anclados">Publicaciones Ancladas</h2>
                 <c:forEach items="${sessionScope.anclados}" var="item">
                     <div class="Post-Container">
                         <div class="profile-container">
@@ -58,13 +58,14 @@
                             <img class="icon" src="paginas/imagenes/icon-share.png" alt="icon-share">
                         </div>
                         <div class="comments-container">
-                            <p class="profile-text">Tilina <span class="space-comments">${item.titulo}</span> </p>
+                            <p class="profile-text">${item.usuario.nombreCompleto}<span class="space-comments">${item.titulo}</span> </p>
                             <details class="comments-container">
                                 <div></div>
                                 <summary>Ver comentarios...</summary>
-                                <p class="profile-text">Erumeru<span class="space-comments">Minipekka al 14 :)</span></p>
-                                <p></p>
-                                <p class="profile-text">Asiedad <span class="space-comments">Texto prueba</span></p>
+                                    <c:forEach items="${item.comentarios}" var="comentario">
+                                    <p class="profile-text">${comentario.normal.nombreCompleto}<span class="space-comments">${comentario.contenido}</span></p>
+                                    <p></p>
+                                    </c:forEach>
                             </details>
                             <input type="text" id="textfield-comment" name="textfield-comment" placeholder="Añade un comentario">
                             <button type="submit" class="send-comment" src="paginas/imagenes/send.png"></button>

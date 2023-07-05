@@ -6,6 +6,7 @@ package Clases;
 
 import ObjNegocio.Admor;
 import ObjNegocio.Anclado;
+import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import ObjNegocio.Post;
@@ -49,9 +50,15 @@ public class CALIZSUMSISTEMA {
         // Post po = registerNegocio.guardarPost(post);
 
         Comun post2 = new Comun(new Date(), "post 2", "Z:\\ProfilePics\\awd.png");
+        
+        Comun postPrueba = new Comun(new Date(), "Probando cosasssss", "Z:\\ProfilePics\\ladybug123.png");
 
         Anclado post3 = new Anclado(new Date(), "post 2", "Z:\\ProfilePics\\awd.png");
-
+        
+        Comentario comento = new Comentario(new Date(), "Soy un comentario");
+        
+        Comentario comento2 = new Comentario(new Date(), "Mi lady...");
+                
         //  po = registerNegocio.guardarPost(post2);
         Normal user = new Normal();
         user.setNombreCompleto("post");
@@ -59,6 +66,22 @@ public class CALIZSUMSISTEMA {
         user.setContrasenia("post");
         user.setCorreo("post");
         user.setFechaNacimiento(new Date());
+        
+        Normal user2 = new Normal();
+        user2.setNombreCompleto("Marinette");
+        user2.setCiudad("Marinette");
+        user2.setContrasenia("Marinette");
+        user2.setCorreo("Marinette");
+        user2.setFechaNacimiento(new Date());
+        
+        Normal user3 = new Normal();
+        user3.setNombreCompleto("Adrien");
+        user3.setCiudad("Adrien");
+        user3.setContrasenia("Adrien");
+        user3.setCorreo("Adrien");
+        user3.setFechaNacimiento(new Date());
+        comento2.setNormal(user3);
+        
 
         Admor admor = new Admor();
         admor.setNombreCompleto("admor");
@@ -87,10 +110,14 @@ public class CALIZSUMSISTEMA {
 
         post.setUsuario(user);
         post2.setUsuario(user);
+        postPrueba.setUsuario(user2);
         post3.setAdmor(admor);
+        post2.setComentarios(Arrays.asList(comento));
+        postPrueba.setComentarios(Arrays.asList(comento2));
 
         registerNegocio.guardarComun(post);
         registerNegocio.guardarComun(post2);
+        registerNegocio.guardarComun(postPrueba);
         registerNegocio.guardarAnclado(post3);
 
 //        Comun co = registerNegocio.guardarComun(comun);
