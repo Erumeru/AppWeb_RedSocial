@@ -6,6 +6,7 @@ package Clases;
 
 import ObjNegocio.*;
 import java.util.List;
+import org.itson.excepciones.DAOException;
 
 /**
  *
@@ -101,5 +102,5 @@ public interface ILogica {
 
     public Admor eliminarAdmor(Admor admor);
 
-    public Admor guardarAdmor(Admor admor);
+    public Admor guardarAdmor(Admor admor) throws DAOException;
 }

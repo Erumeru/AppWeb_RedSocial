@@ -62,13 +62,14 @@ public class AdmorDAO extends BaseDAO<Admor> {
      */
     @Override
     public Admor guardar(Admor entidad) throws DAOException {
-        try {
+        Admor elemento = buscar(entidad);
+        if (elemento == null) {
             collection.insertOne(entidad);
             return entidad;
-        } catch (MongoException e) {
-            Logger.getLogger(AdmorDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el usuario administrador");
+        } else {
+            throw new DAOException("Error al guardar.");
         }
+
     }
 
     /**

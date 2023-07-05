@@ -14,6 +14,7 @@ import ObjNegocio.Municipio;
 import ObjNegocio.Post;
 import ObjNegocio.Usuario;
 import java.util.List;
+import org.itson.excepciones.DAOException;
 
 
 /**
@@ -26,7 +27,7 @@ public interface IFachadaDatos {
      * Método guardar Admor.
      * @param admor 
      */
-    public Admor guardarAdmor(Admor admor);
+    public Admor guardarAdmor(Admor admor) throws DAOException;
     
     /**
      * Método eliminar Admor.

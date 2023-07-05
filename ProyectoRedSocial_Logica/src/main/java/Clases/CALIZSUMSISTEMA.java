@@ -35,7 +35,7 @@ public class CALIZSUMSISTEMA {
         admact.setAvatar("p[ene");
         Admor adddd=new Admor();
         adddd.setNombreCompleto("sisiis");
-       adddd= registerNegocio.guardarAdmor(adddd);
+       //adddd= registerNegocio.guardarAdmor(adddd);
         System.out.println(adddd.getId());
          //   Usuario no = registerNegocio.guardarUsuario(user);
          Admor act=registerNegocio.actualizarAdmor(adm, admact);

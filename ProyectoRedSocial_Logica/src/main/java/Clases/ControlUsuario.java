@@ -8,6 +8,7 @@ import ObjNegocio.*;
 import java.util.List;
 import org.itson.appimplementacion.FachadaDatos;
 import org.itson.appimplementacion.FabricaDatos;
+import org.itson.excepciones.DAOException;
 import org.itson.interfaces.IFachadaDatos;
 
 /**
@@ -63,7 +64,7 @@ public class ControlUsuario {
         return datos.eliminarAdmor(admor);
     }
 
-    public Admor guardarAdmor(Admor admor) {
+    public Admor guardarAdmor(Admor admor) throws DAOException{
         datos = FabricaDatos.dameInstancia();
         return datos.guardarAdmor(admor);
     }

@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import org.itson.excepciones.DAOException;
 
 /**
  *
@@ -383,7 +384,7 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
-    public Admor guardarAdmor(Admor admor) {
+    public Admor guardarAdmor(Admor admor) throws DAOException{
         ctrlUsuario = new ControlUsuario();
         Admor ad = new Admor();
         ad = ctrlUsuario.guardarAdmor(admor);
