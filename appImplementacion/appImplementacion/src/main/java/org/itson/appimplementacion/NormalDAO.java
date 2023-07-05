@@ -33,15 +33,20 @@ public class NormalDAO extends BaseDAO<Normal> {
     private static final Logger LOG = Logger.getLogger(NormalDAO.class.getName());
 
     /**
-     * Constructor de la clase que 
-     * inicializa el atributo MongoCollection.
+     * Constructor de la clase que inicializa el atributo MongoCollection.
      */
+    /**
+     * Atributo del nombre de la colección
+     */
+    private final String COLECCION = "normal";
+
     public NormalDAO() {
         collection = getCollection();
     }
 
     /**
      * Busca todas las entidades en la base de datos MongoDB.
+     *
      * @return Una lista de todas las entidades encontradas.
      */
     @Override
@@ -53,6 +58,7 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     /**
      * Coleccion de la entidad
+     *
      * @return collection
      */
     @Override
@@ -63,10 +69,11 @@ public class NormalDAO extends BaseDAO<Normal> {
     }
 
     /**
-     * Busca una entidad de tipo Normal dentro de la colección 
-     * en la base de datos.
+     * Busca una entidad de tipo Normal dentro de la colección en la base de
+     * datos.
+     *
      * @param entidad de tipo Normal.
-     * @return 
+     * @return
      */
     @Override
     public Normal buscar(Normal entidad) {
@@ -78,8 +85,9 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     /**
      * Elimina una entidad de tipo Normal en la base de datos MongoDB.
+     *
      * @param entidad de tipo Normal
-     * @return 
+     * @return
      */
     @Override
     public Normal eliminar(Normal entidad) {
@@ -89,13 +97,14 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     /**
      * Actualiza una entidad de tipo Normal en la base de datos MongoDB.
+     *
      * @param entidad de tipo Normal a reemplazar.
      * @param entidad2 de tipo Normal nueva.
-     * @return 
+     * @return
      */
     @Override
     public Normal actualizar(Normal entidad, Normal entidad2) {
-      collection.updateOne(eq("_id", entidad.getId()),
+        collection.updateOne(eq("_id", entidad.getId()),
                 combine(set("nombreCompleto", entidad2.getNombreCompleto()),
                         set("correo", entidad2.getCorreo()),
                         set("contrasenia", entidad2.getContrasenia()),
@@ -111,23 +120,28 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     /**
      * Guarda una entidad de tipo Normal en la base de datos MongoDB.
+     *
      * @param entidad a insertar en la base.
      * @return regresa la entidad
      */
     @Override
     public Normal guardar(Normal entidad) throws DAOException {
-        try {
+        Normal elemento = buscarRepetido(entidad);
+        if (elemento != null) {
+            throw new DAOException("Error al guardar.");
+        } else {
             collection.insertOne(entidad);
             return entidad;
-        } catch (MongoException e) {
-            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar un usuario normal");
         }
+
     }
 
     @Override
     public Normal buscarRepetido(Normal entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Normal> colleccionNormal = db.getCollection(COLECCION, Normal.class);
+        Document filtro = new Document("correo", entidad.getCorreo()).append("contrasenia", entidad.getContrasenia()).append("telefono", entidad.getTelefono());
+        return colleccionNormal.find(filtro).first();
     }
 
 }

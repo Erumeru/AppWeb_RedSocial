@@ -69,7 +69,6 @@ public class AdmorDAO extends BaseDAO<Admor> {
             collection.insertOne(entidad);
             return entidad;
         }
-
     }
 
     /**
