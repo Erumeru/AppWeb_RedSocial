@@ -103,7 +103,8 @@ input[type="text"] {
     font-size: 16px;
     font-family: 'Inter', sans-serif;
     border: none;
-    border-bottom: 1px solid #888888;;
+    border-bottom: 1px solid #888888;
+    ;
     outline: none;
     margin-left: 10px;
     padding: 3px;
@@ -121,4 +122,23 @@ input[type="text"] {
 
 .send-comment:hover {
     filter: brightness(0.8);
+}
+
+.anclados {
+    border: 3px solid;
+    border-color: rgb(198, 122, 135);
+    margin: 5px;
+    padding-bottom: 10px;
+}
+
+.normales{
+    padding-top: 10px;
+    border: 3px solid;
+    border-color: #a088ff;
+    margin: 5px;
+}
+
+.title-anclados{
+    text-decoration: underline;
+    padding-left: 10px;
 }

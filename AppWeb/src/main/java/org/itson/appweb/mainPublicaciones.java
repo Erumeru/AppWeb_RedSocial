@@ -37,7 +37,7 @@ public class mainPublicaciones extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -82,9 +82,6 @@ public class mainPublicaciones extends HttpServlet {
         request.getSession().setAttribute("posts", listaPosts);
         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
     }*/
-    
-    
-    
 //    private void proccessViewAnclados(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        // Obtén la instancia de ILogica para consultar los posts
@@ -101,19 +98,18 @@ public class mainPublicaciones extends HttpServlet {
 //        request.getSession().setAttribute("anclados", listaAnclados);
 //        getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
 //    }
-
-    private void proccessViewComunes(HttpServletRequest request, HttpServletResponse response)
+    private void proccessViewPosts(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtén la instancia de ILogica para consultar los posts
-        ILogica viewComunes = FabricaLogica.crearInstancia();
+        ILogica viewPosts= FabricaLogica.crearInstancia();
 
-        List<Anclado> listaAnclados = viewComunes.listaAnclado();
+        List<Anclado> listaAnclados = viewPosts.listaAnclado();
 
         // Consulta la lista de posts
-        List<Comun> listaComunes = viewComunes.listaComun();
+        List<Comun> listaComunes = viewPosts.listaComun();
 
         // Construye el contenido HTML para la etiqueta <p>
-        if (listaComunes == null || listaComunes.isEmpty() && listaAnclados==null || listaAnclados.isEmpty()) {
+        if (listaComunes == null || listaComunes.isEmpty() && listaAnclados == null || listaAnclados.isEmpty()) {
             request.getSession().setAttribute("mensaje", "No hay posts disponibles");
         }
         // Establece el contenido HTML en el atributo de la solicitud (request)
@@ -137,7 +133,7 @@ public class mainPublicaciones extends HttpServlet {
         String action = request.getParameter("action");
         if (action != null && action.equalsIgnoreCase("viewPosts")) {
             //proccessViewPosts(request, response);
-            proccessViewComunes(request, response);
+            proccessViewPosts(request, response);
             return;
         }
     }
