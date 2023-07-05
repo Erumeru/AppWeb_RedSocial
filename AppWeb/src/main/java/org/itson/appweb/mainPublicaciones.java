@@ -6,6 +6,7 @@ package org.itson.appweb;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import ObjNegocio.Comun;
 import ObjNegocio.Post;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -69,14 +70,14 @@ public class mainPublicaciones extends HttpServlet {
         ILogica viewPosts = FabricaLogica.crearInstancia();
 
         // Consulta la lista de posts
-        List<Post> listaPosts = viewPosts.listaPost();
+        List<Comun> listaPosts = viewPosts.listaComun();
 
         // Construye el contenido HTML para la etiqueta <p>
         if (listaPosts == null || listaPosts.isEmpty()) {
-            request.setAttribute("mensaje", "No hay posts disponibles");
+            request.getSession().setAttribute("mensaje", "No hay posts disponibles");
         }
         // Establece el contenido HTML en el atributo de la solicitud (request)
-        request.setAttribute("posts", listaPosts);
+        request.getSession().setAttribute("posts", listaPosts);
         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
     }
 

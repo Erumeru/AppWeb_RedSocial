@@ -16,7 +16,7 @@
     </head>
     <body>
         <main>
-            <c:forEach items="${requestScope.posts}" var="item">
+            <c:forEach items="${sessionScope.posts}" var="item">
                 <div class="Post-Container">
                     <div class="profile-container">
                         <img class="profile-photo" src="imagenes/CatAndBug.jpg" alt="profilePic">
@@ -25,7 +25,7 @@
                         <input class="menu-icon" type="button">
                     </div>
                     <div class="content-container">
-                        <p>${item.contenido}</p>
+                        <img class="fotoContenido" src=${item.contenido} alt="post"> 
                     </div>
                     <p></p>
                     <div class="icons-container">
