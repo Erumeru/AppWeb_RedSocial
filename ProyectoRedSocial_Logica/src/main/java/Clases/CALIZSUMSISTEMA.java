@@ -61,11 +61,11 @@ public class CALIZSUMSISTEMA {
         user.setFechaNacimiento(new Date());
 
         Admor admor = new Admor();
-        user.setNombreCompleto("admor");
-        user.setCiudad("admor");
-        user.setContrasenia("admor");
-        user.setCorreo("admors");
-        user.setFechaNacimiento(new Date());
+        admor.setNombreCompleto("admor");
+        admor.setCiudad("admor");
+        admor.setContrasenia("admor");
+        admor.setCorreo("admors");
+        admor.setFechaNacimiento(new Date());
         
 //        Admor adm=new Admor();
 //        adm.setId(new ObjectId("64a36c5f3dee74217c3b4782"));

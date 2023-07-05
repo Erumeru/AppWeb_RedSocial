@@ -36,6 +36,8 @@ public class Anclado extends Post {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
     }
 
+    
+    public Anclado(){}
     /**
      * Obtiene el usuario administrador.
      *
