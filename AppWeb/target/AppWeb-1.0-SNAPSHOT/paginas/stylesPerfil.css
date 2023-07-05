@@ -173,9 +173,3 @@ main{
     height: 100%;
     cursor: pointer;
 }
-
-.logo{
-    width: 4%;
-    height: auto;
-    transform: scaleX(-1);
-}

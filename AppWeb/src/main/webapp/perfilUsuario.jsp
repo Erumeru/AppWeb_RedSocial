@@ -18,7 +18,7 @@
         <script src="perfil.js"></script>
         <nav>
             <div class="nav-cont">
-                <img width="103" height="35" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV7I5H4C_KFJqWqcJ6FI3Kc-hbGFldCym4ew&usqp=CAU" alt="Logo" class="logo">
+                <img width="103" height="35" src="iconos/logo.png" alt="Logo">
                 <div class="cont-input">
                     <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
                     <input type="text" placeholder=" Buscar" />
