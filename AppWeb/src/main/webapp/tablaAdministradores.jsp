@@ -23,12 +23,10 @@
             </tr>
             <tr>
                 <td>${sessionScope.usuario.nombreCompleto}</td>
-                <c:forEach items="${sessionScope.admor.anclado}" var="item">
-
-                    <td>${item.fechaHoraCreacion}</td>
-                    <td>${item.titulo}</td>
-                 </c:forEach>
-                </tr>
-            </table>
+                
+            </tr>
+            
+            
+        </table>
     </body>
 </html>

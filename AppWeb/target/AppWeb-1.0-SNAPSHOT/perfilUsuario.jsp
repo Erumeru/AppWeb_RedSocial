@@ -24,10 +24,10 @@
                     <input type="text" placeholder=" Buscar" />
                 </div>
                 <div class="iconos">
-                    <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
-                    <a href="perfilUsuario.jsp"><h3>${sessionScope.usuario.avatar}</h3></a>
+                    <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
                     <form  action='./Login?action=logout' method="post">
                         <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
                     </form>
@@ -37,7 +37,7 @@
         <header>
             <div class="perfil-container">
                 <img class="img-perfil" src=${sessionScope.id}>
-                <div class="contenedor-cabecera">
+                 <div class="contenedor-cabecera">
                     <div class="cabecera1">
                         <h1>${sessionScope.usuario.nombreCompleto}</h1>
                         <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
