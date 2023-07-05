@@ -152,7 +152,7 @@ public class Register extends HttpServlet {
                 getServletContext().getRequestDispatcher("/prueba.jsp")
                         .forward(request, response);
             } catch (Exception ex) {
-                request.setAttribute("error", ex.getMessage());
+                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
                 getServletContext().getRequestDispatcher("/errorExterno.jsp")
                         .forward(request, response);
                 return;
@@ -175,7 +175,7 @@ public class Register extends HttpServlet {
             getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
         } catch (Exception ex) {
-            request.setAttribute("error", ex.getMessage());
+            request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
             getServletContext().getRequestDispatcher("/errorExterno.jsp")
                     .forward(request, response);
             return;
