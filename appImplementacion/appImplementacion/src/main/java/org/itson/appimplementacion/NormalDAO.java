@@ -133,7 +133,6 @@ public class NormalDAO extends BaseDAO<Normal> {
             collection.insertOne(entidad);
             return entidad;
         }
-
     }
 
     /**
