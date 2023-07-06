@@ -120,13 +120,13 @@ public class mainPublicaciones extends HttpServlet {
         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
     }
     
-     private void proccessSubirPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-         
-         ILogica subirPost = FabricaLogica.crearInstancia();
-         Comun comun = new Comun();
-         subirPost.guardarComun(comun);
-     }
+//     private void proccessSubirPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//         
+//         ILogica subirPost = FabricaLogica.crearInstancia();
+//         Comun comun = new Comun();
+//         subirPost.guardarComun(comun);
+//     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -145,11 +145,11 @@ public class mainPublicaciones extends HttpServlet {
             proccessViewPosts(request, response);
             return;
         }
-        if (action != null && action.equalsIgnoreCase("subirPost")) {
-            //proccessViewPosts(request, response);
-            proccessSubirPost(request, response);
-            return;
-        }
+//        if (action != null && action.equalsIgnoreCase("subirPost")) {
+//            //proccessViewPosts(request, response);
+////            proccessSubirPost(request, response);
+//            return;
+//        }
     }
 
     /**

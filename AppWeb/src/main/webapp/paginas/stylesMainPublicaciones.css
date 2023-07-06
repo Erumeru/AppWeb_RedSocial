@@ -11,6 +11,63 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+.nav-arriba{
+    min-width: 1024px;
+    max-width: 1400px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-bottom: solid #dbdbdb 1px;
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.nav-cont{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.iconos{
+    display:contents;
+    
+}
+
+.cont-input{
+    height: 28px;
+    border: solid 1px #dbdbdb;
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.cont-input input{
+    border: 0;
+    outline: none;
+    background: #fafafa;
+}
+
+.iconos svg{
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.iconos h3{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+main{
+    padding-top: 80px;
+}
+
 .Post-Container {
     width:50%;
     position:relative;

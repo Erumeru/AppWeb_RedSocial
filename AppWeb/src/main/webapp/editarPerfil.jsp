@@ -14,6 +14,7 @@
         <title>Editar Perfil</title>
     </head>
     <header>
+        <a href="perfilUsuario.jsp">x</a>
         <h1>Configuración</h1>
     </header>
 

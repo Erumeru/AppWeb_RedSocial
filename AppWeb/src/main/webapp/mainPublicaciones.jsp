@@ -15,6 +15,26 @@
         <title>Publicaciones</title>
     </head>
     <body>
+        <header>
+         <nav class="nav-arriba">
+            <div class="nav-cont">
+                <img width="103" height="35" src="paginas/imagenes/logo.png" alt="Logo">
+                <div class="cont-input">
+                    <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
+                    <input type="text" placeholder=" Buscar" />
+                </div>
+                <div class="iconos">
+                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                        <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
+                    </form>
+                    <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
+                    <form  action='./Login?action=logout' method="post">
+                        <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        </header>
         <main>
             <div class="anclados">
                 <h2 class="title-anclados">Publicaciones Ancladas</h2>

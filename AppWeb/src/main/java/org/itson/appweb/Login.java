@@ -131,7 +131,7 @@ public class Login extends HttpServlet {
             if (nrm.getCorreo() != null && nrm.getContrasenia() != null
                     && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
-                sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
+                //sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
                 sesion.setAttribute("usuario", nrm);
                 sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);

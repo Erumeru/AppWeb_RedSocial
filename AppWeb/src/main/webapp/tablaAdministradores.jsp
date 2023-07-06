@@ -14,6 +14,7 @@
         <title>Administradores</title>
     </head>
     <body>
+         <a href="perfilUsuario.jsp">x</a>
         <h1>Publicaciones :D</h1>
         <table>
             <tr>
