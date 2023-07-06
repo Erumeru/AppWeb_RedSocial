@@ -73,6 +73,7 @@ public class CALIZSUMSISTEMA {
         user2.setContrasenia("Marinette");
         user2.setCorreo("Marinette");
         user2.setFechaNacimiento(new Date());
+        user2.setAvatar("C:\\Users\\elmer\\Documents\\web\\AppWeb\\src\\main\\webapp\\uploads\\64a4eee71c37201eca9857de.png");
         
         Normal user3 = new Normal();
         user3.setNombreCompleto("Adrien");
@@ -80,7 +81,9 @@ public class CALIZSUMSISTEMA {
         user3.setContrasenia("Adrien");
         user3.setCorreo("Adrien");
         user3.setFechaNacimiento(new Date());
+        user3.setAvatar("C:\\Users\\elmer\\Documents\\web\\AppWeb\\src\\main\\webapp\\uploads\\64a502b7842e0f1959be2eab.png");
         comento2.setNormal(user3);
+        
         
 
         Admor admor = new Admor();
@@ -103,36 +106,31 @@ public class CALIZSUMSISTEMA {
 //            Usuario no = registerNegocio.guardarUsuario(user);
 //         Admor act=registerNegocio.actualizarAdmor(adm, admact);
 //         System.out.println(act.getAvatar());
-        //user.setComun(Arrays.asList(post,post2));
+//        user.setComun(Arrays.asList(post,post2));
 //        Comun comun = new Comun(new Date(), "prueba 1","tilin");
 //        Comun comun2 = new Comun(new Date(), "prueba 2","tilina");
 //        Comun comun3 = new Comun(new Date(), "prueba 3","tuneado");
-Normal fas=new Normal();
-fas.setId(new ObjectId("64a4eee71c37201eca9857de"));
-user=registerNegocio.buscarNormal(fas);
-      
-
 
 
 
 
 //AQUI SE GUARDAN LOS POST
-//post.setUsuario(user);
-//        post2.setUsuario(user);
-//        postPrueba.setUsuario(user2);
-//        post3.setAdmor(admor);
-//        post2.setComentarios(Arrays.asList(comento));
-//        postPrueba.setComentarios(Arrays.asList(comento2));
-//
-//        registerNegocio.guardarComun(post);
-//        registerNegocio.guardarComun(post2);
-//        registerNegocio.guardarComun(postPrueba);
-//        registerNegocio.guardarAnclado(post3);
+post.setUsuario(user);
+        post2.setUsuario(user);
+        postPrueba.setUsuario(user2);
+        post3.setAdmor(admor);
+        post2.setComentarios(Arrays.asList(comento));
+        postPrueba.setComentarios(Arrays.asList(comento2));
+
+        registerNegocio.guardarComun(post);
+        registerNegocio.guardarComun(post2);
+        registerNegocio.guardarComun(postPrueba);
+        registerNegocio.guardarAnclado(post3);
 
         
         
-        ArrayList<Comun> listaDePost=registerNegocio.getComunesDeNormal(user);
-        System.out.println(listaDePost.get(2));
+   //     ArrayList<Comun> listaDePost=registerNegocio.getComunesDeNormal(user);
+  //      System.out.println(listaDePost.get(2));
         
         
         

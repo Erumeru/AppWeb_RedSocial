@@ -136,7 +136,6 @@ public class Login extends HttpServlet {
                 return;
             }
         }
-
     }
 
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)

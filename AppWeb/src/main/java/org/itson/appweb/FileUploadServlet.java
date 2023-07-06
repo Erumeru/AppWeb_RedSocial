@@ -101,7 +101,6 @@ public class FileUploadServlet extends HttpServlet {
                             Normal nrmAvatar = normal;
                             nrmAvatar.setAvatar(rutaFinal + "\\" + id + ".png");
                             registerNegocio.actualizarNormal(normal, nrmAvatar);
-
                         }
 
                         if (FileUpload.processFile(rutaFinal, item, id)) {

@@ -21,7 +21,7 @@
                 <c:forEach items="${sessionScope.anclados}" var="item">
                     <div class="Post-Container">
                         <div class="profile-container">
-                            <img class="profile-photo" src="imagenes/CatAndBug.jpg" alt="profilePic">
+                            <img class="profile-photo" src=${sessionScope.id} alt="profilePic">
                             <span class="profile-text">${item.admor.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
                             <input class="menu-icon" type="button">
@@ -43,7 +43,7 @@
                 <c:forEach items="${sessionScope.comunes}" var="item">
                     <div class="Post-Container">
                         <div class="profile-container">
-                            <img class="profile-photo" src="imagenes/CatAndBug.jpg" alt="profilePic">
+                            <img class="profile-photo" src=${item.usuario.avatar} alt="profilePic">
                             <span class="profile-text">${item.usuario.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
                             <input class="menu-icon" type="button">
