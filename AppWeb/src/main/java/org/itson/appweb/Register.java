@@ -119,12 +119,13 @@ public class Register extends HttpServlet {
                 || fechaNacimiento.isBlank()
                 || sexo.isBlank()
                 || sexo==null) {
-            // regresamos a las paginas
-            getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+            String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
         if (!contraConfirmacion.equals(contra)) {
-            String mensaje = "Contra no cincide";
+            String mensaje = "Asegurate de que las contraseñas coincidan.";
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
