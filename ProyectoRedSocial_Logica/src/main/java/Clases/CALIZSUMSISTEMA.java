@@ -107,19 +107,40 @@ public class CALIZSUMSISTEMA {
 //        Comun comun = new Comun(new Date(), "prueba 1","tilin");
 //        Comun comun2 = new Comun(new Date(), "prueba 2","tilina");
 //        Comun comun3 = new Comun(new Date(), "prueba 3","tuneado");
+Normal fas=new Normal();
+fas.setId(new ObjectId("64a4eee71c37201eca9857de"));
+user=registerNegocio.buscarNormal(fas);
+      
 
-        post.setUsuario(user);
-        post2.setUsuario(user);
-        postPrueba.setUsuario(user2);
-        post3.setAdmor(admor);
-        post2.setComentarios(Arrays.asList(comento));
-        postPrueba.setComentarios(Arrays.asList(comento2));
 
-        registerNegocio.guardarComun(post);
-        registerNegocio.guardarComun(post2);
-        registerNegocio.guardarComun(postPrueba);
-        registerNegocio.guardarAnclado(post3);
 
+
+
+//AQUI SE GUARDAN LOS POST
+//post.setUsuario(user);
+//        post2.setUsuario(user);
+//        postPrueba.setUsuario(user2);
+//        post3.setAdmor(admor);
+//        post2.setComentarios(Arrays.asList(comento));
+//        postPrueba.setComentarios(Arrays.asList(comento2));
+//
+//        registerNegocio.guardarComun(post);
+//        registerNegocio.guardarComun(post2);
+//        registerNegocio.guardarComun(postPrueba);
+//        registerNegocio.guardarAnclado(post3);
+
+        
+        
+        ArrayList<Comun> listaDePost=registerNegocio.getComunesDeNormal(user);
+        System.out.println(listaDePost.get(2));
+        
+        
+        
+        
+        
+        
+        
+        
 //        Comun co = registerNegocio.guardarComun(comun);
 //        Usuario no = registerNegocio.guardarUsuario(user);
 //        Admor admor = new Admor();

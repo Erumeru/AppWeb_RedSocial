@@ -79,8 +79,7 @@
             <div class="mainCont_grid">
             </div>
         </main>
-        
-                        
+                                
         <footer>
             <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>

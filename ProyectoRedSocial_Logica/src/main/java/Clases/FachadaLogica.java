@@ -391,4 +391,12 @@ public class FachadaLogica implements ILogica {
         return ad;
     }
 
+    @Override
+    public ArrayList<Comun> getComunesDeNormal(Normal normal) {
+        ctrlPost = new ControlPost();
+        ArrayList<Comun> listaDePost=new ArrayList<>();
+        listaDePost=ctrlPost.getComunesDeNormal(normal);
+        return listaDePost;
+    }
+
 }

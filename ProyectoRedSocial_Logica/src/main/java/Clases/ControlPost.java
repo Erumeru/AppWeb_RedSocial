@@ -7,6 +7,8 @@ package Clases;
 import ObjNegocio.Post;
 import ObjNegocio.Anclado;
 import ObjNegocio.Comun;
+import ObjNegocio.Normal;
+import java.util.ArrayList;
 import java.util.List;
 import org.itson.appimplementacion.FabricaDatos;
 import org.itson.appimplementacion.FachadaDatos;
@@ -93,6 +95,11 @@ public class ControlPost {
     public Comun guardarComun(Comun comun) {
         datos = FabricaDatos.dameInstancia();
         return datos.guardarComun(comun);
+    }
+
+    public ArrayList<Comun> getComunesDeNormal(Normal normal){
+        datos=FabricaDatos.dameInstancia();
+        return datos.getComunesDeNormal(normal);
     }
 
 }
