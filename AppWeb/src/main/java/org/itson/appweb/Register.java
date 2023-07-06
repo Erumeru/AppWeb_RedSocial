@@ -13,6 +13,9 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -107,16 +110,22 @@ public class Register extends HttpServlet {
 
 //        String avatar = request.getParameter("avatar");
 //        String 
+        //preguntar kim
         if (email == null
                 || email.isBlank()
+                || email.trim().length() > 50
                 || nombre == null
                 || nombre.isBlank()
+                || nombre.trim().length() > 50
                 || contra == null
                 || contra.isBlank()
+                || contra.trim().length() > 100
                 || contraConfirmacion == null
                 || contraConfirmacion.isBlank()
+                || contraConfirmacion.trim().length() > 100
                 || fechaNacimiento == null
                 || fechaNacimiento.isBlank()
+                || fechaNacimiento.trim().length() > 10
                 || sexo.isBlank()
                 || sexo==null) {
             String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
@@ -129,12 +138,36 @@ public class Register extends HttpServlet {
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
+        
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
 
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat pasar = new SimpleDateFormat(pattern);
         Date date = null;
+        LocalDate fechaActualLocal = LocalDate.now();
+        //Validaciones fecha
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fechaNacimientoTrans = LocalDate.parse(fechaNacimiento, formatter);
+        
+        if(fechaNacimientoTrans.isAfter(fechaActualLocal)){
+            String mensaje = "Esa fecha aún no existe!";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
+        
+        Period periodo = Period.between(fechaNacimientoTrans, fechaActualLocal);
+        int edad = periodo.getYears();
+        
+        if(edad < 18){
+            String mensaje = "Lo sentimos, no tiene edad adecuada para una cuenta ):";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
+        
+        
         try {
             date = pasar.parse(fechaNacimiento);
         } catch (ParseException ex) {
