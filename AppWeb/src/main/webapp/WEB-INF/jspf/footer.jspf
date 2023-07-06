@@ -9,10 +9,14 @@
                 <div id="overlay">
                     <div id="modal">
                         <span class="close">&times;</span>
-                        <input type="text" placeholder="Escribe aquí">
-                        <input type="file" id="imageUpload" accept="image/*">
+                        <input type="text" placeholder="Escribe aquí" 
+                               name="txt-contenido" id="txt-contenido">
+                        <br/>
+                        <input type="file" id="imageUpload" accept="image/*"
+                               name="txt-archivo">
                         <div id="preview" class="styleimage"></div>
-                        <input type="submit" value="Siguiente">
+                        <button type="button" name="btn-subir"
+                                id="btn-subir">Subir</button>
                     </div>
                 </div>
             </div>
