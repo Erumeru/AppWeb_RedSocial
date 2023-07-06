@@ -79,26 +79,10 @@
             <div class="mainCont_grid">
             </div>
         </main>
-        <nav class="nav-abajo">
-            <div class="nav-cont">
-                <button id="createPostButton">Crear post</button>
-
-                <div id="overlay">
-                    <div id="modal">
-                        <span class="close">&times;</span>
-                        <input type="text" placeholder="Escribe aquí">
-                        <input type="file" id="imageUpload" accept="image/*">
-                        <div id="preview" class="styleimage"></div>
-                        <input type="submit" value="Siguiente">
-                    </div>
-                </div>
-
-
-            </div>
-        </nav>
+        
                         
         <footer>
-
+            <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>
     </body>
 </html>
