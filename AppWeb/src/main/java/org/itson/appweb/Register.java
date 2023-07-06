@@ -109,14 +109,19 @@ public class Register extends HttpServlet {
 //        String 
         if (email == null
                 || email.isBlank()
+                || email.trim().length() > 50
                 || nombre == null
                 || nombre.isBlank()
+                || nombre.trim().length() > 50
                 || contra == null
                 || contra.isBlank()
+                || contra.trim().length() > 100
                 || contraConfirmacion == null
                 || contraConfirmacion.isBlank()
+                || contraConfirmacion.trim().length() > 100
                 || fechaNacimiento == null
                 || fechaNacimiento.isBlank()
+                || fechaNacimiento.trim().length() > 10
                 || sexo.isBlank()
                 || sexo==null) {
             String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
