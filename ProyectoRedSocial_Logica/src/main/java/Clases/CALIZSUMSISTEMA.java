@@ -115,22 +115,22 @@ public class CALIZSUMSISTEMA {
 
 
 //AQUI SE GUARDAN LOS POST
-post.setUsuario(user);
-        post2.setUsuario(user);
-        postPrueba.setUsuario(user2);
-        post3.setAdmor(admor);
-        post2.setComentarios(Arrays.asList(comento));
-        postPrueba.setComentarios(Arrays.asList(comento2));
-
-        registerNegocio.guardarComun(post);
-        registerNegocio.guardarComun(post2);
-        registerNegocio.guardarComun(postPrueba);
-        registerNegocio.guardarAnclado(post3);
+//post.setUsuario(user);
+//        post2.setUsuario(user);
+//        postPrueba.setUsuario(user2);
+//        post3.setAdmor(admor);
+//        post2.setComentarios(Arrays.asList(comento));
+//        postPrueba.setComentarios(Arrays.asList(comento2));
+//
+//        registerNegocio.guardarComun(post);
+//        registerNegocio.guardarComun(post2);
+//        registerNegocio.guardarComun(postPrueba);
+//        registerNegocio.guardarAnclado(post3);
 
         
         
-   //     ArrayList<Comun> listaDePost=registerNegocio.getComunesDeNormal(user);
-  //      System.out.println(listaDePost.get(2));
+        ArrayList<Comun> listaDePost=registerNegocio.getComunesDeNormal(user);
+        System.out.println(listaDePost.get(1));
         
         
         

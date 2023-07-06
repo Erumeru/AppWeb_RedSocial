@@ -99,19 +99,24 @@ public class ComunDAO extends BaseDAO<Comun> {
         Document filtro = new Document("id", entidad.getId());
         return colleccionComun.find(filtro).first();
     }
-    
+
     /**
      * Metodo que busca y regresa las publicaciones comunes de un usuario
+     *
      * @param normal Usuario al que pertenecen publicaciones comunes
-     * @return Lista MongoCollection<Comun> con las publicaciones del usuario Normal
+     * @return Lista MongoCollection<Comun> con las publicaciones del usuario
+     * Normal
      */
     public ArrayList<Comun> getComunesDeNormal(Normal normal) {
         MongoDatabase db = Conexion.getInstance();
-        Document filtro=new Document("usuario._id",normal.getId());
-        ArrayList<Comun> lista=new ArrayList<>();
-        lista=collection.find(filtro).into(lista);
+        MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
+
+        Document filtro = new Document("usuario._id", normal.getId());
+        ArrayList<Comun> lista = new ArrayList<>();
+        lista = colleccionComun.find(filtro).into(lista);
         return lista;
     }
+
     /**
      * Elimina una entidad de tipo Comun en la base de datos MongoDB.
      *

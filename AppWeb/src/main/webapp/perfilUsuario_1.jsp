@@ -4,6 +4,7 @@
     Author     : hoshi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
                     <input type="text" placeholder=" Buscar" />
                 </div>
                 <div class="iconos">
-                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                    <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
                     <a href="perfilUsuario.jsp"><img class="small-logo" src=${sessionScope.id} alt="foto-perfil"></a>
@@ -37,7 +38,7 @@
         <header>
             <div class="perfil-container">
                 <img  alt="fotoPerfil" class="img-perfil" src=${sessionScope.id}>
-                 <div class="contenedor-cabecera">
+                <div class="contenedor-cabecera">
                     <div class="cabecera1">
                         <h1>${sessionScope.usuario.nombreCompleto}</h1>
                         <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
@@ -75,30 +76,20 @@
                     </svg>
                     PUBLICACIONES
                 </a>
+                <div class="container-publicaciones">
+                <c:forEach items="${sessionScope.listaPostsComun}" var="item">
+                    <div class="content-container">
+                            <img class="fotoContenido" src=${item.contenido} alt="post">
+                        </div>
+                </c:forEach>
+                </div>
             </div>
             <div class="mainCont_grid">
             </div>
         </main>
-       <nav class="nav-abajo">
-            <div class="nav-cont">
-                <button id="createPostButton">Crear post</button>
 
-                <div id="overlay">
-                    <div id="modal">
-                        <span class="close">&times;</span>
-                        <input type="text" placeholder="Escribe aquí">
-                        <input type="file" id="imageUpload" accept="image/*">
-                        <div id="preview" class="styleimage"></div>
-                        <input type="submit" value="Siguiente">
-                    </div>
-                </div>
-
-
-            </div>
-        </nav>
-                        
         <footer>
-
+            <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>
     </body>
 </html>
