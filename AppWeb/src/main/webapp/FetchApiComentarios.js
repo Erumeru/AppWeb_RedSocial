@@ -54,6 +54,7 @@ window.onload = function(){
             alert(comentario.nombre);
         }).catch(err => {
             subirComentario.disabled = false;
+            //Tilin
             console.error(err);
         });
 
