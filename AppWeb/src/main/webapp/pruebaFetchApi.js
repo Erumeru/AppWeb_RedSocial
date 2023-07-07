@@ -6,16 +6,34 @@
 window.onload = function(){
     
     const consultarDatos = () => {
-        fetch("http://localhost:8080/AppWeb/mainPublicaciones?action=subirPost").then(response => {
-            return response.text();
-        }).then(text => {
-            const divMensaje = document.getElementById("container-publicaciones");
-            divMensaje.innerHTML = text;
-            console.log(texto)
-
+        console.log(JSON.stringify(usuario));
+        // Enviar datos al server con FetchAPI (Formato JSON)
+        fetch("http://localhost:8080/AppWeb/mainPublicaciones?action=subirPost", {
+            method: "POST",
+            body: JSON.stringify(usuario),
+            headers: {
+                "content-type": "application/json"
+            }
+        }).then(response => {
+            btnGuardar.disabled = false;
+            return response.json();
+        }).then(response => {
+            alert(usuario.nombre);
         }).catch(err => {
-            console.error(err)
+            btnGuardar.disabled = false;
+            console.error(err);
         });
+
+//        fetch("http://localhost:8080/AppWeb/mainPublicaciones?action=subirPost").then(response => {
+//            return response.text();
+//        }).then(text => {
+//            const divMensaje = document.getElementById("container-publicaciones");
+//            divMensaje.innerHTML = text;
+//            console.log(texto)
+//
+//        }).catch(err => {
+//            console.error(err)
+//        });
         
         
     }

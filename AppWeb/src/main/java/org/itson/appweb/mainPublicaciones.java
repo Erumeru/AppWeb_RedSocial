@@ -10,6 +10,7 @@ import ObjNegocio.Anclado;
 import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Post;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,6 +19,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.io.IOUtils;
+import org.itson.appweb.dtos.ComentariosDTO;
 
 /**
  *
@@ -120,13 +123,6 @@ public class mainPublicaciones extends HttpServlet {
         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
     }
     
-//     private void proccessSubirPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//         
-//         ILogica subirPost = FabricaLogica.crearInstancia();
-//         Comun comun = new Comun();
-//         subirPost.guardarComun(comun);
-//     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -145,11 +141,7 @@ public class mainPublicaciones extends HttpServlet {
             proccessViewPosts(request, response);
             return;
         }
-//        if (action != null && action.equalsIgnoreCase("subirPost")) {
-//            //proccessViewPosts(request, response);
-////            proccessSubirPost(request, response);
-//            return;
-//        }
+        
     }
 
     /**

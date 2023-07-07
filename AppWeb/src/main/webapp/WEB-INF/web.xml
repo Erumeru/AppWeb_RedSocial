@@ -25,6 +25,10 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>Posts</servlet-name>
+        <servlet-class>org.itson.appweb.Posts</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -36,6 +40,10 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Posts</servlet-name>
+        <url-pattern>/Posts</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

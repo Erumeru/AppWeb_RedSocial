@@ -83,7 +83,7 @@
                                 <div></div>
                                 <summary>Ver comentarios...</summary>
                                     <c:forEach items="${item.comentarios}" var="comentario">
-                                    <p class="profile-text">${comentario.normal.nombreCompleto}<span class="space-comments">${comentario.contenido}</span></p>
+                                    <p class="profile-text" id="profile-text">${comentario.normal.nombreCompleto}<span class="space-comments">${comentario.contenido}</span></p>
                                     <p></p>
                                     </c:forEach>
                             </details>
