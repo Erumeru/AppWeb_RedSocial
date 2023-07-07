@@ -45,7 +45,7 @@ public class Posts extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Posts</title>");            
+            out.println("<title>Servlet Posts</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Posts at " + request.getContextPath() + "</h1>");
@@ -53,8 +53,7 @@ public class Posts extends HttpServlet {
             out.println("</html>");
         }
     }
-    
-    
+
 //     private void proccessSubirPost(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //         
@@ -64,47 +63,50 @@ public class Posts extends HttpServlet {
 //         
 //         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
 //     }
-     
-     private void processObtenerUsuario(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-         //SESSION
-         // Obtener la sesión asociada con la solicitud actual
-         HttpSession session = request.getSession();
-         
-         // Obtener el usuario de la sesión
-         Normal usuario = (Normal) session.getAttribute("usuario");
-         Gson usuarioJSON = new Gson();
-         
-         String usuarioObjetoJSON = usuarioJSON.toJson(usuario);
-         response.setContentType("application/json");
-         
-         response.getWriter().write(usuarioObjetoJSON);
-         //getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
-     }
-     
-     private void proccessSubirComentario(HttpServletRequest request, HttpServletResponse response)
+    private void processObtenerUsuario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         //FLUJO DE DATOS (BYTES) A TEXTO FORMATO JSON
-         String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
-         Gson serializadorJSON = new Gson();
+        //SESSION
+        // Obtener la sesión asociada con la solicitud actual
+        HttpSession session = request.getSession();
 
-         ILogica subirComentario = FabricaLogica.crearInstancia();
-         Comentario comentario = new Comentario();
-         subirComentario.guardarComentario(comentario);
-         //CREAR COMENTARIODTO
-         ComentariosDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComentariosDTO.class);
-        
-         
-         //CREACION COMENTARIO
-//         Comentario comentarioNuevo = new Comentario();
-//         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
-//         comentarioNuevo.setContenido(comentarioDTO.getContenido());
+        // Obtener el usuario de la sesión
+        Normal usuario = (Normal) session.getAttribute("usuario");
+        Gson usuarioJSON = new Gson();
+
+        String usuarioObjetoJSON = usuarioJSON.toJson(usuario);
+        response.setContentType("application/json");
+
+        response.getWriter().write(usuarioObjetoJSON);
+        //getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
+    }
+
+    private void proccessSubirComentario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //FLUJO DE DATOS (BYTES) A TEXTO FORMATO JSON
+        String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        Gson serializadorJSON = new Gson();
+        //CREAR COMENTARIODTO
+        ComentariosDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComentariosDTO.class);
+
+        ILogica subirComentario = FabricaLogica.crearInstancia();
+        Comentario comentarioNuevo = new Comentario();
+        comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
+        comentarioNuevo.setContenido(comentarioDTO.getContenido());
+       // comentarioNuevo.setNormal(comentarioDTO.getNormal());
+//        Comentario comentario = new Comentario();
+        subirComentario.guardarComentario(comentarioNuevo);
+        response.setContentType("application/json;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println(serializadorJSON.toJson(comentarioNuevo));
+        }
+        //CREACION COMENTARIO
+
 //         comentarioNuevo.setNormal(comentarioDTO.getNormal());
 //         comentarioNuevo.setComun(comentarioDTO.getComun());
 //         comentarioNuevo.setComentario(comentarioDTO.getComentario());
 //         comentarioNuevo.setComentarios(comentarioDTO.getComentarios());
-         
-     }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -118,11 +120,11 @@ public class Posts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String action = request.getParameter("action");
-       if(action != null && action.equalsIgnoreCase("obtenerUsuario")){
-           processObtenerUsuario(request, response);
-           return;
-       }
+        String action = request.getParameter("action");
+        if (action != null && action.equalsIgnoreCase("obtenerUsuario")) {
+            processObtenerUsuario(request, response);
+            return;
+        }
     }
 
     /**

@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="paginas/stylesMainPublicaciones.css" />
         <title>Publicaciones</title>
+        <script src='FetchApiComentarios.js'></script>
     </head>
     <body>
         <header>
@@ -87,9 +88,9 @@
                                     <p></p>
                                     </c:forEach>
                             </details>
-                            <form action='./Posts?action=subirComentario' method="post">
+                            <form>
                                 <input type="text" id="textfield-comment" name="textfield-comment" placeholder="Añade un comentario">
-                                <button type="submit" class="send-comment" src="paginas/imagenes/send.png"></button>
+                                <button type="button" class="send-comment"  id="send-comment" src="paginas/imagenes/send.png"></button>
                             </form>
                         </div>
                         <br>
