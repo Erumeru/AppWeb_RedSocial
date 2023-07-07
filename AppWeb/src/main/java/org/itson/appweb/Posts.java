@@ -40,7 +40,7 @@ public class Posts extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -92,11 +92,13 @@ public class Posts extends HttpServlet {
         Comentario comentarioNuevo = new Comentario();
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
-       // comentarioNuevo.setNormal(comentarioDTO.getNormal());
+        // comentarioNuevo.setNormal(comentarioDTO.getNormal());
 //        Comentario comentario = new Comentario();
+
         subirComentario.guardarComentario(comentarioNuevo);
+
         response.setContentType("application/json;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println(serializadorJSON.toJson(comentarioNuevo));
         }
