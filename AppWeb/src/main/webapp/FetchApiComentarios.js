@@ -15,6 +15,7 @@ const obtenerUsuario = () => {
         reject(new Error("No se pudo obtener el usuario")); // Rechaza la promesa en caso de error
       }
     };
+    //tilin
     solicitud.send();
   });
 };

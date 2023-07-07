@@ -70,7 +70,7 @@ public class Posts extends HttpServlet {
          //SESSION
          // Obtener la sesión asociada con la solicitud actual
          HttpSession session = request.getSession();
-
+         
          // Obtener el usuario de la sesión
          Normal usuario = (Normal) session.getAttribute("usuario");
          Gson usuarioJSON = new Gson();
