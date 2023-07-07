@@ -87,8 +87,10 @@
                                     <p></p>
                                     </c:forEach>
                             </details>
-                            <input type="text" id="textfield-comment" name="textfield-comment" placeholder="Añade un comentario">
-                            <button type="submit" class="send-comment" src="paginas/imagenes/send.png"></button>
+                            <form action='./Posts?action=subirComentario' method="post">
+                                <input type="text" id="textfield-comment" name="textfield-comment" placeholder="Añade un comentario">
+                                <button type="submit" class="send-comment" src="paginas/imagenes/send.png"></button>
+                            </form>
                         </div>
                         <br>
                     </div>

@@ -32,11 +32,10 @@ window.onload = function(){
         const fechaHoraCreacion = new Date();
         const contenido = document.getElementById("textfield-comment");
         
-        
         const comentario ={
             contenido,
-            fechaHoraCreacion,
-            obtenerUsuario
+            fechaHoraCreacion
+            
         }
           
         console.log(JSON.stringify(comentario));
