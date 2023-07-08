@@ -19,7 +19,7 @@ public class Comentario {
     /**
      * Atributo que sirve para identificar a un comentario en específico.
      */
-    private ObjectId id;
+    private ObjectId idComentario;
 
     /**
      * Atributo que indica la fecha y la hora en las que el comentario fue
@@ -91,21 +91,21 @@ public class Comentario {
     }
 
     /**
-     * Obtiene el id del comentario.
+     * Obtiene el idComentario del comentario.
      *
-     * @return regresa el id del comentario.
+     * @return regresa el idComentario del comentario.
      */
-    public ObjectId getId() {
-        return id;
+    public ObjectId getIdComentario() {
+        return idComentario;
     }
 
     /**
-     * Establece el id del comentario.
+     * Establece el idComentario del comentario.
      *
-     * @param id el id a establecer.
+     * @param idComentario el idComentario a establecer.
      */
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setIdComentario(ObjectId idComentario) {
+        this.idComentario = idComentario;
     }
 
     /**
@@ -206,7 +206,7 @@ public class Comentario {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.idComentario);
         return hash;
     }
 
@@ -228,7 +228,7 @@ public class Comentario {
             return false;
         }
         final Comentario other = (Comentario) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.idComentario, other.idComentario)) {
             return false;
         }
         return true;
@@ -242,6 +242,6 @@ public class Comentario {
      */
     @Override
     public String toString() {
-        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", comun=" + comun + ", comentario=" + comentario + ", comentarios=" + comentarios + ", normal=" + normal + '}';
+        return "Comentario{" + "id=" + idComentario + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", comun=" + comun + ", comentario=" + comentario + ", comentarios=" + comentarios + ", normal=" + normal + '}';
     }
 }

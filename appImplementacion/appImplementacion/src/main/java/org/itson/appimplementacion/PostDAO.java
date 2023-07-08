@@ -73,7 +73,7 @@ public class PostDAO extends BaseDAO<Post> {
     public Post buscar(Post entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Post> colleccionPost = db.getCollection("post", Post.class);
-        Document filtro = new Document("id", entidad.getId());
+        Document filtro = new Document("id", entidad.getIdPost());
         return colleccionPost.find(filtro).first();
     }
 
@@ -84,7 +84,7 @@ public class PostDAO extends BaseDAO<Post> {
      */
     @Override
     public Post eliminar(Post entidad) {
-        collection.deleteOne(new Document("id", entidad.getId()));
+        collection.deleteOne(new Document("id", entidad.getIdPost()));
         return entidad;
     }
 
@@ -96,7 +96,7 @@ public class PostDAO extends BaseDAO<Post> {
      */
     @Override
     public Post actualizar(Post entidad, Post entidad2) {
-       collection.updateOne(eq("_id", entidad.getId()),
+       collection.updateOne(eq("_id", entidad.getIdPost()),
                 combine(set("fecha-hora-creacion", entidad2.getFechaHoraCreacion()),
                         set("titulo", entidad2.getTitulo()),
                         set("contenido", entidad2.getContenido()),

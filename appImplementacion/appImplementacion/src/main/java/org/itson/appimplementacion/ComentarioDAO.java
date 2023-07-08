@@ -92,7 +92,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
     public Comentario buscar(Comentario entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comentario> colleccionComentario = db.getCollection("comentario", Comentario.class);
-        Document filtro = new Document("id", entidad.getId());
+        Document filtro = new Document("id", entidad.getIdComentario());
         return colleccionComentario.find(filtro).first();
     }
 
@@ -104,7 +104,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
      */
     @Override
     public Comentario eliminar(Comentario entidad) {
-        collection.deleteOne(new Document("id", entidad.getId()));
+        collection.deleteOne(new Document("id", entidad.getIdComentario()));
         return entidad;
     }
 
@@ -117,7 +117,7 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
      */
     @Override
     public Comentario actualizar(Comentario entidad, Comentario entidad2) {
-        collection.updateOne(eq("_id", entidad.getId()),
+        collection.updateOne(eq("_id", entidad.getIdComentario()),
                 combine(set("fechahora-creacion", entidad2.getFechaHora()),
                         set("contenido", entidad2.getContenido()),
                         set("comentario", entidad2.getComentario()),

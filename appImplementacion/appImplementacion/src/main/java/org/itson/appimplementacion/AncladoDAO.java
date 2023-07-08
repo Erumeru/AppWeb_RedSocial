@@ -92,7 +92,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     public Anclado buscar(Anclado entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Anclado> colleccionAnclado = db.getCollection("anclado", Anclado.class);
-        Document filtro = new Document("id", entidad.getId());
+        Document filtro = new Document("id", entidad.getIdPost());
         return colleccionAnclado.find(filtro).first();
     }
 
@@ -104,7 +104,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
      */
     @Override
     public Anclado eliminar(Anclado entidad) {
-        collection.deleteOne(new Document("id", entidad.getId()));
+        collection.deleteOne(new Document("id", entidad.getIdPost()));
         return entidad;
     }
 
@@ -117,7 +117,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
      */
     @Override
     public Anclado actualizar(Anclado entidad, Anclado entidad2) {
-        collection.updateOne(eq("_id", entidad.getId()),
+        collection.updateOne(eq("_id", entidad.getIdPost()),
                 combine(set("fechahora-creacion", entidad2.getFechaHoraCreacion()),
                         set("titulo", entidad2.getTitulo()),
                         set("contenido", entidad2.getContenido()),

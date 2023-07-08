@@ -79,7 +79,7 @@ public class NormalDAO extends BaseDAO<Normal> {
     public Normal buscar(Normal entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
-        Document filtro = new Document("_id", entidad.getId());
+        Document filtro = new Document("_id", entidad.getIdUsuario());
         return colleccionNormal.find(filtro).first();
     }
 
@@ -91,7 +91,7 @@ public class NormalDAO extends BaseDAO<Normal> {
      */
     @Override
     public Normal eliminar(Normal entidad) {
-        collection.deleteOne(new Document("_id", entidad.getId()));
+        collection.deleteOne(new Document("_id", entidad.getIdUsuario()));
         return entidad;
     }
 
@@ -104,7 +104,7 @@ public class NormalDAO extends BaseDAO<Normal> {
      */
     @Override
     public Normal actualizar(Normal entidad, Normal entidad2) {
-        collection.updateOne(eq("_id", entidad.getId()),
+        collection.updateOne(eq("_id", entidad.getIdUsuario()),
                 combine(set("nombreCompleto", entidad2.getNombreCompleto()),
                         set("correo", entidad2.getCorreo()),
                         set("contrasenia", entidad2.getContrasenia()),

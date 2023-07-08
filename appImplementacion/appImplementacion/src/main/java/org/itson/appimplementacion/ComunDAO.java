@@ -96,7 +96,7 @@ public class ComunDAO extends BaseDAO<Comun> {
     public Comun buscar(Comun entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
-        Document filtro = new Document("id", entidad.getId());
+        Document filtro = new Document("id", entidad.getIdPost());
         return colleccionComun.find(filtro).first();
     }
 
@@ -111,7 +111,7 @@ public class ComunDAO extends BaseDAO<Comun> {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
 
-        Document filtro = new Document("usuario._id", normal.getId());
+        Document filtro = new Document("usuario._id", normal.getIdUsuario());
         ArrayList<Comun> lista = new ArrayList<>();
         lista = colleccionComun.find(filtro).into(lista);
         return lista;
@@ -125,7 +125,7 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public Comun eliminar(Comun entidad) {
-        collection.deleteOne(new Document("id", entidad.getId()));
+        collection.deleteOne(new Document("id", entidad.getIdPost()));
         return entidad;
     }
 
@@ -138,7 +138,7 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public Comun actualizar(Comun entidad, Comun entidad2) {
-        collection.updateOne(eq("_id", entidad.getId()),
+        collection.updateOne(eq("_id", entidad.getIdPost()),
                 combine(set("fechahora-creacion", entidad2.getFechaHoraCreacion()),
                         set("titulo", entidad2.getTitulo()),
                         set("contenido", entidad2.getContenido()),

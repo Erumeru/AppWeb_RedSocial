@@ -20,7 +20,7 @@ public class Post {
      * Atributo que sirve para identificar a un post en específico.
      */
 
-    private ObjectId id;
+    private ObjectId idPost;
 
     /**
      * Atributo que indica la fecha en la que se creo un post, almacenando
@@ -82,21 +82,21 @@ public class Post {
     }
 
     /**
-     * Obtiene el id del post.
+     * Obtiene el idPost del post.
      *
-     * @return regresa id.
+     * @return regresa idPost.
      */
-    public ObjectId getId() {
-        return id;
+    public ObjectId getIdPost() {
+        return idPost;
     }
 
     /**
-     * Establece el id de post.
+     * Establece el idPost de post.
      *
-     * @param id id a establecer.
+     * @param idPost idPost a establecer.
      */
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setIdPost(ObjectId idPost) {
+        this.idPost = idPost;
     }
 
     /**
@@ -179,7 +179,7 @@ public class Post {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.idPost);
         return hash;
     }
 
@@ -201,7 +201,7 @@ public class Post {
             return false;
         }
         final Post other = (Post) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.idPost, other.idPost)) {
             return false;
         }
         return true;
@@ -214,7 +214,7 @@ public class Post {
      */
     @Override
     public String toString() {
-        return "Post{" + "id=" + id + ", fechaHoraCreacion=" + fechaHoraCreacion + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + '}';
+        return "Post{" + "id=" + idPost + ", fechaHoraCreacion=" + fechaHoraCreacion + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + '}';
     }
 
 }

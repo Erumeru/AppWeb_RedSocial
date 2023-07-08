@@ -78,7 +78,7 @@ public class FileUploadServlet extends HttpServlet {
 
                         if (tipo.equalsIgnoreCase("admin")) {
                             Admor adm = new Admor();
-                            adm.setId(objId);
+                            adm.setIdUsuario(objId);
                             adm = registerNegocio.buscarAdmor(adm);
 
                             Path rutaOriginal = Paths.get(path);
@@ -91,7 +91,7 @@ public class FileUploadServlet extends HttpServlet {
                         }
                         if (tipo.equalsIgnoreCase("normal")) {
                             Normal normal = new Normal();
-                            normal.setId(objId);
+                            normal.setIdUsuario(objId);
                             normal = registerNegocio.buscarNormal(normal);
 
                             Path rutaOriginal = Paths.get(path);

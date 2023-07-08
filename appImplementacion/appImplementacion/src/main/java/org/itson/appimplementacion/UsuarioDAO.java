@@ -72,7 +72,7 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
     public Usuario buscar(Usuario entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Usuario> colleccionUsuario = db.getCollection("usuario", Usuario.class);
-        Document filtro = new Document("id", entidad.getId());
+        Document filtro = new Document("id", entidad.getIdUsuario());
         return colleccionUsuario.find(filtro).first();
     }
 
@@ -83,7 +83,7 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
      */
     @Override
     public Usuario eliminar(Usuario entidad) {
-        collection.deleteOne(new Document("id", entidad.getId()));
+        collection.deleteOne(new Document("id", entidad.getIdUsuario()));
         return entidad;
     }
 
@@ -95,7 +95,7 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
      */
     @Override
     public Usuario actualizar(Usuario entidad, Usuario entidad2) {
-      collection.updateOne(eq("_id", entidad.getId()),
+      collection.updateOne(eq("_id", entidad.getIdUsuario()),
                 combine(set("nombre-completo", entidad2.getNombreCompleto()),
                         set("correo", entidad2.getCorreo()),
                         set("contrasenia", entidad2.getContrasenia()),

@@ -20,15 +20,6 @@ public class ComentariosDTO {
     private String contenido;
 
 
-    public ComentariosDTO() {
-    }
-
-    public ComentariosDTO(Date fechaHora, String contenido) {
-        this.fechaHora = fechaHora;
-        this.contenido = contenido;
-
-    }
-
     public Date getFechaHora() {
         return fechaHora;
     }

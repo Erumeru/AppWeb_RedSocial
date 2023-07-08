@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.io.IOUtils;
+import org.bson.types.ObjectId;
 import org.itson.appweb.dtos.ComentariosDTO;
 
 /**
@@ -29,32 +30,31 @@ import org.itson.appweb.dtos.ComentariosDTO;
 @WebServlet(name = "Posts", urlPatterns = {"/Posts"})
 public class Posts extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Posts</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Posts at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
+//    /**
+//     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+//     * methods.
+//     *
+//     * @param request servlet request
+//     * @param response servlet response
+//     * @throws ServletException if a servlet-specific error occurs
+//     * @throws IOException if an I/O error occurs
+//     */
+//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        response.setContentType("text/html;charset=UTF-8");
+//        try ( PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Posts</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet Posts at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
+//    }
 //     private void proccessSubirPost(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //         
@@ -95,17 +95,22 @@ public class Posts extends HttpServlet {
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
         // comentarioNuevo.setNormal(comentarioDTO.getNormal());
 //        Comentario comentario = new Comentario();
-
-        comentarioNuevo.setComun(new Comun());
+        Comun elmer = new Comun();
+        elmer.setIdComun(new ObjectId("64a50aed116db95d1452b0f1"));
+        Comun marcos = subirComentario.buscarComun(elmer);
+        comentarioNuevo.setComun(marcos);
+        Normal elmer2 = new Normal();
+        elmer2.setIdUsuario(new ObjectId("64a841bd27eda87eb51ab760"));
         comentarioNuevo.setNormal(new Normal());
-        comentarioNuevo.setComentarios(new ArrayList<Comentario>());
-        comentarioNuevo.setComentario(new Comentario());
+        //comentarioNuevo.setComentarios(new ArrayList<Comentario>());
+        //comentarioNuevo.setComentario(new Comentario());
         comentarioNuevo = subirComentario.guardarComentario(comentarioNuevo);
 
         response.setContentType("application/json;charset=UTF-8");
 
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            System.out.println(serializadorJSON.toJson(comentarioNuevo));
             String salida = serializadorJSON.toJson(comentarioNuevo);
 
             out.println(salida);

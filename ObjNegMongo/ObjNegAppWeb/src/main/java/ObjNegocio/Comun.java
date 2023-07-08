@@ -19,7 +19,7 @@ public class Comun extends Post {
     /**
      * Atributo que sirve para identificar a un post común en específico.
      */
-    private ObjectId id;
+    private ObjectId idComun;
 
     /**
      * Atributo que muestra la relación uno a muchos, siendo esta el 'uno',
@@ -57,8 +57,20 @@ public class Comun extends Post {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
         this.usuario = usuario;
     }
+
+    public Comun() {
+    }
+
+    public ObjectId getIdComun() {
+        return idComun;
+    }
+
+    public void setIdComun(ObjectId idComun) {
+        this.idComun = idComun;
+    }
     
-    public Comun(){}
+    
+
     /**
      * Contructor para crear un comentario común.
      *

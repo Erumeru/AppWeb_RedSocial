@@ -121,7 +121,7 @@ public class Login extends HttpServlet {
                     && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", adm);
-                sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
+                sesion.setAttribute("id", "uploads/" + adm.getIdUsuario() + ".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
@@ -133,7 +133,7 @@ public class Login extends HttpServlet {
                 HttpSession sesion = request.getSession();
                 //sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
                 sesion.setAttribute("usuario", nrm);
-                sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
+                sesion.setAttribute("id", "uploads/" + nrm.getIdUsuario() + ".png");
                 getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
                 return;
             }

@@ -106,7 +106,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
     public Admor buscar(Admor entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Admor> colleccionAdmor = db.getCollection(COLECCION, Admor.class);
-        Document filtro = new Document("_id", entidad.getId());
+        Document filtro = new Document("_id", entidad.getIdUsuario());
         return colleccionAdmor.find(filtro).first();
     }
 
@@ -118,7 +118,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
      */
     @Override
     public Admor eliminar(Admor entidad) {
-        collection.deleteOne(new Document("_id", entidad.getId()));
+        collection.deleteOne(new Document("_id", entidad.getIdUsuario()));
         return entidad;
     }
 
@@ -131,7 +131,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
      */
     @Override
     public Admor actualizar(Admor entidad, Admor entidad2) {
-        collection.updateOne(eq("_id", entidad.getId()),
+        collection.updateOne(eq("_id", entidad.getIdUsuario()),
                 combine(set("nombreCompleto", entidad2.getNombreCompleto()),
                         set("correo", entidad2.getCorreo()),
                         set("contrasenia", entidad2.getContrasenia()),
