@@ -64,21 +64,11 @@ public class Posts extends HttpServlet {
 //         
 //         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
 //     }
-    private void processObtenerUsuario(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //SESSION
-        // Obtener la sesión asociada con la solicitud actual
+
+    private Normal regresarNormal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-        // Obtener el usuario de la sesión
         Normal usuario = (Normal) session.getAttribute("usuario");
-        Gson usuarioJSON = new Gson();
-
-        String usuarioObjetoJSON = usuarioJSON.toJson(usuario);
-        response.setContentType("application/json");
-
-        response.getWriter().write(usuarioObjetoJSON);
-        //getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
+        return usuario;
     }
 
     private void proccessSubirComentario(HttpServletRequest request, HttpServletResponse response)
@@ -88,20 +78,15 @@ public class Posts extends HttpServlet {
         Gson serializadorJSON = new Gson();
         //CREAR COMENTARIODTO
         ComentariosDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComentariosDTO.class);
-
         ILogica subirComentario = FabricaLogica.crearInstancia();
         Comentario comentarioNuevo = new Comentario();
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
         // comentarioNuevo.setNormal(comentarioDTO.getNormal());
-//        Comentario comentario = new Comentario();
-        Comun elmer = new Comun();
-        elmer.setIdComun(new ObjectId("64a50aed116db95d1452b0f1"));
-        Comun marcos = subirComentario.buscarComun(elmer);
-        comentarioNuevo.setComun(marcos);
-        Normal elmer2 = new Normal();
-        elmer2.setIdUsuario(new ObjectId("64a841bd27eda87eb51ab760"));
-        comentarioNuevo.setNormal(new Normal());
+        // Comentario comentario = new Comentario();
+        Normal usuarioNormal = regresarNormal(request, response);
+        comentarioNuevo.setComun(new Comun());
+        comentarioNuevo.setNormal(usuarioNormal);
         //comentarioNuevo.setComentarios(new ArrayList<Comentario>());
         //comentarioNuevo.setComentario(new Comentario());
         comentarioNuevo = subirComentario.guardarComentario(comentarioNuevo);
@@ -109,8 +94,7 @@ public class Posts extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            System.out.println(serializadorJSON.toJson(comentarioNuevo));
+
             String salida = serializadorJSON.toJson(comentarioNuevo);
 
             out.println(salida);
@@ -135,11 +119,7 @@ public class Posts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action != null && action.equalsIgnoreCase("obtenerUsuario")) {
-            processObtenerUsuario(request, response);
-            return;
-        }
+       
     }
 
     /**

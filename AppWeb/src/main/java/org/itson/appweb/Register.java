@@ -185,7 +185,7 @@ public class Register extends HttpServlet {
                 admin.setFechaNacimiento(date);
                 admin.setGenero(sexo);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
-                request.getSession().setAttribute("id", usuarioCreado.getIdUsuario().toString());
+                request.getSession().setAttribute("id", usuarioCreado.getId().toString());
                 request.getSession().setAttribute("tipo", "admin");
                 getServletContext().getRequestDispatcher("/prueba.jsp")
                         .forward(request, response);
@@ -207,13 +207,13 @@ public class Register extends HttpServlet {
             normalUser.setFechaNacimiento(date);
             normalUser.setGenero(sexo);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
-            request.getSession().setAttribute("id", usuarioCreado.getIdUsuario().toString());
+            request.getSession().setAttribute("id", usuarioCreado.getId().toString());
             request.getSession().setAttribute("tipo", "normal");
 
             getServletContext().getRequestDispatcher("/prueba.jsp")
                     .forward(request, response);
         } catch (Exception ex) {
-            request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
+            request.setAttribute("error", ex.getMessage());
             getServletContext().getRequestDispatcher("/errorExterno.jsp")
                     .forward(request, response);
             return;

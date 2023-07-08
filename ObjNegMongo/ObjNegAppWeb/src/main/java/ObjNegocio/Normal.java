@@ -19,7 +19,7 @@ public class Normal extends Usuario {
     /**
      * Atributo que sirve para identificar a un Usuario normal en específico.
      */
-    private ObjectId idNormal;
+    private ObjectId idUsuario;
 
     /**
      * Representa la lista de comentario que tiene un usuario normal.

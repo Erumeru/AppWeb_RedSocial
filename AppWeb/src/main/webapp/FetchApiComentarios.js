@@ -3,23 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-const obtenerUsuario = () => {
-    return new Promise((resolve, reject) => {
-        const solicitud = new XMLHttpRequest();
-        solicitud.open("GET", "/Posts", true);
-        solicitud.onreadystatechange = function () {
-            if (solicitud.readyState === 4 && solicitud.status === 200) {
-                const usuario = JSON.parse(solicitud.responseText);
-                resolve(usuario); // Resuelve la promesa con el usuario
-            } else if (solicitud.readyState === 4) {
-                reject(new Error("No se pudo obtener el usuario")); // Rechaza la promesa en caso de error
-            }
-        };
-        //tilin
-        solicitud.send();
-    });
-};
-
 window.onload = function () {
 
     const guardarComentario = () => {

@@ -111,7 +111,7 @@ public class ComunDAO extends BaseDAO<Comun> {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
 
-        Document filtro = new Document("usuario._id", normal.getIdUsuario());
+        Document filtro = new Document("usuario._id", normal.getId());
         ArrayList<Comun> lista = new ArrayList<>();
         lista = colleccionComun.find(filtro).into(lista);
         return lista;

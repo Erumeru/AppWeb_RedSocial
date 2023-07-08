@@ -20,7 +20,7 @@ public class Usuario {
     /**
      * Atributo que sirve para identificar a un Usuario en específico.
      */
-    private ObjectId idUsuario;
+    private ObjectId id;
 
     /**
      * Atributo que indica el nombre completo del Usuario.
@@ -103,21 +103,21 @@ public class Usuario {
     }
 
     /**
-     * Obtiene el idUsuario del usuario.
+     * Obtiene el id del usuario.
      *
-     * @return El idUsuario del usuario.
+     * @return El id del usuario.
      */
-    public ObjectId getIdUsuario() {
-        return idUsuario;
+    public ObjectId getId() {
+        return id;
     }
 
     /**
-     * Establece el idUsuario del usuario.
+     * Establece el id del usuario.
      *
-     * @param idUsuario El idUsuario del usuario.
+     * @param id El id del usuario.
      */
-    public void setIdUsuario(ObjectId idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     /**
@@ -308,7 +308,7 @@ public class Usuario {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.idUsuario);
+        hash = 97 * hash + Objects.hashCode(this.id);
         hash = 97 * hash + Objects.hashCode(this.nombreCompleto);
         hash = 97 * hash + Objects.hashCode(this.correo);
         hash = 97 * hash + Objects.hashCode(this.contrasenia);
@@ -359,7 +359,7 @@ public class Usuario {
         if (!Objects.equals(this.genero, other.genero)) {
             return false;
         }
-        if (!Objects.equals(this.idUsuario, other.idUsuario)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return Objects.equals(this.fechaNacimiento, other.fechaNacimiento);
@@ -372,7 +372,7 @@ public class Usuario {
      */
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + idUsuario + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", ciudad=" + ciudad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", comun=" + comun + ", municipio=" + municipio + '}';
+        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", ciudad=" + ciudad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", comun=" + comun + ", municipio=" + municipio + '}';
     }
 
 }

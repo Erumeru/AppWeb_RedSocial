@@ -19,7 +19,7 @@ public class Admor extends Usuario {
      /**
      * Atributo que sirve para identificar a un Usuario que es administrador en específico.
      */
-    private ObjectId id;
+    private ObjectId idAdmor;
 
     /**
      * Representa la lista de anclados que tiene un usuario administrador.
