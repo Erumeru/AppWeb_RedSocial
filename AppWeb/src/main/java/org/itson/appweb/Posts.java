@@ -12,6 +12,7 @@ import ObjNegocio.Normal;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -95,12 +96,19 @@ public class Posts extends HttpServlet {
         // comentarioNuevo.setNormal(comentarioDTO.getNormal());
 //        Comentario comentario = new Comentario();
 
-        subirComentario.guardarComentario(comentarioNuevo);
+        comentarioNuevo.setComun(new Comun());
+        comentarioNuevo.setNormal(new Normal());
+        comentarioNuevo.setComentarios(new ArrayList<Comentario>());
+        comentarioNuevo.setComentario(new Comentario());
+        comentarioNuevo = subirComentario.guardarComentario(comentarioNuevo);
 
         response.setContentType("application/json;charset=UTF-8");
+
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println(serializadorJSON.toJson(comentarioNuevo));
+            String salida = serializadorJSON.toJson(comentarioNuevo);
+
+            out.println(salida);
         }
         //CREACION COMENTARIO
 

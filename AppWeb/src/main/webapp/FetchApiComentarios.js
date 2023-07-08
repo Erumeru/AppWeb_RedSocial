@@ -23,13 +23,13 @@ const obtenerUsuario = () => {
 window.onload = function () {
 
     const guardarComentario = () => {
-        const fechaHoraCreacion = new Date();
+        const fechaHora = new Date();
         const contenido = document.getElementById("textfield-comment").value;
         const subirComentario = document.getElementById("send-comment");
         subirComentario.disabled = true;
         const comentario = {
             contenido,
-            fechaHoraCreacion
+            fechaHora
         };
         console.table(comentario);
         console.log(JSON.stringify(comentario));
@@ -52,10 +52,10 @@ window.onload = function () {
             //Tilin
             console.error(err);
         });
-    }
-
+    };
+    
     const btnGuardar = document.getElementById("send-comment");
     btnGuardar.onclick = guardarComentario;
 
-}
+};
 
