@@ -1,24 +1,22 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-
-
 <nav class="nav-abajo">
-            <div class="nav-cont">
-                <button id="createPostButton">Crear post</button>
+    <div class="nav-cont">
+        <button id="createPostButton">Crear post</button>
 
-                <div id="overlay">
-                    <div id="modal">
-                        <span class="close">&times;</span>
-                        <input type="text" placeholder="Escribe aquí" 
-                               name="txt-contenido" id="txt-contenido">
-                        <br/>
-                        <input type="file" id="imageUpload" accept="image/*"
-                               name="txt-archivo">
-                        <div id="preview" class="styleimage"></div>
-                        <button type="button" name="btn-subir"
-                                id="btn-subir">Subir</button>
-                    </div>
-                </div>
+        <div id="overlay">
+            <div id="modal">
+                <span class="close">&times;</span>
+                <input type="text" placeholder="Escribe aquí" 
+                       name="txt-contenido" id="txt-contenido">
+                <br/>
+                <input type="file" id="imageUpload" accept="image/*"
+                       name="txt-archivo">
+                <div id="preview" class="styleimage"></div>
+                <button type="button" name="btn-subir"
+                        id="btn-subir">Subir</button>
             </div>
-        </nav>
+        </div>
+    </div>
+</nav>
 

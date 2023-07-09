@@ -88,6 +88,7 @@
         </main>
                                 
         <footer>
+            <a href="agregarPublicacion.html">Agregar Publicación</a>
             <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>
     </body>

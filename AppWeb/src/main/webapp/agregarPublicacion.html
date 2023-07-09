@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="paginas/stylesLogin.css" />
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Inter">
+        <script src="fetchApiPublicacion.js"></script>
         <title>Login</title>
     </head>
     <body>
@@ -18,12 +19,13 @@
                 <p class="hola">!Agrega una publicación a tu perfil!</p>
                 <form>
                     <input id="txt-titulo" type="text" class="corrNum" name="txt-titulo" placeholder="Ingrese un titulo" />
-                    <input type="file" class="corrNum"/>
-                    <button class="inputBtn" type="submit">Guardar</button>
+                    <input id="txt-contenido" type="text" class="corrNum" name="txt-titulo" placeholder="Ingrese un contenido" />
+                    <input id="imageUpload" type="file" class="corrNum"/>
+                    <button id="btn-subir" class="inputBtn" type="button">Guardar</button>
                 </form>
                 <div class="division"></div>
                 <p class="alt">O</p>
-                <p class="cuenta">�Ya no quieres? Regresa a tu perfil</p>
+                <p class="cuenta">¿Ya no quieres? Regresa a tu perfil</p>
                 <a href="perfilUsuario.jsp" class="registro">Cancelar</a>
             </div>
         </div>

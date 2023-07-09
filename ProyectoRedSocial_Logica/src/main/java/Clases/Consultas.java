@@ -22,10 +22,10 @@ public class Consultas {
         // TODO code application logic here
         ILogica registerNegocio = new FabricaLogica().crearInstancia();
        
-////        Normal normal = new Normal("Elmer Baca", "a@gmail.com", "1", "644444", "uploads/64a90fc9ff3a6f2c0fc9094d.png", "Morelos", new Date(), "Masculino", null, new Municipio());
-////        Comun comun = new Comun(normal, new Date(), "Elmer naco", "uploads/64a90fc9ff3a6f2c0fc9094d.png", new Date());
-////        registerNegocio.guardarNormal(normal);
-////        registerNegocio.guardarComun(comun);
+//        Normal normal = new Normal("Elmer Baca", "a@gmail.com", "1", "644444", "uploads/64a90fc9ff3a6f2c0fc9094d.png", "Morelos", new Date(), "Masculino", null, new Municipio());
+//        Comun comun = new Comun(normal, new Date(), "Elmer naco", "uploads/64a90fc9ff3a6f2c0fc9094d.png", new Date());
+//        registerNegocio.guardarNormal(normal);
+//        registerNegocio.guardarComun(comun);
         
         System.out.println(registerNegocio.listaComun());
     }
