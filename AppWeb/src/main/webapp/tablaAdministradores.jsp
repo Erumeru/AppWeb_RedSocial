@@ -14,20 +14,44 @@
         <title>Administradores</title>
     </head>
     <body>
-         <a href="perfilUsuario.jsp">x</a>
-        <h1>Publicaciones :D</h1>
-        <table>
-            <tr>
-                <th>Nombre de usuario</th>
-                <th>Fecha Publicación</th>
-                <th>Titulo</th>
-            </tr>
-            <tr>
-                <td>${sessionScope.usuario.nombreCompleto}</td>
-                
-            </tr>
-            
-            
-        </table>
+        <a href="perfilUsuario.jsp">x</a>
+        <h1>Control de Posts</h1>
+        <div>
+            <table>
+                <tr>
+                    <th>Nombre de usuario</th>
+                    <th>Titulo</th>
+                    <th>Contenido</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+                </tr>
+                <div>
+                    <c:forEach items="${sessionScope.anclados}" var="item">
+                        <form>
+                            <tr>
+                                <td>${item.admor.nombreCompleto}</td>
+                                <td>${item.titulo}</td>
+                                <td>${item.contenido}</td>
+                                <td><button>Eliminar</button></td>
+                                <td><button>Editar</button></td>
+                            </tr>
+                        </form>
+                    </c:forEach>
+                </div>
+                <div>
+                    <c:forEach items="${sessionScope.comunes}" var="item">
+                        <form>
+                            <tr>
+                                <td>${item.usuario.nombreCompleto}</td>
+                                <td>${item.titulo}</td>
+                                <td>${item.contenido}</td>
+                                <td><button>Eliminar</button></td>
+                                <td><button>Editar</button></td>
+                            </tr>
+                        </form>
+                    </c:forEach>
+                </div>
+            </table>
+        </div>
     </body>
 </html>

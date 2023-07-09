@@ -7,11 +7,14 @@ package org.itson.appweb;
 import Clases.FabricaLogica;
 import Clases.ILogica;
 import ObjNegocio.Admor;
+import ObjNegocio.Anclado;
+import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Post;
 import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -40,7 +43,7 @@ public class Administrador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -89,26 +92,19 @@ public class Administrador extends HttpServlet {
 
     private void proccessViewPosts(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Obtén la instancia de ILogica para consultar los posts
         ILogica viewPosts = FabricaLogica.crearInstancia();
-//
-//        // Consulta la lista de posts
-//      
+        List<Anclado> listaAnclados = viewPosts.listaAnclado();
+        // Consulta la lista de posts
+        List<Comun> listaComunes = viewPosts.listaComun();
+        // Construye el contenido HTML para la etiqueta <p>
+        if (listaComunes == null || listaComunes.isEmpty() && listaAnclados == null || listaAnclados.isEmpty()) {
+            request.getSession().setAttribute("mensaje", "No hay posts disponibles");
+        }
+        // Establece el contenido HTML en el atributo de la solicitud (request)
+        request.getSession().setAttribute("anclados", listaAnclados);
+        request.getSession().setAttribute("comunes", listaComunes);
+        getServletContext().getRequestDispatcher("/tablaAdministradores.jsp").forward(request, response);
 
-         HttpSession sesion = request.getSession(false);
-         if (sesion != null && sesion.getAttribute("usuario") != null) {
-             Admor admor = new Admor();
-             Admor admorLista = viewPosts.buscarAdmor(admor);
-
-             // Construye el contenido HTML para la etiqueta <p>
-             if (admorLista == null) {
-                 request.setAttribute("mensaje", "No hay posts disponibles");
-             }
-             // Establece el contenido HTML en el atributo de la solicitud (request)
-             request.setAttribute("admor", admorLista);
-             getServletContext().getRequestDispatcher("/tablaAdministradores.jsp").forward(request, response);
-
-    }
     }
 
     /**

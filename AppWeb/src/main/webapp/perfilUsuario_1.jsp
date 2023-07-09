@@ -37,15 +37,13 @@
         </nav>
         <header>
             <div class="perfil-container">
+                <h1>admor</h1>
                 <img  alt="fotoPerfil" class="img-perfil" src=${sessionScope.id}>
                 <div class="contenedor-cabecera">
                     <div class="cabecera1">
                         <h1>${sessionScope.usuario.nombreCompleto}</h1>
                         <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
-                        <form  action='./Administrador?action=details' method="post">
-                            <button type="submit"><img width="24" height="24" src="paginas/imagenes/3643771_configuration_configure_gear_set_setting_icon.svg"></button>
-                        </form>
-                    </div>
+                                 </div>
                     <div class="cabecera2">
                         <p><b>8</b> publicaciones</p>
                         <p><b>10</b> amigos</p>
