@@ -97,16 +97,18 @@ public class ComunDAO extends BaseDAO<Comun> {
                 } else {
                     Normal user = new Normal();
                     user.setId(new ObjectId(usuario.get("_id").toString()));
-                    //if (new NormalDAO().buscar(user) != null) {
-                    user = new NormalDAO().buscar(user);
-                    comunDoc.setIdComun(doc.getObjectId("_id"));
-                    comunDoc = buscar(comunDoc);
-                    comunDoc.setUsuario(user);
-                    System.out.println(user);
-                    //  }
+                    if (new NormalDAO().buscar(user) != null) {
+                        user = new NormalDAO().buscar(user);
+                        comunDoc.setIdComun(doc.getObjectId("_id"));
+                        comunDoc = buscar(comunDoc);
+                        comunDoc.setUsuario(user);
+                        System.out.println(user);
+                    }
                 }
             }
-            comun.add(comunDoc);
+            if (comunDoc.getIdComun() != null) {
+                comun.add(comunDoc);
+            }
         }
 
         return comun;
