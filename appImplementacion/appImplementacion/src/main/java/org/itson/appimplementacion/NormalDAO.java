@@ -80,7 +80,9 @@ public class NormalDAO extends BaseDAO<Normal> {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
         Document filtro = new Document("_id", entidad.getId());
-        return colleccionNormal.find(filtro).first();
+        Normal resultado=colleccionNormal.find(filtro).first();
+        if(resultado!=null) resultado.setId(entidad.getId());
+        return resultado;
     }
 
     /**

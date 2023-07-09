@@ -4,9 +4,11 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Admor;
 import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
+import ObjNegocio.Usuario;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -16,10 +18,14 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.BsonDocumentCodec;
+import org.bson.types.ObjectId;
 import org.itson.excepciones.DAOException;
 
 /**
@@ -31,7 +37,7 @@ public class ComunDAO extends BaseDAO<Comun> {
     /**
      * Atributo colección
      */
-    private MongoCollection<Comun> collection;
+    private MongoCollection<Document> collection;
     /**
      * Atributo log
      */
@@ -41,7 +47,7 @@ public class ComunDAO extends BaseDAO<Comun> {
      * Constructor de la clase que inicializa el atributo MongoCollection.
      */
     public ComunDAO() {
-        collection = getCollection();
+        collection = getColl();
     }
 
     /**
@@ -53,7 +59,11 @@ public class ComunDAO extends BaseDAO<Comun> {
     @Override
     public Comun guardar(Comun entidad) throws DAOException {
         try {
-            collection.insertOne(entidad);
+            Document doc = new Document("contenido", entidad.getContenido())
+                    .append("fechaHoraCreacion", entidad.getFechaHoraCreacion())
+                    .append("titulo", entidad.getTitulo())
+                    .append("usuario", entidad.getUsuario());
+            collection.insertOne(doc);
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(ComunDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -68,9 +78,34 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public ArrayList<Comun> buscarTodos() {
-        ArrayList<Comun> comunes = new ArrayList<>();
-        comunes = collection.find().into(comunes);
-        return comunes;
+        FindIterable<Document> iterComun = collection.find();
+        ArrayList<Comun> comun = new ArrayList<>();
+        Iterator it = iterComun.iterator();
+        while (it.hasNext()) {
+            Document doc = (Document) it.next();
+            Comun comunDoc = new Comun();
+            Document usuario = doc.get("usuario", Document.class);
+            if (usuario.get("_id") != null) {
+                Admor adm = new Admor();
+                adm.setId(new ObjectId(usuario.get("_id").toString()));
+                if (new AdmorDAO().buscar(adm) != null) {
+                    adm = new AdmorDAO().buscar(adm);
+                    comunDoc.setUsuario(adm);
+                } else {
+                    Normal user = new Normal();
+                    user.setId(new ObjectId(usuario.get("_id").toString()));
+                    if (new NormalDAO().buscar(user) != null) {
+                        user = new NormalDAO().buscar(user);
+                        comunDoc.setUsuario(user);
+                    }
+                }
+            }
+            comunDoc.setIdComun(doc.getObjectId("_id"));
+            comunDoc = buscar(comunDoc);
+            comun.add(comunDoc);
+        }
+
+        return comun;
     }
 
     /**
@@ -78,10 +113,9 @@ public class ComunDAO extends BaseDAO<Comun> {
      *
      * @return collection
      */
-    @Override
-    public MongoCollection<Comun> getCollection() {
+    public MongoCollection<Document> getColl() {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
+        MongoCollection<Document> colleccionComun = db.getCollection("comun");
         return colleccionComun;
     }
 
@@ -97,7 +131,9 @@ public class ComunDAO extends BaseDAO<Comun> {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
         Document filtro = new Document("id", entidad.getIdPost());
-        return colleccionComun.find(filtro).first();
+        Comun comunEncontrado = colleccionComun.find(filtro).first();
+        comunEncontrado.setIdComun(entidad.getIdComun());
+        return comunEncontrado;
     }
 
     /**
@@ -149,5 +185,10 @@ public class ComunDAO extends BaseDAO<Comun> {
     @Override
     public Comun buscarRepetido(Comun entidad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public MongoCollection<Comun> getCollection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -48,6 +48,7 @@ public class Admor extends Usuario {
      * Constructor por defecto.
      */
     public Admor() {
+        super();
     }
 
     /**
@@ -75,7 +76,16 @@ public class Admor extends Usuario {
      */
     @Override
     public String toString() {
-        return "Admor{" + "anclado=" + anclado + '}';
+        return "Admor{"+ "idUsuario=" + getId() + "anclado=" + anclado + "nombreCompleto=" + getNombreCompleto() + ", correo=" + getCorreo()
+                + ", contrasenia=" + getContrasenia()
+                + ", telefono=" + getTelefono()
+                + ", avatar=" + getAvatar()
+                + ", ciudad=" + getCiudad()
+                + ", fechaNacimiento=" + getFechaNacimiento()
+                + ", genero=" + getGenero()
+                + ", comun=" + getComun()
+                + ", municipio=" + getMunicipio()
+                + '}';
     }
 
 }

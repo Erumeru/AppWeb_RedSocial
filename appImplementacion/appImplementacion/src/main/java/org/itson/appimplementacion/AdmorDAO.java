@@ -107,7 +107,9 @@ public class AdmorDAO extends BaseDAO<Admor> {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Admor> colleccionAdmor = db.getCollection(COLECCION, Admor.class);
         Document filtro = new Document("_id", entidad.getId());
-        return colleccionAdmor.find(filtro).first();
+        Admor resultado=colleccionAdmor.find(filtro).first();
+        if(resultado!=null)resultado.setId(entidad.getId());
+        return resultado;
     }
 
     /**

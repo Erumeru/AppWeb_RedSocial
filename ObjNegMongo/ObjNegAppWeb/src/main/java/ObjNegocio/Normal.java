@@ -48,6 +48,7 @@ public class Normal extends Usuario {
      * Constructor por defecto.
      */
     public Normal() {
+        super();
     }
 
     /**
@@ -75,7 +76,17 @@ public class Normal extends Usuario {
      */
     @Override
     public String toString() {
-        return "Normal{" + "comentario=" + comentario + '}';
+        return "Normal{" + "idUsuario=" + getId() + ", comentario=" + comentario + "nombreCompleto=" + getNombreCompleto()
+                + ", correo=" + getCorreo()
+                + ", contrasenia=" + getContrasenia()
+                + ", telefono=" + getTelefono()
+                + ", avatar=" + getAvatar()
+                + ", ciudad=" + getCiudad()
+                + ", fechaNacimiento=" + getFechaNacimiento()
+                + ", genero=" + getGenero()
+                + ", comun=" + getComun()
+                + ", municipio=" + getMunicipio()
+                + '}';
     }
 
 }
