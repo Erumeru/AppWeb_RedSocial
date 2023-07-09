@@ -82,10 +82,10 @@ public class Posts extends HttpServlet {
         Comentario comentarioNuevo = new Comentario();
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
+        comentarioNuevo.setComun(comentarioDTO.getComun());
         // comentarioNuevo.setNormal(comentarioDTO.getNormal());
         // Comentario comentario = new Comentario();
         Normal usuarioNormal = regresarNormal(request, response);
-        comentarioNuevo.setComun(new Comun());
         comentarioNuevo.setNormal(usuarioNormal);
         //comentarioNuevo.setComentarios(new ArrayList<Comentario>());
         //comentarioNuevo.setComentario(new Comentario());
