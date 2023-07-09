@@ -74,14 +74,19 @@ public class Posts extends HttpServlet {
             throws ServletException, IOException {
         //FLUJO DE DATOS (BYTES) A TEXTO FORMATO JSON
         String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        Comun com = new Comun();
+        //  com.setIdComun(new ObjectId(request.getParameter("comun")));
         Gson serializadorJSON = new Gson();
         //CREAR COMENTARIODTO
         ComentariosDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComentariosDTO.class);
         ILogica subirComentario = FabricaLogica.crearInstancia();
         Comentario comentarioNuevo = new Comentario();
+        com.setIdComun(new ObjectId(comentarioDTO.getComun()));
+        Comun comunPubli = subirComentario.buscarComun(com);
+
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
-        comentarioNuevo.setComun(comentarioDTO.getComun());
+        comentarioNuevo.setComun(comunPubli);
         // comentarioNuevo.setNormal(comentarioDTO.getNormal());
         // Comentario comentario = new Comentario();
         Normal usuarioNormal = regresarNormal(request, response);
@@ -95,6 +100,7 @@ public class Posts extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             String salida = serializadorJSON.toJson(comentarioNuevo);
             out.println(salida);
+            out.flush();
         }
         //CREACION COMENTARIO
 

@@ -18,7 +18,7 @@ public class ComentariosDTO {
 
     private Date fechaHora;
     private String contenido;
-    private transient Comun comun;
+    private String comun;
 
     public Date getFechaHora() {
         return fechaHora;
@@ -36,11 +36,11 @@ public class ComentariosDTO {
         this.contenido = contenido;
     }
 
-    public Comun getComun() {
+    public String getComun() {
         return comun;
     }
 
-    public void setComun(Comun comun) {
+    public void setComun(String comun) {
         this.comun = comun;
     }
 

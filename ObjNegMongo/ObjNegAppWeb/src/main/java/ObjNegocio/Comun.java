@@ -3,6 +3,7 @@ Clase Comun.java creada el 10/06/2023.
  */
 package ObjNegocio;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ import org.bson.types.ObjectId;
  *
  * @author kim, carmen, elmer, marcos
  */
-public class Comun extends Post {
+public class Comun extends Post implements Serializable{
 
     /**
      * Atributo que sirve para identificar a un post común en específico.

@@ -27,7 +27,6 @@ window.onload = function () {
         };
         console.table(comentario);
         console.log(JSON.stringify(comentario));
-
         // Enviar datos al servidor con FetchAPI (Formato JSON)
         fetch("http://localhost:8080/AppWeb/Posts?action=subirComentario", {
             method: "POST",
@@ -40,8 +39,8 @@ window.onload = function () {
             subirComentario.disabled = false;
             return response.json();
         }).then(comentario => {
-            console.log(comentario);
-            alert(comentario.contenido);
+        //    console.log(comentario);
+        //  alert(comentario.contenido);
         }).catch(err => {
             subirComentario.disabled = false;
             console.error(err);
