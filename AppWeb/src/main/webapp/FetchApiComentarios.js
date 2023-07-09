@@ -6,16 +6,20 @@
 window.onload = function () {
 
     const guardarComentario = (event) => {
-        const commentsContainer = event.target.parentNode;
-        const contenido = commentsContainer.querySelector('input[type="text"]').value;
-        
-        const commentsContainer2 = document.querySelector('.comments-container');
-        const comun = commentsContainer2.getAttribute('objeto-comun');
-
+        // evento que ejecuta el guaradar 
+        const boton = event.target;
+        // primer parent al form, segundo parent al div 
+        const commentsContainer = boton.parentNode.parentNode;
+        // se accede al input del contenido y se obtiene el valor
+        const contenido = commentsContainer.querySelector('input[type="text"]').value;  // Obtener el valor del comentario especÃ­fico
+        // se usa para traer el objeto comun del div 
+        const comun = commentsContainer.getAttribute('objeto-comun');
+        // se crea la fecha y hora actual
         const fechaHora = new Date();
-
-        const subirComentario = document.getElementById("send-comment");
+        // se obtiene el boton y se deshabilita para evitar doble click
+        const subirComentario = boton;
         subirComentario.disabled = true;
+        // se crea comentario
         const comentario = {
             comun,
             contenido,
@@ -24,7 +28,7 @@ window.onload = function () {
         console.table(comentario);
         console.log(JSON.stringify(comentario));
 
-        // Enviar datos al server con FetchAPI (Formato JSON)
+        // Enviar datos al servidor con FetchAPI (Formato JSON)
         fetch("http://localhost:8080/AppWeb/Posts?action=subirComentario", {
             method: "POST",
             body: JSON.stringify(comentario),
@@ -32,24 +36,22 @@ window.onload = function () {
                 "content-type": "application/json"
             }
         }).then(response => {
-            //subirComentario.disabled = false;
+            // volvemos a habilitar el btn
+            subirComentario.disabled = false;
             return response.json();
         }).then(comentario => {
             console.log(comentario);
             alert(comentario.contenido);
         }).catch(err => {
-            //subirComentario.disabled = false;
-            //Tilin
+            subirComentario.disabled = false;
             console.error(err);
         });
     };
-
+    // obtenemos el btn para enviar el comentario
     const btnGuardar = document.getElementsByClassName("send-comment");
-
+    // por cada publicacion que se comenta hay distinto onclick 
     for (let i = 0; i < btnGuardar.length; i++) {
         let boton = btnGuardar[i];
         boton.onclick = guardarComentario;
     }
-
 };
-
