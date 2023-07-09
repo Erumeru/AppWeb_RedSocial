@@ -16,6 +16,7 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,9 +69,14 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public ArrayList<Comun> buscarTodos() {
-        ArrayList<Comun> comunes = new ArrayList<>();
-        comunes = collection.find().into(comunes);
-        return comunes;
+        FindIterable<Comun> iterComun = collection.find();
+        ArrayList<Comun> comun = new ArrayList<>();
+        Iterator it = iterComun.iterator();
+        while (it.hasNext()) {
+            comun.add((Comun) it.next());
+        }
+
+        return comun;
     }
 
     /**

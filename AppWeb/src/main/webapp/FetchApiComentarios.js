@@ -6,11 +6,18 @@
 window.onload = function () {
 
     const guardarComentario = () => {
+        const commentsContainer = document.querySelector('.comments-container');
+        // Obtener el valor del atributo data-item
+        const comun = commentsContainer.getAttribute('objeto-comun');
+
         const fechaHora = new Date();
+
         const contenido = document.getElementById("textfield-comment").value;
+
         const subirComentario = document.getElementById("send-comment");
         subirComentario.disabled = true;
         const comentario = {
+            comun,
             contenido,
             fechaHora
         };
@@ -36,9 +43,13 @@ window.onload = function () {
             console.error(err);
         });
     };
-    
-    const btnGuardar = document.getElementById("send-comment");
-    btnGuardar.onclick = guardarComentario;
+
+    const btnGuardar = document.getElementsByClassName("send-comment");
+
+    for (let i = 0; btnGuardar.length; i++) {
+        let boton = btnGuardar[i];
+        boton.onclick = guardarComentario;
+    }
 
 };
 

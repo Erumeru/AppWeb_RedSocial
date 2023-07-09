@@ -108,7 +108,9 @@ public class Comun extends Post {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.comentarios);
+        hash = 47 * hash + Objects.hashCode(this.idComun);
+        hash = 47 * hash + Objects.hashCode(this.comentarios);
+        hash = 47 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -130,10 +132,13 @@ public class Comun extends Post {
             return false;
         }
         final Comun other = (Comun) obj;
+        if (!Objects.equals(this.idComun, other.idComun)) {
+            return false;
+        }
         if (!Objects.equals(this.comentarios, other.comentarios)) {
             return false;
         }
-        return true;
+        return Objects.equals(this.usuario, other.usuario);
     }
 
     /**
@@ -161,7 +166,7 @@ public class Comun extends Post {
      */
     @Override
     public String toString() {
-        return "Comun{" + "comentarios=" + comentarios + ", usuario=" + usuario + '}';
+        return "Comun{" + "idComun=" + idComun + ", titulo=" + getTitulo() + ", contenido=" + getContenido() +", comentarios=" + comentarios + ", usuario=" + usuario + '}';
     }
 
 }

@@ -78,7 +78,7 @@
                             <img class="icon" src="paginas/imagenes/icon-message-comment.png" alt="icon-message-comment">
                             <img class="icon" src="paginas/imagenes/icon-share.png" alt="icon-share">
                         </div>
-                        <div class="comments-container">
+                        <div class="comments-container" objeto-comun="${item}">
                             <p class="profile-text">${item.usuario.nombreCompleto}<span class="space-comments">${item.titulo}</span> </p>
                             <details class="comments-container">
                                 <div></div>
@@ -90,7 +90,7 @@
                             </details>
                             <form>
                                 <input type="text" id="textfield-comment" name="textfield-comment" placeholder="Añade un comentario">
-                                <button type="button" class="send-comment"  id="send-comment" src="paginas/imagenes/send.png"></button>
+                                <button type="button" class="send-comment" name="send-comment" id="send-comment" src="paginas/imagenes/send.png"></button>
                             </form>
                         </div>
                         <br>
