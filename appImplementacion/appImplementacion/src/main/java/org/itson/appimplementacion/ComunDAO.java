@@ -12,7 +12,9 @@ import ObjNegocio.Usuario;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
@@ -162,6 +164,33 @@ public class ComunDAO extends BaseDAO<Comun> {
         return lista;
     }
 
+    public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
+        ArrayList<Comentario> comentarios = new ArrayList<>();
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Document> colleccionComun = db.getCollection("comun");
+        MongoCollection<Document> colleccionComen = db.getCollection("comentario");
+        FindIterable<Document> iterComun = colleccionComen.find();
+
+        Document post = colleccionComun.find(Filters.eq("_id", new ObjectId(idPost))).first();
+        Iterator it = iterComun.iterator();
+        while (it.hasNext()) {
+            Document com = (Document) it.next();
+            Document comun = com.get("comun", Document.class);
+            if (comun.get("idComun") != null) {
+                String idcom=comun.get("idComun").toString();
+                
+                if (idcom.equalsIgnoreCase(idPost)) {
+                    System.out.println(com);
+                    System.out.println(com.getObjectId("_id"));
+                    Comentario comentarioAgg = new Comentario();
+                    comentarioAgg.setIdComentario(new ObjectId(com.getObjectId("_id").toString()));
+                    Comentario fin=new ComentarioDAO().buscar(comentarioAgg);
+                    comentarios.add(fin);
+                }
+            }
+        }
+        return comentarios;
+    }
     /**
      * Elimina una entidad de tipo Comun en la base de datos MongoDB.
      *

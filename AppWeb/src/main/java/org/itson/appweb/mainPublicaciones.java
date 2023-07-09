@@ -13,6 +13,7 @@ import ObjNegocio.Post;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,7 @@ public class mainPublicaciones extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -105,13 +106,17 @@ public class mainPublicaciones extends HttpServlet {
     private void proccessViewPosts(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtén la instancia de ILogica para consultar los posts
-        ILogica viewPosts= FabricaLogica.crearInstancia();
+        ILogica viewPosts = FabricaLogica.crearInstancia();
 
         List<Anclado> listaAnclados = viewPosts.listaAnclado();
 
         // Consulta la lista de posts
         List<Comun> listaComunes = viewPosts.listaComun();
 
+        for (Comun com : listaComunes) {
+            ArrayList<Comentario> coments = viewPosts.buscarComentariosPorComun(com.getIdComun().toString());
+            com.setComentarios(coments);
+        }
         // Construye el contenido HTML para la etiqueta <p>
         if (listaComunes == null || listaComunes.isEmpty() && listaAnclados == null || listaAnclados.isEmpty()) {
             request.getSession().setAttribute("mensaje", "No hay posts disponibles");
@@ -122,7 +127,6 @@ public class mainPublicaciones extends HttpServlet {
 
         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -141,7 +145,7 @@ public class mainPublicaciones extends HttpServlet {
             proccessViewPosts(request, response);
             return;
         }
-        
+
     }
 
     /**

@@ -16,7 +16,8 @@ public class NewMain {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        System.out.println(new ComunDAO().buscarTodos());
+       // System.out.println(new ComunDAO().buscarTodos());
+        System.out.println(new ComunDAO().buscarComentariosPorComun("64aa3001242d636eed7358ed"));
     }
     
 }

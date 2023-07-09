@@ -364,4 +364,6 @@ public interface IFachadaDatos {
      */
     public ArrayList<Comun> getComunesDeNormal(Normal normal);
 
+    public ArrayList<Comentario> buscarComentariosPorComun(String idPost);
+
 }

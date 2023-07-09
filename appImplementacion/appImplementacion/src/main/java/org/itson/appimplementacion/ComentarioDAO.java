@@ -92,7 +92,9 @@ public class ComentarioDAO extends BaseDAO<Comentario> {
     public Comentario buscar(Comentario entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Comentario> colleccionComentario = db.getCollection("comentario", Comentario.class);
-        Document filtro = new Document("id", entidad.getIdComentario());
+        Document filtro = new Document("_id", entidad.getIdComentario());
+        Comentario comen=colleccionComentario.find(filtro).first();
+        if(comen!=null) comen.setIdComentario(entidad.getIdComentario());
         return colleccionComentario.find(filtro).first();
     }
 

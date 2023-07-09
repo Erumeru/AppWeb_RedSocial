@@ -106,4 +106,7 @@ public interface ILogica {
     public Admor guardarAdmor(Admor admor) throws DAOException;
 
     public ArrayList<Comun> getComunesDeNormal(Normal normal);
+
+    public ArrayList<Comentario> buscarComentariosPorComun(String idPost);
+
 }

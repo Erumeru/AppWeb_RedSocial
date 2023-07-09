@@ -6,6 +6,7 @@ package Clases;
 
 import ObjNegocio.Post;
 import ObjNegocio.Anclado;
+import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import java.util.ArrayList;
@@ -101,5 +102,10 @@ public class ControlPost {
         datos=FabricaDatos.dameInstancia();
         return datos.getComunesDeNormal(normal);
     }
+
+        public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
+            datos=FabricaDatos.dameInstancia();
+            return datos.buscarComentariosPorComun(idPost);
+        }
 
 }

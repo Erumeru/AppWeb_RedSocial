@@ -644,4 +644,9 @@ public class FachadaDatos implements IFachadaDatos {
         return comunDao.getComunesDeNormal(normal);
     }
 
+    @Override
+    public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
+        ComunDAO comunDao=new ComunDAO();
+        return comunDao.buscarComentariosPorComun(idPost);
+    }
 }

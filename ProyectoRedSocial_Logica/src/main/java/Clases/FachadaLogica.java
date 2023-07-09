@@ -399,4 +399,12 @@ public class FachadaLogica implements ILogica {
         return listaDePost;
     }
 
+    @Override
+        public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
+            ctrlPost =new ControlPost();
+            ArrayList<Comentario> listaDeComentarios=new ArrayList<>();
+            listaDeComentarios=ctrlPost.buscarComentariosPorComun(idPost);
+            return listaDeComentarios;
+        }
+
 }

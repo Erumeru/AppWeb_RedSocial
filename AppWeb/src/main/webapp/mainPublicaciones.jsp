@@ -79,7 +79,6 @@
                             <img class="icon" src="paginas/imagenes/icon-share.png" alt="icon-share">
                         </div>
                         <div class="comments-container" objeto-comun="${item.idComun}">
-                            <a>${item.idComun}</a>
                             <p class="profile-text">${item.usuario.nombreCompleto}<span class="space-comments">${item.titulo}</span> </p>
                             <details class="comments-container">
                                 <div></div>
