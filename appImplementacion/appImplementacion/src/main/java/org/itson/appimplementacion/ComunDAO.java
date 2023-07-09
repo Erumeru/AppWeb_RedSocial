@@ -20,6 +20,7 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -96,6 +97,9 @@ public class ComunDAO extends BaseDAO<Comun> {
                     comunDoc.setIdComun(doc.getObjectId("_id"));
                     comunDoc = buscar(comunDoc);
                     comunDoc.setUsuario(adm);
+                    comunDoc.setTitulo(doc.get("titulo").toString());
+                    comunDoc.setFechaHoraCreacion((Date) doc.get("fechaHoraCreacion"));
+                    comunDoc.setContenido(doc.get("contenido").toString());
                 } else {
                     Normal user = new Normal();
                     user.setId(new ObjectId(usuario.get("_id").toString()));
@@ -105,6 +109,9 @@ public class ComunDAO extends BaseDAO<Comun> {
                         comunDoc = buscar(comunDoc);
                         comunDoc.setUsuario(user);
                         System.out.println(user);
+                        comunDoc.setTitulo(doc.get("titulo").toString());
+                        comunDoc.setFechaHoraCreacion((Date) doc.get("fechaHoraCreacion"));
+                        comunDoc.setContenido(doc.get("contenido").toString());
                     }
                 }
             }
@@ -177,20 +184,21 @@ public class ComunDAO extends BaseDAO<Comun> {
             Document com = (Document) it.next();
             Document comun = com.get("comun", Document.class);
             if (comun.get("idComun") != null) {
-                String idcom=comun.get("idComun").toString();
-                
+                String idcom = comun.get("idComun").toString();
+
                 if (idcom.equalsIgnoreCase(idPost)) {
                     System.out.println(com);
                     System.out.println(com.getObjectId("_id"));
                     Comentario comentarioAgg = new Comentario();
                     comentarioAgg.setIdComentario(new ObjectId(com.getObjectId("_id").toString()));
-                    Comentario fin=new ComentarioDAO().buscar(comentarioAgg);
+                    Comentario fin = new ComentarioDAO().buscar(comentarioAgg);
                     comentarios.add(fin);
                 }
             }
         }
         return comentarios;
     }
+
     /**
      * Elimina una entidad de tipo Comun en la base de datos MongoDB.
      *
