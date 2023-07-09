@@ -15,11 +15,10 @@ import java.util.List;
  * @author hoshi
  */
 public class ComentariosDTO {
-    
+
     private Date fechaHora;
     private String contenido;
-    private Comun comun;
-
+    private transient Comun comun;
 
     public Date getFechaHora() {
         return fechaHora;
@@ -45,6 +44,4 @@ public class ComentariosDTO {
         this.comun = comun;
     }
 
-    
-    
 }

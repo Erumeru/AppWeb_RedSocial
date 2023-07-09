@@ -64,7 +64,6 @@ public class Posts extends HttpServlet {
 //         
 //         getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
 //     }
-
     private Normal regresarNormal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Normal usuario = (Normal) session.getAttribute("usuario");
@@ -93,10 +92,8 @@ public class Posts extends HttpServlet {
 
         response.setContentType("application/json;charset=UTF-8");
 
-        try (PrintWriter out = response.getWriter()) {
-
+        try ( PrintWriter out = response.getWriter()) {
             String salida = serializadorJSON.toJson(comentarioNuevo);
-
             out.println(salida);
         }
         //CREACION COMENTARIO
@@ -119,7 +116,7 @@ public class Posts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     /**
