@@ -22,6 +22,7 @@
                     <th>Nombre de usuario</th>
                     <th>Titulo</th>
                     <th>Contenido</th>
+                    <th>Tipo</th>
                     <th>Eliminar</th>
                     <th>Editar</th>
                 </thead>
@@ -32,6 +33,7 @@
                                 <td>${item.admor.nombreCompleto}</td>
                                 <td>${item.titulo}</td>
                                 <td>${item.contenido}</td>
+                                <td>Anclado</td>
                                 <td><button>Eliminar</button></td>
                                 <td><button>Editar</button></td>
                             </tr>
@@ -45,6 +47,7 @@
                                 <td>${item.usuario.nombreCompleto}</td>
                                 <td>${item.titulo}</td>
                                 <td>${item.contenido}</td>
+                                <td>Común</td>
                                 <td><button>Eliminar</button></td>
                                 <td><button>Editar</button></td>
                             </tr>
