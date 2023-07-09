@@ -78,6 +78,7 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public ArrayList<Comun> buscarTodos() {
+<<<<<<< HEAD
         FindIterable<Document> iterComun = collection.find();
         ArrayList<Comun> comun = new ArrayList<>();
         Iterator it = iterComun.iterator();
@@ -103,6 +104,13 @@ public class ComunDAO extends BaseDAO<Comun> {
             comunDoc.setIdComun(doc.getObjectId("_id"));
             comunDoc = buscar(comunDoc);
             comun.add(comunDoc);
+=======
+        FindIterable<Comun> iterComun = collection.find();
+        ArrayList<Comun> comun = new ArrayList<>();
+        Iterator it = iterComun.iterator();
+        while (it.hasNext()) {
+            comun.add((Comun) it.next());
+>>>>>>> 1dd5d16dac8ceb4f18014b08ce29e169d1739786
         }
 
         return comun;

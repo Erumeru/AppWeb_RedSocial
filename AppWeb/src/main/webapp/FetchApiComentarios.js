@@ -5,12 +5,19 @@
 
 window.onload = function () {
 
-    const guardarComentario = () => {
+    const guardarComentario = (event) => {
+        const commentsContainer = event.target.parentNode;
+        const contenido = commentsContainer.querySelector('input[type="text"]').value;
+        
+        const commentsContainer2 = document.querySelector('.comments-container');
+        const comun = commentsContainer2.getAttribute('objeto-comun');
+
         const fechaHora = new Date();
-        const contenido = document.getElementById("textfield-comment").value;
+
         const subirComentario = document.getElementById("send-comment");
         subirComentario.disabled = true;
         const comentario = {
+            comun,
             contenido,
             fechaHora
         };
@@ -36,9 +43,13 @@ window.onload = function () {
             console.error(err);
         });
     };
-    
-    const btnGuardar = document.getElementById("send-comment");
-    btnGuardar.onclick = guardarComentario;
+
+    const btnGuardar = document.getElementsByClassName("send-comment");
+
+    for (let i = 0; i < btnGuardar.length; i++) {
+        let boton = btnGuardar[i];
+        boton.onclick = guardarComentario;
+    }
 
 };
 
