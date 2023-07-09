@@ -28,7 +28,7 @@
                      <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
-                    <a href="perfilUsuario.jsp"><img class="small-logo" src="imagenes/Logo-Perfil.jpg" alt="foto-perfil"></a>
+                    <a href="perfilUsuario.jsp"><img class="small-logo" src="${sessionScope.id}" alt="foto-perfil"></a>
                     <form  action='./Login?action=logout' method="post">
                         <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
                     </form>
@@ -42,7 +42,7 @@
                 <c:forEach items="${sessionScope.anclados}" var="item">
                     <div class="Post-Container">
                         <div class="profile-container">
-                            <img class="profile-photo" src=${sessionScope.id} alt="profilePic">
+                            <img class="profile-photo" src=${item.usuario.avatar} alt="profilePic">
                             <span class="profile-text">${item.admor.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
                             <input class="menu-icon" type="button">

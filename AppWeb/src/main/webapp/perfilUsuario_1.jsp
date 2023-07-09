@@ -28,7 +28,7 @@
                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
-                    <a href="perfilUsuario.jsp"><img class="small-logo" src=${sessionScope.id} alt="foto-perfil"></a>
+                    <a href="perfilUsuario_1.jsp"><img class="small-logo" src=${sessionScope.id} alt="foto-perfil"></a>
                     <form  action='./Login?action=logout' method="post">
                         <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
                     </form>
@@ -89,6 +89,7 @@
         </main>
 
         <footer>
+            <a href="agregarPublicacion.html">Agregar Publicación</a>
             <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>
     </body>

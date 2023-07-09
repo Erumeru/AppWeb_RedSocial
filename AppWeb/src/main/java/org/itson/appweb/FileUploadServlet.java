@@ -86,7 +86,7 @@ public class FileUploadServlet extends HttpServlet {
                             rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\uploads";
 
                             Admor admAvatar = adm;
-                            admAvatar.setAvatar(rutaFinal + "\\" + id + ".png");
+                            admAvatar.setAvatar("uploads/" + id + ".png");
                             registerNegocio.actualizarAdmor(adm, admAvatar);
                         }
                         if (tipo.equalsIgnoreCase("normal")) {
@@ -99,7 +99,7 @@ public class FileUploadServlet extends HttpServlet {
                             rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\uploads";
 
                             Normal nrmAvatar = normal;
-                            nrmAvatar.setAvatar(rutaFinal + "\\" + id + ".png");
+                            nrmAvatar.setAvatar("uploads/" + id + ".png");
                             registerNegocio.actualizarNormal(normal, nrmAvatar);
                         }
 
