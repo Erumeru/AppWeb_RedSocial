@@ -40,7 +40,7 @@ window.onload = function () {
             return response.json();
         }).then(comentario => {
         //    console.log(comentario);
-        //  alert(comentario.contenido);
+        alert("Comentario Creado, recarga la página!");
         }).catch(err => {
             subirComentario.disabled = false;
             console.error(err);

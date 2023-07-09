@@ -11,7 +11,7 @@ window.onload = function () {
         const titulo = document.getElementById("txt-titulo").value;
         const contenido = document.getElementById("txt-contenido").value;
         const fechaHoraEdicion = new Date();
-        
+
         // se crea comentario
         const comun = {
             fechaHoraCreacion,
@@ -33,16 +33,16 @@ window.onload = function () {
             btnSubir.disabled = false;
             return response.json();
         }).then(comun => {
-        //    console.log(comentario);
-        //  alert(comentario.contenido);
+            //    console.log(comentario);
+            alert("Publicación Creada, salte de la página!");
         }).catch(err => {
             btnSubir.disabled = false;
             console.error(err);
         });
     };
-    
+
     const btnSubir = document.getElementById("btn-subir");
     btnSubir.onclick = guardarComun;
-    
+
 };
 
