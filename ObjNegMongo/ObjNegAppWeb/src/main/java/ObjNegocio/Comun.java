@@ -59,6 +59,7 @@ public class Comun extends Post {
     }
 
     public Comun() {
+        super();
     }
 
     public ObjectId getIdComun() {
@@ -154,6 +155,8 @@ public class Comun extends Post {
         return usuario;
     }
 
+    
+    
     /**
      * Establece el usuario.
      *
@@ -162,7 +165,7 @@ public class Comun extends Post {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
     /**
      * Método usado para escribir y con ello conocer los comentarios.
      *
@@ -170,7 +173,7 @@ public class Comun extends Post {
      */
     @Override
     public String toString() {
-        return "Comun{" + "idComun=" + idComun + ", titulo=" + getTitulo() + ", contenido=" + getContenido() +", comentarios=" + comentarios + ", usuario=" + usuario + '}';
+        return "Comun{" + "idComun=" + idComun + ", titulo=" + getTitulo() + ", contenido=" + getContenido() + ", comentarios=" + comentarios + ", usuario=" + usuario + '}';
     }
 
 }

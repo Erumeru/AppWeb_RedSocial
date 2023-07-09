@@ -78,7 +78,6 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public ArrayList<Comun> buscarTodos() {
-<<<<<<< HEAD
         FindIterable<Document> iterComun = collection.find();
         ArrayList<Comun> comun = new ArrayList<>();
         Iterator it = iterComun.iterator();
@@ -86,31 +85,28 @@ public class ComunDAO extends BaseDAO<Comun> {
             Document doc = (Document) it.next();
             Comun comunDoc = new Comun();
             Document usuario = doc.get("usuario", Document.class);
+
             if (usuario.get("_id") != null) {
                 Admor adm = new Admor();
                 adm.setId(new ObjectId(usuario.get("_id").toString()));
                 if (new AdmorDAO().buscar(adm) != null) {
                     adm = new AdmorDAO().buscar(adm);
+                    comunDoc.setIdComun(doc.getObjectId("_id"));
+                    comunDoc = buscar(comunDoc);
                     comunDoc.setUsuario(adm);
                 } else {
                     Normal user = new Normal();
                     user.setId(new ObjectId(usuario.get("_id").toString()));
-                    if (new NormalDAO().buscar(user) != null) {
-                        user = new NormalDAO().buscar(user);
-                        comunDoc.setUsuario(user);
-                    }
+                    //if (new NormalDAO().buscar(user) != null) {
+                    user = new NormalDAO().buscar(user);
+                    comunDoc.setIdComun(doc.getObjectId("_id"));
+                    comunDoc = buscar(comunDoc);
+                    comunDoc.setUsuario(user);
+                    System.out.println(user);
+                    //  }
                 }
             }
-            comunDoc.setIdComun(doc.getObjectId("_id"));
-            comunDoc = buscar(comunDoc);
             comun.add(comunDoc);
-=======
-        FindIterable<Comun> iterComun = collection.find();
-        ArrayList<Comun> comun = new ArrayList<>();
-        Iterator it = iterComun.iterator();
-        while (it.hasNext()) {
-            comun.add((Comun) it.next());
->>>>>>> 1dd5d16dac8ceb4f18014b08ce29e169d1739786
         }
 
         return comun;
@@ -140,7 +136,10 @@ public class ComunDAO extends BaseDAO<Comun> {
         MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
         Document filtro = new Document("id", entidad.getIdPost());
         Comun comunEncontrado = colleccionComun.find(filtro).first();
-        comunEncontrado.setIdComun(entidad.getIdComun());
+        if (comunEncontrado != null) {
+            comunEncontrado.setIdComun(entidad.getIdComun());
+        }
+
         return comunEncontrado;
     }
 

@@ -60,6 +60,15 @@ public class Normal extends Usuario {
         return comentario;
     }
 
+    public ObjectId getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(ObjectId idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    
     /**
      * Establece los comentarios.
      *
@@ -76,7 +85,7 @@ public class Normal extends Usuario {
      */
     @Override
     public String toString() {
-        return "Normal{" + "idUsuario=" + getId() + ", comentario=" + comentario + "nombreCompleto=" + getNombreCompleto()
+        return "Normal{" + "idUsuario=" + getId() + ", comentario=" + comentario + ", nombreCompleto=" + getNombreCompleto()
                 + ", correo=" + getCorreo()
                 + ", contrasenia=" + getContrasenia()
                 + ", telefono=" + getTelefono()
