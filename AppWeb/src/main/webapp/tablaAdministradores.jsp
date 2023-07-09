@@ -10,21 +10,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="paginas/stylesTablaAdmin.css">
+        <link rel="stylesheet" href="paginas/stylesTablaAdmin.css" />
         <title>Administradores</title>
     </head>
     <body>
-        <a href="perfilUsuario.jsp">x</a>
+        <a href="perfilUsuario.jsp"><-</a>
         <h1>Control de Posts</h1>
         <div>
             <table>
-                <tr>
+                <thead>
                     <th>Nombre de usuario</th>
                     <th>Titulo</th>
                     <th>Contenido</th>
                     <th>Eliminar</th>
                     <th>Editar</th>
-                </tr>
+                </thead>
                 <div>
                     <c:forEach items="${sessionScope.anclados}" var="item">
                         <form>
