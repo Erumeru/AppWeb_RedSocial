@@ -122,6 +122,7 @@ public class Login extends HttpServlet {
                 HttpSession sesion = request.getSession();
                 sesion.setAttribute("usuario", adm);
                 sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
+                sesion.setAttribute("tipo", "admor");
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
@@ -134,6 +135,7 @@ public class Login extends HttpServlet {
             //    sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
                 sesion.setAttribute("usuario", nrm);
                 sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
+                sesion.setAttribute("tipo", "normal");
                 getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
                 return;
             }

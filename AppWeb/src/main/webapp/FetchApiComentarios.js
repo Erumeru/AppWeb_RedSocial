@@ -43,6 +43,7 @@ window.onload = function () {
         alert("Comentario Creado, recarga la página!");
         }).catch(err => {
             subirComentario.disabled = false;
+             swal("¡Hey!", "Eres admin, no puedes comentar", "error")
             console.error(err);
         });
     };

@@ -13,29 +13,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="paginas/stylesMainPublicaciones.css" />
         <script src="FetchApiComentarios.js"></script>
-           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <title>Publicaciones</title>
     </head>
     <body>
         <header>
-         <nav class="nav-arriba">
-            <div class="nav-cont">
-                <img width="103" height="35" src="paginas/imagenes/logo.png" alt="Logo">
-                <div class="cont-input">
-                    <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
-                    <input type="text" placeholder=" Buscar" />
+            <nav class="nav-arriba">
+                <div class="nav-cont">
+                    <img width="103" height="35" src="paginas/imagenes/logo.png" alt="Logo">
+                    <div class="cont-input">
+                        <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
+                        <input type="text" placeholder=" Buscar" />
+                    </div>
+                    <div class="iconos">
+                        <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                            <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
+                        </form>
+                        <a href="perfilUsuario.jsp"><img class="small-logo" src="${sessionScope.id}" alt="foto-perfil"></a>
+                        <form  action='./Login?action=logout' method="post">
+                            <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
+                        </form>
+                    </div>
                 </div>
-                <div class="iconos">
-                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
-                        <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
-                    </form>
-                    <a href="perfilUsuario.jsp"><img class="small-logo" src="${sessionScope.id}" alt="foto-perfil"></a>
-                    <form  action='./Login?action=logout' method="post">
-                        <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+            </nav>
         </header>
         <main>
             <div class="anclados">
@@ -87,7 +87,7 @@
                                     <c:forEach items="${item.comentarios}" var="comentario">
                                     <p class="profile-text" id="profile-text">${comentario.normal.nombreCompleto}<span class="space-comments">${comentario.contenido}</span></p>
                                     <p></p>
-                                    </c:forEach>
+                                </c:forEach>
                             </details>
                             <form>
                                 <input type="text" id="textfield-comment" name="textfield-comment" placeholder="Añade un comentario">

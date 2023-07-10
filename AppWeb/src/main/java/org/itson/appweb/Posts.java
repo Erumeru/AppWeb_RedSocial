@@ -140,9 +140,16 @@ public class Posts extends HttpServlet {
 //        }
         comunNuevo.setContenido("default");
 
-        Normal usuarioNormal = regresarNormal(request, response);
+        HttpSession session = request.getSession();
+        String tipoUsuario = session.getAttribute("tipo").toString();
 
-        comunNuevo.setUsuario(usuarioNormal);
+        if (tipoUsuario.equalsIgnoreCase("normal")) {
+            Normal usuarioNormal = regresarNormal(request, response);
+            comunNuevo.setUsuario(usuarioNormal);
+        } else {
+            Admor usuarioAdmor = regresarAdmor(request, response);
+            comunNuevo.setUsuario(usuarioAdmor);
+        }
 
         comunNuevo = SubirComun.guardarComun(comunNuevo);
 
@@ -230,13 +237,20 @@ public class Posts extends HttpServlet {
         Comentario comentarioNuevo = new Comentario();
         com.setIdComun(new ObjectId(comentarioDTO.getComun()));
         Comun comunPubli = subirComentario.buscarComun(com);
-
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
         comentarioNuevo.setComun(comunPubli);
+        HttpSession session = request.getSession();
+        String tipoUsuario = session.getAttribute("tipo").toString();
 
-        Normal usuarioNormal = regresarNormal(request, response);
-        comentarioNuevo.setNormal(usuarioNormal);
+        if (tipoUsuario.equalsIgnoreCase("normal")) {
+            Normal usuarioNormal = regresarNormal(request, response);
+            comentarioNuevo.setNormal(usuarioNormal);
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+        //Normal usuarioNormal = regresarNormal(request, response);
 
         comentarioNuevo = subirComentario.guardarComentario(comentarioNuevo);
 

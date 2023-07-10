@@ -47,7 +47,8 @@ if(tipo===true){
         }).then(response => {
 // volvemos a habilitar el btn
             btnSubir.disabled = false;
-            return response.json();
+            console.log(response)
+          //  return response.json();
         }).then(comun => {
 //    console.log(comentario);
             swal("¡Éxito!", "Imagen publicada :D", "success").then(() => {
