@@ -12,14 +12,35 @@ window.onload = function () {
         const fechaHoraCreacion = new Date();
         const titulo = document.getElementById("txt-titulo").value;
         const contenido = document.getElementById("imageUpload").files[0];
+        const tipo = document.getElementById("tipo").checked;
         const fechaHoraEdicion = new Date();
         const formData = new FormData(frm);
         formData.append('fechaHoraCreacion', fechaHoraCreacion);
-  //      formData.append('titulo', titulo);
-  //      formData.append('contenido', contenido);
+        //      formData.append('titulo', titulo);
+        //      formData.append('contenido', contenido);
         formData.append('fechaHoraEdicion', fechaHoraCreacion);
         //  const headers = new HttpHeaders({'enctype': 'multipart/form-data'});
         // se crea comentario
+        if (tipo === true) {
+            fetch("http://localhost:8080/AppWeb/Posts?action=subirAnclado", {
+                method: "POST",
+                body: formData,
+                headers: {'enctype': 'multipart/form-data'}
+
+
+            }).then(response => {
+// volvemos a habilitar el btn
+                btnSubir.disabled = false;
+                return response.json();
+            }).then(comun => {
+//    console.log(comentario);
+                alert("Publicación Creada, salte de la página!");
+            }).catch(err => {
+                btnSubir.disabled = false;
+                console.error(err);
+            });
+        } else {
+
 
 //        const comun = {
 //            fechaHoraCreacion,
@@ -30,25 +51,28 @@ window.onload = function () {
 //        console.table(comun);
 //        console.log(JSON.stringify(comun));
 //        
-        // Enviar datos al servidor con FetchAPI (Formato JSON)
-        fetch("http://localhost:8080/AppWeb/Posts?action=subirComun", {
-            method: "POST",
-            body: formData,
-            headers: {'enctype': 'multipart/form-data'}
+            // Enviar datos al servidor con FetchAPI (Formato JSON)
+            fetch("http://localhost:8080/AppWeb/Posts?action=subirComun", {
+                method: "POST",
+                body: formData,
+                headers: {'enctype': 'multipart/form-data'}
 
 
-        }).then(response => {
+            }).then(response => {
 // volvemos a habilitar el btn
-            btnSubir.disabled = false;
-            return response.json();
-        }).then(comun => {
+                btnSubir.disabled = false;
+                return response.json();
+            }).then(comun => {
 //    console.log(comentario);
-            alert("Publicación Creada, salte de la página!");
-        }).catch(err => {
-            btnSubir.disabled = false;
-            console.error(err);
-        });
-    };
+                alert("Publicación Creada, salte de la página!");
+            }).catch(err => {
+                btnSubir.disabled = false;
+                console.error(err);
+            });
+        }
+        ;
+    }
+
     const btnSubir = document.getElementById("btn-subir");
     btnSubir.onclick = guardarComun;
 };

@@ -6,6 +6,8 @@ package org.itson.appweb;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import ObjNegocio.Admor;
+import ObjNegocio.Anclado;
 import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
@@ -161,6 +163,12 @@ public class Posts extends HttpServlet {
         Normal usuario = (Normal) session.getAttribute("usuario");
         return usuario;
     }
+    
+    private Admor regresarAdmor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Admor usuario = (Admor) session.getAttribute("usuario");
+        return usuario;
+    }
 
     private void proccessSubirComentario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -223,7 +231,15 @@ public class Posts extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-
+        if (action != null && action.equalsIgnoreCase("subirAnclado")) {
+            try {
+                //proccessViewPosts(request, response);
+                proccessSubirAnclado(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return;
+        }
         if (action != null && action.equalsIgnoreCase("subirComun")) {
             try {
                 //proccessViewPosts(request, response);
@@ -249,5 +265,111 @@ public class Posts extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void proccessSubirAnclado(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+
+        //     String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        Gson serializadorJSON = new Gson();
+        ComunDTO comunDTO = new ComunDTO();
+        comunDTO.setFechaHoraCreacion(new Date());
+        comunDTO.setFechaHoraEdicion(new Date());
+
+//        String fechaCreacion = request.getParameter("fechaHoraCreacion");
+//        if (fechaCreacion != null) {
+//            try {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                Date fechaHoraCreacion = sdf.parse(fechaCreacion);
+//                comunDTO.setFechaHoraCreacion(fechaHoraCreacion);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    }
+        //   comunDTO.setTitulo(request.getParameter("titulo"));
+        ServletFileUpload fileUp = new ServletFileUpload();
+
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload sfu = new ServletFileUpload(factory);
+
+        String path = getServletContext().getRealPath("/");
+
+        Path pathAbsoluto = Paths.get(path);
+        Path rutaPadre = pathAbsoluto.getParent().getParent();
+        String rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\imgPost";
+
+        ILogica SubirComun = FabricaLogica.crearInstancia();
+        Anclado ancladoNuevo = new Anclado();
+
+        ancladoNuevo.setFechaHoraCreacion(comunDTO.getFechaHoraCreacion());
+        ancladoNuevo.setTitulo("default");
+
+//        try ( FileOutputStream fos = new FileOutputStream("pathname")) {
+//            fos.write(comunDTO.getContenido());
+//            //fos.close(); There is no more need for this line since you had created the instance of "fos" inside the try. And this will automatically close the OutputStream
+//        }
+        ancladoNuevo.setContenido("default");
+
+        Admor usuarioNormal = SubirComun.buscarAdmor(regresarAdmor(request, response));
+
+        ancladoNuevo.setAdmor(SubirComun.buscarAdmor(regresarAdmor(request, response)));
+
+        ancladoNuevo = SubirComun.guardarAnclado(ancladoNuevo);
+
+        String pathConId = ancladoNuevo.getContenido() + ancladoNuevo.getIdAnclador().toString() + ".png";
+        ancladoNuevo.setContenido("imgPost/" + ancladoNuevo.getIdAnclador().toString() + ".png");
+
+        try {
+            List list = sfu.parseRequest(request);
+            for (Object o : list) {
+                FileItem item = (FileItem) o;
+                if (!item.isFormField()) {
+                    File file = new File(item.getName());
+                    try {
+                        String dirPath = "contenido";
+                        String filePath = rutaFinal + File.separator + ancladoNuevo.getIdAnclador().toString() + ".png";
+                        item.write(new File(filePath));
+                    } catch (Exception e) {
+                        throw e;
+                        // e.printStackTrace();
+                    }
+                } else {
+                    String fieldName = item.getFieldName();
+                    String value = item.getString();
+                    if (fieldName.equals("titulo")) {
+                        comunDTO.setTitulo(value);
+                    }
+                }
+            }
+        } catch (FileUploadException e) {
+            throw e;
+            //  e.printStackTrace();
+        }
+        ancladoNuevo.setTitulo(comunDTO.getTitulo());
+        SubirComun.actualizarAnclado(ancladoNuevo, ancladoNuevo);
+//    String fechaEdicion = request.getParameter("fechaHoraEdicion");
+//    if (fechaEdicion
+//
+//    
+//        != null) {
+//            try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            Date fechaHoraEdicion = sdf.parse(fechaEdicion);
+//            comunDTO.setFechaHoraEdicion(fechaHoraEdicion);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+        //   ComunDTO comunDTO = serializadorJSON.fromJson(datosTextoJSON, ComunDTO.class);
+        response.setContentType(
+                "application/json;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            String salida = serializadorJSON.toJson(ancladoNuevo);
+            out.println(salida);
+            out.flush();
+        }
+
+        getServletContext()
+                .getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
+    }
 
 }

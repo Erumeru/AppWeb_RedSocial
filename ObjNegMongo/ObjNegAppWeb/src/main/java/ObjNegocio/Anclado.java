@@ -17,12 +17,13 @@ public class Anclado extends Post {
     /**
      * Representa el anclado que tiene un usuario administrador.
      */
-    private Admor admor;
+    private Usuario admor;
 
     /**
      * Atributo que sirve para identificar a un post anclado en específico.
      */
-    private ObjectId id;
+    private ObjectId idAnclado;
+    
 
     /**
      * Contructor para crear un comentario anclado.
@@ -36,14 +37,23 @@ public class Anclado extends Post {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
     }
 
-    
-    public Anclado(){}
+    public ObjectId getIdAnclador() {
+        return idAnclado;
+    }
+
+    public void setIdAnclado(ObjectId id) {
+        this.idAnclado = id;
+    }
+
+    public Anclado() {
+    }
+
     /**
      * Obtiene el usuario administrador.
      *
      * @return admor usuario.
      */
-    public Admor getAdmor() {
+    public Usuario getAdmor() {
         return admor;
     }
 

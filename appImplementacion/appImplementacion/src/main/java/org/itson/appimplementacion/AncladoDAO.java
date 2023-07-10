@@ -6,16 +6,22 @@ package org.itson.appimplementacion;
 
 import ObjNegocio.Admor;
 import ObjNegocio.Anclado;
+import ObjNegocio.Comun;
+import ObjNegocio.Normal;
 import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.itson.excepciones.DAOException;
 
 /**
@@ -27,7 +33,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     /**
      * Atributo de la colección
      */
-    private MongoCollection<Anclado> collection;
+    private MongoCollection<Document> collection;
     /**
      * Atributo log
      */
@@ -37,7 +43,13 @@ public class AncladoDAO extends BaseDAO<Anclado> {
      * Constructor de la clase que inicializa el atributo MongoCollection.
      */
     public AncladoDAO() {
-        collection = getCollection();
+        collection = getColl();
+    }
+
+    public MongoCollection<Document> getColl() {
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Document> colleccionComun = db.getCollection("Anclado");
+        return colleccionComun;
     }
 
     /**
@@ -49,11 +61,17 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     @Override
     public Anclado guardar(Anclado entidad) throws DAOException {
         try {
-            collection.insertOne(entidad);
+            Document doc = new Document("contenido", entidad.getContenido())
+                    .append("fechaHoraCreacion", entidad.getFechaHoraCreacion())
+                    .append("titulo", entidad.getTitulo())
+                    .append("usuario", entidad.getAdmor());
+            collection.insertOne(doc);
+            ObjectId id = doc.getObjectId("_id");
+            entidad.setIdAnclado(id);
             return entidad;
         } catch (MongoException e) {
-            Logger.getLogger(AncladoDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DAOException("Error al insertar el post anclado");
+            Logger.getLogger(ComunDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DAOException("Error al insertar el usuario comun");
         }
     }
 
@@ -64,8 +82,32 @@ public class AncladoDAO extends BaseDAO<Anclado> {
      */
     @Override
     public ArrayList<Anclado> buscarTodos() {
-        ArrayList<Anclado> anclados = new ArrayList<>();
-        anclados = collection.find().into(anclados);
+        FindIterable<Document> iterComun = collection.find();
+        ArrayList<Anclado> anclados=  new ArrayList<>();
+        Iterator it = iterComun.iterator();
+        while (it.hasNext()) {
+            Document doc = (Document) it.next();
+            Anclado ancladoDoc = new Anclado();
+            Document usuario = doc.get("usuario", Document.class);
+
+            if (usuario.get("_id") != null) {
+                Admor adm = new Admor();
+                adm.setId(new ObjectId(usuario.get("_id").toString()));
+                if (new AdmorDAO().buscar(adm) != null) {
+                    adm = new AdmorDAO().buscar(adm);
+                    ancladoDoc.setIdAnclado(doc.getObjectId("_id"));
+                    ancladoDoc = buscar(ancladoDoc);
+                    ancladoDoc.setAdmor(adm);
+                    ancladoDoc.setTitulo(doc.get("titulo").toString());
+                    ancladoDoc.setFechaHoraCreacion((Date) doc.get("fechaHoraCreacion"));
+                    ancladoDoc.setContenido(doc.get("contenido").toString());
+                }
+            }
+            if (ancladoDoc.getIdAnclador()!= null) {
+                anclados.add(ancladoDoc);
+            }
+        }
+
         return anclados;
     }
 
@@ -92,7 +134,9 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     public Anclado buscar(Anclado entidad) {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Anclado> colleccionAnclado = db.getCollection("anclado", Anclado.class);
-        Document filtro = new Document("id", entidad.getIdPost());
+        Document filtro = new Document("_id", entidad.getIdPost());
+        Anclado anc= colleccionAnclado.find(filtro).first();
+        if(anc!=null)anc.setIdAnclado(entidad.getIdAnclador());
         return colleccionAnclado.find(filtro).first();
     }
 
@@ -117,7 +161,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
      */
     @Override
     public Anclado actualizar(Anclado entidad, Anclado entidad2) {
-        collection.updateOne(eq("_id", entidad.getIdPost()),
+        collection.updateOne(eq("_id", entidad.getIdAnclador()),
                 combine(set("fechahora-creacion", entidad2.getFechaHoraCreacion()),
                         set("titulo", entidad2.getTitulo()),
                         set("contenido", entidad2.getContenido()),
