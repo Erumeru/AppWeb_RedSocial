@@ -10,15 +10,34 @@ import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import com.google.gson.Gson;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bson.types.ObjectId;
 import org.itson.appweb.dtos.ComentariosDTO;
@@ -32,32 +51,109 @@ import org.itson.appweb.dtos.ComunDTO;
 public class Posts extends HttpServlet {
 
     private void proccessSubirComun(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
 
-        String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        //     String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
         Gson serializadorJSON = new Gson();
-        ComunDTO comunDTO = serializadorJSON.fromJson(datosTextoJSON, ComunDTO.class);
+        ComunDTO comunDTO = new ComunDTO();
+        comunDTO.setFechaHoraCreacion(new Date());
+        comunDTO.setFechaHoraEdicion(new Date());
+
+//        String fechaCreacion = request.getParameter("fechaHoraCreacion");
+//        if (fechaCreacion != null) {
+//            try {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                Date fechaHoraCreacion = sdf.parse(fechaCreacion);
+//                comunDTO.setFechaHoraCreacion(fechaHoraCreacion);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    }
+        //   comunDTO.setTitulo(request.getParameter("titulo"));
+        ServletFileUpload fileUp = new ServletFileUpload();
+
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload sfu = new ServletFileUpload(factory);
+
+        String path = getServletContext().getRealPath("/");
+
+        Path pathAbsoluto = Paths.get(path);
+        Path rutaPadre = pathAbsoluto.getParent().getParent();
+        String rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\imgPost";
 
         ILogica SubirComun = FabricaLogica.crearInstancia();
         Comun comunNuevo = new Comun();
 
         comunNuevo.setFechaHoraCreacion(comunDTO.getFechaHoraCreacion());
-        comunNuevo.setTitulo(comunDTO.getTitulo());
-        comunNuevo.setContenido(comunDTO.getContenido());
-        
+        comunNuevo.setTitulo("default");
+
+//        try ( FileOutputStream fos = new FileOutputStream("pathname")) {
+//            fos.write(comunDTO.getContenido());
+//            //fos.close(); There is no more need for this line since you had created the instance of "fos" inside the try. And this will automatically close the OutputStream
+//        }
+        comunNuevo.setContenido("default");
+
         Normal usuarioNormal = regresarNormal(request, response);
+
         comunNuevo.setUsuario(usuarioNormal);
 
-        SubirComun.guardarComun(comunNuevo);
+        comunNuevo = SubirComun.guardarComun(comunNuevo);
 
-        response.setContentType("application/json;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        String pathConId = comunNuevo.getContenido() + comunNuevo.getIdComun().toString() + ".png";
+        comunNuevo.setContenido("imgPost/" + comunNuevo.getIdComun().toString() + ".png");
+
+        try {
+            List list = sfu.parseRequest(request);
+            for (Object o : list) {
+                FileItem item = (FileItem) o;
+                if (!item.isFormField()) {
+                    File file = new File(item.getName());
+                    try {
+                        String dirPath = "contenido";
+                        String filePath = rutaFinal + File.separator + comunNuevo.getIdComun().toString() + ".png";
+                        item.write(new File(filePath));
+                    } catch (Exception e) {
+                        throw e;
+                        // e.printStackTrace();
+                    }
+                } else {
+                    String fieldName = item.getFieldName();
+                    String value = item.getString();
+                    if (fieldName.equals("titulo")) {
+                        comunDTO.setTitulo(value);
+                    }
+                }
+            }
+        } catch (FileUploadException e) {
+            throw e;
+            //  e.printStackTrace();
+        }
+        comunNuevo.setTitulo(comunDTO.getTitulo());
+        SubirComun.actualizarComun(comunNuevo, comunNuevo);
+//    String fechaEdicion = request.getParameter("fechaHoraEdicion");
+//    if (fechaEdicion
+//
+//    
+//        != null) {
+//            try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            Date fechaHoraEdicion = sdf.parse(fechaEdicion);
+//            comunDTO.setFechaHoraEdicion(fechaHoraEdicion);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+        //   ComunDTO comunDTO = serializadorJSON.fromJson(datosTextoJSON, ComunDTO.class);
+        response.setContentType(
+                "application/json;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
             String salida = serializadorJSON.toJson(comunNuevo);
             out.println(salida);
             out.flush();
         }
 
-        getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
+        getServletContext()
+                .getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
     }
 
     private Normal regresarNormal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,7 +171,8 @@ public class Posts extends HttpServlet {
         Gson serializadorJSON = new Gson();
 
         //CREAR COMENTARIODTO
-        ComentariosDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComentariosDTO.class);
+        ComentariosDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComentariosDTO.class
+        );
         ILogica subirComentario = FabricaLogica.crearInstancia();
         Comentario comentarioNuevo = new Comentario();
         com.setIdComun(new ObjectId(comentarioDTO.getComun()));
@@ -92,7 +189,7 @@ public class Posts extends HttpServlet {
 
         response.setContentType("application/json;charset=UTF-8");
 
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             String salida = serializadorJSON.toJson(comentarioNuevo);
             out.println(salida);
             out.flush();
@@ -128,8 +225,12 @@ public class Posts extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action != null && action.equalsIgnoreCase("subirComun")) {
-            //proccessViewPosts(request, response);
-            proccessSubirComun(request, response);
+            try {
+                //proccessViewPosts(request, response);
+                proccessSubirComun(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return;
         }
         if (action != null && action.equalsIgnoreCase("subirComentario")) {

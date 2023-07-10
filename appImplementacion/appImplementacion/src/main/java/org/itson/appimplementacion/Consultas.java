@@ -4,6 +4,11 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Comun;
+import ObjNegocio.Usuario;
+import java.util.Date;
+import org.itson.excepciones.DAOException;
+
 /**
  *
  * @author Marcos Toledo 00000234963
@@ -13,10 +18,12 @@ public class Consultas {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DAOException {
         // TODO code application logic here
         ComunDAO registerNegocio = new ComunDAO();
-        System.out.println(registerNegocio.buscarTodos());
+        //System.out.println(registerNegocio.buscarTodos());
+        Comun com=new Comun(new Usuario(), new Date(), "title", "cont", new Date());
+        registerNegocio.guardar(com);
     }
     
 }

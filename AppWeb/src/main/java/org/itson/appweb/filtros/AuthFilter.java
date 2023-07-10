@@ -30,7 +30,7 @@ public class AuthFilter implements Filter {
 
     }
 
-    private final static String[] pathsPublicos = {"FetchApiComentarios.js","login.jsp", "auth", "register.jsp", "paginas/", "Register", "Login", "mainPublicaciones.jsp", "mainPublicaciones", "FileUploadServlet"};
+    private final static String[] pathsPublicos = {"fetchApiPublicacion.js","Posts","FetchApiComentarios.js","login.jsp", "auth", "register.jsp", "paginas/", "Register", "Login", "mainPublicaciones.jsp", "mainPublicaciones", "FileUploadServlet"};
 
     private boolean isPathPrivado(String path) {
         for (String pathPublico : AuthFilter.pathsPublicos) {

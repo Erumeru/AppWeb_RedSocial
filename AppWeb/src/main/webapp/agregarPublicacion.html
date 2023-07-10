@@ -17,10 +17,9 @@
                     src="https://www.elsotano.com/imagenes_grandes/7500588/750058800624.JPG"
                     />
                 <p class="hola">!Agrega una publicación a tu perfil!</p>
-                <form>
-                    <input id="txt-titulo" type="text" class="corrNum" name="txt-titulo" placeholder="Ingrese un titulo" />
-                    <input id="txt-contenido" type="text" class="corrNum" name="txt-titulo" placeholder="Ingrese un contenido" />
-                    <input id="imageUpload" type="file" class="corrNum"/>
+                <form id="frm" enctype="multipart/form-data">
+                    <input id="txt-titulo" type="text" class="corrNum" name="titulo" placeholder="Ingrese un titulo" />
+                    <input id="imageUpload" type="file" class="corrNum" name="contenido" accept="image/png"/>
                     <button id="btn-subir" class="inputBtn" type="button">Guardar</button>
                 </form>
                 <div class="division"></div>

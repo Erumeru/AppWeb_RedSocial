@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class ComunDTO {
     private String titulo;
-    private String contenido;
+    private byte[] contenido;
     private Date fechaHoraCreacion;
     private Date fechaHoraEdicion;
 
@@ -32,11 +32,11 @@ public class ComunDTO {
         this.titulo = titulo;
     }
 
-    public String getContenido() {
+    public byte[] getContenido() {
         return contenido;
     }
 
-    public void setContenido(String contenido) {
+    public void setContenido(byte[] contenido) {
         this.contenido = contenido;
     }
 

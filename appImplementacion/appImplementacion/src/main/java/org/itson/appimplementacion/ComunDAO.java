@@ -66,7 +66,10 @@ public class ComunDAO extends BaseDAO<Comun> {
                     .append("fechaHoraCreacion", entidad.getFechaHoraCreacion())
                     .append("titulo", entidad.getTitulo())
                     .append("usuario", entidad.getUsuario());
+           
             collection.insertOne(doc);
+             ObjectId id=doc.getObjectId("_id");
+            entidad.setIdComun(id);
             return entidad;
         } catch (MongoException e) {
             Logger.getLogger(ComunDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -220,7 +223,7 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public Comun actualizar(Comun entidad, Comun entidad2) {
-        collection.updateOne(eq("_id", entidad.getIdPost()),
+        collection.updateOne(eq("_id", entidad.getIdComun()),
                 combine(set("fechahora-creacion", entidad2.getFechaHoraCreacion()),
                         set("titulo", entidad2.getTitulo()),
                         set("contenido", entidad2.getContenido()),
