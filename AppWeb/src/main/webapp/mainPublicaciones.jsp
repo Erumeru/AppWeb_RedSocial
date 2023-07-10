@@ -29,7 +29,18 @@
                         <form  action='./mainPublicaciones?action=viewPosts' method="post">
                             <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                         </form>
-                        <a href="perfilUsuario.jsp"><img class="small-logo" src="${sessionScope.id}" alt="foto-perfil"></a>
+                        <c:choose>
+                            <c:when test="${sessionScope.tipo == 'normal'}">
+                                <c:set var="jspDestino" value="perfilUsuario_1.jsp" />
+                            </c:when>
+                            <c:when test="${sessionScope.tipo == 'admor'}">
+                                <c:set var="jspDestino" value="perfilUsuario.jsp" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="jspDestino" value="errorInterno.jsp" />
+                            </c:otherwise>
+                        </c:choose>
+                        <a href="${jspDestino}"><img class="small-logo" src="${sessionScope.id}" alt="foto-perfil"></a>
                         <form  action='./Login?action=logout' method="post">
                             <button type="submit"><img width="24" height="24" src="paginas/imagenes/1564505_close_delete_exit_remove_icon.svg"></button>
                         </form>

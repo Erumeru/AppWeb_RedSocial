@@ -43,7 +43,7 @@
                     <div class="cabecera1">
                         <h1>${sessionScope.usuario.nombreCompleto}</h1>
                         <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
-                                 </div>
+                    </div>
                     <div class="cabecera2">
                         <p><b>8</b> publicaciones</p>
                         <p><b>10</b> amigos</p>
@@ -75,11 +75,11 @@
                     PUBLICACIONES
                 </a>
                 <div class="container-publicaciones">
-                <c:forEach items="${sessionScope.listaPostsComun}" var="item">
-                    <div class="content-container">
+                    <c:forEach items="${sessionScope.listaPostsComun}" var="item">
+                        <div class="content-container">
                             <img class="fotoContenido" src=${item.contenido} alt="post">
                         </div>
-                </c:forEach>
+                    </c:forEach>
                 </div>
             </div>
             <div class="mainCont_grid">
@@ -87,7 +87,6 @@
         </main>
 
         <footer>
-            <a href="agregarPublicacion.html">Agregar Publicación</a>
             <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>
     </body>
