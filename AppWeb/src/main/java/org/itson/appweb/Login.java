@@ -121,8 +121,8 @@ public class Login extends HttpServlet {
             if (adm.getCorreo() != null && adm.getContrasenia() != null
                     && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
-           //     String di=adm.getId().toString();
-           //     String dasd=adm.getIdAdmor().toString();
+                //     String di=adm.getId().toString();
+                //     String dasd=adm.getIdAdmor().toString();
                 ArrayList<Comun> comunesYAncladosDeAdmor = registerNegocio.getComunesYAncDeAdmor(adm);
                 sesion.setAttribute("usuario", adm);
                 sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
@@ -147,6 +147,7 @@ public class Login extends HttpServlet {
                 return;
             }
         }
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 
     }
 
