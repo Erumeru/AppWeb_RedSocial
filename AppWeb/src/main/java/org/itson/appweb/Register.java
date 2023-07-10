@@ -6,6 +6,8 @@ package org.itson.appweb;
 
 import Clases.*;
 import ObjNegocio.Admor;
+import ObjNegocio.Estado;
+import ObjNegocio.Municipio;
 import ObjNegocio.Normal;
 import ObjNegocio.Usuario;
 import java.io.IOException;
@@ -127,7 +129,7 @@ public class Register extends HttpServlet {
                 || fechaNacimiento.isBlank()
                 || fechaNacimiento.trim().length() > 10
                 || sexo.isBlank()
-                || sexo==null) {
+                || sexo == null) {
             String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
@@ -138,7 +140,7 @@ public class Register extends HttpServlet {
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
-        
+
         //Objeto usuario
         ILogica registerNegocio = FabricaLogica.crearInstancia();
 
@@ -149,25 +151,24 @@ public class Register extends HttpServlet {
         //Validaciones fecha
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate fechaNacimientoTrans = LocalDate.parse(fechaNacimiento, formatter);
-        
-        if(fechaNacimientoTrans.isAfter(fechaActualLocal)){
+
+        if (fechaNacimientoTrans.isAfter(fechaActualLocal)) {
             String mensaje = "Esa fecha aún no existe!";
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
-        
+
         Period periodo = Period.between(fechaNacimientoTrans, fechaActualLocal);
         int edad = periodo.getYears();
-        
-        if(edad < 18){
+
+        if (edad < 18) {
             String mensaje = "Lo sentimos, no tiene edad adecuada para una cuenta ):";
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
-        
-        
+
         try {
             date = pasar.parse(fechaNacimiento);
         } catch (ParseException ex) {
@@ -182,6 +183,39 @@ public class Register extends HttpServlet {
                 admin.setContrasenia(contra);
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
+
+                Municipio municipio = new Municipio();
+                Estado estado = new Estado();
+
+                if ("cd_obregon".equals(admin.getCiudad())) {
+                    estado.setNombre("Sonora");
+                    municipio.setNombre("Cajeme");
+                } else if ("hermosillo".equals(admin.getCiudad())) {
+                    estado.setNombre("Sonora");
+                    municipio.setNombre("Hermosillo");
+                } else if ("culiacan".equals(admin.getCiudad())) {
+                    estado.setNombre("Sinaloa");
+                    municipio.setNombre("Culiacan");
+                } else if ("mazatlan".equals(admin.getCiudad())) {
+                    estado.setNombre("Sinaloa");
+                    municipio.setNombre("Mazatlan");
+                }
+
+                municipio.setEstado(estado);
+                admin.setMunicipio(municipio);
+
+                Estado estadoExistente = registerNegocio.buscarEstado(estado);
+
+                if (estadoExistente == null) {
+                    registerNegocio.guardarEstado(estado);
+                }
+
+                Municipio municipioExistente = registerNegocio.buscarMunicipio(municipio);
+
+                if (municipioExistente == null) {
+                    registerNegocio.guardarMunicipio(municipio);
+                }
+
                 admin.setFechaNacimiento(date);
                 admin.setGenero(sexo);
                 Admor usuarioCreado = registerNegocio.guardarAdmor(admin);
@@ -203,7 +237,41 @@ public class Register extends HttpServlet {
             normalUser.setNombreCompleto(nombre);
             normalUser.setContrasenia(contra);
             normalUser.setTelefono(telefono);
+
             normalUser.setCiudad(ciudad);
+
+            Municipio municipio = new Municipio();
+            Estado estado = new Estado();
+
+            if ("cd_obregon".equals(normalUser.getCiudad())) {
+                estado.setNombre("Sonora");
+                municipio.setNombre("Cajeme");
+            } else if ("hermosillo".equals(normalUser.getCiudad())) {
+                estado.setNombre("Sonora");
+                municipio.setNombre("Hermosillo");
+            } else if ("culiacan".equals(normalUser.getCiudad())) {
+                estado.setNombre("Sinaloa");
+                municipio.setNombre("Culiacan");
+            } else if ("mazatlan".equals(normalUser.getCiudad())) {
+                estado.setNombre("Sinaloa");
+                municipio.setNombre("Mazatlan");
+            }
+
+            municipio.setEstado(estado);
+            normalUser.setMunicipio(municipio);
+
+            Estado estadoExistente = registerNegocio.buscarEstado(estado);
+
+            if (estadoExistente == null) {
+                registerNegocio.guardarEstado(estado);
+            }
+
+            Municipio municipioExistente = registerNegocio.buscarMunicipio(municipio);
+
+            if (municipioExistente == null) {
+                registerNegocio.guardarMunicipio(municipio);
+            }
+
             normalUser.setFechaNacimiento(date);
             normalUser.setGenero(sexo);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);

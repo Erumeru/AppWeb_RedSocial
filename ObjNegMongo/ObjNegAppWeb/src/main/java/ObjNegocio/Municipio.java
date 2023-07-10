@@ -17,7 +17,7 @@ public class Municipio {
     /**
      * Atributo que sirve para identificar a un municipio en específico.
      */
-    private ObjectId id;
+    private ObjectId idMunicipio;
 
     /**
      * Atributo que indica el nombre del municipio.
@@ -25,12 +25,12 @@ public class Municipio {
     private String nombre;
 
     /**
-     * Obtiene el id del municipio.
+     * Obtiene el idMunicipio del municipio.
      *
-     * @return el id del usuario.
+     * @return el idMunicipio del usuario.
      */
     public ObjectId getId() {
-        return id;
+        return idMunicipio;
     }
 
     /**
@@ -40,7 +40,7 @@ public class Municipio {
      * @param nombre del municipio.
      */
     public Municipio(ObjectId id, String nombre) {
-        this.id = id;
+        this.idMunicipio = id;
         this.nombre = nombre;
     }
 
@@ -69,23 +69,23 @@ public class Municipio {
     }
 
     /**
-     * Establece el id del municipio
+     * Establece el idMunicipio del municipio
      *
      * @param id del municipio.
      */
     public void setId(ObjectId id) {
-        this.id = id;
+        this.idMunicipio = id;
     }
 
     /**
      * Para obtener el hash del municipio.
      *
-     * @return número hash del nombre y id.
+     * @return número hash del nombre y idMunicipio.
      */
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.idMunicipio);
         hash = 89 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
@@ -111,7 +111,7 @@ public class Municipio {
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.idMunicipio, other.idMunicipio);
     }
 
     /**
@@ -126,6 +126,29 @@ public class Municipio {
      */
     private Estado estado;
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Municipio(ObjectId idMunicipio, String nombre, List<Usuario> usuarios, Estado estado) {
+        this.idMunicipio = idMunicipio;
+        this.nombre = nombre;
+        this.usuarios = usuarios;
+        this.estado = estado;
+    }
+
     /**
      * Método usado para escribir y con ello conocer los atributos de un
      * municipio.
@@ -134,7 +157,7 @@ public class Municipio {
      */
     @Override
     public String toString() {
-        return "Municipio{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "Municipio{" + "idMunicipio=" + idMunicipio + ", nombre=" + nombre + ", usuarios=" + usuarios + ", estado=" + estado + '}';
     }
 
 }
