@@ -89,10 +89,10 @@ public class AncladoDAO extends BaseDAO<Anclado> {
             Document doc = (Document) it.next();
             Anclado ancladoDoc = new Anclado();
             Document usuario=new Document();
-            if (doc.get("admor", Document.class) != null) {
-                usuario = doc.get("admor", Document.class);
+            if (doc.get("usuario", Document.class) != null) {
+                usuario = doc.get("usuario", Document.class);
             }
-            if (usuario.get("idAdmor") != null) {
+            if (usuario.get("_id") != null) {
                 Admor adm = new Admor();
                 adm.setId(new ObjectId(usuario.get("_id").toString()));
                 if (new AdmorDAO().buscar(adm) != null) {
@@ -121,7 +121,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     @Override
     public MongoCollection<Anclado> getCollection() {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Anclado> colleccionAnclado = db.getCollection("anclado", Anclado.class);
+        MongoCollection<Anclado> colleccionAnclado = db.getCollection("Anclado", Anclado.class);
         return colleccionAnclado;
     }
 
@@ -135,13 +135,13 @@ public class AncladoDAO extends BaseDAO<Anclado> {
     @Override
     public Anclado buscar(Anclado entidad) {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Anclado> colleccionAnclado = db.getCollection("anclado", Anclado.class);
-        Document filtro = new Document("_id", entidad.getIdPost());
+        MongoCollection<Anclado> colleccionAnclado = db.getCollection("Anclado", Anclado.class);
+        Document filtro = new Document("_id", entidad.getIdAnclador());
         Anclado anc = colleccionAnclado.find(filtro).first();
         if (anc != null) {
             anc.setIdAnclado(entidad.getIdAnclador());
         }
-        return colleccionAnclado.find(filtro).first();
+        return anc;
     }
 
     /**

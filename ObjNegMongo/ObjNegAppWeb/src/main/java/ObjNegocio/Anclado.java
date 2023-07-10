@@ -46,6 +46,7 @@ public class Anclado extends Post {
     }
 
     public Anclado() {
+        super();
     }
 
     /**
@@ -77,4 +78,11 @@ public class Anclado extends Post {
         super(fechaHoraCreacion, titulo, contenido);
     }
 
+    @Override
+    public String toString() {
+        return "Anclado{" + "admor=" + admor + ", idAnclado=" + idAnclado + '}';
+    }
+
+    
+    
 }

@@ -27,7 +27,7 @@ public class Consultas {
 //        registerNegocio.guardarNormal(normal);
 //        registerNegocio.guardarComun(comun);
         
-        System.out.println(registerNegocio.listaComun());
+        System.out.println(registerNegocio.listaAnclado());
     }
     
 }

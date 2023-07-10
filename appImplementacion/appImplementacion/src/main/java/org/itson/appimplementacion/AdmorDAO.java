@@ -105,7 +105,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
     @Override
     public Admor buscar(Admor entidad) {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Admor> colleccionAdmor = db.getCollection(COLECCION, Admor.class);
+        MongoCollection<Admor> colleccionAdmor = db.getCollection("admor", Admor.class);
         Document filtro = new Document("_id", entidad.getId());
         Admor resultado=colleccionAdmor.find(filtro).first();
         if(resultado!=null)resultado.setId(entidad.getId());

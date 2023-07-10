@@ -4,6 +4,9 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Anclado;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author eruma
@@ -17,7 +20,9 @@ public class NewMain {
         // TODO code application logic here
         
        // System.out.println(new ComunDAO().buscarTodos());
-        System.out.println(new ComunDAO().buscarComentariosPorComun("64aa3001242d636eed7358ed"));
+    //   Anclado ac=new Anclado();
+      // ac.setIdAnclado(new ObjectId("64ab62994ba5ba22abcaa87e"));
+        System.out.println(new AncladoDAO().buscarTodos());
     }
     
 }

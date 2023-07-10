@@ -86,7 +86,7 @@ public class Admor extends Usuario {
      */
     @Override
     public String toString() {
-        return "Admor{"+ "idUsuario=" + getId() + "anclado=" + anclado + ", nombreCompleto=" + getNombreCompleto() + ", correo=" + getCorreo()
+        return "Admor{"+ "idUsuario=" + getId() + ", anclado=" + anclado + ", nombreCompleto=" + getNombreCompleto() + ", correo=" + getCorreo()
                 + ", contrasenia=" + getContrasenia()
                 + ", telefono=" + getTelefono()
                 + ", avatar=" + getAvatar()

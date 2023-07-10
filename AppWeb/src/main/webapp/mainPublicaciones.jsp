@@ -42,7 +42,7 @@
                 <c:forEach items="${sessionScope.anclados}" var="item">
                     <div class="Post-Container">
                         <div class="profile-container">
-                            <img class="profile-photo" src=${item.usuario.avatar} alt="profilePic">
+                            <img class="profile-photo" src=${item.admor.avatar} alt="profilePic">
                             <span class="profile-text">${item.admor.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
                             <input class="menu-icon" type="button">
