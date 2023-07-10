@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="paginas/stylesMainPublicaciones.css" />
         <script src="FetchApiComentarios.js"></script>
+           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <title>Publicaciones</title>
     </head>
     <body>
