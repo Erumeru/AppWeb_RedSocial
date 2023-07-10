@@ -39,7 +39,7 @@ window.onload = function () {
                 console.clear();
                 btnSubir.disabled = false;
                 swal("¡Hey!", "No eres admin, no puedes crear un post anclado!", "error")
-            //    console.error(err);
+                //    console.error(err);
             });
         } else {
             fetch("http://localhost:8080/AppWeb/Posts?action=subirComun", {
@@ -62,8 +62,8 @@ window.onload = function () {
             }).catch(err => {
                 console.clear();
                 btnSubir.disabled = false;
-          //      console.error("Un error ocurrió al crear la publicación" + err.message);
-                
+                //      console.error("Un error ocurrió al crear la publicación" + err.message);
+
 
             });
         }

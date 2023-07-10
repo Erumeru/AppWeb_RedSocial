@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="paginas/stylesPerfil.css" />
+        <link rel="icon" href="star.ico" type="image/x-icon">
         <title>Perfil Admor</title>
     </head>
 
@@ -24,7 +25,7 @@
                     <input type="text" placeholder=" Buscar" />
                 </div>
                 <div class="iconos">
-                     <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                    <form  action='./mainPublicaciones?action=viewPosts' method="post">
                         <button type="submit"><img src="paginas/imagenes/8666691_home_icon.svg"></button>
                     </form>
                     <a class="refencia-img" href="perfilUsuario.jsp"><img class="small-logo" src=${sessionScope.id} alt="foto-perfil"></a>
@@ -37,7 +38,7 @@
         <header>
             <div class="perfil-container">
                 <img class="img-perfil" src=${sessionScope.id}>
-                 <div class="contenedor-cabecera">
+                <div class="contenedor-cabecera">
                     <div class="cabecera1">
                         <h1>${sessionScope.usuario.nombreCompleto}</h1>
                         <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
@@ -87,7 +88,7 @@
                 </div>
             </c:forEach>
         </main>
-                                
+
         <footer>
             <%@include file="WEB-INF/jspf/footer.jspf" %>
         </footer>

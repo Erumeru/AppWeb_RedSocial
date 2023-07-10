@@ -6,23 +6,17 @@ package org.itson.appweb;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
-import ObjNegocio.Admor;
 import ObjNegocio.Anclado;
-import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
-import ObjNegocio.Post;
-import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 /**
  *

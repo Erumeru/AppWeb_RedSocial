@@ -24,8 +24,8 @@ window.onload = function () {
             contenido,
             fechaHora
         };
-    //    console.table(comentario);
-     //   console.log(JSON.stringify(comentario));
+        //    console.table(comentario);
+        //   console.log(JSON.stringify(comentario));
         // Enviar datos al servidor con FetchAPI (Formato JSON)
         fetch("http://localhost:8080/AppWeb/Posts?action=subirComentario", {
             method: "POST",
@@ -38,9 +38,9 @@ window.onload = function () {
             subirComentario.disabled = false;
             return response.json();
         }).then(comentario => {
-        //    console.log(comentario);
-    //    swal("¡Enhorabuena!", "Comentario creado", "success");
-        window.location.reload();
+            //    console.log(comentario);
+            //    swal("¡Enhorabuena!", "Comentario creado", "success");
+            window.location.reload();
         }).catch(err => {
             subirComentario.disabled = false;
 //            Swal.fire({

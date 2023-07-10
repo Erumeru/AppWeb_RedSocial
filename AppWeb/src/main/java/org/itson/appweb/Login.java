@@ -9,7 +9,6 @@ import Clases.ILogica;
 import ObjNegocio.Admor;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
-import ObjNegocio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

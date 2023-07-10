@@ -11,8 +11,6 @@ import ObjNegocio.Anclado;
 import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
-import ObjNegocio.Post;
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.io.IOUtils;
-import org.itson.appweb.dtos.ComentariosDTO;
 
 /**
  *

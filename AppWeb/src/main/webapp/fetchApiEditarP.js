@@ -7,11 +7,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-function redirectEditar(id){
-    let encryptKey='yorch';
-    let encryptId=CryptoJS.AES.encrypt(id, encryptKey).toString();
-    let url='editarPublicacion.html?mit0t3rO='+encodeURIComponent(encryptId);
-    window.location.href=url;
+function redirectEditar(id) {
+    let encryptKey = 'yorch';
+    let encryptId = CryptoJS.AES.encrypt(id, encryptKey).toString();
+    let url = 'editarPublicacion.html?mit0t3rO=' + encodeURIComponent(encryptId);
+    window.location.href = url;
 }
 function editarPublicacion() {
     Swal.fire({
@@ -24,12 +24,12 @@ function editarPublicacion() {
         confirmButtonText: 'Si, modificar'
     }).then((result) => {
         if (result.isConfirmed) {
-            let idEncrypt=decodeURIComponent(window.location.search.substring(1).split('=')[1]);
-            let llave='yorch';
-            let id=CryptoJS.AES.decrypt(idEncrypt,llave).toString(CryptoJS.enc.Utf8);
+            let idEncrypt = decodeURIComponent(window.location.search.substring(1).split('=')[1]);
+            let llave = 'yorch';
+            let id = CryptoJS.AES.decrypt(idEncrypt, llave).toString(CryptoJS.enc.Utf8);
             const titulo = document.querySelector("#txt-titulo").value;
             const btnEditar = document.querySelector("#btn-editar");
-            const publiEdit= {
+            const publiEdit = {
                 id,
                 titulo
             };

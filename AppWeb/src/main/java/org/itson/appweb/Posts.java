@@ -12,19 +12,11 @@ import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import com.google.gson.Gson;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +27,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -53,8 +44,7 @@ import org.itson.appweb.dtos.ComunEliminarDTO;
  */
 @WebServlet(name = "Posts", urlPatterns = {"/Posts"})
 public class Posts extends HttpServlet {
-    
-    
+
     private void proccessEditarComun(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
@@ -70,10 +60,9 @@ public class Posts extends HttpServlet {
         comunNuevo = actualizarComun.buscarComun(comunNuevo);
         comunNuevo.setFechaHoraEdicion(new Date());
         comunNuevo.setTitulo(comunDTO.getTitulo());
-        
+
         //if (tipoUsuario.equalsIgnoreCase("admor")) {
-            actualizarComun.actualizarEditado(comunNuevo, comunNuevo);
-        
+        actualizarComun.actualizarEditado(comunNuevo, comunNuevo);
 
         response.setContentType(
                 "application/json;charset=UTF-8");

@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="paginas/stylesMainPublicaciones.css" />
         <script src="FetchApiComentarios.js"></script>
         <script src="fetchApiEditarP.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+        <link rel="icon" href="star.ico" type="image/x-icon">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
         <title>Publicaciones</title>
     </head>
@@ -59,7 +60,7 @@
                             <img class="profile-photo" src=${item.admor.avatar} alt="profilePic">
                             <span class="profile-text">${item.admor.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
-                            
+
                         </div>
                         <div class="content-container">
                             <img class="fotoContenido" src=${item.contenido} alt="post"> 
@@ -81,7 +82,7 @@
                             <img class="profile-photo" src=${item.usuario.avatar} alt="profilePic">
                             <span class="profile-text">${item.usuario.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
-                               <c:choose>
+                            <c:choose>
                                 <c:when test="${sessionScope.usuarioComparacion == item.usuario.id}">
                                     <button 
                                         onclick="redirectEditar('${item.idComun}')" 

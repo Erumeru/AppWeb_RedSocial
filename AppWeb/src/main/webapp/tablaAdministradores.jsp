@@ -12,13 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="paginas/stylesTablaAdmin.css" />
         <script src="fetchApiTablaAdmin.js"></script>
+        <link rel="icon" href="star.ico" type="image/x-icon">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
         <title>Administradores</title>
     </head>
     <body>
-       <button onclick="window.location.href='perfilUsuario.jsp';" style="background-color: transparent;  border-color: transparent;">
-  <img src="paginas/imagenes/flecha-volver.png" alt="flecha-volver">
-</button>
+        <button onclick="window.location.href = 'perfilUsuario.jsp';" style="background-color: transparent;  border-color: transparent;">
+            <img src="paginas/imagenes/flecha-volver.png" alt="flecha-volver">
+        </button>
 
         <h1>Control de Posts</h1>
         <div>
