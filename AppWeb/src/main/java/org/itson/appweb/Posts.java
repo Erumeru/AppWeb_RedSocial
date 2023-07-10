@@ -44,6 +44,7 @@ import org.apache.commons.io.IOUtils;
 import org.bson.types.ObjectId;
 import org.itson.appweb.dtos.ComentariosDTO;
 import org.itson.appweb.dtos.ComunDTO;
+import org.itson.appweb.dtos.ComunEditarDTO;
 import org.itson.appweb.dtos.ComunEliminarDTO;
 
 /**
@@ -52,6 +53,35 @@ import org.itson.appweb.dtos.ComunEliminarDTO;
  */
 @WebServlet(name = "Posts", urlPatterns = {"/Posts"})
 public class Posts extends HttpServlet {
+    
+    
+    private void proccessEditarComun(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+        String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        Gson serializadorJSON = new Gson();
+        String parametroId = request.getParameter("id");
+
+        //CREAR COMENTARIODTO
+        ComunEditarDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComunEditarDTO.class);
+
+        ILogica actualizarComun = FabricaLogica.crearInstancia();
+        Comun comunNuevo = new Comun();
+        comunNuevo.setIdComun(new ObjectId(comentarioDTO.getId()));
+        comunNuevo = actualizarComun.buscarComun(comunNuevo);
+        comunNuevo.setTitulo(comentarioDTO.getTitulo());
+        
+        //if (tipoUsuario.equalsIgnoreCase("admor")) {
+            actualizarComun.actualizarComun(comunNuevo, comunNuevo);
+        
+
+        response.setContentType(
+                "application/json;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            String salida = serializadorJSON.toJson(comunNuevo);
+            out.println(salida);
+            out.flush();
+        }
+    }
 
     private void proccessEliminarComun(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {

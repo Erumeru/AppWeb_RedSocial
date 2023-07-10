@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="paginas/stylesMainPublicaciones.css" />
         <script src="FetchApiComentarios.js"></script>
+        <script src="fetchApiEditarP.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <title>Publicaciones</title>
     </head>
@@ -57,7 +58,7 @@
                             <img class="profile-photo" src=${item.admor.avatar} alt="profilePic">
                             <span class="profile-text">${item.admor.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
-                            <input class="menu-icon" type="button">
+                            
                         </div>
                         <div class="content-container">
                             <img class="fotoContenido" src=${item.contenido} alt="post"> 
@@ -79,7 +80,13 @@
                             <img class="profile-photo" src=${item.usuario.avatar} alt="profilePic">
                             <span class="profile-text">${item.usuario.nombreCompleto}</span>
                             <span class="profile-last-conn">• ${item.fechaHoraCreacion}</span>
-                            <input class="menu-icon" type="button">
+                               <c:choose>
+                                <c:when test="${sessionScope.usuarioComparacion == item.usuario.id}">
+                                    <button 
+                                        onclick="window.location.href='editarPublicacion.html'" 
+                                        class="menu-icon" type="button" idPublicacion="${item.idComun}"></button>
+                                </c:when>
+                            </c:choose>
                         </div>
                         <div class="content-container">
                             <img class="fotoContenido" src=${item.contenido} alt="post"> 
