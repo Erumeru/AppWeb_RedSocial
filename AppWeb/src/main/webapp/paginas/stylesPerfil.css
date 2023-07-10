@@ -182,15 +182,16 @@ main{
     margin-top: 60px;
 }
 
-.mainCont_grid{
-    display: grid;
-    grid-template-columns: repeat(3,32%);
-    grid-template-rows: repeat(5, auto);
-    gap: 2%;
-    height: auto;
+.container-publicaciones{
+    justify-content: center;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    object-fit: cover;
 }
 
-.mainCont_grid div > img{
+.container-publicaciones div > img{
     width: 100%;
     height: 100%;
     cursor: pointer;

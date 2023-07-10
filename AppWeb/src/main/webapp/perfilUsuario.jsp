@@ -76,14 +76,17 @@
                     PUBLICACIONES
                 </a>
             </div>
+            
             <div class="container-publicaciones">
                 <c:forEach items="${sessionScope.listaPostsComun}" var="item">
                     <div class="content-container">
                         <img class="fotoContenido" src=${item.contenido} alt="post">
                     </div>
+                    <div class="content-container">
+                        <img class="fotoContenido" src=${item.contenido} alt="post">
+                    </div>
                 </c:forEach>
-            </div>
-            <div class="mainCont_grid">
+                    
             </div>
         </main>
                                 
