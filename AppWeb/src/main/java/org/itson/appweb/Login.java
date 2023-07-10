@@ -11,6 +11,7 @@ import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,7 +65,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -115,19 +116,23 @@ public class Login extends HttpServlet {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
-        
+
         for (Admor adm : admin) {
             if (adm.getCorreo() != null && adm.getContrasenia() != null
                     && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
+           //     String di=adm.getId().toString();
+           //     String dasd=adm.getIdAdmor().toString();
+                ArrayList<Comun> comunesYAncladosDeAdmor = registerNegocio.getComunesYAncDeAdmor(adm);
                 sesion.setAttribute("usuario", adm);
                 sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
                 sesion.setAttribute("tipo", "admor");
+                sesion.setAttribute("listPostUser", comunesYAncladosDeAdmor);
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
         }
-        
+
         for (Normal nrm : normal) {
             if (nrm.getCorreo() != null && nrm.getContrasenia() != null
                     && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
@@ -137,19 +142,19 @@ public class Login extends HttpServlet {
                 sesion.setAttribute("usuario", nrm);
                 sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
                 sesion.setAttribute("tipo", "normal");
-                sesion.setAttribute("listComNorm", comunesDeNormal);
+                sesion.setAttribute("listPostUser", comunesDeNormal);
                 getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
                 return;
             }
         }
-        
+
     }
-    
+
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         sesion.invalidate();
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
-    
+
 }

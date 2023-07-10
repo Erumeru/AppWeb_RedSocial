@@ -413,6 +413,11 @@ public class FachadaLogica implements ILogica {
         Comun com = new Comun();
         com = ctrlPost.actualizarEditado(entidad1,entidad2);
         return com;
-
+    }
+    
+    @Override
+    public ArrayList<Comun> getComunesYAncDeAdmor(Admor admr) {
+        ctrlPost=new ControlPost();
+        return ctrlPost.getComunesYAncDeAdmor(admr);
     }
 }

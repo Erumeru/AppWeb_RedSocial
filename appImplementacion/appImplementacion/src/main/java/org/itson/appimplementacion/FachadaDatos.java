@@ -655,4 +655,10 @@ public class FachadaDatos implements IFachadaDatos {
         ComunDAO comunDao=new ComunDAO();
         return comunDao.actualizarEditado(entidad1,entidad2);
     }
+    
+    @Override
+    public ArrayList<Comun> getComunesYAncDeAdmor(Admor admr) {
+        ComunDAO comunDao=new ComunDAO();
+        return comunDao.getComunesYAncDeAdmor(admr);
+    }
 }

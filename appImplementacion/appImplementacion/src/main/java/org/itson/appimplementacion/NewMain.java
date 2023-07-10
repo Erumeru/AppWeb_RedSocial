@@ -4,6 +4,7 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Admor;
 import ObjNegocio.Anclado;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
@@ -27,11 +28,10 @@ public class NewMain {
      ComunDAO registerNegocio = new ComunDAO();
         //System.out.println(registerNegocio.buscarTodos());
         //Anclado com=new Anclado();
-        Normal cm=new Normal();
-        cm.setId(new ObjectId("64aba3da3da942504a185011"));
+        Admor cm=new Admor();
+        cm.setId(new ObjectId("64aba3e63da942504a185012"));
        // com.setIdAnclado(new ObjectId("64ab6dc3cec11e5f328b63e8"));
-       
-        System.out.println(registerNegocio.getComunesDeNormal(cm));
+        System.out.println(registerNegocio.getComunesYAncDeAdmor(cm));
     }
     
 }

@@ -4,10 +4,12 @@
  */
 package Clases;
 
+import ObjNegocio.Admor;
 import ObjNegocio.Comun;
 import ObjNegocio.Municipio;
 import ObjNegocio.Normal;
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -26,8 +28,10 @@ public class Consultas {
 //        Comun comun = new Comun(normal, new Date(), "Elmer naco", "uploads/64a90fc9ff3a6f2c0fc9094d.png", new Date());
 //        registerNegocio.guardarNormal(normal);
 //        registerNegocio.guardarComun(comun);
-        
-        System.out.println(registerNegocio.listaAnclado());
+                Admor cm=new Admor();
+        cm.setIdAdmor(new ObjectId("64aba3e63da942504a185012"));
+
+        System.out.println(registerNegocio.getComunesYAncDeAdmor(cm));
     }
     
 }

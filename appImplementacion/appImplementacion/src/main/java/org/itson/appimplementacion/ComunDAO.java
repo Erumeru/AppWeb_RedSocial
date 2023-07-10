@@ -5,6 +5,7 @@
 package org.itson.appimplementacion;
 
 import ObjNegocio.Admor;
+import ObjNegocio.Anclado;
 import ObjNegocio.Comentario;
 import ObjNegocio.Comun;
 import ObjNegocio.Normal;
@@ -66,9 +67,9 @@ public class ComunDAO extends BaseDAO<Comun> {
                     .append("fechaHoraCreacion", entidad.getFechaHoraCreacion())
                     .append("titulo", entidad.getTitulo())
                     .append("usuario", entidad.getUsuario());
-           
+
             collection.insertOne(doc);
-             ObjectId id=doc.getObjectId("_id");
+            ObjectId id = doc.getObjectId("_id");
             entidad.setIdComun(id);
             return entidad;
         } catch (MongoException e) {
@@ -172,6 +173,33 @@ public class ComunDAO extends BaseDAO<Comun> {
         return lista;
     }
 
+    /**
+     * Metodo que busca y regresa las publicaciones comunes de un usuario
+     *
+     * @param admr Usuario al que pertenecen publicaciones comunes
+     * @return Lista MongoCollection<Comun> con las publicaciones del usuario
+     * Normal
+     */
+    public ArrayList<Comun> getComunesYAncDeAdmor(Admor admr) {
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Comun> colleccionComun = db.getCollection("comun", Comun.class);
+        Document filtro = new Document("usuario._id", admr.getId());
+        ArrayList<Comun> lista = new ArrayList<>();
+        lista = colleccionComun.find(filtro).into(lista);
+
+        MongoCollection<Anclado> collectionAnclado = db.getCollection("Anclado", Anclado.class);
+        ArrayList<Anclado> lista2 = new ArrayList<>();
+        lista2 = collectionAnclado.find(filtro).into(lista2);
+        
+        for(Anclado anc:lista2){
+            Comun com=new Comun();
+            com.setContenido(anc.getContenido());
+            lista.add(com);
+        }
+        
+        return lista;
+    }
+
     public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
         ArrayList<Comentario> comentarios = new ArrayList<>();
         MongoDatabase db = Conexion.getInstance();
@@ -188,8 +216,6 @@ public class ComunDAO extends BaseDAO<Comun> {
                 String idcom = comun.get("idComun").toString();
 
                 if (idcom.equalsIgnoreCase(idPost)) {
-                    System.out.println(com);
-                    System.out.println(com.getObjectId("_id"));
                     Comentario comentarioAgg = new Comentario();
                     comentarioAgg.setIdComentario(new ObjectId(com.getObjectId("_id").toString()));
                     Comentario fin = new ComentarioDAO().buscar(comentarioAgg);
@@ -228,7 +254,7 @@ public class ComunDAO extends BaseDAO<Comun> {
                         set("fechaHoraEdicion", entidad2.getFechaHoraEdicion())));
         return buscar(entidad2);
     }
-    
+
     public Comun actualizarEditado(Comun entidad, Comun entidad2) {
         collection.updateOne(eq("_id", entidad.getIdComun()),
                 combine(

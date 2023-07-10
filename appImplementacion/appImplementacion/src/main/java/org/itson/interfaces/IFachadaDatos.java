@@ -83,6 +83,13 @@ public interface IFachadaDatos {
     public Comun actualizarEditado(Comun entidad1, Comun entidad2);
 
     /**
+     * Metodo que regresa las publis de un admor
+     * @param admr
+     * @return 
+     */
+    public ArrayList<Comun> getComunesYAncDeAdmor(Admor admr) ;
+    
+    /**
      * Método actualizar Anclado.
      *
      * @param anclado

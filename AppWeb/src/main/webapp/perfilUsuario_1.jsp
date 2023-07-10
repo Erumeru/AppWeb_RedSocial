@@ -44,7 +44,7 @@
                         <div class="contenedor-cabecera">
                             <div class="cabecera1">
                                 <h1>${sessionScope.usuario.nombreCompleto}</h1>
-                                <a href="editarPerfil.jsp"><button>Editar perfil</button></a>
+                               
                             </div>
                             <div class="cabecera2">
                                 <p><b>8</b> publicaciones</p>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="mainCont_grid">
                         <div class="container-publicaciones">
-                            <c:forEach items="${sessionScope.listComNorm}" var="item">
+                            <c:forEach items="${sessionScope.listPostUser}" var="item">
                                 <div class="content-container">
                                     <img class="fotoContenido" src=${item.contenido} alt="post">
                                 </div>

@@ -111,4 +111,5 @@ public interface ILogica {
 
     public ArrayList<Comentario> buscarComentariosPorComun(String idPost);
 
+    public ArrayList<Comun> getComunesYAncDeAdmor(Admor admr);
 }

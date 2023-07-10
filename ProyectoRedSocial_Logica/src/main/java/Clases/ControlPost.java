@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import ObjNegocio.Admor;
 import ObjNegocio.Post;
 import ObjNegocio.Anclado;
 import ObjNegocio.Comentario;
@@ -111,6 +112,11 @@ public class ControlPost {
     public Comun actualizarEditado(Comun entidad1, Comun entidad2) {
         datos = FabricaDatos.dameInstancia();
         return datos.actualizarEditado(entidad1, entidad2);
+    }
+    
+    public ArrayList<Comun> getComunesYAncDeAdmor(Admor admr) {
+                datos = FabricaDatos.dameInstancia();
+        return datos.getComunesYAncDeAdmor(admr);
 
     }
 }
