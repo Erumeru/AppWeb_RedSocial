@@ -16,7 +16,10 @@
         <title>Administradores</title>
     </head>
     <body>
-        <a href="perfilUsuario.jsp"><-</a>
+       <button onclick="window.location.href='perfilUsuario.jsp';" style="background-color: transparent;  border-color: transparent;">
+  <img src="paginas/imagenes/flecha-volver.png" alt="flecha-volver">
+</button>
+
         <h1>Control de Posts</h1>
         <div>
             <table>

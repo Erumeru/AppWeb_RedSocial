@@ -6,13 +6,13 @@
 function eliminarComun(id) {
 
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: '¿Seguro que deseas eliminarla?',
+        text: "¡No podrás revertir los cambios!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Eliminar'
     }).then((result) => {
         if (result.isConfirmed) {
             const btnEliminar = document.querySelector("#eliminarComun");
@@ -40,13 +40,13 @@ function eliminarComun(id) {
 function eliminarAnclado(item) {
 
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: '¿Seguro que deseas eliminarla?',
+        text: "¡No podrás revertir los cambios!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Eliminar'
     }).then((result) => {
         if (result.isConfirmed) {
             const removeBeforeString = item.split("idAnclado=");
