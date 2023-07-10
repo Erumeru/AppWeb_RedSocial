@@ -13,12 +13,13 @@ window.onload = function () {
         const titulo = document.getElementById("txt-titulo").value;
         const contenido = document.getElementById("imageUpload").files[0];
         const fechaHoraEdicion = new Date();
+        const tipo=document.getElementById("tipo").checked;
         const formData = new FormData(frm);
         formData.append('fechaHoraCreacion', fechaHoraCreacion);
         formData.append('fechaHoraEdicion', fechaHoraCreacion);
 
-        // Enviar datos al servidor con FetchAPI (Formato JSON)
-        fetch("http://localhost:8080/AppWeb/Posts?action=subirComun", {
+if(tipo===true){
+    fetch("http://localhost:8080/AppWeb/Posts?action=subirAnclado", {
             method: "POST",
             body: formData,
             headers: {'enctype': 'multipart/form-data'}
@@ -30,7 +31,29 @@ window.onload = function () {
 //    console.log(comentario);
             swal("¡Éxito!", "Imagen publicada :D", "success").then(() => {
                 // Redirigir a otra página
-                window.location.href = 'mainPublicaciones.jsp';
+               // window.location.href = './mainPublicaciones?action=viewPosts';
+               window.history.back();
+            });
+
+        }).catch(err => {
+            btnSubir.disabled = false;
+            console.error(err);
+        });
+}else{
+    fetch("http://localhost:8080/AppWeb/Posts?action=subirComun", {
+            method: "POST",
+            body: formData,
+            headers: {'enctype': 'multipart/form-data'}
+        }).then(response => {
+// volvemos a habilitar el btn
+            btnSubir.disabled = false;
+            return response.json();
+        }).then(comun => {
+//    console.log(comentario);
+            swal("¡Éxito!", "Imagen publicada :D", "success").then(() => {
+                // Redirigir a otra página
+               // window.location.href = './mainPublicaciones?action=viewPosts';
+               window.history.back();
             });
 
         }).catch(err => {
@@ -38,6 +61,9 @@ window.onload = function () {
             console.error(err);
         });
     };
+}
+        // Enviar datos al servidor con FetchAPI (Formato JSON)
+        
     const btnSubir = document.getElementById("btn-subir");
     btnSubir.onclick = guardarComun;
 };
