@@ -242,7 +242,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun buscarComun(Comun comun) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new Date(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(), "titulo", "contenido");
         cn = ctrlPost.buscarComun(comun);
         return cn;
     }
@@ -250,7 +250,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun actualizarComun(Comun comunBase, Comun comunNuevo) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new Date(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(), "titulo", "contenido");
         cn = ctrlPost.actualizarComun(comunBase, comunNuevo);
         return cn;
     }
@@ -258,7 +258,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun eliminarComun(Comun comun) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new Date(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(), "titulo", "contenido");
         cn = ctrlPost.eliminarComun(comun);
         return cn;
     }
@@ -266,7 +266,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public Comun guardarComun(Comun comun) {
         ctrlPost = new ControlPost();
-        Comun cn = new Comun(new Date(),  "titulo", "contenido");
+        Comun cn = new Comun(new Date(), "titulo", "contenido");
         cn = ctrlPost.guardarComun(comun);
         return cn;
     }
@@ -384,7 +384,7 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
-    public Admor guardarAdmor(Admor admor) throws DAOException{
+    public Admor guardarAdmor(Admor admor) throws DAOException {
         ctrlUsuario = new ControlUsuario();
         Admor ad = new Admor();
         ad = ctrlUsuario.guardarAdmor(admor);
@@ -394,17 +394,25 @@ public class FachadaLogica implements ILogica {
     @Override
     public ArrayList<Comun> getComunesDeNormal(Normal normal) {
         ctrlPost = new ControlPost();
-        ArrayList<Comun> listaDePost=new ArrayList<>();
-        listaDePost=ctrlPost.getComunesDeNormal(normal);
+        ArrayList<Comun> listaDePost = new ArrayList<>();
+        listaDePost = ctrlPost.getComunesDeNormal(normal);
         return listaDePost;
     }
 
     @Override
-        public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
-            ctrlPost =new ControlPost();
-            ArrayList<Comentario> listaDeComentarios=new ArrayList<>();
-            listaDeComentarios=ctrlPost.buscarComentariosPorComun(idPost);
-            return listaDeComentarios;
-        }
+    public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
+        ctrlPost = new ControlPost();
+        ArrayList<Comentario> listaDeComentarios = new ArrayList<>();
+        listaDeComentarios = ctrlPost.buscarComentariosPorComun(idPost);
+        return listaDeComentarios;
+    }
 
+    @Override
+    public Comun actualizarEditado(Comun entidad1, Comun entidad2) {
+        ctrlPost = new ControlPost();
+        Comun com = new Comun();
+        com = ctrlPost.actualizarEditado(entidad1,entidad2);
+        return com;
+
+    }
 }

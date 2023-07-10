@@ -4,7 +4,6 @@
  */
 
 window.onload = function () {
-
     const guardarComentario = (event) => {
         // evento que ejecuta el guaradar 
         const boton = event.target;
@@ -25,8 +24,8 @@ window.onload = function () {
             contenido,
             fechaHora
         };
-        console.table(comentario);
-        console.log(JSON.stringify(comentario));
+    //    console.table(comentario);
+     //   console.log(JSON.stringify(comentario));
         // Enviar datos al servidor con FetchAPI (Formato JSON)
         fetch("http://localhost:8080/AppWeb/Posts?action=subirComentario", {
             method: "POST",

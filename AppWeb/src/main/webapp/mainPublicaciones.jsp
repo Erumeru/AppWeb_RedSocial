@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="paginas/stylesMainPublicaciones.css" />
         <script src="FetchApiComentarios.js"></script>
         <script src="fetchApiEditarP.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <title>Publicaciones</title>
     </head>
@@ -83,7 +84,7 @@
                                <c:choose>
                                 <c:when test="${sessionScope.usuarioComparacion == item.usuario.id}">
                                     <button 
-                                        onclick="window.location.href='editarPublicacion.html'" 
+                                        onclick="redirectEditar('${item.idComun}')" 
                                         class="menu-icon" type="button" idPublicacion="${item.idComun}"></button>
                                 </c:when>
                             </c:choose>

@@ -62,16 +62,17 @@ public class Posts extends HttpServlet {
         String parametroId = request.getParameter("id");
 
         //CREAR COMENTARIODTO
-        ComunEditarDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComunEditarDTO.class);
+        ComunEditarDTO comunDTO = serializadorJSON.fromJson(datosTextoJSON, ComunEditarDTO.class);
 
         ILogica actualizarComun = FabricaLogica.crearInstancia();
         Comun comunNuevo = new Comun();
-        comunNuevo.setIdComun(new ObjectId(comentarioDTO.getId()));
+        comunNuevo.setIdComun(new ObjectId(comunDTO.getId()));
         comunNuevo = actualizarComun.buscarComun(comunNuevo);
-        comunNuevo.setTitulo(comentarioDTO.getTitulo());
+        comunNuevo.setFechaHoraEdicion(new Date());
+        comunNuevo.setTitulo(comunDTO.getTitulo());
         
         //if (tipoUsuario.equalsIgnoreCase("admor")) {
-            actualizarComun.actualizarComun(comunNuevo, comunNuevo);
+            actualizarComun.actualizarEditado(comunNuevo, comunNuevo);
         
 
         response.setContentType(
@@ -338,6 +339,15 @@ public class Posts extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action != null && action.equalsIgnoreCase("editarComun")) {
+            try {
+                //proccessViewPosts(request, response);
+                proccessEditarComun(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return;
+        }
         if (action != null && action.equalsIgnoreCase("subirAnclado")) {
             try {
                 //proccessViewPosts(request, response);

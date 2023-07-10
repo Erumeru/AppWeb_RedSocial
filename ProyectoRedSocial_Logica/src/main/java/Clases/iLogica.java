@@ -17,6 +17,8 @@ public interface ILogica {
 
     public List<Usuario> listaUsuario();
 
+    public Comun actualizarEditado(Comun entidad1, Comun entidad2);
+    
     public Usuario buscarUsuario(Usuario usuario);
 
     public Usuario actualizarUsuario(Usuario usuarioBase, Usuario usuarioNuevo);

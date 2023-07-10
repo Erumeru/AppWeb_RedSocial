@@ -75,6 +75,14 @@ public interface IFachadaDatos {
     public Anclado eliminarAnclado(Anclado anclado);
 
     /**
+     * metodo para actualizar el editado
+     * @param entidad1
+     * @param entidad2
+     * @return 
+     */
+    public Comun actualizarEditado(Comun entidad1, Comun entidad2);
+
+    /**
      * Método actualizar Anclado.
      *
      * @param anclado

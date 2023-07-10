@@ -98,14 +98,19 @@ public class ControlPost {
         return datos.guardarComun(comun);
     }
 
-    public ArrayList<Comun> getComunesDeNormal(Normal normal){
-        datos=FabricaDatos.dameInstancia();
+    public ArrayList<Comun> getComunesDeNormal(Normal normal) {
+        datos = FabricaDatos.dameInstancia();
         return datos.getComunesDeNormal(normal);
     }
 
-        public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
-            datos=FabricaDatos.dameInstancia();
-            return datos.buscarComentariosPorComun(idPost);
-        }
+    public ArrayList<Comentario> buscarComentariosPorComun(String idPost) {
+        datos = FabricaDatos.dameInstancia();
+        return datos.buscarComentariosPorComun(idPost);
+    }
 
+    public Comun actualizarEditado(Comun entidad1, Comun entidad2) {
+        datos = FabricaDatos.dameInstancia();
+        return datos.actualizarEditado(entidad1, entidad2);
+
+    }
 }

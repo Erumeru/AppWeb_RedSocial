@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="paginas/stylesLogin.css" />
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Inter">
-         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
         <script src="fetchApiEditarP.js"></script>
         <title>Login</title>
     </head>
@@ -21,7 +23,7 @@
                 <form id="frm" enctype="multipart/form-data">
                     <input id="txt-titulo" type="text" class="corrNum" name="titulo" placeholder="Ingrese un nuevo titulo" />
                     <button id="btn-editar" class="inputBtn" type="button"
-                            onclick="editarPublicacion('${item.idComun}')">Guardar</button>
+                            onclick="editarPublicacion()">Guardar</button>
                 </form>
                 <div class="division"></div>
                 <p class="alt">O</p>

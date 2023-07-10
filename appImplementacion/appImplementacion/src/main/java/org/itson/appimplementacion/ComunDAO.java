@@ -222,10 +222,18 @@ public class ComunDAO extends BaseDAO<Comun> {
     @Override
     public Comun actualizar(Comun entidad, Comun entidad2) {
         collection.updateOne(eq("_id", entidad.getIdComun()),
-                combine(set("fechahora-creacion", entidad2.getFechaHoraCreacion()),
+                combine(set("fechaHoraCreacion", entidad2.getFechaHoraCreacion()),
                         set("titulo", entidad2.getTitulo()),
                         set("contenido", entidad2.getContenido()),
-                        set("fechahora-edicion", entidad2.getFechaHoraEdicion())));
+                        set("fechaHoraEdicion", entidad2.getFechaHoraEdicion())));
+        return buscar(entidad2);
+    }
+    
+    public Comun actualizarEditado(Comun entidad, Comun entidad2) {
+        collection.updateOne(eq("_id", entidad.getIdComun()),
+                combine(
+                        set("titulo", entidad2.getTitulo()),
+                        set("fechaHoraEdicion", entidad2.getFechaHoraEdicion())));
         return buscar(entidad2);
     }
 

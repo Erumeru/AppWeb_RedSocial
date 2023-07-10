@@ -649,4 +649,10 @@ public class FachadaDatos implements IFachadaDatos {
         ComunDAO comunDao=new ComunDAO();
         return comunDao.buscarComentariosPorComun(idPost);
     }
+    
+    @Override
+    public Comun actualizarEditado(Comun entidad1, Comun entidad2){
+        ComunDAO comunDao=new ComunDAO();
+        return comunDao.actualizarEditado(entidad1,entidad2);
+    }
 }
