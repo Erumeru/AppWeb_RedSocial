@@ -6,14 +6,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : 27-jun-2023, 16:55:06
     Author     : hoshi
 */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 body {
     font-size: 16px;
     font-family: 'Inter', sans-serif;
 }
 
-.nav-arriba{
-    min-width: 1024px;
-    max-width: 1400px;
+.nav-arriba{  
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -125,16 +129,19 @@ main{
 .icons-container {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .comments-container {
     display: flexbox;
+        
 }
 
 .icon {
     padding-inline: 8px;
-    height: 22px;
-    width: 25px;
+    height: auto;
+    width: 40px;
+    padding-bottom: 10px;
 }
 
 .menu-icon {
