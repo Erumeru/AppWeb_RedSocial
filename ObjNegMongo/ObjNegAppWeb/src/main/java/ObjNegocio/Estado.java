@@ -17,7 +17,7 @@ public class Estado {
     /**
      * Atributo que sirve para identificar a un estado en específico.
      */
-    private ObjectId id;
+    private ObjectId idEstado;
 
     /**
      * Atributo que indica el nombre del estado.
@@ -25,21 +25,21 @@ public class Estado {
     private String nombre;
 
     /**
-     * Obtiene el id del estado.
+     * Obtiene el idEstado del estado.
      *
-     * @return el id del estado.
+     * @return el idEstado del estado.
      */
     public ObjectId getId() {
-        return id;
+        return idEstado;
     }
 
     /**
-     * Establece el id del estado.
+     * Establece el idEstado del estado.
      *
      * @param id del estado.
      */
     public void setId(ObjectId id) {
-        this.id = id;
+        this.idEstado = id;
     }
 
     /**
@@ -49,7 +49,7 @@ public class Estado {
      * @param nombre del estado.
      */
     public Estado(ObjectId id, String nombre) {
-        this.id = id;
+        this.idEstado = id;
         this.nombre = nombre;
     }
 
@@ -83,15 +83,29 @@ public class Estado {
      */
     private List<Municipio> municipios;
 
+    public List<Municipio> getMunicipios() {
+        return municipios;
+    }
+
+    public void setMunicipios(List<Municipio> municipios) {
+        this.municipios = municipios;
+    }
+    
+    public Estado(ObjectId idEstado, String nombre, List<Municipio> municipios) {
+        this.idEstado = idEstado;
+        this.nombre = nombre;
+        this.municipios = municipios;
+    }
+    
     /**
      * Para obtener el hash del estado.
      *
-     * @return número hash del nombre y id.
+     * @return número hash del nombre y idEstado.
      */
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.idEstado);
         hash = 23 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
@@ -117,7 +131,7 @@ public class Estado {
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.idEstado, other.idEstado);
     }
 
     /**
@@ -127,7 +141,7 @@ public class Estado {
      */
     @Override
     public String toString() {
-        return "Estado{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "Estado{" + "id=" + idEstado + ", nombre=" + nombre + '}';
     }
 
 }

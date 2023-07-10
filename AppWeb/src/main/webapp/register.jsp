@@ -21,9 +21,9 @@
     </head>
 
     <body>
-         <c:if test="${not empty mensaje}">
+        <c:if test="${not empty mensaje}">
             <script>
-            swal("¡Alerta!", "${requestScope.mensaje}", "warning");
+                swal("¡Alerta!", "${requestScope.mensaje}", "warning");
             </script>
         </c:if>
         <div class="container">
@@ -51,9 +51,14 @@
                         </label>
                         <label for="ciudad" id="ciudad"> Ciudad: 
                             <select id="ciudad" name="ciudad" placeholder="Ciudades">
-                                <option value="Obregon">Obregón</option>
-                                <option value="Navojoa">Navojoa</option>
-                                <option value="Huatabampo">Huatabampo</option>
+                                <optgroup label="Sonora">
+                                    <option value="cd_obregon">Cd.Obregón</option>
+                                    <option value="hermosillo">Hermosillo </option>
+                                </optgroup>
+                                <optgroup label="Sinaloa">
+                                    <option value="culiacan">Culiacán</option>
+                                    <option value="mazatlan">Mazatlán</option>
+                                </optgroup>
                             </select> 
                             Usuario Admin:
                             <input id="tipo" name="tipo" type="checkbox" value="true">

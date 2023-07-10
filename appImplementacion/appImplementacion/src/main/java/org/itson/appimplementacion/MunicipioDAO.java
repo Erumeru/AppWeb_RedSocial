@@ -71,10 +71,16 @@ public class MunicipioDAO extends BaseDAO<Municipio> {
     @Override
     public Municipio buscar(Municipio entidad) {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Municipio> colleccionMunicipio = db.getCollection("municipio", Municipio.class);
-        Document filtro = new Document("id", entidad.getId());
-        return colleccionMunicipio.find(filtro).first();
+        MongoCollection<Municipio> colleccionComun = db.getCollection("municipio", Municipio.class);
+        Document filtro = new Document("nombre", entidad.getNombre());
+        Municipio municipioEncontrado = colleccionComun.find(filtro).first();
+        if (municipioEncontrado != null) {
+            municipioEncontrado.setNombre(entidad.getNombre());
+        }
+
+        return municipioEncontrado;
     }
+
 
     /**
      * Elimina una entidad de tipo Municipio en la base de datos MongoDB.

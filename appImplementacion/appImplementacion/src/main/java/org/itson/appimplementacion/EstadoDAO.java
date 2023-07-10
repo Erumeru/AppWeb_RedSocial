@@ -89,9 +89,14 @@ public class EstadoDAO extends BaseDAO<Estado> {
     @Override
     public Estado buscar(Estado entidad) {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Estado> colleccionEstado = db.getCollection("estado", Estado.class);
-        Document filtro = new Document("id", entidad.getId());
-        return colleccionEstado.find(filtro).first();
+        MongoCollection<Estado> colleccionComun = db.getCollection("estado", Estado.class);
+        Document filtro = new Document("nombre", entidad.getNombre());
+        Estado estadoEncontrado = colleccionComun.find(filtro).first();
+        if (estadoEncontrado != null) {
+            estadoEncontrado.setNombre(entidad.getNombre());
+        }
+
+        return estadoEncontrado;
     }
 
     /**
