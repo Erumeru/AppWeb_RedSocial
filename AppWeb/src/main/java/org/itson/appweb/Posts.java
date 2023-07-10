@@ -65,7 +65,17 @@ public class Posts extends HttpServlet {
         ILogica EliminarComun = FabricaLogica.crearInstancia();
         Comun comunNuevo = new Comun();
         comunNuevo.setIdComun(new ObjectId(comentarioDTO.getId()));
-        EliminarComun.eliminarComun(comunNuevo);
+
+        HttpSession session = request.getSession();
+        String tipoUsuario = session.getAttribute("tipo").toString();
+
+        if (tipoUsuario.equalsIgnoreCase("admor")) {
+            EliminarComun.eliminarComun(comunNuevo);
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+
         response.setContentType(
                 "application/json;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
@@ -87,7 +97,15 @@ public class Posts extends HttpServlet {
         ILogica EliminarComun = FabricaLogica.crearInstancia();
         Anclado ancladoNuevo = new Anclado();
         ancladoNuevo.setIdAnclado(new ObjectId(comentarioDTO.getId()));
-        EliminarComun.eliminarAnclado(ancladoNuevo);
+        HttpSession session = request.getSession();
+        String tipoUsuario = session.getAttribute("tipo").toString();
+
+        if (tipoUsuario.equalsIgnoreCase("admor")) {
+            EliminarComun.eliminarAnclado(ancladoNuevo);
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
         response.setContentType(
                 "application/json;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
@@ -375,7 +393,7 @@ public class Posts extends HttpServlet {
         String rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\imgPost";
 
         ILogica SubirComun = FabricaLogica.crearInstancia();
-        
+
         HttpSession session = request.getSession();
         String tipoUsuario = session.getAttribute("tipo").toString();
         Anclado ancladoNuevo = new Anclado();
