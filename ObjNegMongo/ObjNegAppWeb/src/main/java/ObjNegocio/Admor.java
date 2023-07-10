@@ -21,6 +21,16 @@ public class Admor extends Usuario {
      */
     private ObjectId idAdmor;
 
+    public ObjectId getIdAdmor() {
+        return idAdmor;
+    }
+
+    public void setIdAdmor(ObjectId idAdmor) {
+        this.idAdmor = idAdmor;
+    }
+
+    
+    
     /**
      * Representa la lista de anclados que tiene un usuario administrador.
      */

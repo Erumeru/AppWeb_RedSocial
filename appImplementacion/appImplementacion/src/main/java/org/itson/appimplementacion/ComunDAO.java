@@ -111,7 +111,6 @@ public class ComunDAO extends BaseDAO<Comun> {
                         comunDoc.setIdComun(doc.getObjectId("_id"));
                         comunDoc = buscar(comunDoc);
                         comunDoc.setUsuario(user);
-                        System.out.println(user);
                         comunDoc.setTitulo(doc.get("titulo").toString());
                         comunDoc.setFechaHoraCreacion((Date) doc.get("fechaHoraCreacion"));
                         comunDoc.setContenido(doc.get("contenido").toString());
