@@ -37,6 +37,7 @@ if(tipo===true){
 
         }).catch(err => {
             btnSubir.disabled = false;
+            swal("¡Hey!", "No eres admin, no puedes crear un post anclado!", "error")
             console.error(err);
         });
 }else{

@@ -375,7 +375,18 @@ public class Posts extends HttpServlet {
         String rutaFinal = rutaPadre.toString() + "\\src\\main\\webapp\\imgPost";
 
         ILogica SubirComun = FabricaLogica.crearInstancia();
+        
+        HttpSession session = request.getSession();
+        String tipoUsuario = session.getAttribute("tipo").toString();
         Anclado ancladoNuevo = new Anclado();
+
+        if (tipoUsuario.equalsIgnoreCase("admor")) {
+            Admor admor = regresarAdmor(request, response);
+            ancladoNuevo.setAdmor(admor);
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
         ancladoNuevo.setFechaHoraCreacion(comunDTO.getFechaHoraCreacion());
         ancladoNuevo.setTitulo("default");
