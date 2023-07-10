@@ -77,16 +77,13 @@
                 </a>
             </div>
             <c:forEach items="${sessionScope.listaPostsComun}" var="item">
-                <div class="container-publicaciones">
-
+                <div class="mainCont_grid">
                     <div class="content-container">
                         <img class="fotoContenido" src=${item.contenido} alt="post">
                     </div>
                     <div class="content-container">
                         <img class="fotoContenido" src=${item.contenido} alt="post">
                     </div>
-
-
                 </div>
             </c:forEach>
         </main>
