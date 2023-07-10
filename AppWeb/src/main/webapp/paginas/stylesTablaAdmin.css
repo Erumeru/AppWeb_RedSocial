@@ -7,6 +7,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : hoshi
 */
 
+*{
+    height: auto;
+}
+
+
 body {
     background: linear-gradient(180deg, #df84ff, #a088ff);
     font: 400 14px 'Roboto';
