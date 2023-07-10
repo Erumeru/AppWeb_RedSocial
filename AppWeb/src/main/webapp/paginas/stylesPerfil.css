@@ -15,14 +15,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body{
     width: 100%;
     font-family: 'Roboto',sans-serif;
-    min-width: 1024px;
-    max-width: 1400px;
     background: #fafafa;
 }
 
 .nav-arriba{
     min-width: 1024px;
-    max-width: 1400px;
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -62,7 +59,7 @@ body{
 
 .iconos{
     display:contents;
-    
+
 }
 
 .iconos svg{
@@ -99,7 +96,7 @@ header{
 
 .refencia-img{
     background: red;
-    
+
 }
 
 .small-logo{
@@ -156,10 +153,26 @@ header{
 }
 
 .linea{
-    width: 100%;
+        width: 60vw;
     height: 1px;
-    margin:auto;
+    margin: auto;
     background: #dbdbdb;
+    position: relative;
+    left: -25%;
+}
+
+.fotoContenido{
+    display:flex;
+    width:50%;
+    position:relative;
+    height: auto;
+    justify-self: center;
+    align-self: center;
+    padding-bottom: 20px;
+    margin:13px 15px;
+    object-fit: cover;
+    border:1px solid plum;
+
 }
 
 .main-nav{
@@ -182,12 +195,24 @@ main{
     margin-top: 60px;
 }
 
-.mainCont_grid{
+/*.mainCont_grid{
     display: grid;
     grid-template-columns: repeat(3,32%);
     grid-template-rows: repeat(5, auto);
     gap: 2%;
     height: auto;
+}*/
+
+.container-publicaciones{
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-container{
+    width: 250px;
+    height: 250px;
+    margin: 5px;
+    overflow: hidden;
+
 }
 
 .mainCont_grid div > img{
@@ -197,14 +222,13 @@ main{
 }
 
 .nav-abajo{
-  min-width: 1024px;
-  max-width: 1400px;
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-  border-top: solid #dbdbdb 1px;
-  background: #fff;
-  bottom: 0;
+    min-width: 1024px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-top: solid #dbdbdb 1px;
+    background: #fff;
+    bottom: 0;
 }
 
 .referencia-botton{
@@ -214,4 +238,12 @@ main{
     color: black;
 }
 
+.contenedor-Total{
+    justify-self: center;
+}
+
+.centrar-Total{
+    display: flex;
+    justify-content: center;
+}
 

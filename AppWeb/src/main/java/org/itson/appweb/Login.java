@@ -7,6 +7,7 @@ package org.itson.appweb;
 import Clases.FabricaLogica;
 import Clases.ILogica;
 import ObjNegocio.Admor;
+import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import ObjNegocio.Usuario;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -64,7 +65,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     /**
@@ -115,7 +116,7 @@ public class Login extends HttpServlet {
             // regresamos a las paginas
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
-
+        
         for (Admor adm : admin) {
             if (adm.getCorreo() != null && adm.getContrasenia() != null
                     && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
@@ -132,22 +133,24 @@ public class Login extends HttpServlet {
             if (nrm.getCorreo() != null && nrm.getContrasenia() != null
                     && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
                 HttpSession sesion = request.getSession();
-            //    sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
+                //    sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
+                List<Comun> comunesDeNormal = registerNegocio.getComunesDeNormal(nrm);
                 sesion.setAttribute("usuario", nrm);
                 sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
                 sesion.setAttribute("tipo", "normal");
+                sesion.setAttribute("listComNorm", comunesDeNormal);
                 getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
                 return;
             }
         }
         
     }
-
+    
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         sesion.invalidate();
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
-
+    
 }

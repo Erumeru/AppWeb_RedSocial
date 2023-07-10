@@ -15,7 +15,7 @@
         <script src="FetchApiComentarios.js"></script>
         <script src="fetchApiEditarP.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
         <title>Publicaciones</title>
     </head>
     <body>

@@ -39,10 +39,17 @@ window.onload = function () {
             return response.json();
         }).then(comentario => {
         //    console.log(comentario);
-        alert("Comentario Creado, recarga la página!");
+    //    swal("¡Enhorabuena!", "Comentario creado", "success");
+        window.location.reload();
         }).catch(err => {
             subirComentario.disabled = false;
-             swal("¡Hey!", "Eres admin, no puedes comentar", "error")
+//            Swal.fire({
+//  position: 'top-end',
+//  icon: 'success',
+//  title: 'Comentario guardado',
+//  showConfirmButton: false,
+//  timer: 1500
+//});
             console.error(err);
         });
     };

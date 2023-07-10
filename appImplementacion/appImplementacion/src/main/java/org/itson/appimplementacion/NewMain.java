@@ -27,11 +27,11 @@ public class NewMain {
      ComunDAO registerNegocio = new ComunDAO();
         //System.out.println(registerNegocio.buscarTodos());
         //Anclado com=new Anclado();
-        Comun cm=new Comun();
-        cm.setIdComun(new ObjectId("64ab6703ef66b53672d51a79"));
+        Normal cm=new Normal();
+        cm.setId(new ObjectId("64aba3da3da942504a185011"));
        // com.setIdAnclado(new ObjectId("64ab6dc3cec11e5f328b63e8"));
        
-        System.out.println(registerNegocio.eliminar(cm));
+        System.out.println(registerNegocio.getComunesDeNormal(cm));
     }
     
 }
