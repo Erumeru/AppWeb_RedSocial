@@ -5,6 +5,7 @@
 package org.itson.appimplementacion;
 
 import ObjNegocio.Anclado;
+import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import org.bson.types.ObjectId;
 
@@ -23,9 +24,14 @@ public class NewMain {
        // System.out.println(new ComunDAO().buscarTodos());
     //   Anclado ac=new Anclado();
       // ac.setIdAnclado(new ObjectId("64ab62994ba5ba22abcaa87e"));
-      Normal nnr=new Normal();
-      nnr.setId(new ObjectId("64aa3001242d636eed7358ec"));
-        System.out.println(new ComunDAO().getComunesDeNormal(nnr));
+     ComunDAO registerNegocio = new ComunDAO();
+        //System.out.println(registerNegocio.buscarTodos());
+        //Anclado com=new Anclado();
+        Comun cm=new Comun();
+        cm.setIdComun(new ObjectId("64ab6703ef66b53672d51a79"));
+       // com.setIdAnclado(new ObjectId("64ab6dc3cec11e5f328b63e8"));
+       
+        System.out.println(registerNegocio.eliminar(cm));
     }
     
 }

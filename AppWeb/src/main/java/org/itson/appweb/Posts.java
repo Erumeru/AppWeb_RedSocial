@@ -44,6 +44,7 @@ import org.apache.commons.io.IOUtils;
 import org.bson.types.ObjectId;
 import org.itson.appweb.dtos.ComentariosDTO;
 import org.itson.appweb.dtos.ComunDTO;
+import org.itson.appweb.dtos.ComunEliminarDTO;
 
 /**
  *
@@ -51,6 +52,50 @@ import org.itson.appweb.dtos.ComunDTO;
  */
 @WebServlet(name = "Posts", urlPatterns = {"/Posts"})
 public class Posts extends HttpServlet {
+
+    private void proccessEliminarComun(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+        String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        Gson serializadorJSON = new Gson();
+        String parametroId = request.getParameter("id");
+
+        //CREAR COMENTARIODTO
+        ComunEliminarDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComunEliminarDTO.class);
+
+        ILogica EliminarComun = FabricaLogica.crearInstancia();
+        Comun comunNuevo = new Comun();
+        comunNuevo.setIdComun(new ObjectId(comentarioDTO.getId()));
+        EliminarComun.eliminarComun(comunNuevo);
+        response.setContentType(
+                "application/json;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            String salida = serializadorJSON.toJson(comunNuevo);
+            out.println(salida);
+            out.flush();
+        }
+    }
+
+    private void proccessEliminarAnclado(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+        String datosTextoJSON = IOUtils.toString(request.getInputStream(), "utf-8");
+        Gson serializadorJSON = new Gson();
+        String parametroId = request.getParameter("id");
+
+        //CREAR COMENTARIODTO
+        ComunEliminarDTO comentarioDTO = serializadorJSON.fromJson(datosTextoJSON, ComunEliminarDTO.class);
+
+        ILogica EliminarComun = FabricaLogica.crearInstancia();
+        Anclado ancladoNuevo = new Anclado();
+        ancladoNuevo.setIdAnclado(new ObjectId(comentarioDTO.getId()));
+        EliminarComun.eliminarAnclado(ancladoNuevo);
+        response.setContentType(
+                "application/json;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            String salida = serializadorJSON.toJson(ancladoNuevo);
+            out.println(salida);
+            out.flush();
+        }
+    }
 
     private void proccessSubirComun(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
@@ -163,7 +208,7 @@ public class Posts extends HttpServlet {
         Normal usuario = (Normal) session.getAttribute("usuario");
         return usuario;
     }
-    
+
     private Admor regresarAdmor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Admor usuario = (Admor) session.getAttribute("usuario");
@@ -185,8 +230,7 @@ public class Posts extends HttpServlet {
         Comentario comentarioNuevo = new Comentario();
         com.setIdComun(new ObjectId(comentarioDTO.getComun()));
         Comun comunPubli = subirComentario.buscarComun(com);
-        
-        
+
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
         comentarioNuevo.setComun(comunPubli);
@@ -254,6 +298,24 @@ public class Posts extends HttpServlet {
             //proccessViewPosts(request, response);
             proccessSubirComentario(request, response);
             return;
+        }
+        if (action != null && action.equalsIgnoreCase("eliminarComun")) {
+            try {
+                //proccessViewPosts(request, response);
+                proccessEliminarComun(request, response);
+                return;
+            } catch (Exception ex) {
+                //Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (action != null && action.equalsIgnoreCase("eliminarAnclado")) {
+            try {
+                //proccessViewPosts(request, response);
+                proccessEliminarAnclado(request, response);
+                return;
+            } catch (Exception ex) {
+                //Logger.getLogger(Posts.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

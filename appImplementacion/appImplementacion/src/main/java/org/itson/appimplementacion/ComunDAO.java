@@ -208,7 +208,7 @@ public class ComunDAO extends BaseDAO<Comun> {
      */
     @Override
     public Comun eliminar(Comun entidad) {
-        collection.deleteOne(new Document("id", entidad.getIdPost()));
+        collection.deleteOne(new Document("_id", entidad.getIdComun()));
         return entidad;
     }
 

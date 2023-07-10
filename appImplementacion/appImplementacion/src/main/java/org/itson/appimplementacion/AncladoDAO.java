@@ -152,7 +152,7 @@ public class AncladoDAO extends BaseDAO<Anclado> {
      */
     @Override
     public Anclado eliminar(Anclado entidad) {
-        collection.deleteOne(new Document("id", entidad.getIdPost()));
+        collection.deleteOne(new Document("_id", entidad.getIdAnclador()));
         return entidad;
     }
 
