@@ -185,7 +185,8 @@ public class Posts extends HttpServlet {
         Comentario comentarioNuevo = new Comentario();
         com.setIdComun(new ObjectId(comentarioDTO.getComun()));
         Comun comunPubli = subirComentario.buscarComun(com);
-
+        
+        
         comentarioNuevo.setFechaHora(comentarioDTO.getFechaHora());
         comentarioNuevo.setContenido(comentarioDTO.getContenido());
         comentarioNuevo.setComun(comunPubli);

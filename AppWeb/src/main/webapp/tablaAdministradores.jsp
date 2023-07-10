@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="paginas/stylesTablaAdmin.css" />
+        <script src="fetchApiTablaAdmin.js"></script>
         <title>Administradores</title>
     </head>
     <body>
@@ -19,16 +20,15 @@
         <div>
             <table>
                 <thead>
-                    <th>Nombre de usuario</th>
-                    <th>Titulo</th>
-                    <th>Contenido</th>
-                    <th>Tipo</th>
-                    <th>Eliminar</th>
-                    <th>Editar</th>
+                <th>Nombre de usuario</th>
+                <th>Titulo</th>
+                <th>Contenido</th>
+                <th>Tipo</th>
+                <th>Eliminar</th>
+                <th>Editar</th>
                 </thead>
                 <div>
                     <c:forEach items="${sessionScope.anclados}" var="item">
-                        <form>
                             <tr>
                                 <td>${item.admor.nombreCompleto}</td>
                                 <td>${item.titulo}</td>
@@ -37,21 +37,18 @@
                                 <td><button>Eliminar</button></td>
                                 <td><button>Editar</button></td>
                             </tr>
-                        </form>
                     </c:forEach>
                 </div>
                 <div>
                     <c:forEach items="${sessionScope.comunes}" var="item">
-                        <form>
                             <tr>
                                 <td>${item.usuario.nombreCompleto}</td>
                                 <td>${item.titulo}</td>
                                 <td>${item.contenido}</td>
                                 <td>Común</td>
-                                <td><button>Eliminar</button></td>
-                                <td><button>Editar</button></td>
+                                <td><button id="eliminar" onclick="eliminar('${item.idComun}')">Eliminar</button></td>
+                                <td><button id="editar">Editar</button></td>
                             </tr>
-                        </form>
                     </c:forEach>
                 </div>
             </table>

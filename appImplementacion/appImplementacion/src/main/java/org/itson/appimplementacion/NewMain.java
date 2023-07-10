@@ -5,6 +5,7 @@
 package org.itson.appimplementacion;
 
 import ObjNegocio.Anclado;
+import ObjNegocio.Normal;
 import org.bson.types.ObjectId;
 
 /**
@@ -22,7 +23,9 @@ public class NewMain {
        // System.out.println(new ComunDAO().buscarTodos());
     //   Anclado ac=new Anclado();
       // ac.setIdAnclado(new ObjectId("64ab62994ba5ba22abcaa87e"));
-        System.out.println(new AncladoDAO().buscarTodos());
+      Normal nnr=new Normal();
+      nnr.setId(new ObjectId("64aa3001242d636eed7358ec"));
+        System.out.println(new ComunDAO().getComunesDeNormal(nnr));
     }
     
 }
