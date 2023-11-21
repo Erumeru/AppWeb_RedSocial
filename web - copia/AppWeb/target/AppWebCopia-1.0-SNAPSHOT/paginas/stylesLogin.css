@@ -1,0 +1,186 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27-jun-2023, 16:54:30
+    Author     : hoshi
+*/
+body {
+  background: linear-gradient(180deg, #df84ff, #a088ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recuadro {
+  background: linear-gradient(180deg, #edc0ff, #ccbfff);
+  border-radius: 20px 20px;
+  width: 75%;
+  height: auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 37% 62%;
+  grid-template-rows: 25% 50% 25%;
+}
+img {
+  border-radius: 20px 20px;
+  margin: 2%;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  grid-row: 1/4;
+  align-self: center;
+}
+
+.hola {
+  position: relative;
+  margin: 1%;
+  width: 100%;
+  height: 5%;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  font-size: 35px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  line-height: 58px;
+  color: #3e3e3e;
+}
+
+form {
+  position: relative;
+  height: 70%;
+  width: 60%;
+  justify-self: center;
+}
+
+.corrNum {
+  margin: 2%;
+  padding: 2%;
+  width: 90%;
+  height: 20%;
+  border: 1px solid white;
+}
+
+.pass {
+  margin: 2%;
+  padding: 2%;
+  border: 1px solid white;
+  width: 90%;
+  height: 20%;
+}
+.inputBtn {
+  position: relative;
+  margin-top: 2%;
+  width: 40%;
+  height: 25%;
+  left: 30%;
+  border-radius: 10px 10px;
+  background-color: #408cff;
+  border: 1px solid #408cff;
+  color: #ffffff;
+  font-family: "Inter";
+  font-weight: 800;
+}
+
+.division {
+  width: 40%;
+  height: 3px;
+  left: 2%;
+  top:3%;
+  grid-row:3/4;  
+  grid-column: 2/2;
+  position: relative;
+  background-color: #575656;
+}
+
+.division::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  top: -1%;
+  
+  left: 140%;
+  position: relative;
+  background-color: #575656;
+  display: flex;
+}
+
+.alt{
+  position:relative;
+  grid-row:3/4;  
+  grid-column: 2/2;
+  justify-self: center;
+  margin-top: 0px;
+  font-size: 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  line-height: 10px;
+  color: #3e3e3e;
+}
+
+.cuenta{
+  grid-row:3/4;  
+  grid-column: 2/2;
+  position:relative;
+  justify-self: center;
+  margin-top: 0px;
+  font-size: 15px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  line-height: 70px;
+  color: #3e3e3e;
+}
+
+.registro{
+  grid-row:3/4;
+  grid-column: 2/2;
+  position:relative;
+  justify-self: center;
+  margin-top: 0px;
+  font-size: 15px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130px;
+  color: rgb(41, 114, 224);
+}
+
+
+
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  position: absolute;
+  top: 5vh;
+  
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}

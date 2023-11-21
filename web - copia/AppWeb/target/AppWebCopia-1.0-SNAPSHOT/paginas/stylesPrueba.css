@@ -1,0 +1,127 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28 jun 2023, 23:30:37
+    Author     : eruma
+*/
+
+* {
+    font-family: inter, Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #df84ff, #a088ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    border-radius: 20px 20px;
+    margin: 10px;
+    height: 500px;
+    width: 65%;
+    max-width: 900px;
+    background: linear-gradient(180deg, #edc0ff, #ccbfff);
+}
+
+.image {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px 20px;
+    position: relative;
+}
+
+img {
+    border-radius: 20px 20px;
+    width: 95%;
+    max-width: 300px;
+    height: auto;
+    align-self: center;
+
+}
+
+.form-information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    text-align: center;
+    border-radius: 20px 20px;
+}
+
+.container-form h1 {
+    color: rgba(62, 62, 62, 1);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+form {
+    margin: 30px 0 0 0;
+}
+
+form label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: rgba(62, 62, 62, 1);
+}
+
+form label input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    outline: none;
+}
+
+form input[type="submit"] {
+    background-color: rgba(64, 140, 255, 1);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.container-form p,
+a {
+    font-size: 13px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: rgba(62, 62, 62, 1);
+}
+
+.container-form a {
+    color: rgb(136, 54, 142);
+}
+
+@media (max-width: 580px) {
+    html {
+        font-size: 20px;
+    }
+    .container {
+        height: auto;
+        margin-top: 85%;
+        flex-direction: column;
+    }
+
+    .form-information {
+        width: 100%;
+    }
+
+    .image {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5%;
+        margin-left: 3%;
+    }
+}

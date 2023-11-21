@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="paginas/stylesLogin.css" />
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Inter">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="fetchApiPublicacion.js"></script>
+        <link rel="icon" href="star.ico" type="image/x-icon">
+        <title>Agregar post</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="recuadro">
+                <img
+                    class="imgPrincipal"
+                    src="https://www.elsotano.com/imagenes_grandes/7500588/750058800624.JPG"
+                    />
+                <p class="hola">!Agrega una publicación a tu perfil!</p>
+                <form id="frm" enctype="multipart/form-data">
+                    <input id="txt-titulo" type="text" class="corrNum" name="titulo" placeholder="Ingrese un titulo" />
+                    <input id="imageUpload" type="file" class="corrNum" name="contenido" accept="image/png"/>
+                    <a>Post Anclado</a>
+                    <input id="tipo" name="tipo" type="checkbox" value="true">
+                    <button id="btn-subir" class="inputBtn" type="button">Guardar</button>
+                </form>
+                <div class="division"></div>
+                <p class="alt">O</p>
+                <p class="cuenta">¿Ya no quieres? Regresa a tu perfil</p>
+                <a href="perfilUsuario.jsp" class="registro">Cancelar</a>
+            </div>
+        </div>
+    </body>
+</html>

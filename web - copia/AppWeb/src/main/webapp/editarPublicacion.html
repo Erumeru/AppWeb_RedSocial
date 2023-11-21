@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="paginas/stylesLogin.css" />
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Inter">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+        <link rel="icon" href="star.ico" type="image/x-icon">
+        <script src="fetchApiEditarP.js"></script>
+        <title>Edita tus pots</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="recuadro">
+                <img
+                    class="imgPrincipal"
+                    src="https://www.elsotano.com/imagenes_grandes/7500588/750058800624.JPG"
+                    />
+                <p class="hola">!Edita una publicación!</p>
+                <form id="frm" enctype="multipart/form-data">
+                    <input id="txt-titulo" type="text" class="corrNum" name="titulo" placeholder="Ingrese un nuevo titulo" />
+                    <button id="btn-editar" class="inputBtn" type="button"
+                            onclick="editarPublicacion()">Guardar</button>
+                </form>
+                <div class="division"></div>
+                <p class="alt">O</p>
+                <p class="cuenta">¿Ya no quieres? Regresa a tu feed</p>
+                <a href="mainPublicaciones.jsp" class="registro">Cancelar</a>
+            </div>
+        </div>
+    </body>
+</html>

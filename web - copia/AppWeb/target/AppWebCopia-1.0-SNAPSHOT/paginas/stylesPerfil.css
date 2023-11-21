@@ -1,0 +1,245 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28 jun 2023, 18:40:30
+    Author     : hoshi
+*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    font-family: 'Roboto',sans-serif;
+    background: #fafafa;
+}
+
+.nav-arriba{
+    min-width: 1024px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-bottom: solid #dbdbdb 1px;
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+
+
+.nav-cont{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.cont-input{
+    height: 28px;
+    border: solid 1px #dbdbdb;
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    padding: 5px;
+    border-radius: 30px;
+    margin:0px 50px
+}
+
+.cont-input input{
+    border: 0;
+    outline: none;
+    background: #fafafa;
+}
+
+
+.iconos{
+    display:contents;
+
+}
+
+.iconos svg{
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.iconos h3{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+header{
+    width: 60%;
+    margin: auto;
+    transform: translateY(50px);
+    padding: 20px 0;
+}
+
+.perfil-container{
+    display: flex;
+}
+
+.perfil-container .img-perfil{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position:relative;
+    left:2%;
+}
+
+
+.small-logo{
+    width: 7%;
+    height: 10%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    left: 90%;
+}
+
+.perfil-container img{
+    cursor: pointer;
+}
+
+.contenedor-cabecera{
+    margin-left: 100px;
+}
+
+.cabecera1{
+    width: 290px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: space-between;
+}
+
+.cabecera1 h1{
+    color: #616161;
+    font-weight: 100px;
+    font-size: 26px;
+}
+
+.cabecera1 button{
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: #A9C7AC;
+    border: solid #dbdbdb 1px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cabecera2{
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.cabecera3 h2, .cabecera3 .p-presentation{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.linea{
+        width: 60vw;
+    height: 1px;
+    margin: auto;
+    background: #dbdbdb;
+    position: relative;
+    left: -25%;
+}
+
+.fotoContenido{
+    display:flex;
+    width:50%;
+    position:relative;
+    height: auto;
+    justify-self: center;
+    align-self: center;
+    padding-bottom: 20px;
+    margin:13px 15px;
+    object-fit: cover;
+    border:1px solid plum;
+
+}
+
+.main-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding: 15px;
+}
+
+.main-nav a{
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+main{
+    width: 70%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+/*.mainCont_grid{
+    display: grid;
+    grid-template-columns: repeat(3,32%);
+    grid-template-rows: repeat(5, auto);
+    gap: 2%;
+    height: auto;
+}*/
+
+.container-publicaciones{
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-container{
+    width: 250px;
+    height: 250px;
+    margin: 5px;
+    overflow: hidden;
+
+}
+
+.mainCont_grid div > img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.nav-abajo{
+    min-width: 1024px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-top: solid #dbdbdb 1px;
+    background: #fff;
+    bottom: 0;
+}
+
+.referencia-botton{
+    text-decoration: none;
+    font-family: 'roboto';
+    font-weight: bold;
+    color: black;
+}
+
+.contenedor-Total{
+    justify-self: center;
+}
+
+.centrar-Total{
+    display: flex;
+    justify-content: center;
+}
+
