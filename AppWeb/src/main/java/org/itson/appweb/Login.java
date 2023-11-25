@@ -114,7 +114,10 @@ public class Login extends HttpServlet {
                 || pass == null
                 || pass.isBlank()) {
             // regresamos a las paginas
+            String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
+            request.setAttribute("mensaje", mensaje);
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
         }
 
         for (Admor adm : admin) {
@@ -131,6 +134,8 @@ public class Login extends HttpServlet {
                 getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
                 return;
             }
+         
+           
         }
 
         for (Normal nrm : normal) {
@@ -146,9 +151,10 @@ public class Login extends HttpServlet {
                 getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
                 return;
             }
+             
         }
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-
+        
     }
 
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
