@@ -15,13 +15,13 @@ function redirectEditar(id) {
 }
 function editarPublicacion() {
     Swal.fire({
-        title: 'Quieres modificar eso?',
-        text: "No seras capaz de revertir esto!",
+        title: '¿Quieres modificar esto?',
+        text: "No serás capaz de revertir esto",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, modificar'
+        confirmButtonText: 'Sí, modificar'
     }).then((result) => {
         if (result.isConfirmed) {
             let idEncrypt = decodeURIComponent(window.location.search.substring(1).split('=')[1]);
@@ -34,21 +34,35 @@ function editarPublicacion() {
                 titulo
             };
             btnEditar.disabled = false;
-            fetch("http://localhost:8080/AppWeb/Posts?action=editarComun", {
-                method: "POST",
+
+            // Configuración de la solicitud POST
+            const requestOptions = {
+                method: 'POST',
                 body: JSON.stringify(publiEdit),
-                headers: {"content-type": "application/json"}
-            }).then(_ => {
-                Swal.fire("¡Éxito!", "Publicacion comun editada", "success").then(() => {
-                    window.history.back().reload();
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            };
+
+            // Realizar la solicitud POST
+            fetch("http://localhost:8080/AppWeb/Posts?action=editarComun", requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud');
+                    }
+                    return response.text();
+                })
+                .then(_ => {
+                    Swal.fire("¡Éxito!", "Publicacion comun editada", "success").then(() => {
+                        const jspUrl = '/mainPublicaciones?action=viewPosts'; // Reemplaza con la ruta correcta de tu JSP
+                        window.location.href = 'http://localhost:8080/AppWeb/perfilUsuario_1.jsp';
+                    });
+                })
+                .catch(err => {
+                    btnEditar.disabled = false;
+                    console.error(err);
                 });
-            }).catch(err => {
-                btnEditar.disabled = false;
-                console.error(err);
-            });
         }
-    })
-
+    });
 }
-
 

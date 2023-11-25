@@ -71,6 +71,7 @@ public class Posts extends HttpServlet {
             out.println(salida);
             out.flush();
         }
+        getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
     }
 
     private void proccessEliminarComun(HttpServletRequest request, HttpServletResponse response)
