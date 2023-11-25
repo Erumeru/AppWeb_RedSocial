@@ -4,6 +4,7 @@
  */
 package org.itson.appimplementacion;
 
+import ObjNegocio.Admor;
 import ObjNegocio.Normal;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
@@ -80,8 +81,10 @@ public class NormalDAO extends BaseDAO<Normal> {
         MongoDatabase db = Conexion.getInstance();
         MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
         Document filtro = new Document("_id", entidad.getId());
-        Normal resultado=colleccionNormal.find(filtro).first();
-        if(resultado!=null) resultado.setId(entidad.getId());
+        Normal resultado = colleccionNormal.find(filtro).first();
+        if (resultado != null) {
+            resultado.setId(entidad.getId());
+        }
         return resultado;
     }
 
@@ -120,6 +123,13 @@ public class NormalDAO extends BaseDAO<Normal> {
         return buscar(entidad2);
     }
 
+    public Admor buscarRepetidoAdmor(Admor entidad) {
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Admor> colleccionAdmor = db.getCollection("admor", Admor.class);
+        Document filtro = new Document("correo", entidad.getCorreo()).append("contrasenia", entidad.getContrasenia()).append("telefono", entidad.getTelefono());
+        return colleccionAdmor.find(filtro).first();
+    }
+
     /**
      * Guarda una entidad de tipo Normal en la base de datos MongoDB.
      *
@@ -129,7 +139,13 @@ public class NormalDAO extends BaseDAO<Normal> {
     @Override
     public Normal guardar(Normal entidad) throws DAOException {
         Normal elemento = buscarRepetido(entidad);
-        if (elemento != null) {
+        Admor admor = new Admor();
+        admor.setTelefono(entidad.getTelefono());
+        admor.setCorreo(entidad.getCorreo());
+        admor.setContrasenia(entidad.getContrasenia());
+
+        Admor elmentoAdmor = buscarRepetidoAdmor(admor);
+        if (elemento != null||elmentoAdmor!=null) {
             throw new DAOException("Error al guardar.");
         } else {
             collection.insertOne(entidad);
@@ -139,8 +155,9 @@ public class NormalDAO extends BaseDAO<Normal> {
 
     /**
      * Busca si la entidad ya esta en la base
+     *
      * @param entidad a buscar
-     * @return la entidad en caso de estar 
+     * @return la entidad en caso de estar
      */
     @Override
     public Normal buscarRepetido(Normal entidad) {

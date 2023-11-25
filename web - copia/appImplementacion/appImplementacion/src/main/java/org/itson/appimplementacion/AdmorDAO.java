@@ -5,6 +5,7 @@
 package org.itson.appimplementacion;
 
 import ObjNegocio.Admor;
+import ObjNegocio.Normal;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -53,6 +54,14 @@ public class AdmorDAO extends BaseDAO<Admor> {
         collection = conn.getCollection(COLECCION, Admor.class);
     }
 
+        public Normal buscarRepetidoNormal(Normal entidad) {
+        MongoDatabase db = Conexion.getInstance();
+        MongoCollection<Normal> colleccionNormal = db.getCollection("normal", Normal.class);
+        Document filtro = new Document("correo", entidad.getCorreo()).append("contrasenia", entidad.getContrasenia()).append("telefono", entidad.getTelefono());
+        return colleccionNormal.find(filtro).first();
+    }
+
+    
     /**
      * Guarda una entidad de tipo Admor en la base de datos MongoDB.
      *
@@ -63,7 +72,13 @@ public class AdmorDAO extends BaseDAO<Admor> {
     @Override
     public Admor guardar(Admor entidad) throws DAOException {
         Admor elemento = buscarRepetido(entidad);
-        if (elemento != null) {
+        Normal normal = new Normal();
+        normal.setTelefono(entidad.getTelefono());
+        normal.setCorreo(entidad.getCorreo());
+        normal.setContrasenia(entidad.getContrasenia());
+        
+        Normal elmentoNormal = buscarRepetidoNormal(normal);
+        if (elemento != null || elmentoNormal!=null) {
             throw new DAOException("Error al guardar.");
         } else {
             collection.insertOne(entidad);
@@ -94,6 +109,7 @@ public class AdmorDAO extends BaseDAO<Admor> {
         MongoCollection<Admor> colleccionAdmor = db.getCollection(COLECCION, Admor.class);
         return colleccionAdmor;
     }
+    
 
     /**
      * Busca una entidad de tipo Admor dentro de la colección en la base de
