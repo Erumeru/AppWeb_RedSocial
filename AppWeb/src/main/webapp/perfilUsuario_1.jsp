@@ -20,7 +20,9 @@
         <script src="prueba.js"></script>
         <nav class="nav-arriba">
             <div class="nav-cont">
-                <img width="103" height="35" src="paginas/imagenes/logo.png" alt="Logo">
+                <form  action='./mainPublicaciones?action=viewPosts' method="post">
+                <button type="submit"><img width="103" height="35" src="paginas/imagenes/logo.png" alt="Logo"></button>
+                </form>
                 <div class="cont-input">
                     <a href="#"><span><img width="10px" src="paginas/imagenes/8666693_search_icon.svg" alt="Proyecto"></span></a>
                     <input type="text" placeholder=" Buscar" />

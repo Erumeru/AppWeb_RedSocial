@@ -129,6 +129,14 @@ public class Register extends HttpServlet {
             return;
         }
 
+        String regex = "^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\",./<>?]+$";
+        if (!contra.matches(regex)) {
+            String mensaje = "La contraseña debe contener solo letras, números y algunos caracteres especiales.";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
+
         if (!esNumero(telefono)) {
             String mensaje = "El número de teléfono debe ser un valor numérico.";
             request.setAttribute("mensaje", mensaje);
