@@ -12,7 +12,12 @@ import ObjNegocio.Normal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -118,38 +123,53 @@ public class Login extends HttpServlet {
         }
 
         for (Admor adm : admin) {
-            if (adm.getCorreo() != null && adm.getContrasenia() != null
-                    && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(pass)) {
-                HttpSession sesion = request.getSession();
-                //     String di=adm.getId().toString();
-                //     String dasd=adm.getIdAdmor().toString();
-                ArrayList<Comun> comunesYAncladosDeAdmor = registerNegocio.getComunesYAncDeAdmor(adm);
-                sesion.setAttribute("usuario", adm);
-                sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
-                sesion.setAttribute("tipo", "admor");
-                sesion.setAttribute("listPostUser", comunesYAncladosDeAdmor);
-                getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
-                return;
+            try {
+                if (adm.getCorreo() != null && adm.getContrasenia() != null
+                        && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(decryptAES(pass, "MiClaveSecreta12"))) {
+                    HttpSession sesion = request.getSession();
+                    ArrayList<Comun> comunesYAncladosDeAdmor = registerNegocio.getComunesYAncDeAdmor(adm);
+                    sesion.setAttribute("usuario", adm);
+                    sesion.setAttribute("id", "uploads/" + adm.getId() + ".png");
+                    sesion.setAttribute("tipo", "admor");
+                    sesion.setAttribute("listPostUser", comunesYAncladosDeAdmor);
+                    getServletContext().getRequestDispatcher("/perfilUsuario.jsp").forward(request, response);
+                    return;
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         for (Normal nrm : normal) {
-            if (nrm.getCorreo() != null && nrm.getContrasenia() != null
-                    && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(pass)) {
-                HttpSession sesion = request.getSession();
-                //    sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
-                List<Comun> comunesDeNormal = registerNegocio.getComunesDeNormal(nrm);
-                sesion.setAttribute("usuario", nrm);
-                sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
-                sesion.setAttribute("tipo", "normal");
-                sesion.setAttribute("listPostUser", comunesDeNormal);
-                getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
-                return;
+            try {
+                if (nrm.getCorreo() != null && nrm.getContrasenia() != null
+                        && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(decryptAES(pass, "MiClaveSecreta12"))) {
+                    HttpSession sesion = request.getSession();
+                    //    sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
+                    List<Comun> comunesDeNormal = registerNegocio.getComunesDeNormal(nrm);
+                    sesion.setAttribute("usuario", nrm);
+                    sesion.setAttribute("id", "uploads/" + nrm.getId() + ".png");
+                    sesion.setAttribute("tipo", "normal");
+                    sesion.setAttribute("listPostUser", comunesDeNormal);
+                    getServletContext().getRequestDispatcher("/perfilUsuario_1.jsp").forward(request, response);
+                    return;
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         getServletContext().getRequestDispatcher("/loginCredenInco.jsp").forward(request, response);
     }
-
+    
+     private static String decryptAES(String mensajeEncriptado, String clave) throws Exception {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(clave.getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+        byte[] encryptedBytes = Base64.getDecoder().decode(mensajeEncriptado);
+        byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
+        return new String(decryptedBytes);
+    }
+     
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();

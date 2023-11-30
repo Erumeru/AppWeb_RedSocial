@@ -16,9 +16,14 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -172,7 +177,7 @@ public class Register extends HttpServlet {
                 Admor admin = new Admor();
                 admin.setCorreo(email);
                 admin.setNombreCompleto(nombre);
-                admin.setContrasenia(contra);
+                admin.setContrasenia(encryptAES(contra, "MiClaveSecreta12"));
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
 
@@ -226,8 +231,8 @@ public class Register extends HttpServlet {
         try {
             Normal normalUser = new Normal();
             normalUser.setCorreo(email);
-            normalUser.setNombreCompleto(nombre);
-            normalUser.setContrasenia(contra);
+            normalUser.setNombreCompleto(nombre);                    
+            normalUser.setContrasenia(encryptAES(contra, "MiClaveSecreta12"));
             normalUser.setTelefono(telefono);
 
             normalUser.setCiudad(ciudad);
@@ -267,6 +272,7 @@ public class Register extends HttpServlet {
             normalUser.setFechaNacimiento(date);
             normalUser.setGenero(sexo);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
+            System.out.println(usuarioCreado.getContrasenia());
             request.getSession().setAttribute("id", usuarioCreado.getId().toString());
             request.getSession().setAttribute("tipo", "normal");
 
@@ -281,6 +287,15 @@ public class Register extends HttpServlet {
 
     }
 
+    private static String encryptAES(String mensaje, String clave) throws Exception {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(clave.getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+        byte[] encryptedBytes = cipher.doFinal(mensaje.getBytes());
+        System.out.println(Base64.getEncoder().encodeToString(encryptedBytes));
+        return Base64.getEncoder().encodeToString(encryptedBytes);
+    }
+    
     /**
      * Returns a short description of the servlet.
      *
