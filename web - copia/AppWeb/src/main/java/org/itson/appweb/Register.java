@@ -18,14 +18,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -108,6 +104,8 @@ public class Register extends HttpServlet {
         String ciudad = request.getParameter("ciudad");
         String tipo = request.getParameter("tipo");
         String sexo = request.getParameter("sexo");
+        
+      
 
 //        String avatar = request.getParameter("avatar");
 //        String 
@@ -172,6 +170,26 @@ public class Register extends HttpServlet {
             date = pasar.parse(fechaNacimiento);
         } catch (ParseException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //No se permite el correo para regiustrar mas de una cuenta
+        List<Admor> listaDeAdmors= registerNegocio.listaAdmor();
+        for(Admor adr:listaDeAdmors){
+            if(adr.getCorreo().equalsIgnoreCase(email)){
+                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
+                getServletContext().getRequestDispatcher("/errorExterno.jsp")
+                        .forward(request, response);
+                return;
+            }
+        }
+        List<Normal> listaDeNormals= registerNegocio.listaNormal();
+        for(Normal nrm:listaDeNormals){
+            if(nrm.getCorreo().equalsIgnoreCase(email)){
+                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
+                getServletContext().getRequestDispatcher("/errorExterno.jsp")
+                        .forward(request, response);
+                return;
+            }
         }
 
         if (tipo != null && tipo.equalsIgnoreCase("true")) {
