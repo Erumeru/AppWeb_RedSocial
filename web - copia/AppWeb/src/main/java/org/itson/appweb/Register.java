@@ -11,6 +11,8 @@ import ObjNegocio.Municipio;
 import ObjNegocio.Normal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -49,7 +51,7 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -177,7 +179,7 @@ public class Register extends HttpServlet {
                 Admor admin = new Admor();
                 admin.setCorreo(email);
                 admin.setNombreCompleto(nombre);
-                admin.setContrasenia(encryptAES(contra, "MiClaveSecreta12"));
+                admin.setContrasenia(hashPassword(contra));
                 admin.setTelefono(telefono);
                 admin.setCiudad(ciudad);
 
@@ -231,8 +233,8 @@ public class Register extends HttpServlet {
         try {
             Normal normalUser = new Normal();
             normalUser.setCorreo(email);
-            normalUser.setNombreCompleto(nombre);                    
-            normalUser.setContrasenia(encryptAES(contra, "MiClaveSecreta12"));
+            normalUser.setNombreCompleto(nombre);
+            normalUser.setContrasenia(hashPassword(contra));
             normalUser.setTelefono(telefono);
 
             normalUser.setCiudad(ciudad);
@@ -272,7 +274,6 @@ public class Register extends HttpServlet {
             normalUser.setFechaNacimiento(date);
             normalUser.setGenero(sexo);
             Normal usuarioCreado = registerNegocio.guardarNormal(normalUser);
-            System.out.println(usuarioCreado.getContrasenia());
             request.getSession().setAttribute("id", usuarioCreado.getId().toString());
             request.getSession().setAttribute("tipo", "normal");
 
@@ -287,15 +288,32 @@ public class Register extends HttpServlet {
 
     }
 
-    private static String encryptAES(String mensaje, String clave) throws Exception {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(clave.getBytes(), "AES");
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-        byte[] encryptedBytes = cipher.doFinal(mensaje.getBytes());
-        System.out.println(Base64.getEncoder().encodeToString(encryptedBytes));
-        return Base64.getEncoder().encodeToString(encryptedBytes);
+     public static String hashPassword(String password) {
+        try {
+            // Crear un objeto MessageDigest con el algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Convertir la contraseña a bytes y aplicar el hash
+            byte[] hashedBytes = digest.digest(password.getBytes());
+
+            // Convertir el hash a una representación hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashedByte : hashedBytes) {
+                String hex = Integer.toHexString(0xff & hashedByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Manejar la excepción NoSuchAlgorithmException
+            e.printStackTrace();
+            return null;
+        }
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

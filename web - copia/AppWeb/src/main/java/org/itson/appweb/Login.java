@@ -11,6 +11,8 @@ import ObjNegocio.Comun;
 import ObjNegocio.Normal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -125,7 +127,7 @@ public class Login extends HttpServlet {
         for (Admor adm : admin) {
             try {
                 if (adm.getCorreo() != null && adm.getContrasenia() != null
-                        && adm.getCorreo().equalsIgnoreCase(correo) && adm.getContrasenia().equalsIgnoreCase(decryptAES(pass, "MiClaveSecreta12"))) {
+                        && adm.getCorreo().equalsIgnoreCase(correo) && hashPassword(pass).equalsIgnoreCase(adm.getContrasenia())) {
                     HttpSession sesion = request.getSession();
                     ArrayList<Comun> comunesYAncladosDeAdmor = registerNegocio.getComunesYAncDeAdmor(adm);
                     sesion.setAttribute("usuario", adm);
@@ -143,7 +145,7 @@ public class Login extends HttpServlet {
         for (Normal nrm : normal) {
             try {
                 if (nrm.getCorreo() != null && nrm.getContrasenia() != null
-                        && nrm.getCorreo().equalsIgnoreCase(correo) && nrm.getContrasenia().equalsIgnoreCase(decryptAES(pass, "MiClaveSecreta12"))) {
+                        && nrm.getCorreo().equalsIgnoreCase(correo) && hashPassword(pass).equalsIgnoreCase(nrm.getContrasenia())) {
                     HttpSession sesion = request.getSession();
                     //    sesion.setAttribute("listaPostsComun", registerNegocio.getComunesDeNormal(nrm));
                     List<Comun> comunesDeNormal = registerNegocio.getComunesDeNormal(nrm);
@@ -160,16 +162,33 @@ public class Login extends HttpServlet {
         }
         getServletContext().getRequestDispatcher("/loginCredenInco.jsp").forward(request, response);
     }
-    
-     private static String decryptAES(String mensajeEncriptado, String clave) throws Exception {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(clave.getBytes(), "AES");
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-        byte[] encryptedBytes = Base64.getDecoder().decode(mensajeEncriptado);
-        byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-        return new String(decryptedBytes);
+
+     public static String hashPassword(String password) {
+        try {
+            // Crear un objeto MessageDigest con el algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Convertir la contraseña a bytes y aplicar el hash
+            byte[] hashedBytes = digest.digest(password.getBytes());
+
+            // Convertir el hash a una representación hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashedByte : hashedBytes) {
+                String hex = Integer.toHexString(0xff & hashedByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Manejar la excepción NoSuchAlgorithmException
+            e.printStackTrace();
+            return null;
+        }
     }
-     
+
     protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
