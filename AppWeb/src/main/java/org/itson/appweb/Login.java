@@ -153,6 +153,8 @@ public class Login extends HttpServlet {
             }
              
         }
+        String mensaje = "Lo sentimos, las credenciales son incorrectas ):";
+        request.setAttribute("mensaje", mensaje);
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         
     }

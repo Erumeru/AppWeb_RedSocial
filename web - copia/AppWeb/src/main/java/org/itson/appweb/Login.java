@@ -161,7 +161,9 @@ public class Login extends HttpServlet {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        getServletContext().getRequestDispatcher("/loginCredenInco.jsp").forward(request, response);
+        String mensaje = "Lo sentimos, las credenciales son incorrectas ):";
+        request.setAttribute("mensaje", mensaje);
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
      public static String hashPassword(String password) {
