@@ -171,6 +171,18 @@ public class Register extends HttpServlet {
         //Validaciones fecha
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate fechaNacimientoTrans = LocalDate.parse(fechaNacimiento, formatter);
+//        LocalDate.MIN fecha150Anios = LocalDate.now();
+        // Suponiendo que fechaNacimientoTrans es de tipo LocalDate
+        LocalDate fechaLimite = LocalDate.now().minusYears(150);
+
+        if (fechaNacimientoTrans.isBefore(fechaLimite)) {
+            System.out.println("popo");
+            String mensaje = "Esa fecha es muy lejana!";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
+
 
         if (fechaNacimientoTrans.isAfter(fechaActualLocal)) {
             String mensaje = "Esa fecha aún no existe!";
