@@ -15,8 +15,14 @@
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Inter">
         <title>Login</title>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
+         <c:if test="${not empty mensaje}">
+            <script>
+                swal("¡Alerta!", "${requestScope.mensaje}", "warning");
+            </script>
+        </c:if>
         <div class="container">
             <div class="recuadro">
 

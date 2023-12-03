@@ -51,11 +51,9 @@
                             </div>
                             <div class="cabecera2">
                                 <p><b>8</b> publicaciones</p>
-                                <p><b>10</b> amigos</p>
                             </div>
                             <div class="cabecera3">
                                 <h2>${sessionScope.usuario.correo}</h2>
-                                <p class="p-presentation">Me encanta ser feliz</p>
                             </div>
                         </div>
                     </div>

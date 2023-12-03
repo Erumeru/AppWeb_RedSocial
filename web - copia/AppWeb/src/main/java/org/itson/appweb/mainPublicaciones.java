@@ -137,7 +137,12 @@ public class mainPublicaciones extends HttpServlet {
         request.getSession().setAttribute("anclados", listaAnclados);
         request.getSession().setAttribute("comunes", listaComunes);
 
-        getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
+        if (tipoUsuario.equalsIgnoreCase("admor")) {
+            getServletContext().getRequestDispatcher("/mainPublicacionesAdmor.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/mainPublicaciones.jsp").forward(request, response);
+        }
+        
     }
 
     /**
