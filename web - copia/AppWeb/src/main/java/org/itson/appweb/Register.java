@@ -132,6 +132,29 @@ public class Register extends HttpServlet {
             request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
+        
+        String regex = "^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\",./<>?]+$";
+        if (!contra.matches(regex)) {
+            String mensaje = "La contraseña debe contener solo letras, números y algunos caracteres especiales.";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
+
+        if (!esNumero(telefono)) {
+            String mensaje = "El número de teléfono debe ser un valor numérico.";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
+
+        if (contra.length() < 8) {
+            // Contraseña no válida, redirige de vuelta al formulario con un mensaje de error
+            String mensaje = "Lo sentimos, la contraseña debe tener al menos 8 caracteres";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+        }
+        
         if (!contraConfirmacion.equals(contra)) {
             String mensaje = "Asegurate de que las contraseñas coincidan.";
             request.setAttribute("mensaje", mensaje);
@@ -341,5 +364,12 @@ public class Register extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+     private boolean esNumero(String str) {
+    try {
+        Long.parseLong(str);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+    }
 }

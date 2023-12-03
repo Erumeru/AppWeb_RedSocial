@@ -119,7 +119,10 @@ public class Login extends HttpServlet {
                 || pass == null
                 || pass.isBlank()) {
             // regresamos a las paginas
-            getServletContext().getRequestDispatcher("/loginCampoIncom.jsp").forward(request, response);
+            String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
+            request.setAttribute("mensaje", mensaje);
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
         }
 
         for (Admor adm : admin) {
