@@ -50,7 +50,7 @@
                                 </form>
                             </div>
                             <div class="cabecera2">
-                                <p><b>8</b> publicaciones</p>
+                               
                             </div>
                             <div class="cabecera3">
                                 <h2>${sessionScope.usuario.correo}</h2>

@@ -175,4 +175,6 @@ public class mainPublicaciones extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+
 }

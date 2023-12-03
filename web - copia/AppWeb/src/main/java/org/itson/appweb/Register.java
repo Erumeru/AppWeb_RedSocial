@@ -197,21 +197,29 @@ public class Register extends HttpServlet {
         
         //No se permite el correo para regiustrar mas de una cuenta
         List<Admor> listaDeAdmors= registerNegocio.listaAdmor();
-        for(Admor adr:listaDeAdmors){
-            if(adr.getCorreo().equalsIgnoreCase(email)){
-                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
-                getServletContext().getRequestDispatcher("/errorExterno.jsp")
-                        .forward(request, response);
+        for (Admor adr : listaDeAdmors) {
+            if (adr.getCorreo().equalsIgnoreCase(email)) {
+//                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
+//                getServletContext().getRequestDispatcher("/errorExterno.jsp")
+//                        .forward(request, response);
+//                return;
+                String mensaje = "Lo sentimos, este es un usuario ya existente 🤣";
+                request.setAttribute("mensaje", mensaje);
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
                 return;
             }
         }
         List<Normal> listaDeNormals= registerNegocio.listaNormal();
         for(Normal nrm:listaDeNormals){
             if(nrm.getCorreo().equalsIgnoreCase(email)){
-                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
-                getServletContext().getRequestDispatcher("/errorExterno.jsp")
-                        .forward(request, response);
+                String mensaje = "Lo sentimos, este es un usuario ya existente 🤣";
+                request.setAttribute("mensaje", mensaje);
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
                 return;
+//                request.setAttribute("error", "Ha ocurrido un error al registrar usuario 🤣");
+//                getServletContext().getRequestDispatcher("/errorExterno.jsp")
+//                        .forward(request, response);
+//                return;
             }
         }
 
