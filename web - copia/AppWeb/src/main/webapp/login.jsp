@@ -12,37 +12,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="paginas/stylesLogin.css" />
         <link rel="icon" href="star.ico" type="image/x-icon">
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Inter">
         <title>Login</title>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
-         <c:if test="${not empty mensaje}">
-            <script>
-                swal("¡Alerta!", "${requestScope.mensaje}", "warning");
-            </script>
-        </c:if>
-        <div class="container">
-            <div class="recuadro">
+    <c:if test="${not empty mensaje}">
+        <script>
+        var mensajeSinEspacios = "${mensaje}".trim();
+        if (mensajeSinEspacios.length > 0) {
+            swal("¡Alerta!", mensajeSinEspacios, "warning");
+        }
+        </script>
+    </c:if>
 
-                <img
-                    class="imgPrincipal"
-                    src="https://www.elsotano.com/imagenes_grandes/7500588/750058800625.JPG"
-                    />
-                <p class="hola">¡Hola de nuevo!</p>
-                <form action="./Login?action=login" method="post">
+    <div class="container">
+        <div class="recuadro">
 
-                    <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
+            <img
+                class="imgPrincipal"
+                src="https://www.elsotano.com/imagenes_grandes/7500588/750058800625.JPG"
+                />
+            <p class="hola">¡Hola de nuevo!</p>
+            <form action="./Login?action=login" method="post">
 
-                    <input id="pass" type="password" class="pass" name="pass" placeholder="Ingrese su contraseña"/>
-                    <input class="inputBtn" type="submit" value="Iniciar Sesión" />
-                </form>
-                <div class="division"></div>
-                <p class="alt">O</p>
-                <p class="cuenta">¿No tienes cuenta aún?</p>
-                <a href="register.jsp" class="registro">Registrate</a>
-            </div>
+                <input id="corrNum" type="text" class="corrNum" name="corrNum" placeholder="Ingrese Correo o Teléfono" />
+
+                <input id="pass" type="password" class="pass" name="pass" placeholder="Ingrese su contraseña"/>
+                <input class="inputBtn" type="submit" value="Iniciar Sesión" />
+            </form>
+            <div class="division"></div>
+            <p class="alt">O</p>
+            <p class="cuenta">¿No tienes cuenta aún?</p>
+            <a href="register.jsp" class="registro">Registrate</a>
         </div>
-    </body>
+    </div>
+</body>
 </html>
