@@ -1,6 +1,5 @@
 org\itson\appweb\dtos\ComunEliminarDTO.class
 org\itson\appweb\dtos\ComunEditarDTO.class
-org\itson\appweb\Register.class
 org\itson\appweb\FileUpload.class
 org\itson\appweb\mainPublicaciones.class
 org\itson\appweb\Administrador.class
@@ -9,4 +8,5 @@ org\itson\appweb\filtros\AuthFilter.class
 org\itson\appweb\FileUploadServlet.class
 org\itson\appweb\Login.class
 org\itson\appweb\dtos\ComentariosDTO.class
+org\itson\appweb\Register.class
 org\itson\appweb\Posts.class
