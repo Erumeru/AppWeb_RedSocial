@@ -64,6 +64,7 @@
                         </div>
                         <div class="content-container">
                             <img class="fotoContenido" src=${item.contenido} alt="post"> 
+                            <p class="profile-text">${item.admor.nombreCompleto}<span class="space-comments">${item.titulo}</span> </p>
                         </div>
                         <p></p>
                         <div class="icons-container">
