@@ -5,6 +5,7 @@
 package org.itson.appweb;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import org.apache.commons.fileupload.FileItemStream;
@@ -23,7 +24,12 @@ public class FileUpload {
             }
             File savedFile = new File(f.getAbsolutePath() + File.separator + id + ".png");
             FileOutputStream fos = new FileOutputStream(savedFile);
-            InputStream is = item.openStream();
+            InputStream is;
+            if (item.getName().equalsIgnoreCase("") || item.getName().equalsIgnoreCase(" ")) {
+                is = new FileInputStream(f.getAbsolutePath() + File.separator + "sinFoto" + ".png");
+            } else {
+                is = item.openStream();
+            }
             int x = 0;
             byte[] b = new byte[1024];
             while ((x = is.read(b)) != -1) {

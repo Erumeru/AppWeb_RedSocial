@@ -53,7 +53,6 @@ public class FileUploadServlet extends HttpServlet {
                 while (itr.hasNext()) {
                     FileItemStream item = itr.next();
                     String fieldName = item.getName();
-
                     if (item.isFormField()) {
                         InputStream is = item.openStream();
                         byte[] b = new byte[is.available()];
@@ -78,6 +77,9 @@ public class FileUploadServlet extends HttpServlet {
 
                             Admor admAvatar = adm;
                             admAvatar.setAvatar("uploads/" + id + ".png");
+//                            if (item.getName().equalsIgnoreCase("") || item.getName().equalsIgnoreCase(" ")) {
+//                                admAvatar.setAvatar("uploads/" + "sinFoto" + ".png");
+//                            }
                             registerNegocio.actualizarAdmor(adm, admAvatar);
                         }
                         if (tipo.equalsIgnoreCase("normal")) {
@@ -91,9 +93,12 @@ public class FileUploadServlet extends HttpServlet {
 
                             Normal nrmAvatar = normal;
                             nrmAvatar.setAvatar("uploads/" + id + ".png");
+//                            if (item.getName().equalsIgnoreCase("") || item.getName().equalsIgnoreCase(" ")) {
+//                                nrmAvatar.setAvatar("uploads/" + "sinFoto" + ".png");
+//                            }
                             registerNegocio.actualizarNormal(normal, nrmAvatar);
                         }
-
+                        
                         if (FileUpload.processFile(rutaFinal, item, id)) {
                             response.getWriter().println("file uploaded successfully");
                         } else {
@@ -106,7 +111,7 @@ public class FileUploadServlet extends HttpServlet {
             }
             getServletContext().getRequestDispatcher("/login.jsp")
                     .forward(request, response);
-            
+
         }
     }
 }
