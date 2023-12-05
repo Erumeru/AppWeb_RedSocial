@@ -107,7 +107,7 @@ public class Register extends HttpServlet {
         
       
 
-//        String avatar = request.getParameter("avatar");
+        
 //        String 
         //preguntar kim
         if (email == null
@@ -126,7 +126,9 @@ public class Register extends HttpServlet {
                 || fechaNacimiento.isBlank()
                 || fechaNacimiento.trim().length() > 10
                 || sexo.isBlank()
-                || sexo == null) {
+                || sexo == null
+                || telefono.isBlank()
+                || telefono.trim().length() > 10) {
             String mensaje = "Lo sentimos, no puedes dejar espacios en blanco ):";
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
@@ -176,7 +178,6 @@ public class Register extends HttpServlet {
         LocalDate fechaLimite = LocalDate.now().minusYears(150);
 
         if (fechaNacimientoTrans.isBefore(fechaLimite)) {
-            System.out.println("popo");
             String mensaje = "Esa fecha es muy lejana!";
             request.setAttribute("mensaje", mensaje);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
